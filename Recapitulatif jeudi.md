@@ -5,4 +5,5 @@
 ## objectifs:
 - github ok pour tout le monde
 - rassembler des idées du déroulement du jeu
+- completer le cahier des charges
 - trellor

@@ -17,7 +17,8 @@
 --------------------------------------------------------------------------------------------------------
 
 
-- L'environnement est généré alétoirement, il possède des monstres, et des objets.
+- L'environnement est composé du zone fixe et d'un donjon généré alétoirement, le donjon possède des monstres, et des objets.
+    le donjon change tous les x temps ou chaques fois que on quitte un niveau
 - Les personnages peuvent bouger, attaquer, recevoir des dégats et donner des dégats
 - Le héro peut monter de niveau et attribuer des points dans des caractéristiques pour les augmenter.
 - Les consommables redonnent de la vie ou de la mana
