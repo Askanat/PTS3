@@ -1,10 +1,3 @@
-## Objectifs (22 septembre 2016)
-- github ok pour tout le monde
-- rassembler des idées du déroulement du jeu
-- trellor
-
-
----------------------------------------------------------------------------------------------------------
 
 - Personnage : Hero, Monstre
     - hero : nom, niveau, expérience, expérience max, vie, vie max, mana, mana max, degats, armures
