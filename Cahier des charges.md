@@ -17,10 +17,10 @@
 --------------------------------------------------------------------------------------------------------
 
 
-- L'environnement est composé du zone fixe et d'un donjon généré alétoirement, le donjon possède des monstres, et des objets.
+- L'environnement est composé du zone fixe et d'un donjon généré alétoirement, le donjon possède des monstres, et des objets
     le donjon change tous les x temps ou chaques fois que on quitte un niveau
 - Les personnages peuvent bouger, attaquer, recevoir des dégats et donner des dégats
-- Le héro peut monter de niveau et attribuer des points dans des caractéristiques pour les augmenter.
+- Le héro peut monter de niveau et attribuer des points dans des caractéristiques pour les augmenter
 - Les consommables redonnent de la vie ou de la mana
 - Les équipements permettent d'améliorer les caractéristiques du héro (+ def)
 - Les armes permet d'améliorer les caractéristiques du héro  (+ off)
@@ -32,7 +32,7 @@
 - La forge permet au héro d'acheter de l'équipement et des armes
 - Le donjon se compose en niveau, quand on rentre on est dans le niveau 0, on peut soit dessendre(niveau--) soit monter(niveau++),
         on peut sortir quand on veut du donjon, il n'y a pas de limite de niveau les niveaux inférieure on un autre environnement que les
-        niveau suppérieure, plus on monte en niveau plus les monstres sont puissant.
+        niveau suppérieure, plus on monte en niveau plus les monstres sont puissant
 
 
 
