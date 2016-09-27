@@ -25,7 +25,7 @@
 - Les équipements permettent d'améliorer les caractéristiques du héro (+ def)
 - Les armes permet d'améliorer les caractéristiques du héro  (+ off)
 - Lorsque un monstre meurt le héros gagne en expérience et le monstre peut drop des objets, de l'argent
-- Si le héro meurt il se retrouve chez lui.
+- Si le héro meurt il se retrouve chez lui
 - La "maison" du hero permet au hero de se regénérer(vie, mana), de poser des affaires pour être moins lourd
 - Il y a sur la route pour aller au donjon un marché, une forge
 - Le marché permet au héro d'acheter des potions de vie ou des potions de mana
