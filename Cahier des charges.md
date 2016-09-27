@@ -28,6 +28,7 @@
 - Si le héro meurt il se retrouve chez lui
 - La "maison" du hero permet au hero de se regénérer(vie, mana), de poser des affaires pour être moins lourd
 - Il y a sur la route pour aller au donjon un marché, une forge
+- La forge et le marché seront gérés par des PNJ.
 - Le marché permet au héro d'acheter des potions de vie ou des potions de mana
 - La forge permet au héro d'acheter de l'équipement et des armes
 - Le donjon se compose en niveau, quand on rentre on est dans le niveau 0, on peut soit dessendre(niveau--) soit monter(niveau++),
