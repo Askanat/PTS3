@@ -17,8 +17,8 @@
 --------------------------------------------------------------------------------------------------------
 
 
-- L'environnement est composé du zone fixe et d'un donjon généré alétoirement, le donjon possède des monstres, et des objets
-    le donjon change tous les x temps ou chaques fois que on quitte un niveau
+- L'environnement est composé d' une zone fixe et d'un donjon généré alétoirement, le donjon possède des monstres, et des objets
+    le donjon change tous les x temps ou à chaques fois que l' on quitte un niveau
 - Les personnages peuvent bouger, attaquer, recevoir des dégats et donner des dégats
 - Le héro peut monter de niveau et attribuer des points dans des caractéristiques pour les augmenter
 - Les consommables redonnent de la vie ou de la mana
@@ -28,6 +28,7 @@
 - Si le héro meurt il se retrouve chez lui
 - La "maison" du hero permet au hero de se regénérer(vie, mana), de poser des affaires pour être moins lourd
 - Il y a sur la route pour aller au donjon un marché, une forge
+- La forge et le marché seront gérés par des PNJ.
 - Le marché permet au héro d'acheter des potions de vie ou des potions de mana
 - La forge permet au héro d'acheter de l'équipement et des armes
 - Le donjon se compose en niveau, quand on rentre on est dans le niveau 0, on peut soit dessendre(niveau--) soit monter(niveau++),
