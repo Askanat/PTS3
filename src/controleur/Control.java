@@ -12,7 +12,6 @@ public class Control {
     Fenetre fenetre;
 
     protected Control(Jeu jeu, Fenetre fenetre) {
-
         this.jeu = jeu;
         this.fenetre = fenetre;
     }
