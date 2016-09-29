@@ -60,7 +60,7 @@ public class MenuPrincipal extends JPanel {
         quitter.setCursor(new Cursor(Cursor.HAND_CURSOR));
         quitter.setBorder(null);
 
-        Image img = getToolkit().getImage("../images/fondMenuPrinci.png");
+        Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 
