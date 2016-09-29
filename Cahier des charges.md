@@ -36,8 +36,10 @@
         on peut sortir quand on veut du donjon, il n'y a pas de limite de niveau les niveaux inférieure on un autre environnement que les
         niveau suppérieure, plus on monte en niveau plus les monstres sont puissant
 
-
-
+Bonus:
+    -Amélioration arme et armure (ex:enchantement, poison)
+    -Rajouter des classes donc des spells
+    -des ajouts de foncionnalité dans la ville (batiment, ...)
 
 
 
