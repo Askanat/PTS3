@@ -32,7 +32,7 @@ public class Fenetre extends JFrame {
         setTitle("Jeu");
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

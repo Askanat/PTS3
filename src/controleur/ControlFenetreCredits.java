@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
  */
 
 public class ControlFenetreCredits extends Control implements ActionListener {
+
     public ControlFenetreCredits(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlFenetreCredits(this);

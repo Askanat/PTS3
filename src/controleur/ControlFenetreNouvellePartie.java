@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
  */
 
 public class ControlFenetreNouvellePartie extends Control implements ActionListener {
+
     public ControlFenetreNouvellePartie(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlFenetreNouvellePartie(this);

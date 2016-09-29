@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
  */
 
 public class ControlMenuPrincipal extends Control implements ActionListener {
+
     public ControlMenuPrincipal(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlMenuPrincipal(this);

@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
  */
 
 public class ControlFenetreDepart extends Control implements ActionListener {
+
     public ControlFenetreDepart(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlFenetreDepart(this);
