@@ -11,6 +11,7 @@ Difficulté:
     Gestion de l'utilisation de java et BDD ensemble.
     Gestion des annimations.
     Création d'une IA.
+    Title maping (chiffre <0 = non collision, chiffre 0< x < 100 collision, chiffre 100 < x < 200 cassable)
 
 Introduction:
     Le but de ce projet est de créer un jeu "réinventant" le jeu Rogue Legacy en java et en base de donnée.
