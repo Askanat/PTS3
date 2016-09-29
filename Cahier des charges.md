@@ -91,5 +91,7 @@ Bonus:
     -Rajouter des classes donc des spells
     -des ajouts de foncionnalité dans la ville (batiment, ...)
 
+---------------------------------------------------------------------------------------------------------
 
+fenetre popup / ou dans le decart de l'aide
 
