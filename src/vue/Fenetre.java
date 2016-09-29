@@ -21,7 +21,7 @@ public class Fenetre extends JFrame {
         //setJMenuBar(menu);
         //setContentPane(panelMenu);
         pack();
-        setTitle("Snake");
+        setTitle("Jeu");
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //setLocationRelativeTo(null);
