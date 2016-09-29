@@ -1,6 +1,8 @@
 package vue;
 
-//import model.Jeu;
+import model.Jeu;
+
+import controleur.ControlMenuPrincipal;
 
 import javax.swing.*;
 
@@ -10,12 +12,12 @@ import javax.swing.*;
 
 public class Fenetre extends JFrame {
 
-    //public Jeu jeu;
+    public Jeu jeu;
     public MenuPrincipal panelMenuPrincipal;
 
-    public Fenetre() {
+    public Fenetre(Jeu jeu) {
 
-        //this.jeu = jeu;
+        this.jeu = jeu;
 
         init();
         //menu = new BarMenu(jeu);
@@ -34,7 +36,7 @@ public class Fenetre extends JFrame {
         panelMenuPrincipal = new MenuPrincipal();
     }
 
-    /*public void setControlMenuPrincipal(ControlMenuPrincipal controlMenuPrincipal){
+    public void setControlMenuPrincipal(ControlMenuPrincipal controlMenuPrincipal){
         panelMenuPrincipal.setControl(controlMenuPrincipal);
-    }*/
+    }
 }

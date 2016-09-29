@@ -1,5 +1,7 @@
 package vue;
 
+import controleur.ControlMenuPrincipal;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -63,10 +65,10 @@ public class MenuPrincipal extends JPanel {
     }
 
 
-    /*public void setControl(ControlMenuPrincipal controlMenuPrincipal) {
+    public void setControl(ControlMenuPrincipal controlMenuPrincipal) {
         nouvellePartie.addActionListener(controlMenuPrincipal);
         chargerPartie.addActionListener(controlMenuPrincipal);
         credits.addActionListener(controlMenuPrincipal);
         quitter.addActionListener(controlMenuPrincipal);
-    }*/
+    }
 }
