@@ -18,7 +18,17 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case "":
+            case "Nouvelle Partie":
+                System.out.print("test1");
+                break;
+            case "Charger Partie":
+                System.out.print("test2");
+                break;
+            case "Crédits":
+                System.out.print("test2");
+                break;
+            case "Quitter":
+                System.out.print("test3");
                 break;
         }
     }
