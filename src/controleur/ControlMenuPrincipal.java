@@ -20,31 +20,32 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Nouvelle Partie":
+                System.out.println("Nouvelle Partie");
                 fenetre.setContentPane(fenetre.panelFenetreNouvellePartie);
                 fenetre.repaint();
                 fenetre.pack();
                 fenetre.setLocationRelativeTo(null);
                 fenetre.requestFocus();
-                System.out.print("test1");
                 break;
             case "Charger Partie":
+                System.out.println("Charger Partie");
                 fenetre.setContentPane(fenetre.panelFenetreCharger);
                 fenetre.repaint();
                 fenetre.pack();
                 fenetre.setLocationRelativeTo(null);
                 fenetre.requestFocus();
-                System.out.print("test2");
                 break;
             case "Crédits":
+                System.out.println("Crédits");
                 fenetre.setContentPane(fenetre.panelFenetreCredits);
                 fenetre.repaint();
                 fenetre.pack();
                 fenetre.setLocationRelativeTo(null);
                 fenetre.requestFocus();
-                System.out.print("test3");
                 break;
             case "Quitter":
-                System.out.print("test4");
+                System.out.println("Quitter");
+                System.exit(0);
                 break;
         }
     }

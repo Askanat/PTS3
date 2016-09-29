@@ -19,7 +19,13 @@ public class ControlFenetreCredits extends Control implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case "":
+            case "Retour":
+                System.out.println("Retour");
+                fenetre.setContentPane(fenetre.panelMenuPrincipal);
+                fenetre.repaint();
+                fenetre.pack();
+                fenetre.setLocationRelativeTo(null);
+                fenetre.requestFocus();
                 break;
         }
     }
