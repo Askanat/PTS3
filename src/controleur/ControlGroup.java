@@ -6,6 +6,7 @@ import vue.Fenetre;
 /**
  * Created by bastien on 28/09/16.
  */
+
 public class ControlGroup {
 
     Jeu jeu = new Jeu();
