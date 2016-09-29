@@ -40,19 +40,19 @@ public class Fenetre extends JFrame {
         panelMenuPrincipal = new MenuPrincipal();
     }
 
-    public void setControlCharger(ControlFenetreCharger controlCharger){
+    public void setControlFenetreCharger(ControlFenetreCharger controlCharger){
         panelCharger.setControl(controlCharger);
     }
-    public void setControlCredits(ControlFenetreCredits controlCredits){
+    public void setControlFenetreCredits(ControlFenetreCredits controlCredits){
         panelCredits.setControl(controlCredits);
     }
-    public void setControlDepart(ControlFenetreDepart controlDepart){
+    public void setControlFenetreDepart(ControlFenetreDepart controlDepart){
         panelDepart.setControl(controlDepart);
     }
-    public void setControlDonjon(ControlFenetreDonjon controlDonjon){
+    public void setControlFenetreDonjon(ControlFenetreDonjon controlDonjon){
         panelDonjon.setControl(controlDonjon);
     }
-    public void setControlNouvellePartie(ControlFenetreNouvellePartie controlNouvellePartie){
+    public void setControlFenetreNouvellePartie(ControlFenetreNouvellePartie controlNouvellePartie){
         panelNouvellePartie.setControl(controlNouvellePartie);
     }
     public void setControlMenuPrincipal(ControlMenuPrincipal controlMenuPrincipal){
