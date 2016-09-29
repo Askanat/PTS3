@@ -3,16 +3,17 @@
     - Hero : nom, niveau, expérience, expérience max, vie, vie max, mana, mana max, degats, armures
     - Monstres : nom, vie, vie max, mana, mana max, degats, armure
 - Environnement :
-- Objet : Consommable, Equipement, Armure
-    - Consommable : Potion vie, Potion mana
-        - Potion vie :
-        - Potion mana :
-    - Equipement : Casque, Gantelet, Botte, Plastron
-        - Casque : nom, caracteristique armure, caracteristique vie, caracteristique mana
-        - Gantelet : nom, caracteristique armure, caracteristique vie, caracteristique mana
-        - Botte : nom, caracteristique armure, caracteristique vie, caracteristique mana
-        - Plastron : nom, caracteristique armure, caracteristique vie, caracteristique mana
-    - Arme : nom, caracteristique degats, caracteristique vie, caracteristique mana
+- Objet : Inventaire, Consommable, Equipement, Armure
+    - Inventaire : Or, Armure, Arme, Potion, objets divers (ex: crocs de loup, ...), charge max (dépend de la force et des sacs)
+        - Consommable : Potion vie, Potion mana
+            - Potion vie :
+            - Potion mana :
+        - Equipement : Casque, Gantelet, Botte, Plastron
+            - Casque : nom, caracteristique armure, caracteristique vie, caracteristique mana
+            - Gantelet : nom, caracteristique armure, caracteristique vie, caracteristique mana
+            - Botte : nom, caracteristique armure, caracteristique vie, caracteristique mana
+            - Plastron : nom, caracteristique armure, caracteristique vie, caracteristique mana
+        - Arme : nom, caracteristique degats, caracteristique vie, caracteristique mana
 
 --------------------------------------------------------------------------------------------------------
 
@@ -25,7 +26,7 @@
 - Les équipements permettent d'améliorer les caractéristiques du héro (+ def)
 - Les armes permet d'améliorer les caractéristiques du héro  (+ off)
 - Lorsque un monstre meurt le héros gagne en expérience et le monstre peut drop des objets, de l'argent
-- Si le héro meurt il se retrouve chez lui
+- Si le héro meurt il se retrouve chez lui (maison, cimetière, auberge, ...)
 - La "maison" du hero permet au hero de se regénérer(vie, mana), de poser des affaires pour être moins lourd
 - Il y a sur la route pour aller au donjon un marché, une forge
 - La forge et le marché seront gérés par des PNJ.
