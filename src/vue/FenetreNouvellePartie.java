@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.ControlFenetreNouvellePartie;
+import model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +12,10 @@ import java.awt.*;
 
 public class FenetreNouvellePartie extends JPanel {
 
+    public Jeu jeu;
 
-    public FenetreNouvellePartie() {
+    public FenetreNouvellePartie(Jeu jeu) {
+        this.jeu = jeu;
     }
 
     public void setControl(ControlFenetreNouvellePartie controlFenetreNouvellePartie) {
