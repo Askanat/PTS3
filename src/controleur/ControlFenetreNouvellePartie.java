@@ -17,6 +17,9 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
     }
 
     public void actionPerformed(ActionEvent e) {
-
+        switch (e.getActionCommand()) {
+            case "":
+                break;
+        }
     }
 }

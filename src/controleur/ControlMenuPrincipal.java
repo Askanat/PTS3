@@ -17,6 +17,9 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-
+        switch (e.getActionCommand()) {
+            case "":
+                break;
+        }
     }
 }
