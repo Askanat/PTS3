@@ -37,23 +37,28 @@ public class Fenetre extends JFrame {
     }
 
     public void init() {
+        panelFenetreCharger = new FenetreCharger(jeu);
+        panelFenetreCredits = new FenetreCredits();
+        panelFenetreDepart = new FenetreDepart(jeu);
+        panelFenetreDonjon = new FenetreDonjon(jeu);
+        panelFenetreNouvellePartie = new FenetreNouvellePartie(jeu);
         panelMenuPrincipal = new MenuPrincipal();
     }
 
-    public void setControlFenetreCharger(ControlFenetreCharger controlCharger){
-        panelFenetreCharger.setControl(controlCharger);
+    public void setControlFenetreCharger(ControlFenetreCharger controlFenetreCharger){
+        panelFenetreCharger.setControl(controlFenetreCharger);
     }
-    public void setControlFenetreCredits(ControlFenetreCredits controlCredits){
-        panelFenetreCredits.setControl(controlCredits);
+    public void setControlFenetreCredits(ControlFenetreCredits controlFenetreCredits){
+        panelFenetreCredits.setControl(controlFenetreCredits);
     }
-    public void setControlFenetreDepart(ControlFenetreDepart controlDepart){
-        panelFenetreDepart.setControl(controlDepart);
+    public void setControlFenetreDepart(ControlFenetreDepart controlFenetreDepart){
+        panelFenetreDepart.setControl(controlFenetreDepart);
     }
-    public void setControlFenetreDonjon(ControlFenetreDonjon controlDonjon){
-        panelFenetreDonjon.setControl(controlDonjon);
+    public void setControlFenetreDonjon(ControlFenetreDonjon controlFenetreDonjon){
+        panelFenetreDonjon.setControl(controlFenetreDonjon);
     }
-    public void setControlFenetreNouvellePartie(ControlFenetreNouvellePartie controlNouvellePartie){
-        panelFenetreNouvellePartie.setControl(controlNouvellePartie);
+    public void setControlFenetreNouvellePartie(ControlFenetreNouvellePartie controlFenetreNouvellePartie){
+        panelFenetreNouvellePartie.setControl(controlFenetreNouvellePartie);
     }
     public void setControlMenuPrincipal(ControlMenuPrincipal controlMenuPrincipal){
         panelMenuPrincipal.setControl(controlMenuPrincipal);
