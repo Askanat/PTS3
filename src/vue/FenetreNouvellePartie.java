@@ -35,7 +35,7 @@ public class FenetreNouvellePartie extends JPanel {
         add(slot1);
         add(slot2);
         add(slot3);
-        add(retour)
+        add(retour);
     }
 
     public void setControl(ControlFenetreNouvellePartie controlFenetreNouvellePartie) {

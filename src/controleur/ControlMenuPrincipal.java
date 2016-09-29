@@ -25,10 +25,10 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
                 System.out.print("test2");
                 break;
             case "Crédits":
-                System.out.print("test2");
+                System.out.print("test3");
                 break;
             case "Quitter":
-                System.out.print("test3");
+                System.out.print("test4");
                 break;
         }
     }
