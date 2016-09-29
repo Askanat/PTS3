@@ -13,11 +13,11 @@ public class Fenetre extends JFrame {
 
     public Jeu jeu;
     public MenuPrincipal panelMenuPrincipal;
-    public FenetreCharger panelCharger;
-    public FenetreCredits panelCredits;
-    public FenetreDepart panelDepart;
-    public FenetreDonjon panelDonjon;
-    public FenetreNouvellePartie panelNouvellePartie;
+    public FenetreCharger panelFenetreCharger;
+    public FenetreCredits panelFenetreCredits;
+    public FenetreDepart panelFenetreDepart;
+    public FenetreDonjon panelFenetreDonjon;
+    public FenetreNouvellePartie panelFenetreNouvellePartie;
 
     public Fenetre(Jeu jeu) {
 
@@ -41,19 +41,19 @@ public class Fenetre extends JFrame {
     }
 
     public void setControlFenetreCharger(ControlFenetreCharger controlCharger){
-        panelCharger.setControl(controlCharger);
+        panelFenetreCharger.setControl(controlCharger);
     }
     public void setControlFenetreCredits(ControlFenetreCredits controlCredits){
-        panelCredits.setControl(controlCredits);
+        panelFenetreCredits.setControl(controlCredits);
     }
     public void setControlFenetreDepart(ControlFenetreDepart controlDepart){
-        panelDepart.setControl(controlDepart);
+        panelFenetreDepart.setControl(controlDepart);
     }
     public void setControlFenetreDonjon(ControlFenetreDonjon controlDonjon){
-        panelDonjon.setControl(controlDonjon);
+        panelFenetreDonjon.setControl(controlDonjon);
     }
     public void setControlFenetreNouvellePartie(ControlFenetreNouvellePartie controlNouvellePartie){
-        panelNouvellePartie.setControl(controlNouvellePartie);
+        panelFenetreNouvellePartie.setControl(controlNouvellePartie);
     }
     public void setControlMenuPrincipal(ControlMenuPrincipal controlMenuPrincipal){
         panelMenuPrincipal.setControl(controlMenuPrincipal);
