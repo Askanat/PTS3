@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 public class ControlMenuPrincipal extends Control implements ActionListener {
     protected ControlMenuPrincipal(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
+        fenetre.setControlMenuPrincipal(this);
     }
 
     public void actionPerformed(ActionEvent e) {

@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 public class ControlFenetreDonjon extends Control implements ActionListener {
     protected ControlFenetreDonjon(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
+        fenetre.setControlFenetreDonjon(this);
     }
 
     public void actionPerformed(ActionEvent e) {

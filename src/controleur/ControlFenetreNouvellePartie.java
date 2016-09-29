@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 public class ControlFenetreNouvellePartie extends Control implements ActionListener{
     protected ControlFenetreNouvellePartie(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
+        fenetre.setControlFenetreNouvellePartie(this);
     }
 
     public void actionPerformed(ActionEvent e) {
