@@ -1,6 +1,6 @@
 package vue;
 
-import model.Jeu;
+//import model.Jeu;
 
 import javax.swing.*;
 
@@ -10,17 +10,18 @@ import javax.swing.*;
 
 public class Fenetre extends JFrame {
 
-    public Jeu jeu;
+    //public Jeu jeu;
+    public MenuPrincipal panelMenuPrincipal;
 
-    public Fenetre(Jeu jeu) {
+    public Fenetre() {
 
-        this.jeu = jeu;
+        //this.jeu = jeu;
 
         init();
         //menu = new BarMenu(jeu);
         //menu.setVisible(false);
         //setJMenuBar(menu);
-        //setContentPane(panelMenu);
+        setContentPane(panelMenuPrincipal);
         pack();
         setTitle("Jeu");
         setResizable(false);
@@ -30,5 +31,10 @@ public class Fenetre extends JFrame {
     }
 
     public void init() {
+        panelMenuPrincipal = new MenuPrincipal();
     }
+
+    /*public void setControlMenuPrincipal(ControlMenuPrincipal controlMenuPrincipal){
+        panelMenuPrincipal.setControl(controlMenuPrincipal);
+    }*/
 }
