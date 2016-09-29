@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  */
 
 public class ControlFenetreCharger extends Control implements ActionListener {
-    protected ControlFenetreCharger(Jeu jeu, Fenetre fenetre) {
+    public ControlFenetreCharger(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlFenetreCharger(this);
     }
