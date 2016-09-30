@@ -12,8 +12,6 @@ import java.awt.event.KeyListener;
 
 public class ControlClavier extends Control implements KeyListener {
 
-    private int dernierPresse = KeyEvent.VK_UNDEFINED;
-
     public ControlClavier(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlClavier(this);
@@ -21,61 +19,58 @@ public class ControlClavier extends Control implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
 
-        jeu.getHero().setGauche(false);
-        jeu.getHero().setSauter(false);
-        jeu.getHero().setDroite(false);
-        jeu.getHero().setAccroupir(false);
-
-        switch(e.getKeyCode()) {
-            case KeyEvent.VK_A : {
-                jeu.getHero().setGauche(true);
-                dernierPresse = KeyEvent.VK_A;
+        switch (e.getKeyCode()) {
+            case 27: {
+                jeu.setPause(!jeu.getPause()); // echap
+            }
+            case 37: {
+                jeu.getHero().setGauche(true);  // fleche de gauche
                 break;
             }
-            case KeyEvent.VK_B : {
-                jeu.getHero().setSauter(true);
-                dernierPresse = KeyEvent.VK_B;
+            case 38: {
+                jeu.getHero().setSauter(true); // fleche du haut
                 break;
             }
-            case KeyEvent.VK_A : {
-                jeu.getHero().setDroite(true);
-                dernierPresse = KeyEvent.VK_A;
+            case 39: {
+                jeu.getHero().setDroite(true); // feche de droite
                 break;
             }
-            case KeyEvent.VK_B : {
-                jeu.getHero().setAccroupir(true);
-                dernierPresse = KeyEvent.VK_B;
+            case 40: {
+                jeu.getHero().setAccroupir(true); // fleche du bas
                 break;
             }
         }
 
-        if (e.getKeyCode() == 27) // echap
-            jeu.setPause(!jeu.getPause());
-
-
-
-        if (e.getKeyCode() == 37) // fleche de gauche
-            jeu.getHero().setGauche(true);
-        if (e.getKeyCode() == 38)  // fleche du haut
-            jeu.getHero().setSauter(true);
-        if (e.getKeyCode() == 39)  // feche de droite
-            jeu.getHero().setDroite(true);
-        if (e.getKeyCode() == 40)  // fleche du bas
-            jeu.getHero().setAccroupir(true);
-
-        System.out.println(jeu.getHero().getGauche() + " " +
-        jeu.getHero().getSauter());
-        // System.out.println("Touche pressée : " + e.getKeyCode() + " (" + e.getKeyChar() + ")"); // savoir la touche appuyer
+        //System.out.println("Touche pressée : " + e.getKeyCode() + " (" + e.getKeyChar() + ")"); // savoir la touche appuyer
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        switch (e.getKeyCode()) {
+            case 27: {
+                jeu.setPause(!jeu.getPause()); // echap
+            }
+            case 37: {
+                jeu.getHero().setGauche(false); // fleche de gauche
+                break;
+            }
+            case 38: {
+                jeu.getHero().setSauter(false); // fleche du haut
+                break;
+            }
+            case 39: {
+                jeu.getHero().setDroite(false); // feche de droite
+                break;
+            }
+            case 40: {
+                jeu.getHero().setAccroupir(false); // fleche du bas
+                break;
+            }
+        }
     }
 }
