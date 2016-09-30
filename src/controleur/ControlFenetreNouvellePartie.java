@@ -20,7 +20,6 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Slot de Sauvegarde n°1":
-                System.out.println("Slot de Sauvegarde n°1");
                 fenetre.setContentPane(fenetre.panelFenetreDepart);
                 fenetre.repaint();
                 fenetre.pack();
@@ -28,7 +27,6 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
                 fenetre.requestFocus();
                 break;
             case "Slot de Sauvegarde n°2":
-                System.out.println("Slot de Sauvegarde n°2");
                 fenetre.setContentPane(fenetre.panelFenetreDepart);
                 fenetre.repaint();
                 fenetre.pack();
@@ -36,7 +34,6 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
                 fenetre.requestFocus();
                 break;
             case "Slot de Sauvegarde n°3":
-                System.out.println("Slot de Sauvegarde n°3");
                 fenetre.setContentPane(fenetre.panelFenetreDepart);
                 fenetre.repaint();
                 fenetre.pack();
@@ -44,7 +41,6 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
                 fenetre.requestFocus();
                 break;
             case "Retour":
-                System.out.println("Retour");
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 fenetre.repaint();
                 fenetre.pack();

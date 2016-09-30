@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.ControlFenetreDepart;
+import model.Hero;
 import model.Jeu;
 
 import javax.swing.*;
@@ -13,10 +14,11 @@ import java.awt.*;
 public class FenetreDepart extends JPanel {
 
     public Jeu jeu;
+    Hero hero;
 
     public FenetreDepart(Jeu jeu) {
         this.jeu = jeu;
-
+        hero = new Hero("test", 10, 10, 5, 0, 0, null);
         this.setLayout(null);
         setPreferredSize(new Dimension(800, 600));
     }
@@ -29,6 +31,6 @@ public class FenetreDepart extends JPanel {
 
         // test sprite
         Image img = getToolkit().getImage("images/test1.png");
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(img, hero.getPositionX(), hero.getPositionY(), getWidth(), getHeight(), this);
     }
 }
