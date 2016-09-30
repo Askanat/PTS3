@@ -1,17 +1,29 @@
-Objectif: Créer un jeu de type RPG.
+Objectif:
+    Créer un jeu de type RPG/Rogue like c'est à dire avoir un hero qui pourrais évoluer au sein d'un donjon ou se
+    trouverai des monstres, notre héro évoluerai à force de franchire les niveaux du donjon, et mettre une par de
+    génération aléatoire pour les niveaux du donjon.
 
 
 Motivation:
+    Relever de nouveau défis et se pousser à s'améliorer soit même.
+    c'est à dire, Le travail sur une IA de monstre, la jointure entre BDD et Java, la génération aléatoire des niveaux.
+    La gestion de beaucoup de class.
+    Le jeu est assez conséquent et ne manque pas d'amélioration possible, c'est donc un projet ou l'on pourra sens cesse
+    aller plus loin et n'aura que pour seul limite nous même.
+    De plus, il y a un travail conséquent dans globalement chaque partie, le fait de progréssé ensemble et de s'entraider est
+    une motivation à elle seul.
 
 
 Model:
-    Inspiration Rogue Legacy.
+    On s'inspire du jeu Rogue Legacy, et de notre diverse expérience que l'on à pu vivre au cours de notre vie.
 
 Difficulté:
     Gestion de l'utilisation de java et BDD ensemble.
     Gestion des annimations.
     Création d'une IA.
     Title maping (chiffre <0 = non collision, chiffre 0< x < 100 collision, chiffre 100 < x < 200 cassable)
+    Inventaire du personnage
+
 
 Introduction:
     Le but de ce projet est de créer un jeu "réinventant" le jeu Rogue Legacy en java et en base de donnée.
@@ -36,12 +48,30 @@ Règles:
             niveau suppérieure, plus on monte en niveau plus les monstres sont puissant
 
 Class:
-
+- Personnage : Hero, Monstre
+    - Hero : nom, niveau, expérience, expérience max, vie, vie max, mana, mana max, degats, armures
+    - Monstres : nom, vie, vie max, mana, mana max, degats, armure
+- Environnement :
+- Objet : Inventaire, Consommable, Equipement, Armure
+    - Inventaire : Or, Armure, Arme, Potion, objetsDivers, chargeMax
+        - Consommable : Potion vie, Potion mana
+            - Potion vie :
+            - Potion mana :
+        - Equipement : Casque, Gantelet, Botte, Plastron
+            - Casque : nom, caracteristique armure, caracteristique vie, caracteristique mana
+            - Gantelet : nom, caracteristique armure, caracteristique vie, caracteristique mana
+            - Botte : nom, caracteristique armure, caracteristique vie, caracteristique mana
+            - Plastron : nom, caracteristique armure, caracteristique vie, caracteristique mana
+        - Arme : nom, caracteristique degats, caracteristique vie, caracteristique mana
 
 Outils:
     -IDEA
     -Java
     -Swing ou Fix
+    GitHub
+    Trello
+    Photoshop
+    Cinéma4D
 
 Schéma:
     -Mockup
@@ -56,30 +86,19 @@ MCD:
 Gantt:
 
 
-Amélioration (inchallah):
+Amélioration possible :
     -Amélioration arme et armure (ex:enchantement, poison)
     -Rajouter des classes donc des spells
     -des ajouts de foncionnalité dans la ville (batiment, ...)
 
 
-Conclusion:
+Conclusion :
+
+    se projet reste un défis de taille par sa complexité et par sa non limite qui peut décourager, il faudra donc
+    progresser étape par étape en suivant un rithme précit tout en s'organisant.
 
 
-- Personnage : Hero, Monstre
-    - Hero : nom, niveau, expérience, expérience max, vie, vie max, mana, mana max, degats, armures
-    - Monstres : nom, vie, vie max, mana, mana max, degats, armure
-- Environnement :
-- Objet : Inventaire, Consommable, Equipement, Armure
-    - Inventaire : Or, Armure, Arme, Potion, objets divers (ex: crocs de loup, ...), charge max (dépend de la force et des sacs)
-        - Consommable : Potion vie, Potion mana
-            - Potion vie :
-            - Potion mana :
-        - Equipement : Casque, Gantelet, Botte, Plastron
-            - Casque : nom, caracteristique armure, caracteristique vie, caracteristique mana
-            - Gantelet : nom, caracteristique armure, caracteristique vie, caracteristique mana
-            - Botte : nom, caracteristique armure, caracteristique vie, caracteristique mana
-            - Plastron : nom, caracteristique armure, caracteristique vie, caracteristique mana
-        - Arme : nom, caracteristique degats, caracteristique vie, caracteristique mana
+
 
 --------------------------------------------------------------------------------------------------------
 
