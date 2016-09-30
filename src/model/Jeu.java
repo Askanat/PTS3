@@ -11,7 +11,7 @@ public class Jeu {
     private boolean pause;
 
     public Jeu() {
-        hero = new Hero("testHero", 10, 10, 1, 300, 300, null);
+        hero = new Hero("testHero", 10, 10, 1, 0, 0, null);
     }
 
     public void nouvellePartie() {
@@ -28,6 +28,10 @@ public class Jeu {
 
     public final boolean getPause() {
         return pause;
+    }
+
+    public Hero getHero() {
+        return hero;
     }
 
 }

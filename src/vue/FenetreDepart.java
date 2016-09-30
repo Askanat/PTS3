@@ -14,11 +14,9 @@ import java.awt.*;
 public class FenetreDepart extends JPanel {
 
     public Jeu jeu;
-    Hero hero;
 
     public FenetreDepart(Jeu jeu) {
         this.jeu = jeu;
-        hero = new Hero("test", 10, 10, 5, 0, 0, null);
         this.setLayout(null);
         setPreferredSize(new Dimension(800, 600));
     }
@@ -31,6 +29,6 @@ public class FenetreDepart extends JPanel {
 
         // test sprite
         Image img = getToolkit().getImage("images/test1.png");
-        g.drawImage(img, hero.getPositionX(), hero.getPositionY(), getWidth(), getHeight(), this);
+        g.drawImage(img, jeu.getHero().getPositionX(), jeu.getHero().getPositionY(), getWidth(), getHeight(), this);
     }
 }

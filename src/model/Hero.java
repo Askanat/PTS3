@@ -19,7 +19,9 @@ public class Hero extends Personnage {
         droite = false;
     }
 
-    public void deplacer(int destinationX, int destinationY) {
+    public void deplacer(int deplacementX, int deplacementY) {
+        setPositionX(getPositionX() + deplacementX);
+        setPositionY(getPositionY() + deplacementY);
     }
 
     public void selectionnerMorceauSpriteDeplacement() {
@@ -31,7 +33,7 @@ public class Hero extends Personnage {
     }
 
     public boolean getAccroupir() {
-        return  accroupir;
+        return accroupir;
     }
 
     public void setSauter(boolean sauter) {
@@ -39,7 +41,7 @@ public class Hero extends Personnage {
     }
 
     public boolean getSauter() {
-        return  sauter;
+        return sauter;
     }
 
     public void setGauche(boolean gauche) {
@@ -47,7 +49,7 @@ public class Hero extends Personnage {
     }
 
     public boolean getGauche() {
-        return  gauche;
+        return gauche;
     }
 
     public void setDroite(boolean droite) {
@@ -55,6 +57,6 @@ public class Hero extends Personnage {
     }
 
     public boolean getDroite() {
-        return  droite;
+        return droite;
     }
 }
