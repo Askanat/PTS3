@@ -13,4 +13,8 @@ public class Hero extends Personnage {
 
     public void deplacer(int destinationX, int destinationY) {
     }
+
+    public void selectionnerMorceauSpriteDeplacement() {
+
+    }
 }
