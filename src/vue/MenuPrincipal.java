@@ -8,6 +8,7 @@ import java.awt.*;
 /**
  * Created by bastien on 29/09/16.
  */
+
 public class MenuPrincipal extends JPanel {
 
     private JButton nouvellePartie;

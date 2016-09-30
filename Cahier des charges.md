@@ -15,7 +15,7 @@ Motivation:
 
 
 Model:
-    On s'inspire du jeu Rogue Legacy, et de notre diverse expérience que l'on à pu vivre au cours de notre vie.
+    On s'inspire du jeu Rogue Legacy, et de notre diverses expériences que l'on à pu vivre au cours de notre vie.
 
 Difficulté:
     Gestion de l'utilisation de java et BDD ensemble.
@@ -87,28 +87,15 @@ Gantt:
 
 
 Amélioration possible :
-    -Amélioration arme et armure (ex:enchantement, poison)
+    -Amélioration armes et armures (ex:enchantement, poison)
     -Rajouter des classes donc des spells
-    -des ajouts de foncionnalité dans la ville (batiment, ...)
+    -des ajouts de foncionnalités dans la ville (batiment, ...)
 
 
 Conclusion :
 
-    se projet reste un défis de taille par sa complexité et par sa non limite qui peut décourager, il faudra donc
+    Ce projet reste un défis de taille par sa complexité et par sa non limite qui peut décourager, il faudra donc
     progresser étape par étape en suivant un rithme précit tout en s'organisant.
-
-
-
-
---------------------------------------------------------------------------------------------------------
-
-
-
-
-Bonus:
-    -Amélioration arme et armure (ex:enchantement, poison)
-    -Rajouter des classes donc des spells
-    -des ajouts de foncionnalité dans la ville (batiment, ...)
 
 ---------------------------------------------------------------------------------------------------------
 
