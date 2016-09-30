@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.*;
+
 /**
  * Created by bastien on 29/09/16.
  */
@@ -14,15 +16,19 @@ public abstract class Personnage {
 
     protected int positionX, positionY;
 
+    protected Image texture;
 
-    public Personnage(String nom, int vie, int vieMax, int degats, int positionX, int positionY) {
+
+    public Personnage(String nom, int vie, int vieMax, int degats, int positionX, int positionY, Image texture) {
         this.nom = nom;
         this.vie = vie;
         this.vieMax = vieMax;
         this.degats = degats;
         this.positionX = positionX;
         this.positionY = positionY;
-        System.out.println("test");
+        this.texture = texture;
+
+        // découpe la texture et la met dans un tableau pour pouvoir faire l'animation déplacement
     }
 
     public void recevoirDegats(int degats) {
