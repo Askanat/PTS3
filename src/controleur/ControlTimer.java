@@ -16,7 +16,7 @@ public class ControlTimer extends Control implements ActionListener {
     public ControlTimer(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
 
-        Timer timer = new Timer(90, this);
+        Timer timer = new Timer(60, this);
         timer.start();
     }
 
@@ -31,8 +31,6 @@ public class ControlTimer extends Control implements ActionListener {
             jeu.getHero().deplacer(1, 0);
         if (jeu.getHero().getAccroupir())
             jeu.getHero().deplacer(0, 1);
-
-        //System.out.println(jeu.getHero().getPositionX() + ", " + jeu.getHero().getPositionY());
 
         fenetre.repaint();
     }

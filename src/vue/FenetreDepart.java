@@ -18,7 +18,7 @@ public class FenetreDepart extends JPanel {
     public FenetreDepart(Jeu jeu) {
         this.jeu = jeu;
         this.setLayout(null);
-        setPreferredSize(new Dimension(800, 600));
+        setPreferredSize(new Dimension(800, 800));
     }
 
     public void setControl(ControlFenetreDepart controlFenetreDepart) {

@@ -16,7 +16,7 @@ public class FenetreCredits extends JPanel {
     public FenetreCredits() {
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(800, 600));
+        setPreferredSize(new Dimension(800, 800));
 
         retour = new JButton("Retour");
         retour.setActionCommand("Retour");
