@@ -68,4 +68,8 @@ public class Fenetre extends JFrame {
     public void setControlMenuPrincipal(ControlMenuPrincipal controlMenuPrincipal) {
         panelMenuPrincipal.setControl(controlMenuPrincipal);
     }
+
+    public void setControlClavier(ControlClavier controlClavier) {
+        addKeyListener(controlClavier);
+    }
 }

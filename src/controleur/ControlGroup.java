@@ -22,5 +22,6 @@ public class ControlGroup {
         ControlFenetreDonjon controlFenetreDonjon = new ControlFenetreDonjon(this.jeu, fenetre);
         ControlFenetreNouvellePartie controlFenetreNouvellePartie = new ControlFenetreNouvellePartie(this.jeu, fenetre);
         ControlMenuPrincipal controlMenuPrincipal = new ControlMenuPrincipal(this.jeu, fenetre);
+        ControlClavier controlClavier = new ControlClavier(this.jeu, fenetre);
     }
 }

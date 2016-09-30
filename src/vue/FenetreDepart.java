@@ -16,6 +16,9 @@ public class FenetreDepart extends JPanel {
 
     public FenetreDepart(Jeu jeu) {
         this.jeu = jeu;
+
+        this.setLayout(null);
+        setPreferredSize(new Dimension(800, 600));
     }
 
     public void setControl(ControlFenetreDepart controlFenetreDepart) {
@@ -23,5 +26,9 @@ public class FenetreDepart extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        // test sprite
+        Image img = getToolkit().getImage("images/test1.png");
+        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 }
