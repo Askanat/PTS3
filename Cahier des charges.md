@@ -15,7 +15,7 @@ Motivation:
 
 
 Model:
-    On s'inspire du jeu Rogue Legacy, et de notre diverses expériences que l'on à pu vivre au cours de notre vie.
+    On s'inspire du jeu Rogue Legacy, et de notre diverses expériences que l'on à pu vivre au cours de notre vie dans différent type de RPG.
 
 Difficulté:
     Gestion de l'utilisation de java et BDD ensemble.
@@ -68,10 +68,10 @@ Outils:
     -IDEA
     -Java
     -Swing ou Fix
-    GitHub
-    Trello
-    Photoshop
-    Cinéma4D
+    -GitHub
+    -Trello
+    -Photoshop
+    -Cinéma4D
 
 Schéma:
     -Mockup
@@ -84,13 +84,17 @@ MCD:
 
 
 Gantt:
-
+    -cahier des charge terminé pour le 13 octobre
 
 Amélioration possible :
     -Amélioration armes et armures (ex:enchantement, poison)
     -Rajouter des classes donc des spells
     -des ajouts de foncionnalités dans la ville (batiment, ...)
-
+    -personnalisation du personnage
+    -objet divers (composant)
+    -création d'item (armure, arme, potion, ...)
+    -mode multijoueur (lan)
+    -ajout de race (avec spé fonction race donc modification des multiplicateurs de dommage et résistance)
 
 Conclusion :
 
