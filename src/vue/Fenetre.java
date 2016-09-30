@@ -4,6 +4,7 @@ import controleur.*;
 import model.Jeu;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by bastien on 28/09/16.
