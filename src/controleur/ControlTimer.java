@@ -23,25 +23,6 @@ public class ControlTimer extends Control implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        System.out.println(jeu.getHero().
-
-                getGauche()
-
-                + " " + jeu.getHero().
-
-                getSauter()
-
-                + " " + jeu.getHero().
-
-                getGauche()
-
-                + " " + jeu.getHero().
-
-                getSauter()
-
-        );
-
-
         if (jeu.getHero().getGauche())
             jeu.getHero().deplacer(-1, 0);
         if (jeu.getHero().getSauter())
