@@ -12,9 +12,17 @@ import java.awt.event.KeyListener;
 
 public class ControlClavier extends Control implements KeyListener {
 
+    private final int TOUCHE_CLAVIER[] = {27, 37, 38, 39, 40}; // echap, fleche de gauche, fleche du haut, fleche de droit, fleche du bas
+    public static boolean toucheEnfoncer[];
+
     public ControlClavier(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlClavier(this);
+
+        toucheEnfoncer = new boolean[TOUCHE_CLAVIER.length];
+
+        for (int i = 0; i < toucheEnfoncer.length; i++)
+            toucheEnfoncer[i] = false;
     }
 
     @Override
@@ -24,26 +32,11 @@ public class ControlClavier extends Control implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        switch (e.getKeyCode()) {
-            case 27: {
-                jeu.setPause(!jeu.getPause()); // echap
-            }
-            case 37: {
-                jeu.getHero().setGauche(true);  // fleche de gauche
-                break;
-            }
-            case 38: {
-                jeu.getHero().setSauter(true); // fleche du haut
-                break;
-            }
-            case 39: {
-                jeu.getHero().setDroite(true); // feche de droite
-                break;
-            }
-            case 40: {
-                jeu.getHero().setAccroupir(true); // fleche du bas
-                break;
-            }
+        int i = 0;
+        for (int key : TOUCHE_CLAVIER) {
+            if (e.getKeyCode() == key)
+                toucheEnfoncer[i] = true;
+            i++;
         }
 
         //System.out.println("Touche pressée : " + e.getKeyCode() + " (" + e.getKeyChar() + ")"); // savoir la touche appuyer
@@ -51,26 +44,12 @@ public class ControlClavier extends Control implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case 27: {
-                jeu.setPause(!jeu.getPause()); // echap
-            }
-            case 37: {
-                jeu.getHero().setGauche(false); // fleche de gauche
-                break;
-            }
-            case 38: {
-                jeu.getHero().setSauter(false); // fleche du haut
-                break;
-            }
-            case 39: {
-                jeu.getHero().setDroite(false); // feche de droite
-                break;
-            }
-            case 40: {
-                jeu.getHero().setAccroupir(false); // fleche du bas
-                break;
-            }
+
+        int i = 0;
+        for (int key : TOUCHE_CLAVIER) {
+            if (e.getKeyCode() == key)
+                toucheEnfoncer[i] = false;
+            i++;
         }
     }
 }
