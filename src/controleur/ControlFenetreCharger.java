@@ -19,7 +19,7 @@ public class ControlFenetreCharger extends Control implements ActionListener {
         super(jeu, fenetre);
         fenetre.setControlFenetreCharger(this);
 
-        boutonEnfoncer = new boolean[NOMBRE_DE_BOUTON-1];
+        boutonEnfoncer = new boolean[NOMBRE_DE_BOUTON];
 
         for (int i = 0; i < boutonEnfoncer.length; i++)
             boutonEnfoncer[i] = false;

@@ -19,7 +19,7 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
         super(jeu, fenetre);
         fenetre.setControlMenuPrincipal(this);
 
-        boutonEnfoncer = new boolean[NOMBRE_DE_BOUTON-1];
+        boutonEnfoncer = new boolean[NOMBRE_DE_BOUTON];
 
         for (int i = 0; i < boutonEnfoncer.length; i++)
             boutonEnfoncer[i] = false;

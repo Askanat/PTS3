@@ -23,8 +23,7 @@ public class ControlTimer extends Control implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (ControlFenetreCharger.boutonEnfoncer[0] || ControlFenetreCharger.boutonEnfoncer[1] || ControlFenetreCharger.boutonEnfoncer[2] || ControlFenetreNouvellePartie.boutonEnfoncer[1] || ControlFenetreNouvellePartie.boutonEnfoncer[1] || ControlFenetreNouvellePartie.boutonEnfoncer[2]) {
-            System.out.println("test");
+        if (ControlFenetreCharger.boutonEnfoncer[0] || ControlFenetreCharger.boutonEnfoncer[1] || ControlFenetreCharger.boutonEnfoncer[2] || ControlFenetreNouvellePartie.boutonEnfoncer[0] || ControlFenetreNouvellePartie.boutonEnfoncer[1] || ControlFenetreNouvellePartie.boutonEnfoncer[2]) {
             if (ControlClavier.toucheEnfoncer[0]) // echap
                 jeu.setPause(true);
             else
@@ -43,7 +42,6 @@ public class ControlTimer extends Control implements ActionListener {
                 jeu.getHero().deplacer(0, 1);
         }
 
-        System.out.println(" menu1:" + ControlMenuPrincipal.boutonEnfoncer[0] + " menu2:" + ControlMenuPrincipal.boutonEnfoncer[1] + " menu3:" + ControlMenuPrincipal.boutonEnfoncer[2] + " charger1:" + ControlFenetreCharger.boutonEnfoncer[0] + " charger2:" + ControlFenetreCharger.boutonEnfoncer[1] + " charger3:" + ControlFenetreCharger.boutonEnfoncer[2] + " new1:" + ControlFenetreNouvellePartie.boutonEnfoncer[0] + " new2:" + ControlFenetreNouvellePartie.boutonEnfoncer[1] + " new3:" + ControlFenetreNouvellePartie.boutonEnfoncer[2]);
 
         fenetre.repaint();
     }
