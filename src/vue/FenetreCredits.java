@@ -16,7 +16,7 @@ public class FenetreCredits extends JPanel {
     public FenetreCredits() {
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(800, 800));
+        setPreferredSize(new Dimension(800 , 600));
 
         retour = new JButton("Retour");
         retour.setActionCommand("Retour");
@@ -30,7 +30,8 @@ public class FenetreCredits extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        retour.setBounds(290, 300, 228, 40);
+        retour.setBounds(40, 500, 228, 40);
+        retour.setForeground(Color.WHITE);
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
