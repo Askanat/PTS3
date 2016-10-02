@@ -1,6 +1,6 @@
 Objectif:
     Créer un jeu de type RPG/Rogue like c'est à dire avoir un hero qui pourrais évoluer au sein d'un donjon ou se
-    trouverais des monstres. Notre héro évoluerais en franchissant les niveaux du donjon, et implémenter une génération aléatoire pour       les niveaux du donjon.
+    trouverais des monstres. Notre héro évoluerais en franchissant les niveaux du donjon qui serait implémenter via une génération aléatoire pour des niveaux du donjon.
 
 
 Motivations:
