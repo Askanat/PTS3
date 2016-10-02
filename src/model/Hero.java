@@ -12,6 +12,10 @@ import java.io.IOException;
 
 public class Hero extends Personnage {
 
+    int niveau, experience, experienceMax;
+    int or, charge, chargeMax;
+    int pointConstitution, pointIntelligence, pointForce, pointResistance, pointCompetence;
+
     private BufferedImage[] tableauSprite;
     public static Image spriteActuelle;
     private int alternerSprite;

@@ -12,7 +12,9 @@ public abstract class Personnage {
     protected String nom;
 
     protected int vie, vieMax;
-    protected int degats;
+    protected int degats, degatMax, armure, armureMax;
+
+    protected Rectangle position;
 
     protected int positionX, positionY;
 
