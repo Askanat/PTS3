@@ -5,7 +5,7 @@ Objectif:
 
 Motivations:
     Relever de nouveaux défis et se pousser à s'améliorer soit même.
-    c'est à dire, Le travail sur une IA de monstre, la jointure entre BDD et Java, la génération aléatoire des niveaux.
+    Le travail sur une IA, la jointure entre BDD et Java, la génération aléatoire des niveaux.
     La gestion de beaucoup de class.
     Le jeu est assez conséquent et ne manque pas d'améliorations possibles, c'est donc un projet ou l'on pourra sans cesse
     aller plus loin et n'aura que pour seul limite nous même.
@@ -14,32 +14,32 @@ Motivations:
 
 
 Model:
-    On s'inspire du jeu Rogue Legacy, et de nos diverses expériences que l'on a pu vivre au cours de notre vie dans différents types de     RPG.
+    On s'inspire du jeu "Rogue Legacy" ainsi que de différents types de RPG, MMORPG, ou jeux d'arcades.
 
 Difficultés:
     Gestion de l'utilisation de java et BDD ensemble.
     Gestion des annimations.
     Création d'une IA.
-    Title maping (chiffre <0 = non collision, chiffre 0< x < 100 collision, chiffre 100 < x < 200 cassable)
-    Inventaire du personnage
+    Tile maping (chiffre <0 = non collision, chiffre 0< x < 100 collision, chiffre 100 < x < 200 cassable).
+    Inventaire du personnage.
 
 
 Introduction:
-    Le but de ce projet est de créer un jeu "réinventant" le jeu Rogue Legacy en java et en base de donnée.
+    Le but de ce projet est de créer un jeu "réinventant" le jeu Rogue Legacy à notre sauce en java.
 
 Règles:
-    - L'environnement est composé d' une zone fixe et d'un donjon généré alétoirement, le donjon possède des monstres, et des objets
-    - Le donjon change tous les "x" temps ou à chaques fois que l'on quitte un niveau
-    - Les personnages peuvent bouger, attaquer, recevoir des dégats et donner des dégats
+    - L'environnement est composé d'une zone fixe et d'un donjon généré alétoirement, dans le donjon ce trouve des monstres, et des objets
+    - Les salles du donjon et leurs dispositions change à chaques fois que l'on quitte un niveau
+    - Les personnages peuvent bouger, attaquer, recevoir des dégats et infliger des dégats
     - Le héro peut monter de niveau et attribuer des points dans des caractéristiques pour les augmenter
     - Les consommables redonnent de la vie ou de la mana
     - Les équipements permettent d'améliorer les caractéristiques du héro (+ def)
-    - Les armes permet d'améliorer les caractéristiques du héro  (+ off)
-    - Lorsque un monstre meurt le héros gagne en expérience et le monstre peut drop des objets, de l'argent
+    - Les armes permettent d'améliorer les caractéristiques du héro  (+ off)
+    - Lorsque un monstre meurt le héros gagne en expérience et le monstre peut laisser tomber des objets, de l'argent...
     - Si le héro meurt il se retrouve chez lui (maison, cimetière, auberge, ...)
-    - La "maison" du hero permet au hero de se regénérer(vie, mana), de poser des affaires pour être moins lourd
-    - Il y a sur la route pour aller au donjon un marché, une forge
-    - La forge et le marché seront gérés par des PNJ.
+    - La "maison" du hero permet au hero de se regénérer(vie, mana) et de déposer des objets
+    - Il y a sur la route pour aller au donjon un marché, une forge et d'autre petites échoppes
+    - Les échoppes seront gérés par des PNJ.
     - Le marché permet au héro d'acheter des potions de vie ou des potions de mana
     - La forge permet au héro d'acheter de l'équipement et des armes
     - Le donjon se compose en niveau, quand on rentre on est dans le niveau 0, on peut soit dessendre(niveau--) soit monter(niveau++),
@@ -86,7 +86,7 @@ Gantt:
 
 Amélioration possible :
     -Amélioration armes et armures (ex:enchantement, poison)
-    -Rajouter des classes donc des spells
+    -Rajouter des classes de personnages donc des spells
     -des ajouts de foncionnalités dans la ville (batiment, ...)
     -personnalisation du personnage
     -objet divers (composant)
