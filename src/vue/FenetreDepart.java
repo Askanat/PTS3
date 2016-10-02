@@ -28,7 +28,6 @@ public class FenetreDepart extends JPanel {
         super.paintComponent(g);
 
         // test sprite
-        Image img = getToolkit().getImage("images/test1.png");
-        g.drawImage(img, jeu.getHero().getPositionX(), jeu.getHero().getPositionY(), getWidth(), getHeight(), this);
+        g.drawImage(Hero.spriteActuelle, jeu.getHero().getPositionX(), jeu.getHero().getPositionY(), this);
     }
 }
