@@ -118,12 +118,12 @@ public class Hero extends Personnage {
                     break;
             }
 
-        if (x != 0 && y != 0)
+        if (x != 0 || y != 0)
             if ((alternerSprite == 0) ||(alternerSprite == 1) ||(alternerSprite == 2))
                 alternerSprite++;
 
             else if (alternerSprite == 3)
                 alternerSprite = 0;
-
+        System.out.println(alternerSprite);
     }
 }
