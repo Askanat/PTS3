@@ -12,17 +12,17 @@ import java.awt.*;
 
 public class FenetreCharger extends JPanel {
 
-    public Jeu jeu;
-    private JButton slot1;
-    private JButton slot2;
-    private JButton slot3;
-    private JButton retour;
+    private Jeu jeu;
+    public JButton slot1;
+    public JButton slot2;
+    public JButton slot3;
+    public JButton retour;
 
     public FenetreCharger(Jeu jeu) {
         this.jeu = jeu;
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(800 , 600));
+        setPreferredSize(new Dimension(800, 600));
 
         slot1 = new JButton("Slot de Sauvegarde n°1");
         slot1.setActionCommand("Slot de Sauvegarde n°1");

@@ -4,6 +4,7 @@ import controleur.*;
 import model.Jeu;
 
 import javax.swing.*;
+import java.io.IOException;
 
 /**
  * Created by bastien on 28/09/16.
@@ -11,7 +12,7 @@ import javax.swing.*;
 
 public class Fenetre extends JFrame {
 
-    public Jeu jeu;
+    private Jeu jeu;
     public MenuPrincipal panelMenuPrincipal;
     public FenetreCharger panelFenetreCharger;
     public FenetreCredits panelFenetreCredits;

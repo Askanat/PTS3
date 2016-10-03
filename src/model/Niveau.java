@@ -3,6 +3,7 @@ package model;
 /**
  * Created by leo on 02/10/16.
  */
+
 public class Niveau {
 
     private int tableau[][];

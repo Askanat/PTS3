@@ -11,12 +11,12 @@ import java.awt.*;
 
 public class FenetreCredits extends JPanel {
 
-    private JButton retour;
+    public JButton retour;
 
     public FenetreCredits() {
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(800 , 600));
+        setPreferredSize(new Dimension(800, 600));
 
         retour = new JButton("Retour");
         retour.setActionCommand("Retour");

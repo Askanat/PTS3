@@ -12,7 +12,7 @@ import java.awt.*;
 
 public class FenetreDonjon extends JPanel {
 
-    public Jeu jeu;
+    private Jeu jeu;
 
     public FenetreDonjon(Jeu jeu) {
         this.jeu = jeu;

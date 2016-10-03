@@ -11,14 +11,11 @@ import java.awt.*;
 
 public class MenuPrincipal extends JPanel {
 
-    private JButton nouvellePartie;
-    private JButton chargerPartie;
-    private JButton credits;
-    private JButton quitter;
+    public JButton nouvellePartie, chargerPartie, credits, quitter;
 
     public MenuPrincipal() {
         this.setLayout(null);
-        setPreferredSize(new Dimension(800 , 600));
+        setPreferredSize(new Dimension(800, 600));
 
         nouvellePartie = new JButton("Nouvelle Partie");
         nouvellePartie.setActionCommand("Nouvelle Partie");
@@ -69,7 +66,6 @@ public class MenuPrincipal extends JPanel {
         Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
-
 
     public void setControl(ControlMenuPrincipal controlMenuPrincipal) {
         nouvellePartie.addActionListener(controlMenuPrincipal);

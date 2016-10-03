@@ -1,7 +1,5 @@
 package model;
 
-import java.io.IOException;
-
 /**
  * Created by bastien on 28/09/16.
  */
@@ -12,7 +10,7 @@ public class Jeu {
 
     private boolean pause;
 
-    public Jeu() throws IOException {
+    public Jeu() {
         hero = new Hero("testHero", 10, 10, 1, 0, 0, null);
     }
 

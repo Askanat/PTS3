@@ -6,7 +6,6 @@ import vue.Fenetre;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 /**
  * Created by bastien on 30/09/16.
@@ -23,7 +22,7 @@ public class ControlTimer extends Control implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int x=0, y=0;
+        int x = 0, y = 0;
         if (ControlFenetreCharger.boutonEnfoncer[0] || ControlFenetreCharger.boutonEnfoncer[1] || ControlFenetreCharger.boutonEnfoncer[2] || ControlFenetreNouvellePartie.boutonEnfoncer[0] || ControlFenetreNouvellePartie.boutonEnfoncer[1] || ControlFenetreNouvellePartie.boutonEnfoncer[2]) {
             if (ControlClavier.toucheEnfoncer[0]) // echap
                 jeu.setPause(true);
@@ -48,9 +47,8 @@ public class ControlTimer extends Control implements ActionListener {
 
             }
 
-            jeu.getHero().selectionnerMorceauSpriteDeplacement(x, y);
+            fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(x, y);
             jeu.getHero().deplacer(x, y);
-
         }
 
         fenetre.repaint();
