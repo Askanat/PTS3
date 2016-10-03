@@ -13,10 +13,7 @@ import java.awt.*;
 public class FenetreCharger extends JPanel {
 
     private Jeu jeu;
-    public JButton slot1;
-    public JButton slot2;
-    public JButton slot3;
-    public JButton retour;
+    public JButton slot1, slot2, slot3, retour;
 
     public FenetreCharger(Jeu jeu) {
         this.jeu = jeu;
