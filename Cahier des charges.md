@@ -82,10 +82,14 @@ MCD:
 
 
 Gantt:
-    -cahier des charge terminé pour le 13 octobre
-    -première partie de la création de la vue fait le 29 septembre
-    -controleur réalisé entre le 29 et 30 septembre
-
+    -première partie de la création de la vue fait le 29 septembre 2016
+    -controleur réalisé entre le 29 et 30 septembre 2016
+    -principe MVC fonctionnelle le 1 octobre 2016
+    -déplacement du personnage du 30 au 2 septembre 2016
+    -découpage et gestion du sprite du personnage 2 septembre au 3 septembre 2016
+    -correction et optimisation 3 septembre au 6 septembre 2016
+    -cahier des charge terminé pour le 13 octobre 2016
+    
 Amélioration possible :
     -Amélioration armes et armures (ex:enchantement, poison)
     -Rajouter des classes de personnages donc des spells
