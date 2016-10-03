@@ -6,6 +6,7 @@ import vue.Fenetre;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Created by bastien on 30/09/16.
@@ -30,27 +31,27 @@ public class ControlTimer extends Control implements ActionListener {
                 jeu.setPause(false);
 
             if (ControlClavier.toucheEnfoncer[1]) {// touche de gauche
-                x = -1;
-                y = 0;
+                x += -1;
+                y += 0;
             }
             if (ControlClavier.toucheEnfoncer[2]) {// touche du haut
-                x = 0;
-                y = -1;
+                x += 0;
+                y += -1;
             }
             if (ControlClavier.toucheEnfoncer[3]) {// touche de droite
-                x = 1;
-                y = 0;
+                x += 1;
+                y += 0;
             }
             if (ControlClavier.toucheEnfoncer[4]) {// touche du bas
-                x = 0;
-                y = 1;
+                x += 0;
+                y += 1;
 
             }
 
             jeu.getHero().selectionnerMorceauSpriteDeplacement(x, y);
             jeu.getHero().deplacer(x, y);
-        }
 
+        }
 
         fenetre.repaint();
     }

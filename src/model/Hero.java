@@ -12,8 +12,10 @@ import java.io.IOException;
 
 public class Hero extends Personnage {
 
-    int niveau, experience, experienceMax;
-    int or, charge, chargeMax;
+    int niveau;
+    int experience, experienceMax;
+    int or;
+    int charge, chargeMax;
     int pointConstitution, pointIntelligence, pointForce, pointResistance, pointCompetence;
 
     private BufferedImage[] tableauSprite;
@@ -22,10 +24,10 @@ public class Hero extends Personnage {
 
     public Hero(String nom, int vie, int vieMax, int degats, int positionX, int positionY, Image texture) throws IOException {
         super(nom, vie, vieMax, degats, positionX, positionY, texture);
+
         tableauSprite = decoupage(ImageIO.read(new File("images/test3.png")), 3, 4);
 
         alternerSprite = 0;
-
     }
 
     public void deplacer(int deplacementX, int deplacementY) {
@@ -123,11 +125,10 @@ public class Hero extends Personnage {
             }
 
         if (x != 0 || y != 0)
-            if ((alternerSprite == 0) ||(alternerSprite == 1) ||(alternerSprite == 2))
+            if ((alternerSprite == 0) || (alternerSprite == 1) || (alternerSprite == 2))
                 alternerSprite++;
 
             else if (alternerSprite == 3)
                 alternerSprite = 0;
-        System.out.println(alternerSprite);
     }
 }
