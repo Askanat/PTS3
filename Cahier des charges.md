@@ -1,15 +1,15 @@
 Objectif:
     Créer un jeu de type RPG/Rogue like c'est à dire avoir un hero qui pourrais évoluer au sein d'un donjon ou se
-    trouverais des monstres. Notre héro évoluerais en franchissant les niveaux du donjon qui serait implémenter via une génération aléatoire pour des niveaux du donjon.
+    trouverais des monstres. Notre héro évoluerais en franchissant les niveaux du donjon qui seraient implémentés via une génération aléatoire pour des niveaux du donjon.
 
 
 Motivations:
-    Relever de nouveaux défis et se pousser à s'améliorer soit même.
+    Relever de nouveaux défis et se pousser à s'améliorer soi-même.
     Le travail sur une IA, la jointure entre BDD et Java, la génération aléatoire des niveaux.
-    La gestion de beaucoup de class.
-    Le jeu est assez conséquent et ne manque pas d'améliorations possibles, c'est donc un projet ou l'on pourra sans cesse
+    La gestion de beaucoup de classes.
+    Le jeu est assez conséquent et ne manque pas d'améliorations possibles, c'est donc un projet où l'on pourra sans cesse
     aller plus loin et n'aura que pour seul limite nous même.
-    De plus, il y a un travail conséquent dans globalement chaque partie, le fait de progrésser ensemble et de s'entraider est
+    De plus, il y a un travail conséquent dans globalement chaque partie, le fait de progresser ensemble et de s'entraider est
     une motivation à elle seule.
 
 
@@ -29,13 +29,13 @@ Introduction:
 
 Règles:
     - L'environnement est composé d'une zone fixe et d'un donjon généré alétoirement, dans le donjon ce trouve des monstres, et des objets
-    - Les salles du donjon et leurs dispositions change à chaques fois que l'on quitte un niveau
+    - Les salles du donjon et leurs dispositions changent à chaque fois que l'on quitte un niveau
     - Les personnages peuvent bouger, attaquer, recevoir des dégats et infliger des dégats
     - Le héro peut monter de niveau et attribuer des points dans des caractéristiques pour les augmenter
     - Les consommables redonnent de la vie ou de la mana
     - Les équipements permettent d'améliorer les caractéristiques du héro (+ def)
     - Les armes permettent d'améliorer les caractéristiques du héro  (+ off)
-    - Lorsque un monstre meurt le héros gagne en expérience et le monstre peut laisser tomber des objets, de l'argent...
+    - Lorsqu'un monstre meurt le héros gagne en expérience et le monstre peut laisser tomber des objets, de l'argent...
     - Si le héro meurt il se retrouve chez lui (maison, cimetière, auberge, ...)
     - La "maison" du hero permet au hero de se regénérer(vie, mana) et de déposer des objets
     - Il y a sur la route pour aller au donjon un marché, une forge et d'autre petites échoppes
@@ -43,7 +43,7 @@ Règles:
     - Le marché permet au héro d'acheter des potions de vie ou des potions de mana
     - La forge permet au héro d'acheter de l'équipement et des armes
     - Le donjon se compose en niveau, quand on rentre on est dans le niveau 0, on peut soit dessendre(niveau--) soit monter(niveau++),
-            on peut sortir quand on veut du donjon, il n'y a pas de limite de niveau les niveaux inférieure on un autre environnement               que les niveaux suppérieures, plus on monte en niveau plus les monstres sont puissant
+            on peut sortir quand on veut du donjon, il n'y a pas de limite de niveau les niveaux inférieurs ont un autre environnement               que les niveaux supérieurs, plus on monte en niveau plus les monstres sont puissant
 
 Class:
 - Personnage : Hero, Monstre
