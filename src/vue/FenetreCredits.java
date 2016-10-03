@@ -12,15 +12,18 @@ import java.awt.*;
 public class FenetreCredits extends JPanel {
 
     public JButton retour;
+    private JLabel credits, texte;
 
     public FenetreCredits() {
 
         this.setLayout(null);
         setPreferredSize(new Dimension(800, 600));
 
+        credits=new JLabel("Crédits",JLabel.CENTER);
         retour = new JButton("Retour");
         retour.setActionCommand("Retour");
 
+        add(credits);
         add(retour);
     }
 
@@ -30,6 +33,10 @@ public class FenetreCredits extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        credits.setBounds(290, 100, 228, 40);
+        credits.setForeground(Color.WHITE);
+
         retour.setBounds(40, 500, 228, 40);
         retour.setForeground(Color.WHITE);
         retour.setBackground(new Color(0, 0, 0, 0));

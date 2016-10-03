@@ -83,6 +83,8 @@ MCD:
 
 Gantt:
     -cahier des charge terminé pour le 13 octobre
+    -première partie de la création de la vue fait le 29 septembre
+    -controleur réalisé entre le 29 et 30 septembre
 
 Amélioration possible :
     -Amélioration armes et armures (ex:enchantement, poison)
@@ -102,5 +104,5 @@ Conclusion :
 
 ---------------------------------------------------------------------------------------------------------
 
-fenetre popup / ou dans le decart de l'aide
+fenetre popup / ou dans le decort de l'aide
 
