@@ -19,7 +19,7 @@ public class FenetreDepart extends JPanel {
     public FenetreDepart(Jeu jeu) {
         this.jeu = jeu;
         this.setLayout(null);
-        setPreferredSize(new Dimension(800, 800));
+        setPreferredSize(new Dimension(960, 540));
 
         try {
             hero = new Entite(jeu.getHero(), "images/test3.png");

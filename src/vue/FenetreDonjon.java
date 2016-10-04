@@ -18,7 +18,7 @@ public class FenetreDonjon extends JPanel {
         this.jeu = jeu;
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(800, 800));
+        setPreferredSize(new Dimension(960, 540));
     }
 
     public void setControl(ControlFenetreDonjon controlFenetreDonjon) {

@@ -15,7 +15,7 @@ public class MenuPrincipal extends JPanel {
 
     public MenuPrincipal() {
         this.setLayout(null);
-        setPreferredSize(new Dimension(800, 600));
+        setPreferredSize(new Dimension(960, 540));
 
         nouvellePartie = new JButton("Nouvelle Partie");
         nouvellePartie.setActionCommand("Nouvelle Partie");

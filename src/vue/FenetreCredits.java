@@ -17,13 +17,11 @@ public class FenetreCredits extends JPanel {
     public FenetreCredits() {
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(800, 600));
+        setPreferredSize(new Dimension(960, 540));
 
-        credits=new JLabel("Crédits",JLabel.CENTER);
         retour = new JButton("Retour");
         retour.setActionCommand("Retour");
 
-        add(credits);
         add(retour);
     }
 
@@ -34,9 +32,6 @@ public class FenetreCredits extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        credits.setBounds(290, 100, 228, 40);
-        credits.setForeground(Color.WHITE);
-
         retour.setBounds(40, 500, 228, 40);
         retour.setForeground(Color.WHITE);
         retour.setBackground(new Color(0, 0, 0, 0));
@@ -44,7 +39,7 @@ public class FenetreCredits extends JPanel {
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retour.setBorder(null);
 
-        Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
+        Image img = getToolkit().getImage("images/Credits.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 }

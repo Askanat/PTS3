@@ -19,7 +19,7 @@ public class FenetreCharger extends JPanel {
         this.jeu = jeu;
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(800, 600));
+        setPreferredSize(new Dimension(960, 540));
 
         slot1 = new JButton("Slot de Sauvegarde n°1");
         slot1.setActionCommand("Slot de Sauvegarde n°1");
