@@ -25,4 +25,8 @@ public class Niveau {
     public Niveau(int tailleX, int tailleY) {
 
     }
+
+	public void generer(int tailleX, int tailleY) {
+
+    }
 }

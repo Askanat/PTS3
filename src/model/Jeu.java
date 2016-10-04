@@ -6,7 +6,9 @@ package model;
 
 public class Jeu {
 
+    private Niveau niveau;
     private Hero hero;
+    private Monstre tableauMonstre[];
 
     private boolean pause;
 
