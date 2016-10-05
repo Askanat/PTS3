@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class Fenetre extends JFrame {
 
+    public static final int X = 960;
+    public static final int Y = 540;
     private Jeu jeu;
     public MenuPrincipal panelMenuPrincipal;
     public FenetreCharger panelFenetreCharger;

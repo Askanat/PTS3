@@ -5,6 +5,9 @@ import controleur.ControlFenetreCredits;
 import javax.swing.*;
 import java.awt.*;
 
+import static vue.Fenetre.X;
+import static vue.Fenetre.Y;
+
 /**
  * Created by bastien on 29/09/16.
  */
@@ -17,7 +20,7 @@ public class FenetreCredits extends JPanel {
     public FenetreCredits() {
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(960, 540));
+        setPreferredSize(new Dimension(X, Y));
 
         retour = new JButton("Retour");
         retour.setActionCommand("Retour");

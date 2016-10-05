@@ -5,6 +5,9 @@ import controleur.ControlMenuPrincipal;
 import javax.swing.*;
 import java.awt.*;
 
+import static vue.Fenetre.X;
+import static vue.Fenetre.Y;
+
 /**
  * Created by bastien on 29/09/16.
  */
@@ -15,7 +18,7 @@ public class MenuPrincipal extends JPanel {
 
     public MenuPrincipal() {
         this.setLayout(null);
-        setPreferredSize(new Dimension(960, 540));
+        setPreferredSize(new Dimension(X, Y));
 
         nouvellePartie = new JButton("Nouvelle Partie");
         nouvellePartie.setActionCommand("Nouvelle Partie");

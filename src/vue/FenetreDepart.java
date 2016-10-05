@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+import static vue.Fenetre.X;
+import static vue.Fenetre.Y;
+
 /**
  * Created by bastien on 29/09/16.
  */
@@ -19,7 +22,7 @@ public class FenetreDepart extends JPanel {
     public FenetreDepart(Jeu jeu) {
         this.jeu = jeu;
         this.setLayout(null);
-        setPreferredSize(new Dimension(960, 540));
+        setPreferredSize(new Dimension(X, Y));
 
         try {
             hero = new Entite(jeu.getHero(), "images/test3.png");

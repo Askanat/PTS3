@@ -6,6 +6,9 @@ import model.Jeu;
 import javax.swing.*;
 import java.awt.*;
 
+import static vue.Fenetre.X;
+import static vue.Fenetre.Y;
+
 /**
  * Created by bastien on 29/09/16.
  */
@@ -19,7 +22,7 @@ public class FenetreNouvellePartie extends JPanel {
         this.jeu = jeu;
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(960, 540));
+        setPreferredSize(new Dimension(X, Y));
 
         slot1 = new JButton("Slot de Sauvegarde n°1");
         slot1.setActionCommand("Slot de Sauvegarde n°1");
