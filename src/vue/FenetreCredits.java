@@ -35,7 +35,7 @@ public class FenetreCredits extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        retour.setBounds(40, 500, 228, 40);
+        retour.setBounds(40, 980, 228, 40);
         retour.setForeground(Color.WHITE);
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);

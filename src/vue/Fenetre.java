@@ -12,8 +12,8 @@ import java.io.IOException;
 
 public class Fenetre extends JFrame {
 
-    public static final int X = 960;
-    public static final int Y = 540;
+    public static final int X = 1920;
+    public static final int Y = 1080;
     private Jeu jeu;
     public MenuPrincipal panelMenuPrincipal;
     public FenetreCharger panelFenetreCharger;
@@ -30,6 +30,7 @@ public class Fenetre extends JFrame {
         //menu = new BarMenu(jeu);
         //menu.setVisible(false);
         //setJMenuBar(menu);
+        setUndecorated(true);
         setContentPane(panelMenuPrincipal);
         pack();
         setTitle("Jeu");
