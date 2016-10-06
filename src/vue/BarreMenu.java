@@ -15,7 +15,6 @@ public class BarreMenu extends JMenuBar {
     private Jeu jeu;
 
     public JMenu menu;
-    JMenuItem nouvellePartie, menuPrincipal;
 
     public BarreMenu(Jeu jeu) {
 
@@ -24,13 +23,6 @@ public class BarreMenu extends JMenuBar {
         menu = new JMenu("Menu");
         menu.setActionCommand("Menu");
 
-        nouvellePartie = new JMenuItem("Nouvelle partie");
-        nouvellePartie.setActionCommand("nouvellePartie");
-        menuPrincipal = new JMenuItem("Menu principal");
-        menuPrincipal.setActionCommand("menuPrincipal");
-
-        menu.add(nouvellePartie);
-        menu.add(menuPrincipal);
         add(menu);
     }
 
@@ -48,7 +40,6 @@ public class BarreMenu extends JMenuBar {
     }
 
     public void setControl(ControlBarreMenu controlBarreMenu) {
-        nouvellePartie.addActionListener(controlBarreMenu);
-        menuPrincipal.addActionListener(controlBarreMenu);
+        menu.addActionListener(controlBarreMenu);
     }
 }
