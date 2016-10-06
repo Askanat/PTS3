@@ -5,19 +5,17 @@ import model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Florian Vaissiere on 03/10/2016.
  */
 public class BarreMenu extends JMenuBar {
 
-    private Jeu jeu;
     private JMenuBar menuBar = new JMenuBar();
     public JMenu menu;
 
-    public BarreMenu(Jeu jeu) {
-        this.jeu = jeu;
-
+    public void BarreMenu() {
         menu = new JMenu("Menu");
         menu.setActionCommand("Menu");
 
@@ -37,7 +35,7 @@ public class BarreMenu extends JMenuBar {
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 
-    public void setControl(ControlMenuPrincipal controlMenuJeu) {
+    public void setControl(ActionListener controlMenuJeu) {
         menu.addActionListener(controlMenuJeu);
     }
 }
