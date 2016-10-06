@@ -5,18 +5,17 @@ import model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * Created by Florian Vaissiere on 03/10/2016.
  */
 public class BarreMenu extends JMenuBar {
 
-    private Jeu jeu;
     private JMenuBar menuBar = new JMenuBar();
     public JMenu menu;
 
-    public BarreMenu(Jeu jeu) {
-        this.jeu = jeu;
+    public BarreMenu() {
 
         menu = new JMenu("Menu");
         menu.setActionCommand("Menu");
@@ -33,11 +32,11 @@ public class BarreMenu extends JMenuBar {
         menu.setCursor(new Cursor(Cursor.HAND_CURSOR));
         menu.setBorder(null);
 
-        Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+        //Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
+        //g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 
-    public void setControl(ControlMenuPrincipal controlMenuJeu) {
+    public void setControl(ActionListener controlMenuJeu) {
         menu.addActionListener(controlMenuJeu);
     }
 }

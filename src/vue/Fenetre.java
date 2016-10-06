@@ -21,7 +21,7 @@ public class Fenetre extends JFrame {
     public FenetreDepart panelFenetreDepart;
     public FenetreDonjon panelFenetreDonjon;
     public FenetreNouvellePartie panelFenetreNouvellePartie;
-    public BarreMenu panelBarreMenu;
+    public BarreMenu BarreMenu = new BarreMenu();
 
     public Fenetre(Jeu jeu) {
 
@@ -30,7 +30,7 @@ public class Fenetre extends JFrame {
         init();
         //menu = new BarMenu(jeu);
         //menu.setVisible(false);
-        setJMenuBar(panelBarreMenu);
+        setJMenuBar(BarreMenu);
         setUndecorated(true);
         setContentPane(panelMenuPrincipal);
         pack();
