@@ -19,7 +19,7 @@ public class Hero extends Personnage {
     }
 
     public void deplacer(int deplacementX, int deplacementY) {
-        setPositionX(getPositionX() + deplacementX);
-        setPositionY(getPositionY() + deplacementY);
+        setPositionX(getPositionX() + deplacementX * 20);
+        setPositionY(getPositionY() + deplacementY * 20);
     }
 }

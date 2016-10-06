@@ -13,10 +13,12 @@ import java.awt.event.ActionListener;
 
 public class ControlTimer extends Control implements ActionListener {
 
+    private int delais;
+
     public ControlTimer(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
 
-        Timer timer = new Timer(60, this);
+        Timer timer = new Timer(100, this);
         timer.start();
     }
 
