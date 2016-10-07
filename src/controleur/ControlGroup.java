@@ -25,6 +25,7 @@ public class ControlGroup {
         ControlFenetreNouvellePartie controlFenetreNouvellePartie = new ControlFenetreNouvellePartie(this.jeu, fenetre);
         ControlMenuPrincipal controlMenuPrincipal = new ControlMenuPrincipal(this.jeu, fenetre);
         ControlBarreMenu controlBarreMenu = new ControlBarreMenu(this.jeu, fenetre);
+        ControlMenuEnJeu controlMenuEnJeu = new ControlMenuEnJeu(this.jeu, fenetre);
         ControlClavier controlClavier = new ControlClavier(this.jeu, fenetre);
         ControlTimer controlTimer = new ControlTimer(this.jeu, fenetre);
     }

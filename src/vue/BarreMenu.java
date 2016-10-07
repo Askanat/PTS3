@@ -14,29 +14,26 @@ public class BarreMenu extends JMenuBar {
 
     private Jeu jeu;
 
-    public JMenu menu;
+    public JMenu test;
+    public JMenuItem menu;
 
     public BarreMenu(Jeu jeu) {
 
         this.jeu = jeu;
 
-        menu = new JMenu("Menu");
+        menu = new JMenuItem("Menu");
         menu.setActionCommand("Menu");
 
+        test = new JMenu(""+jeu.getHero().getVie());
+
         add(menu);
+        add(test);
     }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        /*menu.setForeground(Color.WHITE);
-        menu.setBackground(new Color(0, 0, 0, 0));
-        menu.setFocusable(false);
-        menu.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        menu.setBorder(null);
-
-        //Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
-        //g.drawImage(img, 0, 0, getWidth(), getHeight(), this);*/
+        test.setText(""+jeu.getHero().getVie());
+        test.repaint();
     }
 
     public void setControl(ControlBarreMenu controlBarreMenu) {
