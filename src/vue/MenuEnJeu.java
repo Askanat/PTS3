@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.ControlMenuPrincipal;
+import model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +10,12 @@ import java.awt.*;
  * Created by Florian Vaissiere on 06/10/2016.
  */
 public class MenuEnJeu extends JPanel{
+
+    private Jeu jeu;
     public JButton inventaire, fichePersonnage, chargerPartie, retourMenuPrincipal, retourBurreau, retourJeu;
 
-    public MenuEnJeu() {
+    public MenuEnJeu(Jeu jeu) {
+        this.jeu = jeu;
         this.setLayout(null);
 
         inventaire = new JButton("Inventaire");

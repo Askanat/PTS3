@@ -22,6 +22,7 @@ public class Fenetre extends JFrame {
     public FenetreDonjon panelFenetreDonjon;
     public FenetreNouvellePartie panelFenetreNouvellePartie;
     public BarreMenu barreMenu;
+    public MenuEnJeu menuEnJeu;
 
     public Fenetre(Jeu jeu) {
 
@@ -48,6 +49,7 @@ public class Fenetre extends JFrame {
         panelFenetreNouvellePartie = new FenetreNouvellePartie(jeu);
         panelMenuPrincipal = new MenuPrincipal();
         barreMenu = new BarreMenu(jeu);
+        menuEnJeu = new MenuEnJeu(jeu);
     }
 
     public void setControlFenetreCharger(ControlFenetreCharger controlFenetreCharger) {
