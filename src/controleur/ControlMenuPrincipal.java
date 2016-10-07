@@ -12,23 +12,14 @@ import java.awt.event.ActionListener;
 
 public class ControlMenuPrincipal extends Control implements ActionListener {
 
-    private final int NOMBRE_DE_BOUTON = 3;
-    public static boolean boutonEnfoncer[];
-
     public ControlMenuPrincipal(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlMenuPrincipal(this);
-
-        boutonEnfoncer = new boolean[NOMBRE_DE_BOUTON];
-
-        for (int i = 0; i < boutonEnfoncer.length; i++)
-            boutonEnfoncer[i] = false;
     }
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Nouvelle Partie":
-                boutonEnfoncer[0] = true;
                 fenetre.setContentPane(fenetre.panelFenetreNouvellePartie);
                 fenetre.repaint();
                 fenetre.pack();
@@ -36,7 +27,6 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
                 fenetre.requestFocus();
                 break;
             case "Charger Partie":
-                boutonEnfoncer[1] = true;
                 fenetre.setContentPane(fenetre.panelFenetreCharger);
                 fenetre.repaint();
                 fenetre.pack();
@@ -44,7 +34,6 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
                 fenetre.requestFocus();
                 break;
             case "Crédits":
-                boutonEnfoncer[2] = true;
                 fenetre.setContentPane(fenetre.panelFenetreCredits);
                 fenetre.repaint();
                 fenetre.pack();

@@ -19,6 +19,7 @@ public class FenetreNouvellePartie extends JPanel {
     public JButton slot1, slot2, slot3, retour;
 
     public FenetreNouvellePartie(Jeu jeu) {
+
         this.jeu = jeu;
 
         this.setLayout(null);

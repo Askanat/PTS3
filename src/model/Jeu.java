@@ -13,6 +13,7 @@ public class Jeu {
     private boolean pause;
 
     public Jeu() {
+        pause = false;
         hero = new Hero("testHero", 10, 10, 1, 0, 0, null);
     }
 

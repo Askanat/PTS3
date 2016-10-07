@@ -1,7 +1,6 @@
 package vue;
 
 import controleur.ControlMenuEnJeu;
-import controleur.ControlMenuPrincipal;
 import model.Jeu;
 
 import javax.swing.*;
@@ -13,7 +12,7 @@ import static vue.Fenetre.Y;
 /**
  * Created by Florian Vaissiere on 06/10/2016.
  */
-public class MenuEnJeu extends JPanel{
+public class MenuEnJeu extends JPanel {
 
     private Jeu jeu;
     public JButton retourJeu, inventaire, fichePersonnage, retourMenuPrincipal;

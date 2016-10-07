@@ -18,6 +18,7 @@ public class FenetreDonjon extends JPanel {
     private Jeu jeu;
 
     public FenetreDonjon(Jeu jeu) {
+
         this.jeu = jeu;
 
         this.setLayout(null);

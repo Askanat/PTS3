@@ -24,7 +24,7 @@ public class BarreMenu extends JMenuBar {
         menu = new JMenuItem("Menu");
         menu.setActionCommand("Menu");
 
-        test = new JMenu(""+jeu.getHero().getVie());
+        test = new JMenu("" + jeu.getHero().getVie());
 
         add(menu);
         add(test);
@@ -32,7 +32,7 @@ public class BarreMenu extends JMenuBar {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        test.setText(""+jeu.getHero().getVie());
+        test.setText("" + jeu.getHero().getVie());
         test.repaint();
     }
 

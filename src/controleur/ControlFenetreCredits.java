@@ -20,8 +20,6 @@ public class ControlFenetreCredits extends Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Retour":
-                for (int i=0; i<ControlMenuPrincipal.boutonEnfoncer.length; i++)
-                    ControlMenuPrincipal.boutonEnfoncer[i] = false;
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 fenetre.repaint();
                 fenetre.pack();

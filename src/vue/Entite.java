@@ -22,6 +22,7 @@ public class Entite extends JPanel {
     private int alternerSprite;
 
     public Entite(Personnage personnage, String chemin) throws IOException {
+
         this.personnage = personnage;
 
         tableauSprite = decoupage(ImageIO.read(new File(chemin)), 3, 4);

@@ -4,7 +4,6 @@ import controleur.*;
 import model.Jeu;
 
 import javax.swing.*;
-import java.io.IOException;
 
 /**
  * Created by bastien on 28/09/16.

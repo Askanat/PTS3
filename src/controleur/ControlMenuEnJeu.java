@@ -21,6 +21,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Retour":
+                jeu.setPause(false);
                 fenetre.setContentPane(fenetre.panelFenetreDepart);
                 fenetre.repaint();
                 fenetre.pack();
@@ -34,6 +35,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 System.out.println("fiche inventaire");
                 break;
             case "Retour au Menu Principal":
+                Control.enPartie = false;
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 fenetre.repaint();
                 fenetre.pack();
