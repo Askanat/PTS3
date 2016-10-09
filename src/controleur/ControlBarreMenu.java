@@ -21,13 +21,10 @@ public class ControlBarreMenu extends Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Menu":
-                jeu.setPause(true);
-                fenetre.setContentPane(fenetre.panelMenuEnJeu);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
-
+                if(jeu.getPause())
+                    jeu.setPause(false);
+                else
+                    jeu.setPause(true);
                 break;
         }
         fenetre.repaint();

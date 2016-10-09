@@ -25,9 +25,16 @@ public class ControlTimer extends Control implements ActionListener {
 
 
         if (Control.enPartie) {
-            if (ControlClavier.toucheEnfoncer[0]) {// echap
-                jeu.setPause(true);
+            if (jeu.getPause()) {// echap
                 fenetre.setContentPane(fenetre.panelMenuEnJeu);
+                fenetre.repaint();
+                fenetre.pack();
+                fenetre.setLocationRelativeTo(null);
+                fenetre.requestFocus();
+            }
+            else
+            {
+                fenetre.setContentPane(fenetre.panelFenetreDepart);
                 fenetre.repaint();
                 fenetre.pack();
                 fenetre.setLocationRelativeTo(null);

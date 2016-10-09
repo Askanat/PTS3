@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
 
 public class ControlClavier extends Control implements KeyListener {
 
-    private final int TOUCHE_CLAVIER[] = {27, 37, 38, 39, 40}; // echap, fleche de gauche, fleche du haut, fleche de droit, fleche du bas
+    private final int TOUCHE_CLAVIER[] = {27, 37, 38, 39, 40}; // fleche de gauche, fleche du haut, fleche de droit, fleche du bas
     public static boolean toucheEnfoncer[];
 
     public ControlClavier(Jeu jeu, Fenetre fenetre) {
@@ -51,5 +51,11 @@ public class ControlClavier extends Control implements KeyListener {
                 toucheEnfoncer[i] = false;
             i++;
         }
+
+        if (e.getKeyCode() == 27) // echap
+            if(jeu.getPause())
+                jeu.setPause(false);
+            else
+                jeu.setPause(true);
     }
 }
