@@ -28,7 +28,7 @@ public class Fenetre extends JFrame {
         this.jeu = jeu;
 
         init();
-        barreMenu.setVisible(true);
+        barreMenu.setVisible(false);
         setJMenuBar(barreMenu);
         setUndecorated(true);
         setContentPane(panelMenuPrincipal);

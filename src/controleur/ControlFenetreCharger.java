@@ -12,36 +12,27 @@ import java.awt.event.ActionListener;
 
 public class ControlFenetreCharger extends Control implements ActionListener {
 
+    public static boolean ChargerPartie1, ChargerPartie2, ChargerPartie3;
+
     public ControlFenetreCharger(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlFenetreCharger(this);
+
+        ChargerPartie1 = false;
+        ChargerPartie2 = false;
+        ChargerPartie3 = false;
     }
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Slot de Sauvegarde n°1":
-                Control.enPartie = true;
-                fenetre.setContentPane(fenetre.panelFenetreDepart);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                ChargerPartie1 = true;
                 break;
             case "Slot de Sauvegarde n°2":
-                Control.enPartie = true;
-                fenetre.setContentPane(fenetre.panelFenetreDepart);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                ChargerPartie2 = true;
                 break;
             case "Slot de Sauvegarde n°3":
-                Control.enPartie = true;
-                fenetre.setContentPane(fenetre.panelFenetreDepart);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                ChargerPartie3 = true;
                 break;
             case "Retour":
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);

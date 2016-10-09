@@ -31,6 +31,8 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 break;
             case "Retour au Menu Principal":
                 Control.enPartie = false;
+                jeu.setPause(false);
+                fenetre.barreMenu.setVisible(false);
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 fenetre.repaint();
                 fenetre.pack();

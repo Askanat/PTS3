@@ -12,36 +12,27 @@ import java.awt.event.ActionListener;
 
 public class ControlFenetreNouvellePartie extends Control implements ActionListener {
 
+    public static boolean nouvellePartie1, nouvellePartie2, nouvellePartie3;
+
     public ControlFenetreNouvellePartie(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlFenetreNouvellePartie(this);
+
+        nouvellePartie1 = false;
+        nouvellePartie2 = false;
+        nouvellePartie3 = false;
     }
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Slot de Sauvegarde n°1":
-                Control.enPartie = true;
-                fenetre.setContentPane(fenetre.panelFenetreDepart);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                nouvellePartie1 = true;
                 break;
             case "Slot de Sauvegarde n°2":
-                Control.enPartie = true;
-                fenetre.setContentPane(fenetre.panelFenetreDepart);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                nouvellePartie2 = true;
                 break;
             case "Slot de Sauvegarde n°3":
-                Control.enPartie = true;
-                fenetre.setContentPane(fenetre.panelFenetreDepart);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                nouvellePartie3 = true;
                 break;
             case "Retour":
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);

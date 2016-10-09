@@ -23,6 +23,26 @@ public class ControlTimer extends Control implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if (ControlFenetreNouvellePartie.nouvellePartie1) {
+            ControlFenetreNouvellePartie.nouvellePartie1 = false;
+            enPartie();
+        } else if (ControlFenetreNouvellePartie.nouvellePartie2) {
+            ControlFenetreNouvellePartie.nouvellePartie2 = false;
+            enPartie();
+        } else if (ControlFenetreNouvellePartie.nouvellePartie3) {
+            ControlFenetreNouvellePartie.nouvellePartie3 = false;
+            enPartie();
+        } else if (ControlFenetreCharger.ChargerPartie1) {
+            ControlFenetreCharger.ChargerPartie1 = false;
+            enPartie();
+        } else if (ControlFenetreCharger.ChargerPartie2) {
+            ControlFenetreCharger.ChargerPartie2 = false;
+            enPartie();
+        } else if (ControlFenetreCharger.ChargerPartie3) {
+            ControlFenetreCharger.ChargerPartie3 = false;
+            enPartie();
+        }
+
 
         if (Control.enPartie) {
             if (jeu.getPause()) {// echap
@@ -31,9 +51,7 @@ public class ControlTimer extends Control implements ActionListener {
                 fenetre.pack();
                 fenetre.setLocationRelativeTo(null);
                 fenetre.requestFocus();
-            }
-            else
-            {
+            } else {
                 fenetre.setContentPane(fenetre.panelFenetreDepart);
                 fenetre.repaint();
                 fenetre.pack();
@@ -69,5 +87,15 @@ public class ControlTimer extends Control implements ActionListener {
         }
 
         fenetre.repaint();
+    }
+
+    void enPartie() {
+        Control.enPartie = true;
+        fenetre.barreMenu.setVisible(true);
+        fenetre.setContentPane(fenetre.panelFenetreDepart);
+        fenetre.repaint();
+        fenetre.pack();
+        fenetre.setLocationRelativeTo(null);
+        fenetre.requestFocus();
     }
 }
