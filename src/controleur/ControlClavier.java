@@ -54,9 +54,6 @@ public class ControlClavier extends Control implements KeyListener {
 
         if (e.getKeyCode() == 27) // echap
             if (Control.enPartie)
-                if (jeu.getPause())
-                    jeu.setPause(false);
-                else
-                    jeu.setPause(true);
+                jeu.inversePause();
     }
 }

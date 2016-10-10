@@ -60,27 +60,24 @@ public class ControlTimer extends Control implements ActionListener {
             }
 
             if (!jeu.getPause()) {
-                int x = 0, y = 0;
+                jeu.getHero().pasDeDeplacement();
 
                 if (ControlClavier.toucheEnfoncer[1]) {// touche de gauche
-                    x += -1;
-                    y += 0;
+                    jeu.getHero().deplacerAGauche();
                 }
                 if (ControlClavier.toucheEnfoncer[2]) {// touche du haut
-                    x += 0;
-                    y += -1;
+                    jeu.getHero().sauter();
                 }
                 if (ControlClavier.toucheEnfoncer[3]) {// touche de droite
-                    x += 1;
-                    y += 0;
-                }
-                if (ControlClavier.toucheEnfoncer[4]) {// touche du bas
-                    x += 0;
-                    y += 1;
+                    jeu.getHero().deplacerADroite();
                 }
 
-                fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(x, y);
-                jeu.getHero().deplacer(x, y);
+                if (ControlClavier.toucheEnfoncer[4]) { // touche du bas
+                    jeu.getHero().dessendre();
+                }
+
+                fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getDeplacementEnX(), jeu.getHero().getDeplacementEnY());
+                jeu.getHero().deplacer();
             }
 
             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero

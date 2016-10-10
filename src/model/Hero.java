@@ -14,12 +14,7 @@ public class Hero extends Personnage {
     int charge, chargeMax;
     int pointConstitution, pointIntelligence, pointForce, pointResistance, pointCompetence;
 
-    public Hero(String nom, int vie, int vieMax, int degats, int positionX, int positionY, Image texture) {
-        super(nom, vie, vieMax, degats, positionX, positionY, texture);
-    }
-
-    public void deplacer(int deplacementX, int deplacementY) {
-        setPositionX(getPositionX() + deplacementX * 20);
-        setPositionY(getPositionY() + deplacementY * 20);
+    public Hero(String nom, int vie, int vieMax, int degats, int positionX, int positionY, int coefDeplacement) {
+        super(nom, vie, vieMax, degats, positionX, positionY, coefDeplacement);
     }
 }

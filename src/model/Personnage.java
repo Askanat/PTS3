@@ -18,19 +18,21 @@ public abstract class Personnage {
 
     protected int positionX, positionY;
 
-    protected Image texture;
+    protected int deplacementEnX, deplacementEnY, coefDeplacement;
 
 
-    public Personnage(String nom, int vie, int vieMax, int degats, int positionX, int positionY, Image texture) {
+
+    public Personnage(String nom, int vie, int vieMax, int degats, int positionX, int positionY, int coefDeplacement) {
         this.nom = nom;
         this.vie = vie;
         this.vieMax = vieMax;
         this.degats = degats;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.texture = texture;
+        this.coefDeplacement = coefDeplacement;
 
-        // découpe la texture et la met dans un tableau pour pouvoir faire l'animation déplacement
+        deplacementEnX = 0;
+        deplacementEnY = 0;
     }
 
     public void recevoirDegats(int degats) {
@@ -114,5 +116,53 @@ public abstract class Personnage {
         );
     }
 
+    public void dessendre() {
+        setDeplacementEnY(1);
+    }
 
+    public void deplacerADroite() {
+        setDeplacementEnX(1);
+    }
+
+    public void sauter() {
+        setDeplacementEnY(-1);
+    }
+
+    public void deplacerAGauche() {
+        setDeplacementEnX(-1);
+    }
+
+    public void pasDeDeplacement() {
+        setDeplacementEnX(0);
+        setDeplacementEnY(0);
+    }
+
+    public void deplacer() {
+        setPositionX(getPositionX() + getDeplacementEnX() * getCoefDeplacement());
+        setPositionY(getPositionY() + getDeplacementEnY() * getCoefDeplacement());
+    }
+
+    public void setDeplacementEnX(int x) {
+        deplacementEnX = x;
+    }
+
+    public void setDeplacementEnY(int y) {
+        deplacementEnY = y;
+    }
+
+    public int getDeplacementEnX() {
+        return deplacementEnX;
+    }
+
+    public int getDeplacementEnY() {
+        return deplacementEnY;
+    }
+
+    public int getCoefDeplacement() {
+        return coefDeplacement;
+    }
+
+    public void setCoefDeplacement(int coefDeplacement) {
+        this.coefDeplacement = coefDeplacement;
+    }
 }

@@ -14,7 +14,7 @@ public class Jeu {
 
     public Jeu() {
         pause = false;
-        hero = new Hero("testHero", 10, 10, 1, 0, 0, null);
+        hero = new Hero("Hero", 10, 10, 1, 0, 0, 20);
     }
 
     public void nouvellePartie() {
@@ -37,4 +37,7 @@ public class Jeu {
         return hero;
     }
 
+    public void inversePause() {
+        setPause(!getPause());
+    }
 }

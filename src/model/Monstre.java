@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class Monstre extends Personnage {
 
-    public Monstre(String nom, int vie, int vieMax, int degats, int positionX, int positionY, Image texture) {
-        super(nom, vie, vieMax, degats, positionX, positionY, texture);
+    public Monstre(String nom, int vie, int vieMax, int degats, int positionX, int positionY, int coefDeplacement) {
+        super(nom, vie, vieMax, degats, positionX, positionY, coefDeplacement);
     }
 
     public void deplacer() {
