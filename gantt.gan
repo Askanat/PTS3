@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="PTS3" company="" webLink="http://" view-date="2016-08-01" view-index="0" gantt-divider-location="689" resource-divider-location="300" version="2.8.1" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="PTS3" company="" webLink="http://" view-date="2016-09-19" view-index="0" gantt-divider-location="773" resource-divider-location="300" version="2.8.1" locale="fr_FR">
     <description/>
     <view zooming-state="default:7" id="gantt-chart">
-        <field id="tpd3" name="Nom" width="396" order="0"/>
-        <field id="tpd4" name="Date de début" width="81" order="1"/>
-        <field id="tpd5" name="Date de fin" width="208" order="2"/>
+        <field id="tpd3" name="Nom" width="424" order="0"/>
+        <field id="tpd4" name="Date de début" width="109" order="1"/>
+        <field id="tpd5" name="Date de fin" width="236" order="2"/>
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="148" order="0"/>
@@ -44,12 +44,13 @@
         </task>
         <task id="11" name="UML" color="#8cb6ce" meeting="false" start="2016-09-28" duration="9" complete="0" expand="true"/>
         <task id="12" name="MCD" color="#8cb6ce" meeting="false" start="2016-09-28" duration="8" complete="0" expand="true"/>
+        <task id="119" name="BDD fonctionnel" meeting="false" start="2016-10-16" duration="6" complete="0" expand="true"/>
         <task id="14" name="Mockup" color="#8cb6ce" meeting="false" start="2016-09-21" duration="15" complete="0" expand="true"/>
         <task id="4" name="Développement" color="#000000" meeting="false" start="2016-10-11" duration="51" complete="0" expand="true">
             <task id="23" name="MVC fonctionnelle" color="#000000" meeting="false" start="2016-10-11" duration="5" complete="0" expand="true"/>
             <task id="5" name="Model" color="#ff3300" meeting="false" start="2016-10-11" duration="51" complete="0" expand="true">
                 <task id="10" name="Mise en place de Personnage, Monstre, Hero" color="#8cb6ce" meeting="false" start="2016-10-11" duration="7" complete="0" expand="true"/>
-                <task id="16" name="Ajouter les caractéristiques avec les nivaux" color="#8cb6ce" meeting="false" start="2016-10-18" duration="10" complete="0" expand="true"/>
+                <task id="16" name="Ajouter les caractéristiques avec les niveaux" color="#8cb6ce" meeting="false" start="2016-10-18" duration="10" complete="0" expand="true"/>
                 <task id="15" name="Calculer les caractéristiques des monstres" color="#8cb6ce" meeting="false" start="2016-10-28" duration="7" complete="0" expand="true"/>
                 <task id="38" name="IA Monstre" color="#8cb6ce" meeting="false" start="2016-11-04" duration="27" complete="0" expand="true"/>
             </task>
@@ -63,14 +64,15 @@
                 <task id="22" name="Mise en place des principaux controleurs" color="#8cb6ce" meeting="false" start="2016-10-11" duration="6" complete="0" expand="true"/>
                 <task id="21" name="Faire les interactions avec les boutons" color="#8cb6ce" meeting="false" start="2016-10-18" duration="15" complete="0" expand="true"/>
                 <task id="20" name="Faire se déplacer le personnage" color="#8cb6ce" meeting="false" start="2016-11-02" duration="7" complete="0" expand="true"/>
-                <task id="29" name="Ajout sauvegarde (bdd)" color="#8cb6ce" meeting="false" start="2016-10-20" duration="28" complete="0" expand="true"/>
+                <task id="29" name="Ajout sauvegarde bdd" color="#8cb6ce" meeting="false" start="2016-10-22" duration="9" complete="0" expand="true"/>
+                <task id="178" name="ajout entité bdd" meeting="false" start="2016-10-31" duration="31" complete="0" expand="true"/>
                 <task id="24" name="Physique du jeu" color="#8cb6ce" meeting="false" start="2016-11-09" duration="12" complete="0" expand="true"/>
                 <task id="25" name="Saut du personnage" color="#8cb6ce" meeting="false" start="2016-11-21" duration="10" complete="0" expand="true"/>
             </task>
         </task>
         <task id="13" name="Graphisme" color="#990099" meeting="false" start="2016-10-11" duration="101" complete="0" expand="true">
             <depend id="118" type="2" difference="0" hardness="Strong"/>
-            <task id="26" name="Textures du héro" color="#8cb6ce" meeting="false" start="2016-10-11" duration="12" complete="0" expand="true"/>
+            <task id="26" name="Textures du héro" color="#8cb6ce" meeting="false" start="2016-10-11" duration="101" complete="0" expand="true"/>
             <task id="27" name="Textures des fenetres" color="#8cb6ce" meeting="false" start="2016-10-17" duration="26" complete="0" expand="true"/>
             <task id="32" name="Textures des monstres" color="#8cb6ce" meeting="false" start="2016-11-12" duration="69" complete="0" expand="true"/>
             <task id="30" name="Tile mapping" color="#8cb6ce" meeting="false" start="2016-11-07" duration="42" complete="0" expand="true"/>
