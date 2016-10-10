@@ -1,25 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="PTS3" company="" webLink="http://" view-date="2016-09-12" view-index="0" gantt-divider-location="223" resource-divider-location="300" version="2.0" locale="fr">
+<?xml version="1.0" encoding="UTF-8"?><project name="PTS3" company="" webLink="http://" view-date="2016-08-22" view-index="0" gantt-divider-location="484" resource-divider-location="300" version="2.7.2" locale="fr">
     <description/>
     <view zooming-state="default:7" id="gantt-chart">
-        <field id="tpd3" name="Nom" width="60" order="0"/>
-        <field id="tpd4" name="Date de début" width="15" order="1"/>
-        <field id="tpd5" name="Date de fin" width="23" order="2"/>
+        <field id="tpd3" name="Nom" width="70" order="0"/>
+        <field id="tpd4" name="Date de début" width="17" order="1"/>
+        <field id="tpd5" name="Date de fin" width="12" order="2"/>
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="50" order="0"/>
-        <field id="1" name="Rôle par défaut" width="49" order="1"/>
+        <field id="1" name="Rôle par défaut" width="50" order="1"/>
     </view>
     <!-- -->
     <calendars>
         <day-types>
             <day-type id="0"/>
             <day-type id="1"/>
-            <calendar id="1" name="default">
-                <default-week sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
-                <only-show-weekends value="true"/>
-                <overriden-day-types/>
-                <days/>
-            </calendar>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="true"/>
+            <overriden-day-types/>
+            <days/>
         </day-types>
     </calendars>
     <tasks empty-milestones="true">
@@ -36,6 +34,10 @@
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
         <task id="0" name="Réalisation du cahier des charges" color="#000000" meeting="false" start="2016-09-21" duration="20" complete="0" expand="true">
+            <depend id="4" type="2" difference="0" hardness="Strong"/>
+            <depend id="6" type="2" difference="0" hardness="Strong"/>
+            <depend id="7" type="2" difference="0" hardness="Strong"/>
+            <depend id="13" type="2" difference="0" hardness="Strong"/>
             <task id="1" name="Recherche d'infomations" color="#8cb6ce" meeting="false" start="2016-09-21" duration="7" complete="0" expand="true"/>
             <task id="2" name="Redaction du cahier des charges" color="#8cb6ce" meeting="false" start="2016-09-28" duration="12" complete="0" expand="true"/>
             <task id="3" name="Vérifications" color="#8cb6ce" meeting="false" start="2016-10-09" duration="2" complete="0" expand="true"/>
@@ -43,39 +45,40 @@
         <task id="11" name="UML" color="#8cb6ce" meeting="false" start="2016-09-28" duration="8" complete="0" expand="true"/>
         <task id="12" name="MCD" color="#8cb6ce" meeting="false" start="2016-09-28" duration="8" complete="0" expand="true"/>
         <task id="14" name="Mockup" color="#8cb6ce" meeting="false" start="2016-09-21" duration="15" complete="0" expand="true"/>
-        <task id="4" name="Développement" color="#000000" meeting="false" start="2016-09-21" duration="58" complete="0" expand="true">
-            <task id="23" name="MVC fonctionnelle" color="#000000" meeting="false" start="2016-09-26" duration="4" complete="0" expand="true"/>
-            <task id="5" name="Model" color="#ff3300" meeting="false" start="2016-09-21" duration="58" complete="0" expand="true">
-                <task id="10" name="Mise en place de Personnage, Monstre, Hero" color="#8cb6ce" meeting="false" start="2016-09-21" duration="5" complete="0" expand="true"/>
-                <task id="16" name="Ajouter les caractéristiques avec les nivaux" color="#8cb6ce" meeting="false" start="2016-10-05" duration="12" complete="0" expand="true"/>
+        <task id="4" name="Développement" color="#000000" meeting="false" start="2016-10-11" duration="38" complete="0" expand="true">
+            <task id="23" name="MVC fonctionnelle" color="#000000" meeting="false" start="2016-10-11" duration="4" complete="0" expand="true"/>
+            <task id="5" name="Model" color="#ff3300" meeting="false" start="2016-10-11" duration="38" complete="0" expand="true">
+                <task id="10" name="Mise en place de Personnage, Monstre, Hero" color="#8cb6ce" meeting="false" start="2016-10-11" duration="5" complete="0" expand="true"/>
+                <task id="16" name="Ajouter les caractéristiques avec les nivaux" color="#8cb6ce" meeting="false" start="2016-10-14" duration="9" complete="0" expand="true"/>
                 <task id="15" name="Calculer les caractéristiques des monstres" color="#8cb6ce" meeting="false" start="2016-10-16" duration="12" complete="0" expand="true"/>
                 <task id="38" name="IA Monstre" color="#8cb6ce" meeting="false" start="2016-10-30" duration="19" complete="0" expand="true"/>
             </task>
-            <task id="6" name="Vue" color="#0000ff" meeting="false" start="2016-09-28" duration="36" complete="0" expand="true">
-                <task id="19" name="Mise en place des vues principales" color="#8cb6ce" meeting="false" start="2016-09-28" duration="8" complete="0" expand="true"/>
-                <task id="18" name="Barre de menu" color="#8cb6ce" meeting="false" start="2016-10-06" duration="7" complete="0" expand="true"/>
-                <task id="17" name="Menu pause" color="#8cb6ce" meeting="false" start="2016-10-06" duration="11" complete="0" expand="true"/>
+            <task id="6" name="Vue" color="#0000ff" meeting="false" start="2016-10-11" duration="23" complete="0" expand="true">
+                <task id="19" name="Mise en place des vues principales" color="#8cb6ce" meeting="false" start="2016-10-11" duration="6" complete="0" expand="true"/>
+                <task id="18" name="Barre de menu" color="#8cb6ce" meeting="false" start="2016-10-11" duration="6" complete="0" expand="true"/>
+                <task id="17" name="Menu pause" color="#8cb6ce" meeting="false" start="2016-10-17" duration="7" complete="0" expand="true"/>
                 <task id="37" name="Fenêtres de vérification" color="#8cb6ce" meeting="false" start="2016-10-19" duration="15" complete="0" expand="true"/>
             </task>
-            <task id="7" name="Controleur" color="#66ff00" meeting="false" start="2016-09-26" duration="46" complete="0" expand="true">
-                <task id="22" name="Mise en place des principaux controleurs" color="#8cb6ce" meeting="false" start="2016-09-26" duration="7" complete="0" expand="true"/>
-                <task id="21" name="Faire les interactions avec les boutons" color="#8cb6ce" meeting="false" start="2016-10-05" duration="9" complete="0" expand="true"/>
-                <task id="20" name="Faire se déplacer le personnage" color="#8cb6ce" meeting="false" start="2016-09-30" duration="14" complete="0" expand="true"/>
+            <task id="7" name="Controleur" color="#66ff00" meeting="false" start="2016-10-11" duration="31" complete="0" expand="true">
+                <task id="22" name="Mise en place des principaux controleurs" color="#8cb6ce" meeting="false" start="2016-10-11" duration="6" complete="0" expand="true"/>
+                <task id="21" name="Faire les interactions avec les boutons" color="#8cb6ce" meeting="false" start="2016-10-17" duration="7" complete="0" expand="true"/>
+                <task id="20" name="Faire se déplacer le personnage" color="#8cb6ce" meeting="false" start="2016-10-24" duration="7" complete="0" expand="true"/>
                 <task id="29" name="Ajout sauvegarde (bdd)" color="#8cb6ce" meeting="false" start="2016-10-13" duration="15" complete="0" expand="true"/>
                 <task id="24" name="Physique du jeu" color="#8cb6ce" meeting="false" start="2016-10-20" duration="12" complete="0" expand="true"/>
                 <task id="25" name="Saut du personnage" color="#8cb6ce" meeting="false" start="2016-11-01" duration="10" complete="0" expand="true"/>
             </task>
         </task>
-        <task id="13" name="Graphisme" color="#990099" meeting="false" start="2016-09-25" duration="98" complete="0" expand="true">
-            <task id="26" name="Textures du héro" color="#8cb6ce" meeting="false" start="2016-09-25" duration="12" complete="0" expand="true"/>
-            <task id="27" name="Textures des fenetres" color="#8cb6ce" meeting="false" start="2016-09-30" duration="32" complete="0" expand="true"/>
-            <task id="32" name="Textures des monstres" color="#8cb6ce" meeting="false" start="2016-10-13" duration="80" complete="0" expand="true"/>
+        <task id="13" name="Graphisme" color="#990099" meeting="false" start="2016-10-11" duration="82" complete="0" expand="true">
+            <depend id="118" type="2" difference="0" hardness="Strong"/>
+            <task id="26" name="Textures du héro" color="#8cb6ce" meeting="false" start="2016-10-11" duration="12" complete="0" expand="true"/>
+            <task id="27" name="Textures des fenetres" color="#8cb6ce" meeting="false" start="2016-10-17" duration="26" complete="0" expand="true"/>
+            <task id="32" name="Textures des monstres" color="#8cb6ce" meeting="false" start="2016-10-24" duration="69" complete="0" expand="true"/>
             <task id="30" name="Tile mapping" color="#8cb6ce" meeting="false" start="2016-10-20" duration="42" complete="0" expand="true"/>
         </task>
-        <task id="118" name="finalisation" meeting="false" start="2016-12-31" duration="32" complete="0" expand="true">
-            <task id="8" name="Phase de test" color="#8cb6ce" meeting="false" start="2016-12-31" duration="8" complete="0" expand="true"/>
-            <task id="9" name="Correction" color="#8cb6ce" meeting="false" start="2016-12-31" duration="8" complete="0" expand="true"/>
-            <task id="33" name="Optimisation" color="#8cb6ce" meeting="false" start="2017-01-01" duration="12" complete="0" expand="true"/>
+        <task id="118" name="finalisation" meeting="false" start="2017-01-01" duration="31" complete="0" expand="true">
+            <task id="8" name="Phase de test" color="#8cb6ce" meeting="false" start="2017-01-01" duration="8" complete="0" expand="true"/>
+            <task id="9" name="Correction" color="#8cb6ce" meeting="false" start="2017-01-03" duration="6" complete="0" expand="true"/>
+            <task id="33" name="Optimisation" color="#8cb6ce" meeting="false" start="2017-01-07" duration="8" complete="0" expand="true"/>
             <task id="34" name="Phase de test" color="#8cb6ce" meeting="false" start="2017-01-14" duration="18" complete="0" expand="true"/>
             <task id="35" name="Correction" color="#8cb6ce" meeting="false" start="2017-01-14" duration="18" complete="0" expand="true"/>
         </task>
@@ -161,16 +164,18 @@
     <taskdisplaycolumns>
         <displaycolumn property-id="tpd2" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd7" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd12" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd3" order="0" width="339" visible="true"/>
+        <displaycolumn property-id="tpd4" order="1" width="83" visible="true"/>
+        <displaycolumn property-id="tpd5" order="2" width="58" visible="true"/>
         <displaycolumn property-id="tpd6" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd10" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd11" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd1" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd9" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd8" order="-1" width="75" visible="false"/>
+        <displaycolumn property-id="tpd13" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd0" order="-1" width="75" visible="false"/>
-        <displaycolumn property-id="tpd3" order="0" width="132" visible="true"/>
-        <displaycolumn property-id="tpd4" order="1" width="35" visible="true"/>
-        <displaycolumn property-id="tpd5" order="2" width="52" visible="true"/>
     </taskdisplaycolumns>
     <previous/>
     <roles roleset-name="Default"/>
