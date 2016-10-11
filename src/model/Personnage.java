@@ -21,7 +21,6 @@ public abstract class Personnage {
     protected int deplacementEnX, deplacementEnY, coefDeplacement;
 
 
-
     public Personnage(String nom, int vie, int vieMax, int degats, int positionX, int positionY, int coefDeplacement) {
         this.nom = nom;
         this.vie = vie;
@@ -132,14 +131,11 @@ public abstract class Personnage {
         setDeplacementEnX(-1);
     }
 
-    public void pasDeDeplacement() {
-        setDeplacementEnX(0);
-        setDeplacementEnY(0);
-    }
-
     public void deplacer() {
         setPositionX(getPositionX() + getDeplacementEnX() * getCoefDeplacement());
         setPositionY(getPositionY() + getDeplacementEnY() * getCoefDeplacement());
+        setDeplacementEnX(0);
+        setDeplacementEnY(0);
     }
 
     public void setDeplacementEnX(int x) {

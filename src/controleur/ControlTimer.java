@@ -60,8 +60,6 @@ public class ControlTimer extends Control implements ActionListener {
             }
 
             if (!jeu.getPause()) {
-                jeu.getHero().pasDeDeplacement();
-
                 if (ControlClavier.toucheEnfoncer[1]) {// touche de gauche
                     jeu.getHero().deplacerAGauche();
                 }
