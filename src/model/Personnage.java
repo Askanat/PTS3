@@ -14,8 +14,6 @@ public abstract class Personnage {
     protected int vie, vieMax;
     protected int degats, degatMax, armure, armureMax;
 
-    protected Rectangle position;
-
     protected int positionX, positionY;
 
     protected int deplacementEnX, deplacementEnY, coefDeplacement;
@@ -156,9 +154,5 @@ public abstract class Personnage {
 
     public int getCoefDeplacement() {
         return coefDeplacement;
-    }
-
-    public void setCoefDeplacement(int coefDeplacement) {
-        this.coefDeplacement = coefDeplacement;
     }
 }
