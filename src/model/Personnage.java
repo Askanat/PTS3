@@ -1,7 +1,5 @@
 package model;
 
-import java.awt.*;
-
 /**
  * Created by bastien on 29/09/16.
  */
@@ -11,19 +9,22 @@ public abstract class Personnage {
 
     protected String nom;
 
+    protected int niveau;
+
     protected int vie, vieMax;
-    protected int degats, degatMax, armure, armureMax;
+    protected int mana, manaMax;
+    protected int degats, degatMax;
+    protected int armure, armureMax;
 
     protected int positionX, positionY;
 
     protected int deplacementEnX, deplacementEnY, coefDeplacement;
 
+    public Personnage(String nom, int niveau, int positionX, int positionY, int coefDeplacement) {
 
-    public Personnage(String nom, int vie, int vieMax, int degats, int positionX, int positionY, int coefDeplacement) {
         this.nom = nom;
-        this.vie = vie;
-        this.vieMax = vieMax;
-        this.degats = degats;
+        this.niveau = niveau;
+
         this.positionX = positionX;
         this.positionY = positionY;
         this.coefDeplacement = coefDeplacement;
@@ -34,11 +35,11 @@ public abstract class Personnage {
 
     public void recevoirDegats(int degats) {
 
-        if (getDegats() < 0) setDegats(0);
+        if (degats < 0) degats = 0;
 
-        System.out.println(getNom() + " perd " + getDegats() + " point de vie.");
+        System.out.println(getNom() + " perd " + degats + " point de vie.");
 
-        setVie(getVie() - getDegats());
+        setVie(getVie() - degats);
 
         if (getVie() < 0) setVie(0);
     }

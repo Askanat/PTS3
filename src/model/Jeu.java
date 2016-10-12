@@ -14,7 +14,7 @@ public class Jeu {
 
     public Jeu() {
         pause = false;
-        hero = new Hero("Hero", 10, 10, 1, 0, 0, 20);
+        hero = new Hero("Hero", 1, 0, 100, 4, 0, 0, 0, 0, 100, 100, 500, 500);
     }
 
     public void nouvellePartie() {
