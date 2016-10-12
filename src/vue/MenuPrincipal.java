@@ -41,34 +41,39 @@ public class MenuPrincipal extends JPanel {
 
         nouvellePartie.setBounds(290, 150, 228, 40);
         nouvellePartie.setForeground(Color.WHITE);
-        nouvellePartie.setBackground(new Color(0, 0, 0, 0));
+        ImageIcon img = new ImageIcon("images/nouvellePartie.png");
+        nouvellePartie.setIcon(img);
+        //nouvellePartie.setBackground(new Color(0, 0, 0, 0));
         nouvellePartie.setFocusable(false);
         nouvellePartie.setCursor(new Cursor(Cursor.HAND_CURSOR));
         nouvellePartie.setBorder(null);
 
         chargerPartie.setBounds(290, 225, 228, 40);
         chargerPartie.setForeground(Color.WHITE);
-        chargerPartie.setBackground(new Color(0, 0, 0, 0));
+        img = new ImageIcon("images/chargerPartie.png");
+        chargerPartie.setIcon(img);
         chargerPartie.setFocusable(false);
         chargerPartie.setCursor(new Cursor(Cursor.HAND_CURSOR));
         chargerPartie.setBorder(null);
 
         credits.setBounds(290, 300, 228, 40);
         credits.setForeground(Color.WHITE);
-        credits.setBackground(new Color(0, 0, 0, 0));
+        img = new ImageIcon("images/credit.png");
+        credits.setIcon(img);
         credits.setFocusable(false);
         credits.setCursor(new Cursor(Cursor.HAND_CURSOR));
         credits.setBorder(null);
 
         quitter.setBounds(290, 375, 228, 40);
         quitter.setForeground(Color.WHITE);
-        quitter.setBackground(new Color(0, 0, 0, 0));
+        img = new ImageIcon("images/quitter.png");
+        quitter.setIcon(img);
         quitter.setFocusable(false);
         quitter.setCursor(new Cursor(Cursor.HAND_CURSOR));
         quitter.setBorder(null);
 
-        Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+        Image img2 = getToolkit().getImage("images/menu2.png");
+        g.drawImage(img2, 0, 0, getWidth(), getHeight(), this);
     }
 
     public void setControl(ControlMenuPrincipal controlMenuPrincipal) {
