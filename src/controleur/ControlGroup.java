@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ControlGroup {
 
-    public Jeu jeu = new Jeu();
+    public Jeu jeu;
     public Fenetre fenetre;
 
     public ControlGroup(Jeu jeu) throws IOException {
