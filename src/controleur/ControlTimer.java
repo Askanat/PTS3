@@ -84,7 +84,7 @@ public class ControlTimer extends Control implements ActionListener {
                 }
 
             }
-            // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
+             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
         }
 
         fenetre.repaint();

@@ -50,7 +50,5 @@ public class FenetreDepart extends JPanel {
 
         for (Entite e : monstre)
             e.paintComponent(g);
-
-
     }
 }

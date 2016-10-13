@@ -152,7 +152,6 @@ public class Entite extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         g.drawImage(spriteActuelle, personnage.getPositionX(), personnage.getPositionY(), this);
     }
 }
