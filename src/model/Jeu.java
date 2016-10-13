@@ -13,13 +13,14 @@ public class Jeu {
 
     private Niveau niveau;
     private Hero hero;
-    private Monstre tableauMonstre[];
+    private ArrayList<Monstre> tableauMonstre;
     private BDD bdd;
 
     private boolean pause;
 
     public Jeu() throws SQLException {
 
+        tableauMonstre = new ArrayList<>();
         temps = 0;
         pause = false;
 
@@ -59,6 +60,15 @@ public class Jeu {
 
     public Hero getHero() {
         return hero;
+    }
+
+    public void setMonstre() {
+        tableauMonstre.add(new Monstre("testMonstre", 1, 1, 1, 1, 1, 600, 600, 20));
+    }
+
+    public Monstre getMonstre(int i) {
+
+        return tableauMonstre.get(i);
     }
 
     public void inversePause() {

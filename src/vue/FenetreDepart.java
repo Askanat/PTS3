@@ -36,6 +36,10 @@ public class FenetreDepart extends JPanel {
         hero.creationEntite(jeu.getHero(), jeu.getBDD().readHeroTexture(id));
     }
 
+    public void dessineMonstre(int id) {
+        monstre.get(id).creationEntite(jeu.getMonstre(id-1), jeu.getBDD().readMonstreTexture(id));
+    }
+
     public void setControl(ControlFenetreDepart controlFenetreDepart) {
     }
 
