@@ -107,8 +107,8 @@ public class BDD {
         ResultSet texture = null;
         String result = new String();
         try {
-            texture = instruction.executeQuery("Select texture_perso FROM hero WHERE id =" + id + ";");
-            result = texture.getString("texture_perso");
+            texture = instruction.executeQuery("Select texture_hero FROM hero WHERE id =" + id + ";");
+            result = texture.getString("texture_hero");
         } catch (Exception e) {
             System.out.println("Texture hero problem " + e);
         }
@@ -152,11 +152,11 @@ public class BDD {
         String result = new String();
         try {
             texture = instruction.executeQuery("Select texture_monstre FROM monstre WHERE id =" + id + ";");
-            result = texture.getString("texture_perso");
+            result = texture.getString("texture_monstre");
         } catch (Exception e) {
             System.out.println("Texture monstre problem " + e);
         }
 
-        return  "images/texture_hero.png";//result;
+        return result;
     }
 }
