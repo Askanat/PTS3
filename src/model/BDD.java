@@ -87,4 +87,15 @@ public class BDD {
             System.out.println("Delete problem : " + e);
         }
     }
+
+    public void insertHero() {
+
+        int insert;
+
+        try {
+            insert = instruction.executeUpdate("INSERT INTO hero (nom, niveau, experience, experienceMax, pointCompetence, pointConstitution, pointIntelligence, pointForce, pointResistance, pieceOr, chargeMaX) VALUES ('hero1', 1,0,100,4,0,0,0,0,100,100);");
+        } catch (Exception e) {
+            System.out.println("Delete problem : " + e);
+        }
+    }
 }
