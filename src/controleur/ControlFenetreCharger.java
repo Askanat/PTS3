@@ -29,6 +29,7 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                 spawnHero(1);
                 fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
                 spawnMonstre(1);
+                spawnMonstre(1);
                 ChargerPartie1 = true;
                 break;
             case "Slot de Sauvegarde n°2":

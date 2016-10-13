@@ -35,7 +35,22 @@ public class Monstre extends Personnage {
                 degatMax + ", armureMax:" + armureMax);
     }
 
-    public void deplacer() {
+    public void directionDeplacer() { // a refaire j'ai fait en mode porc pour tester :D
+        int rand = (int) (Math.random() * 4 + 1);
+        switch (rand) {
+            case 1:
+                dessendre();
+                break;
+            case 2:
+                deplacerADroite();
+                break;
+            case 3:
+                sauter();
+                break;
+            case 4:
+                deplacerAGauche();
+                break;
+        }
     } // déplace aléatoirement
 
     public void deplacer(Hero cible) {

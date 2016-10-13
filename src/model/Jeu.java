@@ -77,6 +77,10 @@ public class Jeu {
         return tableauMonstre.get(i);
     }
 
+    public int getSizeTabMonstre() {
+        return tableauMonstre.size();
+    }
+
     public void inversePause() {
         setPause(!getPause());
     }
