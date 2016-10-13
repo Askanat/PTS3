@@ -12,7 +12,6 @@ public class BDD {
     private Connection connexion;
     private Statement instruction;
 
-
     public BDD() {
 
         String pilote = "com.mysql.jdbc.Driver";
@@ -65,16 +64,16 @@ public class BDD {
 
         try {
             update = instruction.executeUpdate("UPDATE hero SET nom = " + tabCaracHero[0] + ", niveau = " + tabCaracHero[1] + ", experience = " + tabCaracHero[2] +
-            ", experienceMax =" + tabCaracHero[3] + ", pointCompetence =" + tabCaracHero[4] + ", pointConstitution =" + tabCaracHero[5] + ", pointIntelligence = " + tabCaracHero[6] +
-            ", pointForce =" + tabCaracHero[7] + ", pointResistance =" + tabCaracHero[8] + ", pieceOr =" + tabCaracHero[9] + ", chargeMax =" + tabCaracHero[10] +
-            " WHERE id = " + id + ";");
+                    ", experienceMax =" + tabCaracHero[3] + ", pointCompetence =" + tabCaracHero[4] + ", pointConstitution =" + tabCaracHero[5] + ", pointIntelligence = " + tabCaracHero[6] +
+                    ", pointForce =" + tabCaracHero[7] + ", pointResistance =" + tabCaracHero[8] + ", pieceOr =" + tabCaracHero[9] + ", chargeMax =" + tabCaracHero[10] +
+                    " WHERE id = " + id + ";");
         } catch (Exception e) {
             System.out.println("Update problem " + e);
         }
     }
 
     public String readHeroTexture(int id) {
-        // select retournant le chemin de texture
+        // select retournant le chemin de texture hero
         return "images/test3.png";
     }
 
@@ -97,5 +96,10 @@ public class BDD {
         } catch (Exception e) {
             System.out.println("Delete problem : " + e);
         }
+    }
+
+    public String readMonstreTexture(int id) {
+        // select retournant le chemin de texture du monstre
+        return "images/monstreTest.png";
     }
 }
