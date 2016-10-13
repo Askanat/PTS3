@@ -102,20 +102,6 @@ public class BDD {
         }
     }
 
-    //SELECTIONNE LE NOM DE LA TEXTURE DU HERO
-    public String readHeroTexture(int id) {
-        ResultSet texture = null;
-        String result = new String();
-        try {
-            texture = instruction.executeQuery("Select texture_hero FROM hero WHERE id =" + id + ";");
-            result = texture.getString("texture_hero");
-        } catch (Exception e) {
-            System.out.println("Texture hero problem " + e);
-        }
-
-        return result;
-    }
-
     //SUPPRIME UN HERO
     public void deleteHero(int id) {
         int delete;
@@ -146,13 +132,29 @@ public class BDD {
         }
     }
 
+    //SELECTIONNE LE NOM DE LA TEXTURE DU HERO
+    public String readHeroTexture(int id) {
+        ResultSet texture = null;
+        String result = new String();
+        try {
+            texture = instruction.executeQuery("Select texture_hero FROM hero WHERE id =" + id + ";");
+            while (texture.next())
+                result = texture.getString("texture_hero");
+        } catch (Exception e) {
+            System.out.println("Texture hero problem " + e);
+        }
+
+        return result;
+    }
+
     //SELECTIONNE LE NOM DE LA TEXTURE D'UN MONSTRE
     public String readMonstreTexture(int id) {
         ResultSet texture = null;
         String result = new String();
         try {
             texture = instruction.executeQuery("Select texture_monstre FROM monstre WHERE id =" + id + ";");
-            result = texture.getString("texture_monstre");
+            while (texture.next())
+                result = texture.getString("texture_monstre");
         } catch (Exception e) {
             System.out.println("Texture monstre problem " + e);
         }
