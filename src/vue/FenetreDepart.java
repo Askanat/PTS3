@@ -26,12 +26,14 @@ public class FenetreDepart extends JPanel {
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
-        try {
-            hero = new Entite(jeu.getHero(), "images/test3.png");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        hero = new Entite();
     }
+
+    public void dessineHero() {
+        hero.creationEntite(jeu.getHero(), "images/test3.png");
+    }
+
+
 
     public void setControl(ControlFenetreDepart controlFenetreDepart) {
     }

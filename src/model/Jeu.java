@@ -1,5 +1,7 @@
 package model;
-import java.sql.*;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created by bastien on 28/09/16.
@@ -22,12 +24,6 @@ public class Jeu {
         pause = false;
 
         bdd = new BDD();
-
-        ResultSet donneesHero = bdd.recupDonneeHero(1);
-
-        System.out.println(donneesHero.getString("nom"));
-
-        hero = new Hero("Nom", 1, 0, 100, 4,0, 0, 0, 0, 0, 100, 100, 500, 500);
     }
 
     public void nouvellePartie() {
@@ -44,6 +40,17 @@ public class Jeu {
 
     public final boolean getPause() {
         return pause;
+    }
+
+    public void setHero(int id) {
+        ArrayList<String> donneesHero;
+
+        donneesHero = bdd.readHero(1);
+
+        hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)),
+                Integer.parseInt(donneesHero.get(3)), Integer.parseInt(donneesHero.get(4)), Integer.parseInt(donneesHero.get(5)),
+                Integer.parseInt(donneesHero.get(6)), Integer.parseInt(donneesHero.get(7)), Integer.parseInt(donneesHero.get(8)),
+                Integer.parseInt(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), 500, 500);
     }
 
     public Hero getHero() {

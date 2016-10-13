@@ -21,13 +21,21 @@ public class Entite extends JPanel {
     public Image spriteActuelle;
     private int alternerSprite;
 
-    public Entite(Personnage personnage, String chemin) throws IOException {
+    public Entite() {
+
+        alternerSprite = 0;
+    }
+
+    public void creationEntite(Personnage personnage, String chemin) {
 
         this.personnage = personnage;
 
-        tableauSprite = decoupage(ImageIO.read(new File(chemin)), 3, 4);
+        try {
+            tableauSprite = decoupage(ImageIO.read(new File(chemin)), 3, 4);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        alternerSprite = 0;
         spriteActuelle = tableauSprite[1];
     }
 
