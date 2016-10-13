@@ -12,17 +12,22 @@ public class Jeu {
     private Niveau niveau;
     private Hero hero;
     private Monstre tableauMonstre[];
+    private BDD bdd;
 
     private boolean pause;
 
-    public Jeu() {
+    public Jeu() throws SQLException {
 
         temps = 0;
         pause = false;
 
-        //donneesHero = recupDonneesHeros();
+        bdd = new BDD();
 
-        hero = new Hero("Hero", 1, 0, 100, 4, 0, 0, 0, 0, 100, 100, 500, 500);
+        ResultSet donneesHero = bdd.recupDonneeHero(1);
+
+        System.out.println(donneesHero.getString("nom"));
+
+        hero = new Hero("Nom", 1, 0, 100, 4,0, 0, 0, 0, 0, 100, 100, 500, 500);
     }
 
     public void nouvellePartie() {
