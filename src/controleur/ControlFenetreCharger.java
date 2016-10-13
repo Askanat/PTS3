@@ -29,18 +29,23 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                 spawnHero(1);
                 fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
                 spawnMonstre(1);
-                spawnMonstre(1);
+                spawnMonstre(2);
+                spawnMonstre(3);
                 ChargerPartie1 = true;
                 break;
             case "Slot de Sauvegarde n°2":
                 spawnHero(2);
                 fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
+                spawnMonstre(1);
                 spawnMonstre(2);
+                spawnMonstre(3);
                 ChargerPartie1 = true;
                 break;
             case "Slot de Sauvegarde n°3":
                 spawnHero(3);
                 fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
+                spawnMonstre(1);
+                spawnMonstre(2);
                 spawnMonstre(3);
                 ChargerPartie1 = true;
                 break;
@@ -55,12 +60,12 @@ public class ControlFenetreCharger extends Control implements ActionListener {
     }
 
     private void spawnHero(int i) {
-        jeu.setHero(1);
-        fenetre.panelFenetreDepart.dessineHero(1);
+        jeu.setHero(i);
+        fenetre.panelFenetreDepart.dessineHero(i);
     }
 
     private void spawnMonstre(int i) {
-        jeu.setMonstre(1);
-        fenetre.panelFenetreDepart.dessineMonstre(1);
+        jeu.setMonstre(i);
+        fenetre.panelFenetreDepart.dessineMonstre(i);
     }
 }
