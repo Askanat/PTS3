@@ -77,6 +77,9 @@ public class ControlTimer extends Control implements ActionListener {
                 fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getDeplacementEnX(), jeu.getHero().getDeplacementEnY());
                 jeu.getHero().deplacer();
 
+                fenetre.panelFenetreDepart.monstre.get(0).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(0).getDeplacementEnX(), jeu.getMonstre(0).getDeplacementEnY());
+
+
             }
             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
         }

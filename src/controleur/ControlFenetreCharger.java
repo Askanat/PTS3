@@ -26,6 +26,8 @@ public class ControlFenetreCharger extends Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Slot de Sauvegarde n°1":
+                jeu.setMonstre();
+                fenetre.panelFenetreDepart.dessineMonstre(1);
                 jeu.setHero(1);
                 fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
                 fenetre.panelFenetreDepart.dessineHero(1);
