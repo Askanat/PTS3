@@ -29,16 +29,15 @@ public class BarreMenu extends JMenuBar {
         add(menu);
     }
 
+    public void test() {
+        test = new JMenu("" + jeu.getHero().getVie());
+        add(test);
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         test.setText("" + jeu.getHero().getVie());
         test.repaint();
-    }
-
-    public void test() {
-        System.out.println("menu ajout vie");
-        test = new JMenu("" + jeu.getHero().getVie());
-        add(test);
     }
 
     public void setControl(ControlBarreMenu controlBarreMenu) {

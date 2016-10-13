@@ -45,7 +45,7 @@ public class Jeu {
     public void setHero(int id) {
         ArrayList<String> donneesHero;
 
-        donneesHero = bdd.readHero(1);
+        donneesHero = bdd.readHero(id);
 
         hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)),
                 Integer.parseInt(donneesHero.get(3)), Integer.parseInt(donneesHero.get(4)), Integer.parseInt(donneesHero.get(5)),
