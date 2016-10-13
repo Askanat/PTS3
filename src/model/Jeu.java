@@ -1,4 +1,5 @@
 package model;
+import java.sql.*;
 
 /**
  * Created by bastien on 28/09/16.
@@ -6,15 +7,27 @@ package model;
 
 public class Jeu {
 
+    private int temps;
+
     private Niveau niveau;
     private Hero hero;
     private Monstre tableauMonstre[];
+    private BDD bdd;
 
     private boolean pause;
 
-    public Jeu() {
+    public Jeu() throws SQLException {
+
+        temps = 0;
         pause = false;
-        hero = new Hero("Hero", 1, 0, 100, 4, 0, 0, 0, 0, 100, 100, 500, 500);
+
+        bdd = new BDD();
+
+        ResultSet donneesHero = bdd.recupDonneeHero(1);
+
+        System.out.println(donneesHero.getString("nom"));
+
+        hero = new Hero("Nom", 1, 0, 100, 4,0, 0, 0, 0, 0, 100, 100, 500, 500);
     }
 
     public void nouvellePartie() {
@@ -39,5 +52,13 @@ public class Jeu {
 
     public void inversePause() {
         setPause(!getPause());
+    }
+
+    public void incrementeTemps() {
+        temps++;
+    }
+
+    public int getTemps() {
+        return temps;
     }
 }
