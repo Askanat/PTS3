@@ -6,6 +6,7 @@ import model.Jeu;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static vue.Fenetre.X;
 import static vue.Fenetre.Y;
@@ -18,6 +19,7 @@ public class FenetreDepart extends JPanel {
 
     private Jeu jeu;
     public Entite hero;
+    public ArrayList<Entite> monstre;
 
     public FenetreDepart(Jeu jeu) {
 
@@ -27,13 +29,12 @@ public class FenetreDepart extends JPanel {
         setPreferredSize(new Dimension(X, Y));
 
         hero = new Entite();
+        monstre = new ArrayList<>();
     }
 
-    public void dessineHero() {
-        hero.creationEntite(jeu.getHero(), "images/test3.png");
+    public void dessineHero(int id) {
+        hero.creationEntite(jeu.getHero(), jeu.getBDD().readHeroTexture(id));
     }
-
-
 
     public void setControl(ControlFenetreDepart controlFenetreDepart) {
     }

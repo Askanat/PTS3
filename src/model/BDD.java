@@ -57,7 +57,14 @@ public class BDD {
         return valeur;
     }
 
-    public void updateHero() {}
+    public String readHeroTexture(int id) {
+        // select retournant le chemin de texture
+        return "images/test3.png";
+    }
 
-    public void deleteHero() {}
+    public void updateHero() {
+    }
+
+    public void deleteHero() {
+    }
 }

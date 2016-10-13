@@ -28,19 +28,19 @@ public class ControlFenetreCharger extends Control implements ActionListener {
             case "Slot de Sauvegarde n°1":
                 jeu.setHero(1);
                 fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
-                fenetre.panelFenetreDepart.dessineHero();
+                fenetre.panelFenetreDepart.dessineHero(1);
                 ChargerPartie1 = true;
                 break;
             case "Slot de Sauvegarde n°2":
                 jeu.setHero(2);
                 fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
-                fenetre.panelFenetreDepart.dessineHero();
+                fenetre.panelFenetreDepart.dessineHero(2);
                 ChargerPartie2 = true;
                 break;
             case "Slot de Sauvegarde n°3":
                 jeu.setHero(3);
                 fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
-                fenetre.panelFenetreDepart.dessineHero();
+                fenetre.panelFenetreDepart.dessineHero(2);
                 ChargerPartie3 = true;
                 break;
             case "Retour":

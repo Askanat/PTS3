@@ -34,6 +34,10 @@ public class Jeu {
 
     }
 
+    public BDD getBDD() {
+        return bdd;
+    }
+
     public void setPause(boolean pause) {
         this.pause = pause;
     }
