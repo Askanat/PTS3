@@ -26,24 +26,22 @@ public class ControlFenetreCharger extends Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Slot de Sauvegarde n°1":
-                jeu.setHero(1);
+                spawnHero(1);
                 fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
-                fenetre.panelFenetreDepart.dessineHero(1);
-                jeu.setMonstre(1);
-                fenetre.panelFenetreDepart.dessineMonstre(1);
+                spawnMonstre(1);
                 ChargerPartie1 = true;
                 break;
             case "Slot de Sauvegarde n°2":
-                jeu.setHero(2);
+                spawnHero(2);
                 fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
-                fenetre.panelFenetreDepart.dessineHero(2);
-                ChargerPartie2 = true;
+                spawnMonstre(2);
+                ChargerPartie1 = true;
                 break;
             case "Slot de Sauvegarde n°3":
-                jeu.setHero(3);
+                spawnHero(3);
                 fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
-                fenetre.panelFenetreDepart.dessineHero(2);
-                ChargerPartie3 = true;
+                spawnMonstre(3);
+                ChargerPartie1 = true;
                 break;
             case "Retour":
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
@@ -53,5 +51,15 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                 fenetre.requestFocus();
                 break;
         }
+    }
+
+    private void spawnHero(int i) {
+        jeu.setHero(1);
+        fenetre.panelFenetreDepart.dessineHero(1);
+    }
+
+    private void spawnMonstre(int i) {
+        jeu.setMonstre(1);
+        fenetre.panelFenetreDepart.dessineMonstre(1);
     }
 }

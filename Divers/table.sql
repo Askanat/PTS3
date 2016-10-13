@@ -30,10 +30,10 @@ CREATE TABLE monstre (
 	PRIMARY KEY(id)
 );
 
-INSERT INTO hero VALUES (NULL, 'hero1', 1, 0, 100, 4,0, 0, 0, 0, 100, 100,"images/texture_hero.png");
-INSERT INTO hero VALUES (NULL, 'hero2', 1, 0, 100, 4,0, 0, 0, 0, 100, 100,"images/texture_hero.png");
-INSERT INTO hero VALUES (NULL, 'hero3', 1, 0, 100, 4,0, 0, 0, 0, 100, 100,"images/texture_hero.png");
+INSERT INTO hero VALUES (NULL, 'hero1', 1, 0, 100, 4,0, 0, 0, 0, 100, 100,"images/texture_hero1.png");
+INSERT INTO hero VALUES (NULL, 'hero2', 1, 0, 100, 4,0, 0, 0, 0, 100, 100,"images/texture_hero2.png");
+INSERT INTO hero VALUES (NULL, 'hero3', 1, 0, 100, 4,0, 0, 0, 0, 100, 100,"images/texture_hero3.png");
 
-INSERT INTO monstre VALUES (NULL, 'monstre1', 1, 0, 0, 0,0, 20,"images/texture_monstre.png");
-INSERT INTO monstre VALUES (NULL, 'monstre2', 1, 0, 0, 0,0, 20,"images/texture_monstre.png");
-INSERT INTO monstre VALUES (NULL, 'monstre3', 1, 0, 0, 0,0, 20,"images/texture_monstre.png");
+INSERT INTO monstre VALUES (NULL, 'monstre1', 1, 0, 0, 0,0, 20,"images/texture_monstre1.png");
+INSERT INTO monstre VALUES (NULL, 'monstre2', 1, 0, 0, 0,0, 20,"images/texture_monstre2.png");
+INSERT INTO monstre VALUES (NULL, 'monstre3', 1, 0, 0, 0,0, 20,"images/texture_monstre3.png");
