@@ -73,8 +73,18 @@ public class BDD {
     }
 
     public String readHeroTexture(int id) {
-        // select retournant le chemin de texture hero
-        return "images/test3.png";
+
+        ResultSet texture = null;
+        String result = new String();
+
+        try {
+            texture = instruction.executeQuery("Select texture_perso FROM hero WHERE id =" + id + ";");
+            result = texture.getString("texture_perso");
+        } catch (Exception e) {
+            System.out.println("Texture problem " + e);
+        }
+
+        return result;
     }
 
     public void deleteHero(int id) {
