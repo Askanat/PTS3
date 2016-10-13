@@ -1,10 +1,13 @@
 package model;
+import java.sql.*;
 
 /**
  * Created by bastien on 28/09/16.
  */
 
 public class Jeu {
+
+    private int temps;
 
     private Niveau niveau;
     private Hero hero;
@@ -13,7 +16,12 @@ public class Jeu {
     private boolean pause;
 
     public Jeu() {
+
+        temps = 0;
         pause = false;
+
+        //donneesHero = recupDonneesHeros();
+
         hero = new Hero("Hero", 1, 0, 100, 4, 0, 0, 0, 0, 100, 100, 500, 500);
     }
 
@@ -39,5 +47,13 @@ public class Jeu {
 
     public void inversePause() {
         setPause(!getPause());
+    }
+
+    public void incrementeTemps() {
+        temps++;
+    }
+
+    public int getTemps() {
+        return temps;
     }
 }
