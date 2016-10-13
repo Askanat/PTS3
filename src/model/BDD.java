@@ -22,7 +22,7 @@ public class BDD {
             connexion = DriverManager.getConnection("jdbc:mysql://localhost/projet", "DUTinfo", "0000");
             instruction = connexion.createStatement();
         } catch (Exception e) {
-            System.out.println("echec pilote : " + e);
+            System.out.println("Echec pilote : " + e);
         }
     }
 
@@ -53,7 +53,7 @@ public class BDD {
                 valeur.add(resultat.getString("chargeMax"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Select problem " + e);
         }
 
         return valeur;
@@ -69,7 +69,7 @@ public class BDD {
             ", pointForce =" + tabCaracHero[7] + ", pointResistance =" + tabCaracHero[8] + ", pieceOr =" + tabCaracHero[9] + ", chargeMax =" + tabCaracHero[10] +
             " WHERE id = " + id + ";");
         } catch (Exception e) {
-            System.out.println("Echec pilotes " + e);
+            System.out.println("Update problem " + e);
         }
     }
 
@@ -78,6 +78,13 @@ public class BDD {
         return "images/test3.png";
     }
 
-    public void deleteHero() {
+    public void deleteHero(int id) {
+        int delete;
+
+        try {
+            delete = instruction.executeUpdate("DELETE FROM hero WHERE id =" + id + ";");
+        } catch (Exception e) {
+            System.out.println("Delete problem : " + e);
+        }
     }
 }
