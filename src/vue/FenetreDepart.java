@@ -5,7 +5,6 @@ import model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static vue.Fenetre.X;
@@ -37,7 +36,7 @@ public class FenetreDepart extends JPanel {
     }
 
     public void dessineMonstre(int id) {
-        monstre.get(id).creationEntite(jeu.getMonstre(id-1), jeu.getBDD().readMonstreTexture(id));
+        monstre.get(id).creationEntite(jeu.getMonstre(id - 1), jeu.getBDD().readMonstreTexture(id));
     }
 
     public void setControl(ControlFenetreDepart controlFenetreDepart) {

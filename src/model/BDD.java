@@ -25,6 +25,7 @@ public class BDD {
         }
     }
 
+    //SELECTIONNE LES DONNEES D'UN HERO
     public ArrayList<String> readHero(int id) {
 
         ResultSet resultat = null;
@@ -32,7 +33,7 @@ public class BDD {
         try {
             resultat = instruction.executeQuery("Select * FROM hero WHERE id =" + id + ";");
         } catch (Exception e) {
-            System.out.println("Echec pilotes " + e);
+            System.out.println("Echec query hero " + e);
         }
 
         ArrayList<String> valeur = new ArrayList<>();
@@ -52,16 +53,45 @@ public class BDD {
                 valeur.add(resultat.getString("chargeMax"));
             }
         } catch (SQLException e) {
-            System.out.println("Select problem " + e);
+            System.out.println("Select hero problem " + e);
         }
 
         return valeur;
     }
 
+    //SELECTIONNE LES DONNEES D'UN MONSTRE
+    public ArrayList<String> readMonstre(int id) {
+
+        ResultSet resultat = null;
+
+        try {
+            resultat = instruction.executeQuery("Select * FROM monstre WHERE id =" + id + ";");
+        } catch (Exception e) {
+            System.out.println("Echec query monstre " + e);
+        }
+
+        ArrayList<String> valMonstre = new ArrayList<>();
+
+        try {
+            while (resultat.next()) {
+                valMonstre.add(resultat.getString("nom"));
+                valMonstre.add(resultat.getString("niveau"));
+                valMonstre.add(resultat.getString("coefVie"));
+                valMonstre.add(resultat.getString("coefMana"));
+                valMonstre.add(resultat.getString("coefDegat"));
+                valMonstre.add(resultat.getString("coefArmure"));
+                valMonstre.add(resultat.getString("coefDeplacement"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Select monstre problem " + e);
+        }
+
+        return valMonstre;
+    }
+
+    //MODIFIE LES VALEURS DE LA TABLE HERO
     public void updateHero(int id, String[] tabCaracHero) {
-
         int update;
-
         try {
             update = instruction.executeUpdate("UPDATE hero SET nom = " + tabCaracHero[0] + ", niveau = " + tabCaracHero[1] + ", experience = " + tabCaracHero[2] +
                     ", experienceMax =" + tabCaracHero[3] + ", pointCompetence =" + tabCaracHero[4] + ", pointConstitution =" + tabCaracHero[5] + ", pointIntelligence = " + tabCaracHero[6] +
@@ -72,44 +102,61 @@ public class BDD {
         }
     }
 
+    //SELECTIONNE LE NOM DE LA TEXTURE DU HERO
     public String readHeroTexture(int id) {
-
         ResultSet texture = null;
         String result = new String();
-
         try {
             texture = instruction.executeQuery("Select texture_perso FROM hero WHERE id =" + id + ";");
             result = texture.getString("texture_perso");
         } catch (Exception e) {
-            System.out.println("Texture problem " + e);
+            System.out.println("Texture hero problem " + e);
         }
 
         return result;
     }
 
+    //SUPPRIME UN HERO
     public void deleteHero(int id) {
         int delete;
-
         try {
             delete = instruction.executeUpdate("DELETE FROM hero WHERE id =" + id + ";");
         } catch (Exception e) {
-            System.out.println("Delete problem : " + e);
+            System.out.println("Delete hero problem : " + e);
         }
     }
 
+    //SUPPRIME UN MONSTRE
+    public void deleteMonstre(int id) {
+        int delete;
+        try {
+            delete = instruction.executeUpdate("DELETE FROM monstre WHERE id =" + id + ";");
+        } catch (Exception e) {
+            System.out.println("Delete monstre problem : " + e);
+        }
+    }
+
+    //AJOUTE UN HERO
     public void insertHero() {
-
         int insert;
-
         try {
             insert = instruction.executeUpdate("INSERT INTO hero (nom, niveau, experience, experienceMax, pointCompetence, pointConstitution, pointIntelligence, pointForce, pointResistance, pieceOr, chargeMaX) VALUES ('hero1', 1,0,100,4,0,0,0,0,100,100);");
         } catch (Exception e) {
-            System.out.println("Delete problem : " + e);
+            System.out.println("Insert problem : " + e);
         }
     }
 
+    //SELECTIONNE LE NOM DE LA TEXTURE D'UN MONSTRE
     public String readMonstreTexture(int id) {
-        // select retournant le chemin de texture du monstre
-        return "images/monstreTest.png";
+        ResultSet texture = null;
+        String result = new String();
+        try {
+            texture = instruction.executeQuery("Select texture_monstre FROM monstre WHERE id =" + id + ";");
+            result = texture.getString("texture_perso");
+        } catch (Exception e) {
+            System.out.println("Texture monstre problem " + e);
+        }
+
+        return result;
     }
 }
