@@ -62,8 +62,14 @@ public class Jeu {
         return hero;
     }
 
-    public void setMonstre() {
-        tableauMonstre.add(new Monstre("testMonstre", 1, 1, 1, 1, 1, 600, 600, 20));
+    public void setMonstre(int id) {
+        ArrayList<String> donneesMonstre;
+
+        donneesMonstre = bdd.readMonstre(id);
+
+        tableauMonstre.add(new Monstre(donneesMonstre.get(0), Integer.parseInt(donneesMonstre.get(1)), Integer.parseInt(donneesMonstre.get(2)),
+                Integer.parseInt(donneesMonstre.get(3)), Integer.parseInt(donneesMonstre.get(4)), Integer.parseInt(donneesMonstre.get(5)), 600, 600,
+                Integer.parseInt(donneesMonstre.get(6))));
     }
 
     public Monstre getMonstre(int i) {
