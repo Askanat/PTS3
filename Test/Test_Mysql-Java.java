@@ -2,7 +2,6 @@
 * C'est simple !!
 * Utilisé vos tables produits des TP de millet pour executer mon code (modifier ligne 18) :P*/
 
-import java.sql.*;
 /**
  * Created by leo on 02/10/16.
  */

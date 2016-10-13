@@ -61,15 +61,16 @@ public class BDD {
 
     public void updateHero(int id, String[] tabCaracHero) {
 
-        ResultSet update = null;
+        int update;
 
         try {
-            update = instruction.executeQuery("Select * FROM hero WHERE id =" + id + ";");
+            update = instruction.executeUpdate("UPDATE hero SET nom = " + tabCaracHero[0] + ", niveau = " + tabCaracHero[1] + ", experience = " + tabCaracHero[2] +
+            ", experienceMax =" + tabCaracHero[3] + ", pointCompetence =" + tabCaracHero[4] + ", pointConstitution =" + tabCaracHero[5] + ", pointIntelligence = " + tabCaracHero[6] +
+            ", pointForce =" + tabCaracHero[7] + ", pointResistance =" + tabCaracHero[8] + ", pieceOr =" + tabCaracHero[9] + ", chargeMax =" + tabCaracHero[10] +
+            " WHERE id = " + id + ";");
         } catch (Exception e) {
             System.out.println("Echec pilotes " + e);
         }
-
-        ArrayList<String> valeur = new ArrayList<>();
     }
 
     public String readHeroTexture(int id) {
