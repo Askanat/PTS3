@@ -14,7 +14,7 @@ public class Hero extends Personnage {
     private final int COEF_VIE = 3;
     private final int COEF_MANA = 3;
     private final int COEF_DEGATS = 1;
-    private final int COEF_ARMRUE = 1;
+    private final int COEF_ARMURE = 1;
 
     private final int VIE_DE_BASE = 100;
     private final int MANA_DE_BASE = 100;
@@ -32,7 +32,7 @@ public class Hero extends Personnage {
         degatMax = pointForce * COEF_DEGATS + DEGATS_DE_BASE;
         degats = degatMax;
 
-        armureMax = pointResistance * COEF_ARMRUE;
+        armureMax = pointResistance * COEF_ARMURE;
         armure = armureMax;
 
         this.experience = experience;
