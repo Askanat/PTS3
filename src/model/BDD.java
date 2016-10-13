@@ -9,13 +9,18 @@ import java.util.ArrayList;
 
 public class BDD {
 
+    private Connection connexion;
+    private Statement instruction;
+
+
     public BDD() {
 
         String pilote = "com.mysql.jdbc.Driver";
 
         try {
             Class.forName(pilote);
-            Connection connexion = DriverManager.getConnection("jdbc:mysql://localhost/projet", "DUTinfo", "0000");
+            connexion = DriverManager.getConnection("jdbc:mysql://localhost/projet", "DUTinfo", "0000");
+            instruction = connexion.createStatement();
         } catch (Exception e) {
             System.out.println("echec pilote : " + e);
         }
@@ -26,9 +31,6 @@ public class BDD {
         ResultSet resultat = null;
 
         try {
-            Connection connexion = DriverManager.getConnection("jdbc:mysql://localhost/projet", "DUTinfo", "0000"); //Ici c'est pour ce connecter (localhost/nom_bdd,user,mdp)
-            Statement instruction = connexion.createStatement();//Ici on crée un objet qui servira à nous connecter lors des requetes
-
             resultat = instruction.executeQuery("Select * FROM hero WHERE id =" + id + ";");
         } catch (Exception e) {
             System.out.println("Echec pilotes " + e);
@@ -57,12 +59,22 @@ public class BDD {
         return valeur;
     }
 
+    public void updateHero(int id, String[] tabCaracHero) {
+
+        ResultSet update = null;
+
+        try {
+            update = instruction.executeQuery("Select * FROM hero WHERE id =" + id + ";");
+        } catch (Exception e) {
+            System.out.println("Echec pilotes " + e);
+        }
+
+        ArrayList<String> valeur = new ArrayList<>();
+    }
+
     public String readHeroTexture(int id) {
         // select retournant le chemin de texture
         return "images/test3.png";
-    }
-
-    public void updateHero() {
     }
 
     public void deleteHero() {
