@@ -157,6 +157,6 @@ public class BDD {
             System.out.println("Texture monstre problem " + e);
         }
 
-        return result;
+        return  "images/texture_hero.png";//result;
     }
 }
