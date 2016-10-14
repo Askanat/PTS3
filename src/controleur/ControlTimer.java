@@ -32,14 +32,8 @@ public class ControlTimer extends Control implements ActionListener {
         } else if (ControlFenetreNouvellePartie.nouvellePartie3) {
             ControlFenetreNouvellePartie.nouvellePartie3 = false;
             enPartie();
-        } else if (ControlFenetreCharger.ChargerPartie1) {
-            ControlFenetreCharger.ChargerPartie1 = false;
-            enPartie();
-        } else if (ControlFenetreCharger.ChargerPartie2) {
-            ControlFenetreCharger.ChargerPartie2 = false;
-            enPartie();
-        } else if (ControlFenetreCharger.ChargerPartie3) {
-            ControlFenetreCharger.ChargerPartie3 = false;
+        } else if (ControlFenetreCharger.ChargerPartie) {
+            ControlFenetreCharger.ChargerPartie = false;
             enPartie();
         }
 
