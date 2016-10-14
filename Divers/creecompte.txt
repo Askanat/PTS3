@@ -1,0 +1,4 @@
+CREATE USER "DUTinfo"@"localhost";
+SET password FOR "DUTinfo"@"localhost" = password('0000');
+CREATE DATABASE projet;
+GRANT ALL ON projet.* TO "DUTinfo"@"localhost";
