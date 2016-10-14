@@ -161,4 +161,22 @@ public class BDD {
 
         return result;
     }
+
+    //SELECTIONNE LES DONNEES DU CHOIX DE PERSONNAGE
+    public ArrayList<String> readDonneesChoixPerso(int id) {
+        ResultSet perso = null;
+        ArrayList<String> result = new ArrayList<>();
+        try {
+            perso = instruction.executeQuery("Select nom, niveau, texture_hero FROM hero WHERE id =" + id + ";");
+            while (perso.next()) {
+                result.add(perso.getString("nom"));
+                result.add(perso.getString("niveau"));
+                result.add(perso.getString("texture_perso"));
+            }
+        } catch (Exception e) {
+            System.out.println("Donnees choix hero problem " + e);
+        }
+
+        return result;
+    }
 }
