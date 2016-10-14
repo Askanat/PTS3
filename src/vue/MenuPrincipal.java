@@ -14,17 +14,19 @@ import static vue.Fenetre.Y;
 
 public class MenuPrincipal extends JPanel {
 
-    public JButton nouvellePartie, chargerPartie, credits, quitter;
+    public JButton nouvellePartie, chargerPartie, options, credits, quitter;
 
     public MenuPrincipal() {
 
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
-        nouvellePartie = new JButton("Nouvelle Partie");
+        nouvellePartie = new JButton("");
         nouvellePartie.setActionCommand("Nouvelle Partie");
-        chargerPartie = new JButton("Charger Partie");
+        chargerPartie = new JButton("");
         chargerPartie.setActionCommand("Charger Partie");
+        options = new JButton("Options");
+        options.setActionCommand("Options");
         credits = new JButton("Crédits");
         credits.setActionCommand("Crédits");
         quitter = new JButton("Quitter");
@@ -32,6 +34,7 @@ public class MenuPrincipal extends JPanel {
 
         add(nouvellePartie);
         add(chargerPartie);
+        add(options);
         add(credits);
         add(quitter);
     }
@@ -39,41 +42,49 @@ public class MenuPrincipal extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        nouvellePartie.setBounds(290, 150, 228, 40);
-        nouvellePartie.setForeground(Color.WHITE);
+        nouvellePartie.setBounds(1248, 419, 415, 52);
+        nouvellePartie.setForeground(Color.RED);
         nouvellePartie.setBackground(new Color(0, 0, 0, 0));
         nouvellePartie.setFocusable(false);
         nouvellePartie.setCursor(new Cursor(Cursor.HAND_CURSOR));
         nouvellePartie.setBorder(null);
 
-        chargerPartie.setBounds(290, 225, 228, 40);
+        chargerPartie.setBounds(1249, 496, 415, 52);
         chargerPartie.setForeground(Color.WHITE);
         chargerPartie.setBackground(new Color(0, 0, 0, 0));
         chargerPartie.setFocusable(false);
         chargerPartie.setCursor(new Cursor(Cursor.HAND_CURSOR));
         chargerPartie.setBorder(null);
 
-        credits.setBounds(290, 300, 228, 40);
-        credits.setForeground(Color.WHITE);
+        options.setBounds(1249, 572, 415, 52);
+        options.setForeground(Color.RED);
+        options.setBackground(new Color(0, 0, 0, 0));
+        options.setFocusable(false);
+        options.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        options.setBorder(null);
+
+        credits.setBounds(1248, 649, 415, 52);
+        credits.setForeground(Color.RED);
         credits.setBackground(new Color(0, 0, 0, 0));
         credits.setFocusable(false);
         credits.setCursor(new Cursor(Cursor.HAND_CURSOR));
         credits.setBorder(null);
 
-        quitter.setBounds(290, 375, 228, 40);
-        quitter.setForeground(Color.WHITE);
+        quitter.setBounds(1248, 726, 415, 52);
+        quitter.setForeground(Color.RED);
         quitter.setBackground(new Color(0, 0, 0, 0));
         quitter.setFocusable(false);
         quitter.setCursor(new Cursor(Cursor.HAND_CURSOR));
         quitter.setBorder(null);
 
-        Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
+        Image img = getToolkit().getImage("images/testMenu.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 
     public void setControl(ControlMenuPrincipal controlMenuPrincipal) {
         nouvellePartie.addActionListener(controlMenuPrincipal);
         chargerPartie.addActionListener(controlMenuPrincipal);
+        options.addActionListener(controlMenuPrincipal);
         credits.addActionListener(controlMenuPrincipal);
         quitter.addActionListener(controlMenuPrincipal);
     }
