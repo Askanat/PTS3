@@ -36,7 +36,7 @@ public class FenetreOptions extends JPanel {
         super.paintComponent(g);
 
         retour.setBounds(40, 980, 228, 40);
-        retour.setForeground(Color.WHITE);
+        retour.setForeground(Color.RED);
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));

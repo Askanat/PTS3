@@ -3,8 +3,12 @@ package vue;
 import controleur.ControlFenetreCharger;
 import model.Jeu;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import static vue.Fenetre.X;
 import static vue.Fenetre.Y;
@@ -89,7 +93,27 @@ public class FenetreCharger extends JPanel {
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retour.setBorder(null);
 
-        Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+
+        g.drawImage(getToolkit().getImage("images/fondMenuPrinci.jpg"), 0, 0, getWidth(), getHeight(), this);
+
+        try {
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero1.png")), 3, 4)[1], 355, 310, 200, 200, this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero2.png")), 3, 4)[1], 855, 310, 200, 200, this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero3.png")), 3, 4)[1], 1355, 310, 200, 200, this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
