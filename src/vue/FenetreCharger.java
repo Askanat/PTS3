@@ -35,9 +35,9 @@ public class FenetreCharger extends JPanel {
         slot2.setActionCommand("Slot de Sauvegarde n°2");
         slot3 = new JButton("Slot de Sauvegarde n°3");
         slot3.setActionCommand("Slot de Sauvegarde n°3");
-        jouer = new JButton("Jouer");
+        jouer = new JButton("");
         jouer.setActionCommand("Jouer");
-        retour = new JButton("Retour");
+        retour = new JButton("");
         retour.setActionCommand("Retour");
 
         add(slot1);
@@ -79,14 +79,14 @@ public class FenetreCharger extends JPanel {
         slot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
         slot3.setBorder(null);
 
-        jouer.setBounds(760, 800, 400, 100);
+        jouer.setBounds(705, 788, 472, 94);
         jouer.setForeground(Color.WHITE);
         jouer.setBackground(new Color(0, 0, 0, 0));
         jouer.setFocusable(false);
         jouer.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jouer.setBorder(null);
 
-        retour.setBounds(40, 1000, 228, 40);
+        retour.setBounds(64, 983, 253, 46);
         retour.setForeground(Color.WHITE);
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);
@@ -94,7 +94,7 @@ public class FenetreCharger extends JPanel {
         retour.setBorder(null);
 
 
-        g.drawImage(getToolkit().getImage("images/fondMenuPrinci.jpg"), 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(getToolkit().getImage("images/chargerPartie.png"), 0, 0, getWidth(), getHeight(), this);
 
         try {
             g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero1.png")), 3, 4)[1], 355, 310, 200, 200, this);
