@@ -24,9 +24,13 @@ public class BarreMenu extends JMenuBar {
         menu = new JMenuItem("Menu");
         menu.setActionCommand("Menu");
 
-        test = new JMenu("" + jeu.getHero().getVie());
+        test = null;
 
         add(menu);
+    }
+
+    public void test() {
+        test = new JMenu("" + jeu.getHero().getVie());
         add(test);
     }
 

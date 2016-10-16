@@ -1,5 +1,7 @@
 package model;
 
+import vue.Entite;
+
 /**
  * Created by bastien on 29/09/16.
  */
@@ -14,13 +16,14 @@ public class Hero extends Personnage {
     private final int COEF_VIE = 3;
     private final int COEF_MANA = 3;
     private final int COEF_DEGATS = 1;
-    private final int COEF_ARMRUE = 1;
+    private final int COEF_ARMURE = 1;
 
     private final int VIE_DE_BASE = 100;
     private final int MANA_DE_BASE = 100;
     private final int DEGATS_DE_BASE = 1;
 
-    public Hero(String nom, int niveau, int experience, int experienceMax, int pointCompetence, int pointConstitution, int pointIntelligence, int pointForce, int pointResistance, int or, int chargeMax, int positionX, int positionY, int i) {
+    public Hero(String nom, int niveau, int experience, int experienceMax, int pointCompetence, int pointConstitution,
+                int pointIntelligence, int pointForce, int pointResistance, int or, int chargeMax, int positionX, int positionY) {
         super(nom, niveau, positionX, positionY, 20);
 
         vieMax = pointConstitution * COEF_VIE + VIE_DE_BASE;
@@ -32,7 +35,7 @@ public class Hero extends Personnage {
         degatMax = pointForce * COEF_DEGATS + DEGATS_DE_BASE;
         degats = degatMax;
 
-        armureMax = pointResistance * COEF_ARMRUE;
+        armureMax = pointResistance * COEF_ARMURE;
         armure = armureMax;
 
         this.experience = experience;

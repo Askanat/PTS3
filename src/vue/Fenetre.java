@@ -16,6 +16,7 @@ public class Fenetre extends JFrame {
     private Jeu jeu;
     public MenuPrincipal panelMenuPrincipal;
     public FenetreCharger panelFenetreCharger;
+    public FenetreOptions panelFenetreOptions;
     public FenetreCredits panelFenetreCredits;
     public FenetreDepart panelFenetreDepart;
     public FenetreDonjon panelFenetreDonjon;
@@ -42,6 +43,7 @@ public class Fenetre extends JFrame {
 
     public void init() {
         panelFenetreCharger = new FenetreCharger(jeu);
+        panelFenetreOptions = new FenetreOptions();
         panelFenetreCredits = new FenetreCredits();
         panelFenetreDepart = new FenetreDepart(jeu);
         panelFenetreDonjon = new FenetreDonjon(jeu);
@@ -51,13 +53,26 @@ public class Fenetre extends JFrame {
         panelMenuEnJeu = new MenuEnJeu(jeu);
     }
 
+    public void setControlMenuPrincipal(ControlMenuPrincipal controlMenuPrincipal) {
+        panelMenuPrincipal.setControl(controlMenuPrincipal);
+    }
+
+    public void setControlFenetreNouvellePartie(ControlFenetreNouvellePartie controlFenetreNouvellePartie) {
+        panelFenetreNouvellePartie.setControl(controlFenetreNouvellePartie);
+    }
+
     public void setControlFenetreCharger(ControlFenetreCharger controlFenetreCharger) {
         panelFenetreCharger.setControl(controlFenetreCharger);
+    }
+
+    public void setControlFenetreOptions(ControlFenetreOptions controlFenetreOptions) {
+        panelFenetreOptions.setControl(controlFenetreOptions);
     }
 
     public void setControlFenetreCredits(ControlFenetreCredits controlFenetreCredits) {
         panelFenetreCredits.setControl(controlFenetreCredits);
     }
+
 
     public void setControlFenetreDepart(ControlFenetreDepart controlFenetreDepart) {
         panelFenetreDepart.setControl(controlFenetreDepart);
@@ -67,17 +82,6 @@ public class Fenetre extends JFrame {
         panelFenetreDonjon.setControl(controlFenetreDonjon);
     }
 
-    public void setControlFenetreNouvellePartie(ControlFenetreNouvellePartie controlFenetreNouvellePartie) {
-        panelFenetreNouvellePartie.setControl(controlFenetreNouvellePartie);
-    }
-
-    public void setControlMenuPrincipal(ControlMenuPrincipal controlMenuPrincipal) {
-        panelMenuPrincipal.setControl(controlMenuPrincipal);
-    }
-
-    public void setControlClavier(ControlClavier controlClavier) {
-        addKeyListener(controlClavier);
-    }
 
     public void setControlMenuEnJeu(ControlMenuEnJeu controlMenuEnJeu) {
         panelMenuEnJeu.setControl(controlMenuEnJeu);
@@ -86,4 +90,10 @@ public class Fenetre extends JFrame {
     public void setControlBarreMenu(ControlBarreMenu controlBarreMenu) {
         barreMenu.setControl(controlBarreMenu);
     }
+
+
+    public void setControlClavier(ControlClavier controlClavier) {
+        addKeyListener(controlClavier);
+    }
+
 }

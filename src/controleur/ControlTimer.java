@@ -32,14 +32,8 @@ public class ControlTimer extends Control implements ActionListener {
         } else if (ControlFenetreNouvellePartie.nouvellePartie3) {
             ControlFenetreNouvellePartie.nouvellePartie3 = false;
             enPartie();
-        } else if (ControlFenetreCharger.ChargerPartie1) {
-            ControlFenetreCharger.ChargerPartie1 = false;
-            enPartie();
-        } else if (ControlFenetreCharger.ChargerPartie2) {
-            ControlFenetreCharger.ChargerPartie2 = false;
-            enPartie();
-        } else if (ControlFenetreCharger.ChargerPartie3) {
-            ControlFenetreCharger.ChargerPartie3 = false;
+        } else if (ControlFenetreCharger.ChargerPartie) {
+            ControlFenetreCharger.ChargerPartie = false;
             enPartie();
         }
 
@@ -76,8 +70,18 @@ public class ControlTimer extends Control implements ActionListener {
 
                 fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getDeplacementEnX(), jeu.getHero().getDeplacementEnY());
                 jeu.getHero().deplacer();
+
+                for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
+                    Thread monstreThread = new Thread(jeu.getMonstre(i));
+
+                    if(monstreThread.isAlive() == false)
+                        monstreThread.run();
+
+                    fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(i).getDeplacementEnX(), jeu.getMonstre(i).getDeplacementEnY());
+                }
+
             }
-            // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
+             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
         }
 
         fenetre.repaint();

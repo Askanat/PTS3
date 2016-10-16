@@ -38,6 +38,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 fenetre.pack();
                 fenetre.setLocationRelativeTo(null);
                 fenetre.requestFocus();
+                // quitte le perso : sauvegarde du perso + mise du perso à null
                 break;
         }
     }

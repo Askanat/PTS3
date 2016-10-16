@@ -1,5 +1,7 @@
 package model;
-import java.sql.*;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Created by bastien on 28/09/16.
@@ -11,23 +13,18 @@ public class Jeu {
 
     private Niveau niveau;
     private Hero hero;
-    private Monstre tableauMonstre[];
+    private ArrayList<Monstre> tableauMonstre;
     private BDD bdd;
 
     private boolean pause;
 
     public Jeu() throws SQLException {
 
+        tableauMonstre = new ArrayList<>();
         temps = 0;
         pause = false;
 
         bdd = new BDD();
-
-        ResultSet donneesHero = bdd.recupDonneeHero(1);
-
-        System.out.println(donneesHero.getString("nom"));
-
-        hero = new Hero("Nom", 1, 0, 100, 4,0, 0, 0, 0, 0, 100, 100, 500, 500);
     }
 
     public void nouvellePartie() {
@@ -38,6 +35,10 @@ public class Jeu {
 
     }
 
+    public BDD getBDD() {
+        return bdd;
+    }
+
     public void setPause(boolean pause) {
         this.pause = pause;
     }
@@ -46,8 +47,42 @@ public class Jeu {
         return pause;
     }
 
+    public void setHero(int id) {
+        ArrayList<String> donneesHero;
+
+        donneesHero = bdd.readHero(id);
+
+        hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)),
+                Integer.parseInt(donneesHero.get(3)), Integer.parseInt(donneesHero.get(4)), Integer.parseInt(donneesHero.get(5)),
+                Integer.parseInt(donneesHero.get(6)), Integer.parseInt(donneesHero.get(7)), Integer.parseInt(donneesHero.get(8)),
+                Integer.parseInt(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), 500, 500);
+    }
+
     public Hero getHero() {
         return hero;
+    }
+
+    public void setMonstre(int id) {
+        // Pour le moment on sélectionne le hero 1
+        if(hero == null)
+            setHero(1);
+
+        ArrayList<String> donneesMonstre;
+
+        donneesMonstre = bdd.readMonstre(id);
+
+        tableauMonstre.add(new Monstre(donneesMonstre.get(0), Integer.parseInt(donneesMonstre.get(1)), Integer.parseInt(donneesMonstre.get(2)),
+                Integer.parseInt(donneesMonstre.get(3)), Integer.parseInt(donneesMonstre.get(4)), Integer.parseInt(donneesMonstre.get(5)), 300 + 100 * id, 300 + 100 * id,
+                Integer.parseInt(donneesMonstre.get(6)), hero));
+    }
+
+    public Monstre getMonstre(int i) {
+
+        return tableauMonstre.get(i);
+    }
+
+    public int getSizeTabMonstre() {
+        return tableauMonstre.size();
     }
 
     public void inversePause() {

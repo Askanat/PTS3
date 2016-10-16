@@ -12,27 +12,36 @@ import java.awt.event.ActionListener;
 
 public class ControlFenetreCharger extends Control implements ActionListener {
 
-    public static boolean ChargerPartie1, ChargerPartie2, ChargerPartie3;
+    public static boolean ChargerPartie;
+    private int valeurHero;
 
     public ControlFenetreCharger(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlFenetreCharger(this);
 
-        ChargerPartie1 = false;
-        ChargerPartie2 = false;
-        ChargerPartie3 = false;
+        ChargerPartie = false;
+        valeurHero = 0;
     }
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Slot de Sauvegarde n°1":
-                ChargerPartie1 = true;
+                valeurHero = 1;
                 break;
             case "Slot de Sauvegarde n°2":
-                ChargerPartie2 = true;
+                valeurHero = 2;
                 break;
             case "Slot de Sauvegarde n°3":
-                ChargerPartie3 = true;
+                valeurHero = 3;
+                break;
+            case "Jouer":
+                spawnHero(valeurHero);
+                fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
+                spawnMonstre(1);
+                spawnMonstre(2);
+                spawnMonstre(3);
+                valeurHero = 0;
+                ChargerPartie = true;
                 break;
             case "Retour":
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
@@ -40,7 +49,18 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                 fenetre.pack();
                 fenetre.setLocationRelativeTo(null);
                 fenetre.requestFocus();
+                valeurHero = 0;
                 break;
         }
+    }
+
+    private void spawnHero(int i) {
+        jeu.setHero(i);
+        fenetre.panelFenetreDepart.dessineHero(i);
+    }
+
+    private void spawnMonstre(int i) {
+        jeu.setMonstre(i);
+        fenetre.panelFenetreDepart.dessineMonstre(i);
     }
 }
