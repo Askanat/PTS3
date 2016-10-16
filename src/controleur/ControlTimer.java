@@ -72,9 +72,12 @@ public class ControlTimer extends Control implements ActionListener {
                 jeu.getHero().deplacer();
 
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
-                    jeu.getMonstre(i).directionDeplacer();
+                    Thread monstreThread = new Thread(jeu.getMonstre(i));
+
+                    if(monstreThread.isAlive() == false)
+                        monstreThread.run();
+
                     fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(i).getDeplacementEnX(), jeu.getMonstre(i).getDeplacementEnY());
-                    jeu.getMonstre(i).deplacer();
                 }
 
             }

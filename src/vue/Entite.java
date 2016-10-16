@@ -18,7 +18,7 @@ public class Entite extends JPanel {
     public Personnage personnage;
 
     private BufferedImage[] tableauSprite;
-    public Image spriteActuelle;
+    public Image spriteActuel;
     private int alternerSprite;
 
     public Entite() {
@@ -36,7 +36,7 @@ public class Entite extends JPanel {
             e.printStackTrace();
         }
 
-        spriteActuelle = tableauSprite[1];
+        spriteActuel = tableauSprite[1];
     }
 
     public static BufferedImage[] decoupage(BufferedImage origin, int divisionHorizontale, int divisionVerticale) {
@@ -58,86 +58,86 @@ public class Entite extends JPanel {
 
         // remet le sprite sur ses 2 jambes quand il ne bouge pas
         if (x == 0 && y == 0)
-            if (spriteActuelle == tableauSprite[6] || spriteActuelle == tableauSprite[8])
-                spriteActuelle = tableauSprite[7];
-            else if (spriteActuelle == tableauSprite[9] || spriteActuelle == tableauSprite[11])
-                spriteActuelle = tableauSprite[10];
-            else if (spriteActuelle == tableauSprite[3] || spriteActuelle == tableauSprite[5])
-                spriteActuelle = tableauSprite[4];
-            else if (spriteActuelle == tableauSprite[0] || spriteActuelle == tableauSprite[2])
-                spriteActuelle = tableauSprite[1];
+            if (spriteActuel == tableauSprite[6] || spriteActuel == tableauSprite[8])
+                spriteActuel = tableauSprite[7];
+            else if (spriteActuel == tableauSprite[9] || spriteActuel == tableauSprite[11])
+                spriteActuel = tableauSprite[10];
+            else if (spriteActuel == tableauSprite[3] || spriteActuel == tableauSprite[5])
+                spriteActuel = tableauSprite[4];
+            else if (spriteActuel == tableauSprite[0] || spriteActuel == tableauSprite[2])
+                spriteActuel = tableauSprite[1];
 
         // selectionne le sens de déplacement
         if (x > 0)
             switch (alternerSprite) {
                 case 0:
-                    spriteActuelle = tableauSprite[6];
+                    spriteActuel = tableauSprite[6];
                     break;
 
                 case 1:
-                    spriteActuelle = tableauSprite[7];
+                    spriteActuel = tableauSprite[7];
                     break;
 
                 case 2:
-                    spriteActuelle = tableauSprite[8];
+                    spriteActuel = tableauSprite[8];
                     break;
 
                 case 3:
-                    spriteActuelle = tableauSprite[7];
+                    spriteActuel = tableauSprite[7];
                     break;
             }
         else if (y < 0)
             switch (alternerSprite) {
                 case 0:
-                    spriteActuelle = tableauSprite[9];
+                    spriteActuel = tableauSprite[9];
                     break;
 
                 case 1:
-                    spriteActuelle = tableauSprite[10];
+                    spriteActuel = tableauSprite[10];
                     break;
 
                 case 2:
-                    spriteActuelle = tableauSprite[11];
+                    spriteActuel = tableauSprite[11];
                     break;
 
                 case 3:
-                    spriteActuelle = tableauSprite[10];
+                    spriteActuel = tableauSprite[10];
                     break;
             }
         else if (x < 0)
             switch (alternerSprite) {
                 case 0:
-                    spriteActuelle = tableauSprite[3];
+                    spriteActuel = tableauSprite[3];
                     break;
 
                 case 1:
-                    spriteActuelle = tableauSprite[4];
+                    spriteActuel = tableauSprite[4];
                     break;
 
                 case 2:
-                    spriteActuelle = tableauSprite[5];
+                    spriteActuel = tableauSprite[5];
                     break;
 
                 case 3:
-                    spriteActuelle = tableauSprite[4];
+                    spriteActuel = tableauSprite[4];
                     break;
             }
         else if (y > 0)
             switch (alternerSprite) {
                 case 0:
-                    spriteActuelle = tableauSprite[0];
+                    spriteActuel = tableauSprite[0];
                     break;
 
                 case 1:
-                    spriteActuelle = tableauSprite[1];
+                    spriteActuel = tableauSprite[1];
                     break;
 
                 case 2:
-                    spriteActuelle = tableauSprite[2];
+                    spriteActuel = tableauSprite[2];
                     break;
 
                 case 3:
-                    spriteActuelle = tableauSprite[1];
+                    spriteActuel = tableauSprite[1];
                     break;
             }
 
@@ -152,6 +152,14 @@ public class Entite extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(spriteActuelle, personnage.getPositionX(), personnage.getPositionY(), this);
+        g.drawImage(spriteActuel, personnage.getPositionX(), personnage.getPositionY(), this);
+    }
+
+    public int getSpriteWidth() {
+        return tableauSprite[0].getWidth();
+    }
+
+    public int getSpriteHeight() {
+        return tableauSprite[0].getHeight();
     }
 }

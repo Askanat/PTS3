@@ -63,13 +63,17 @@ public class Jeu {
     }
 
     public void setMonstre(int id) {
+        // Pour le moment on sélectionne le hero 1
+        if(hero == null)
+            setHero(1);
+
         ArrayList<String> donneesMonstre;
 
         donneesMonstre = bdd.readMonstre(id);
 
         tableauMonstre.add(new Monstre(donneesMonstre.get(0), Integer.parseInt(donneesMonstre.get(1)), Integer.parseInt(donneesMonstre.get(2)),
                 Integer.parseInt(donneesMonstre.get(3)), Integer.parseInt(donneesMonstre.get(4)), Integer.parseInt(donneesMonstre.get(5)), 300 + 100 * id, 300 + 100 * id,
-                Integer.parseInt(donneesMonstre.get(6))));
+                Integer.parseInt(donneesMonstre.get(6)), hero));
     }
 
     public Monstre getMonstre(int i) {

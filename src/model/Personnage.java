@@ -1,5 +1,7 @@
 package model;
 
+import vue.Entite;
+
 /**
  * Created by bastien on 29/09/16.
  */
@@ -8,17 +10,17 @@ public abstract class Personnage {
 
 
     protected String nom;
-
     protected int niveau;
-
     protected int vie, vieMax;
     protected int mana, manaMax;
     protected int degats, degatMax;
     protected int armure, armureMax;
-
     protected int positionX, positionY;
-
     protected int deplacementEnX, deplacementEnY, coefDeplacement;
+
+    // Nécessaire pour gérer l'orientation d'un personnage
+    public static final int GAUCHE = 0;
+    public static final int DROITE = 1;
 
     public Personnage(String nom, int niveau, int positionX, int positionY, int coefDeplacement) {
 
