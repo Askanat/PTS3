@@ -40,6 +40,9 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 fenetre.requestFocus();
                 // quitte le perso : sauvegarde du perso + mise du perso à null
                 break;
+            case "Retour Au Bureau":
+                System.exit(0);
+                break;
         }
     }
 }
