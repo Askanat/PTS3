@@ -4,15 +4,17 @@ import controleur.*;
 import model.Jeu;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by bastien on 28/09/16.
  */
 
 public class Fenetre extends JFrame {
+    public static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
-    public static final int X = 1920;
-    public static final int Y = 1080;
+    public static final int X = (int)tailleEcran.getWidth();
+    public static final int Y = (int)tailleEcran.getHeight();
     private Jeu jeu;
     public MenuPrincipal panelMenuPrincipal;
     public FenetreCharger panelFenetreCharger;
