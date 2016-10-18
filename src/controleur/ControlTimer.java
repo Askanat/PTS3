@@ -6,6 +6,7 @@ import vue.Fenetre;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 /**
  * Created by bastien on 30/09/16.
@@ -23,20 +24,10 @@ public class ControlTimer extends Control implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (ControlFenetreNouvellePartie.nouvellePartie1) {
-            ControlFenetreNouvellePartie.nouvellePartie1 = false;
-            enPartie();
-        } else if (ControlFenetreNouvellePartie.nouvellePartie2) {
-            ControlFenetreNouvellePartie.nouvellePartie2 = false;
-            enPartie();
-        } else if (ControlFenetreNouvellePartie.nouvellePartie3) {
-            ControlFenetreNouvellePartie.nouvellePartie3 = false;
-            enPartie();
-        } else if (ControlFenetreCharger.ChargerPartie) {
-            ControlFenetreCharger.ChargerPartie = false;
+        if (ControlFenetreCharger.chargerPartie) {
+            ControlFenetreCharger.chargerPartie = false;
             enPartie();
         }
-
 
         if (Control.enPartie) {
             if (jeu.getPause()) {// echap
@@ -74,8 +65,8 @@ public class ControlTimer extends Control implements ActionListener {
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
                     Thread monstreThread = new Thread(jeu.getMonstre(i));
 
-                    if(monstreThread.isAlive() == false)
-                        monstreThread.run();
+                   if(monstreThread.isAlive() == false)
+                        monstreThread.start();
 
                     fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(i).getDeplacementEnX(), jeu.getMonstre(i).getDeplacementEnY());
                 }

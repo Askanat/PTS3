@@ -12,14 +12,14 @@ import java.awt.event.ActionListener;
 
 public class ControlFenetreCharger extends Control implements ActionListener {
 
-    public static boolean ChargerPartie;
+    public static boolean chargerPartie;
     private int valeurHero;
 
     public ControlFenetreCharger(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlFenetreCharger(this);
 
-        ChargerPartie = false;
+        chargerPartie = false;
         valeurHero = 0;
     }
 
@@ -41,7 +41,7 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                 spawnMonstre(2);
                 spawnMonstre(3);
                 valeurHero = 0;
-                ChargerPartie = true;
+                chargerPartie = true;
                 break;
             case "Retour":
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);

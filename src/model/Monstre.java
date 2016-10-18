@@ -39,7 +39,7 @@ public class Monstre extends Personnage implements Runnable {
         this.coefArmure = coefArmure;
 
         // Le monstre peut voir jusqu'à 100 px devant ou derrière lui
-        this.distanceVue = 100;
+        this.distanceVue = 200;
 
         this.hero = hero;
 
@@ -47,7 +47,7 @@ public class Monstre extends Personnage implements Runnable {
                 degatMax + ", armureMax:" + armureMax);
     }
 
-    public void deplacer(int sens) {
+    private void deplacerTete(int sens) {
         switch (sens) {
             case GAUCHE:
                 deplacerAGauche();
@@ -57,16 +57,42 @@ public class Monstre extends Personnage implements Runnable {
         }
     }
 
+    public void deplacer(int sens) {
+        switch (sens) {
+            case GAUCHE:
+                setPositionX(positionX - 2);
+                break;
+            case DROITE:
+                setPositionX(positionX + 2);
+        }
+
+        try {
+            Thread.sleep(60);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Thread destiné à gérer les interactions d'un monstre (déplacement, attaque, etc...)
 
     @Override
     public void run() {
+        try {
+            int max = 4000, min = 2000;
+            Thread.sleep(new Random().nextInt((max - min) + 1) + min);
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         // Si le hero est dans le champ de vision et à droite, déplace le monstre à droite
 
         if(positionX <= hero.positionX &&
                 (positionX + distanceVue) >= hero.positionX) {
-           while(positionX <= hero.positionX &&
-                    (positionX + distanceVue) >= hero.positionX) {
+            int newPosx = hero.positionX;
+            System.out.println("premier if");
+
+           while(positionX <= newPosx) {
                deplacer(DROITE);
            }
         }
@@ -75,8 +101,12 @@ public class Monstre extends Personnage implements Runnable {
 
         else if(positionX >= (hero.positionX) &&
                 (positionX - distanceVue) <= hero.positionX) {
-            while(positionX >= hero.positionX &&
-                    (positionX - distanceVue) <= hero.positionX) {
+            int newPosx = hero.positionX;
+            System.out.println("deuxieme if");
+
+            deplacerTete(GAUCHE);
+
+            while(positionX >= newPosx) {
                 deplacer(GAUCHE);
             }
         }
@@ -85,9 +115,13 @@ public class Monstre extends Personnage implements Runnable {
         // (distanceVue / 4) et distanceVue
 
         else {
+            System.out.println("troisième if");
+
             Random rand = new Random();
             int sens = rand.nextInt(2);
             int longueur = rand.nextInt((distanceVue - (distanceVue / 4)) + 1) + (distanceVue / 4);
+
+           deplacerTete(sens);
 
             for(int i = 0; i < longueur; i++) {
                 deplacer(sens);
