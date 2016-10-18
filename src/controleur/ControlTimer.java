@@ -6,7 +6,6 @@ import vue.Fenetre;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 /**
  * Created by bastien on 30/09/16.
@@ -59,7 +58,7 @@ public class ControlTimer extends Control implements ActionListener {
                     jeu.getHero().dessendre();
                 }
 
-                fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getDeplacementEnX(), jeu.getHero().getDeplacementEnY());
+                fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getVecteurDeplacementEnX(), jeu.getHero().getVecteurDeplacementEnY());
                 jeu.getHero().deplacer();
 
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
@@ -68,7 +67,7 @@ public class ControlTimer extends Control implements ActionListener {
                    if(monstreThread.isAlive() == false)
                         monstreThread.start();
 
-                    fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(i).getDeplacementEnX(), jeu.getMonstre(i).getDeplacementEnY());
+                    fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(i).getVecteurDeplacementEnX(), jeu.getMonstre(i).getVecteurDeplacementEnY());
                 }
 
             }

@@ -1,7 +1,5 @@
 package model;
 
-import vue.Entite;
-
 /**
  * Created by bastien on 29/09/16.
  */
@@ -16,23 +14,23 @@ public abstract class Personnage {
     protected int degats, degatMax;
     protected int armure, armureMax;
     protected int positionX, positionY;
-    protected int deplacementEnX, deplacementEnY, coefDeplacement;
+    protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnPixel;
 
     // Nécessaire pour gérer l'orientation d'un personnage
     public static final int GAUCHE = 0;
     public static final int DROITE = 1;
 
-    public Personnage(String nom, int niveau, int positionX, int positionY, int coefDeplacement) {
+    public Personnage(String nom, int niveau, int positionX, int positionY, int vitesseDeDeplacementEnPixel) {
 
         this.nom = nom;
         this.niveau = niveau;
 
         this.positionX = positionX;
         this.positionY = positionY;
-        this.coefDeplacement = coefDeplacement;
+        this.vitesseDeDeplacementEnPixel = vitesseDeDeplacementEnPixel;
 
-        deplacementEnX = 0;
-        deplacementEnY = 0;
+        vecteurDeplacementEnX = 0;
+        vecteurDeplacementEnY = 0;
     }
 
     public void recevoirDegats(int degats) {
@@ -117,45 +115,45 @@ public abstract class Personnage {
     }
 
     public void dessendre() {
-        setDeplacementEnY(1);
+        setVecteurDeplacementEnY(1);
     }
 
     public void deplacerADroite() {
-        setDeplacementEnX(1);
+        setVecteurDeplacementEnX(1);
     }
 
     public void sauter() {
-        setDeplacementEnY(-1);
+        setVecteurDeplacementEnY(-1);
     }
 
     public void deplacerAGauche() {
-        setDeplacementEnX(-1);
+        setVecteurDeplacementEnX(-1);
     }
 
     public void deplacer() {
-        setPositionX(getPositionX() + getDeplacementEnX() * getCoefDeplacement());
-        setPositionY(getPositionY() + getDeplacementEnY() * getCoefDeplacement());
-        setDeplacementEnX(0);
-        setDeplacementEnY(0);
+        setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnPixel());
+        setPositionY(getPositionY() + getVecteurDeplacementEnY() * getVitesseDeDeplacementEnPixel());
+        setVecteurDeplacementEnX(0);
+        setVecteurDeplacementEnY(0);
     }
 
-    public void setDeplacementEnX(int x) {
-        deplacementEnX = x;
+    public void setVecteurDeplacementEnX(int x) {
+        vecteurDeplacementEnX = x;
     }
 
-    public void setDeplacementEnY(int y) {
-        deplacementEnY = y;
+    public void setVecteurDeplacementEnY(int y) {
+        vecteurDeplacementEnY = y;
     }
 
-    public int getDeplacementEnX() {
-        return deplacementEnX;
+    public int getVecteurDeplacementEnX() {
+        return vecteurDeplacementEnX;
     }
 
-    public int getDeplacementEnY() {
-        return deplacementEnY;
+    public int getVecteurDeplacementEnY() {
+        return vecteurDeplacementEnY;
     }
 
-    public int getCoefDeplacement() {
-        return coefDeplacement;
+    public int getVitesseDeDeplacementEnPixel() {
+        return vitesseDeDeplacementEnPixel;
     }
 }

@@ -18,8 +18,8 @@ public class Monstre extends Personnage implements Runnable {
     private Hero hero;
 
     public Monstre(String nom, int niveau, int coefVie, int coefMana, int coefDegat, int coefArmure,
-                   int positionX, int positionY, int coefDeplacement, Hero hero) {
-        super(nom, niveau, positionX, positionY, coefDeplacement);
+                   int positionX, int positionY, int vitesseDeDeplacementEnPixel, Hero hero) {
+        super(nom, niveau, positionX, positionY, vitesseDeDeplacementEnPixel);
 
         vieMax = coefVie * niveau;
         vie = vieMax;

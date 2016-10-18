@@ -12,6 +12,7 @@ import static vue.Fenetre.Y;
 /**
  * Created by Florian Vaissiere on 06/10/2016.
  */
+
 public class MenuEnJeu extends JPanel {
 
     private Jeu jeu;
