@@ -60,7 +60,7 @@ public class ControlTimer extends Control implements ActionListener {
 
                 fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getVecteurDeplacementEnX(), jeu.getHero().getVecteurDeplacementEnY());
                 jeu.getHero().deplacer();
-
+/*
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
                     Thread monstreThread = new Thread(jeu.getMonstre(i));
 
@@ -69,6 +69,7 @@ public class ControlTimer extends Control implements ActionListener {
 
                     fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(i).getVecteurDeplacementEnX(), jeu.getMonstre(i).getVecteurDeplacementEnY());
                 }
+                */
 
             }
              // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
