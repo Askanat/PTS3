@@ -65,7 +65,7 @@ public class FenetreCharger extends JPanel {
         slot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         slot1.setBorder(null);
 
-        slot2.setBounds((int) (5 / 12.0 * Y), (int) (5 / 36.0 * Y), (int) (1 / 6.0 * X), (int) (4 / 9.0 * Y));
+        slot2.setBounds((int) (5 / 12.0 * X), (int) (5 / 36.0 * Y), (int) (1 / 6.0 * X), (int) (4 / 9.0 * Y));
         slot2.setForeground(Color.WHITE);
         slot2.setBackground(new Color(0, 0, 0, 0));
         slot2.setFocusable(false);
