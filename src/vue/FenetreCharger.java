@@ -58,21 +58,21 @@ public class FenetreCharger extends JPanel {
        protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        slot1.setBounds((int) (5 / 32.0 * X), (int) (5 / 36.0 * Y), (int) (1 / 6.0 * X), (int) (4 / 9.0 * Y));
+        slot1.setBounds((int) (17 / 96.0 * X), (int) (2 / 9.0 * Y), (int) (1 / 8.0 * X), (int) (7 / 27.0 * Y));
         slot1.setForeground(Color.WHITE);
         slot1.setBackground(new Color(0, 0, 0, 0));
         slot1.setFocusable(false);
         slot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         slot1.setBorder(null);
 
-        slot2.setBounds((int) (5 / 12.0 * X), (int) (5 / 36.0 * Y), (int) (1 / 6.0 * X), (int) (4 / 9.0 * Y));
+        slot2.setBounds((int) (7/16.0*X),(int) (2 / 9.0 * Y), (int) (1 / 8.0 * X), (int) (7 / 27.0 * Y));
         slot2.setForeground(Color.WHITE);
         slot2.setBackground(new Color(0, 0, 0, 0));
         slot2.setFocusable(false);
         slot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         slot2.setBorder(null);
 
-        slot3.setBounds((int) (65 / 96.0 * X), (int) (5 / 36.0 * Y), (int) (1 / 6.0 * X), (int) (4 / 9.0 * Y));
+        slot3.setBounds((int) (223/320.0*X), (int) (2 / 9.0 * Y), (int) (1 / 8.0 * X), (int) (7 / 27.0 * Y));
         slot3.setForeground(Color.WHITE);
         slot3.setBackground(new Color(0, 0, 0, 0));
         slot3.setFocusable(false);
