@@ -13,11 +13,15 @@ import java.awt.event.ActionListener;
 
 public class ControlTimer extends Control implements ActionListener {
 
+    private int temps = 0;
+
     public ControlTimer(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
 
         Timer timer = new Timer(100, this);
         timer.start();
+
+
     }
 
     @Override
@@ -44,19 +48,28 @@ public class ControlTimer extends Control implements ActionListener {
             }
 
             if (!jeu.getPause()) {
+                jeu.incrementeTemps();
+
                 if (ControlClavier.toucheEnfoncer[1]) {// touche de gauche
                     jeu.getHero().deplacerAGauche();
                 }
-                if (ControlClavier.toucheEnfoncer[2]) {// touche du haut
-                    jeu.getHero().sauter();
+                if (ControlClavier.toucheEnfoncer[2] && !jeu.getHero().getDessendre() && temps == 0) {// touche du haut
+                    jeu.getHero().setSauter(true);
+                    temps = jeu.getTemps();
                 }
                 if (ControlClavier.toucheEnfoncer[3]) {// touche de droite
                     jeu.getHero().deplacerADroite();
                 }
 
-                if (ControlClavier.toucheEnfoncer[4]) { // touche du bas
-                    jeu.getHero().dessendre();
+                if (jeu.getHero().getSauter() && jeu.getTemps() <= temps + 6)
+                    jeu.getHero().sauter();
+                else {
+                    jeu.getHero().setSauter(false);
+                    temps = 0;
                 }
+
+                jeu.getHero().dessendre(jeu.getHero().getPositionY() > 800);
+
 
                 fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getVecteurDeplacementEnX(), jeu.getHero().getVecteurDeplacementEnY());
                 jeu.getHero().deplacer();
@@ -72,7 +85,7 @@ public class ControlTimer extends Control implements ActionListener {
                 */
 
             }
-             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
+            // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
         }
 
         fenetre.repaint();

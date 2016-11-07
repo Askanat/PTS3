@@ -15,6 +15,7 @@ public abstract class Personnage {
     protected int armure, armureMax;
     protected int positionX, positionY;
     protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnPixel;
+    protected boolean sauter, dessendre;
 
     // Nécessaire pour gérer l'orientation d'un personnage
     public static final int GAUCHE = 0;
@@ -114,20 +115,26 @@ public abstract class Personnage {
         );
     }
 
-    public void dessendre() {
-        setVecteurDeplacementEnY(1);
-    }
-
     public void deplacerADroite() {
         setVecteurDeplacementEnX(1);
     }
 
     public void sauter() {
-        setVecteurDeplacementEnY(-1);
+        if (!dessendre)
+            setVecteurDeplacementEnY(-1);
     }
 
     public void deplacerAGauche() {
         setVecteurDeplacementEnX(-1);
+    }
+
+    public void dessendre(boolean collision) {
+        if (!collision && !sauter) {
+            dessendre = true;
+            setVecteurDeplacementEnY(1);
+        }
+        else
+            dessendre = false;
     }
 
     public void deplacer() {
@@ -135,6 +142,14 @@ public abstract class Personnage {
         setPositionY(getPositionY() + getVecteurDeplacementEnY() * getVitesseDeDeplacementEnPixel());
         setVecteurDeplacementEnX(0);
         setVecteurDeplacementEnY(0);
+    }
+
+    public void setSauter(boolean sauter) {
+        this.sauter = sauter;
+    }
+
+    public boolean getSauter() {
+        return sauter;
     }
 
     public void setVecteurDeplacementEnX(int x) {
@@ -155,5 +170,9 @@ public abstract class Personnage {
 
     public int getVitesseDeDeplacementEnPixel() {
         return vitesseDeDeplacementEnPixel;
+    }
+
+    public boolean getDessendre() {
+        return dessendre;
     }
 }
