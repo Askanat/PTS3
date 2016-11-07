@@ -55,38 +55,38 @@ public class FenetreCharger extends JPanel {
         retour.addActionListener(controlFenetreCharger);
     }
 
-    protected void paintComponent(Graphics g) {
+       protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        slot1.setBounds(300, 150, 320, 480);
+        slot1.setBounds((int) (5 / 32.0 * X), (int) (5 / 36.0 * Y), (int) (1 / 6.0 * X), (int) (4 / 9.0 * Y));
         slot1.setForeground(Color.WHITE);
         slot1.setBackground(new Color(0, 0, 0, 0));
         slot1.setFocusable(false);
         slot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         slot1.setBorder(null);
 
-        slot2.setBounds(800, 150, 320, 480);
+        slot2.setBounds((int) (5 / 12.0 * Y), (int) (5 / 36.0 * Y), (int) (1 / 6.0 * X), (int) (4 / 9.0 * Y));
         slot2.setForeground(Color.WHITE);
         slot2.setBackground(new Color(0, 0, 0, 0));
         slot2.setFocusable(false);
         slot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         slot2.setBorder(null);
 
-        slot3.setBounds(1300, 150, 320, 480);
+        slot3.setBounds((int) (65 / 96.0 * X), (int) (5 / 36.0 * Y), (int) (1 / 6.0 * X), (int) (4 / 9.0 * Y));
         slot3.setForeground(Color.WHITE);
         slot3.setBackground(new Color(0, 0, 0, 0));
         slot3.setFocusable(false);
         slot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
         slot3.setBorder(null);
 
-        jouer.setBounds(705, 788, 472, 94);
+        jouer.setBounds((int) (11 / 30.0 * X), (int) (11 / 15.0 * Y), (int) (1 / 4.0 * X), (int) (1 / 12.0 * Y));
         jouer.setForeground(Color.WHITE);
         jouer.setBackground(new Color(0, 0, 0, 0));
         jouer.setFocusable(false);
         jouer.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jouer.setBorder(null);
 
-        retour.setBounds(64, 983, 253, 46);
+        retour.setBounds((int) (1 / 30.0 * X), (int) (49 / 54.0 * Y), (int) (2 / 15.0 * X), (int) (2 / 45.0 * Y));
         retour.setForeground(Color.WHITE);
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);
@@ -97,19 +97,19 @@ public class FenetreCharger extends JPanel {
         g.drawImage(getToolkit().getImage("images/chargerPartie.png"), 0, 0, getWidth(), getHeight(), this);
 
         try {
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero1.png")), 3, 4)[1], 355, 310, 200, 200, this);
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero1.png")), 3, 4)[1], (int) (3 / 16.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         try {
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero2.png")), 3, 4)[1], 855, 310, 200, 200, this);
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero2.png")), 3, 4)[1], (int) (43 / 96.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         try {
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero3.png")), 3, 4)[1], 1355, 310, 200, 200, this);
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero3.png")), 3, 4)[1], (int) (17 / 24.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
         } catch (IOException e) {
             e.printStackTrace();
         }
