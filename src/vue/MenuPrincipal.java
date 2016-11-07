@@ -42,31 +42,31 @@ public class MenuPrincipal extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        nouvellePartie.setBounds(1248, 419, 415, 52);
+        nouvellePartie.setBounds((int) (13 / 20.0 * X), (int) (7 / 18.0 * Y), (int) (5 / 24.0 * X), (int) (1 / 20.0 * Y));
         nouvellePartie.setBackground(new Color(0, 0, 0, 0));
         nouvellePartie.setFocusable(false);
         nouvellePartie.setCursor(new Cursor(Cursor.HAND_CURSOR));
         nouvellePartie.setBorder(null);
 
-        chargerPartie.setBounds(1249, 496, 415, 52);
+        chargerPartie.setBounds((int) (13 / 20.0 * X), (int) (11 / 24.0 * Y), (int) (5 / 24.0 * X), (int) (1 / 20.0 * Y));
         chargerPartie.setBackground(new Color(0, 0, 0, 0));
         chargerPartie.setFocusable(false);
         chargerPartie.setCursor(new Cursor(Cursor.HAND_CURSOR));
         chargerPartie.setBorder(null);
 
-        options.setBounds(1249, 572, 415, 52);
+        options.setBounds((int) (13 / 20.0 * X), (int) (19 / 36.0 * Y), (int) (5 / 24.0 * X), (int) (1 / 20.0 * Y));
         options.setBackground(new Color(0, 0, 0, 0));
         options.setFocusable(false);
         options.setCursor(new Cursor(Cursor.HAND_CURSOR));
         options.setBorder(null);
 
-        credits.setBounds(1248, 649, 418, 52);
+        credits.setBounds((int) (13 / 20.0 * X), (int) (3 / 5.0 * Y), (int) (5 / 24.0 * X), (int) (1 / 20.0 * Y));
         credits.setBackground(new Color(0, 0, 0, 0));
         credits.setFocusable(false);
         credits.setCursor(new Cursor(Cursor.HAND_CURSOR));
         credits.setBorder(null);
 
-        quitter.setBounds(1248, 726, 416, 53);
+        quitter.setBounds((int) (13 / 20.0 * X), (int) (27 / 40.0 * Y), (int) (5 / 24.0 * X), (int) (1 / 20.0 * Y));
         quitter.setBackground(new Color(0, 0, 0, 0));
         quitter.setFocusable(false);
         quitter.setCursor(new Cursor(Cursor.HAND_CURSOR));
