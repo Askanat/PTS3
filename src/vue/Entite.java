@@ -63,15 +63,13 @@ public class Entite extends JPanel {
         if (x == 0 && y == 0)
             if (spriteActuel == tableauSprite[6] || spriteActuel == tableauSprite[8])
                 spriteActuel = tableauSprite[7];
-            else if (spriteActuel == tableauSprite[9] || spriteActuel == tableauSprite[11])
-                spriteActuel = tableauSprite[10];
             else if (spriteActuel == tableauSprite[3] || spriteActuel == tableauSprite[5])
                 spriteActuel = tableauSprite[4];
-            else if (spriteActuel == tableauSprite[0] || spriteActuel == tableauSprite[2])
-                spriteActuel = tableauSprite[1];
 
         // selectionne le sens de déplacement
-        if (x > 0)
+        if (!personnage.getCollision() && (x > 0 || (spriteActuel == tableauSprite[6] || spriteActuel == tableauSprite[7] || spriteActuel == tableauSprite[8])))
+            spriteActuel = tableauSprite[2];
+        else if (x > 0 && personnage.getCollision())
             switch (alternerSprite) {
                 case 0:
                     spriteActuel = tableauSprite[6];
@@ -89,25 +87,10 @@ public class Entite extends JPanel {
                     spriteActuel = tableauSprite[7];
                     break;
             }
-       /* else if (y < 0)
-            switch (alternerSprite) {
-                case 0:
-                    spriteActuel = tableauSprite[9];
-                    break;
 
-                case 1:
-                    spriteActuel = tableauSprite[10];
-                    break;
-
-                case 2:
-                    spriteActuel = tableauSprite[11];
-                    break;
-
-                case 3:
-                    spriteActuel = tableauSprite[10];
-                    break;
-            }*/
-        else if (x < 0)
+        else if (!personnage.getCollision() && (x > 0 || (spriteActuel == tableauSprite[3] || spriteActuel == tableauSprite[4] || spriteActuel == tableauSprite[5])))
+            spriteActuel = tableauSprite[0];
+        else if (x < 0 && personnage.getCollision())
             switch (alternerSprite) {
                 case 0:
                     spriteActuel = tableauSprite[3];
@@ -125,27 +108,18 @@ public class Entite extends JPanel {
                     spriteActuel = tableauSprite[4];
                     break;
             }
-        /*else if (y > 0)
-            switch (alternerSprite) {
-                case 0:
-                    spriteActuel = tableauSprite[0];
-                    break;
 
-                case 1:
-                    spriteActuel = tableauSprite[1];
-                    break;
+        else if (personnage.getCollision() && spriteActuel == tableauSprite[0]) {
+            spriteActuel = tableauSprite[3];
+            alternerSprite++;
+        } else if (personnage.getCollision() && spriteActuel == tableauSprite[2]) {
+            spriteActuel = tableauSprite[8];
+            alternerSprite--;
+        }
 
-                case 2:
-                    spriteActuel = tableauSprite[2];
-                    break;
-
-                case 3:
-                    spriteActuel = tableauSprite[1];
-                    break;
-            }*/
 
         // permet d'alterner les mouvement
-        if (x != 0 || y != 0)
+        if (x != 0)
             if ((alternerSprite == 0) || (alternerSprite == 1) || (alternerSprite == 2))
                 alternerSprite++;
 
