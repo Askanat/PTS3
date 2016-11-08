@@ -12,14 +12,14 @@ import java.awt.event.KeyListener;
 
 public class ControlClavier extends Control implements KeyListener {
 
-    private final int TOUCHE_CLAVIER[] = {27, 37, 38, 39, 40}; // fleche de gauche, fleche du haut, fleche de droit, fleche du bas
+    private final int TOUCHE_CLAVIER[] = ControlTouche.getJavaTouches();
     public static boolean toucheEnfoncer[];
 
     public ControlClavier(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlClavier(this);
 
-        toucheEnfoncer = new boolean[TOUCHE_CLAVIER.length];
+        toucheEnfoncer = new boolean[ControlTouche.getNbTouches()];
 
         for (int i = 0; i < toucheEnfoncer.length; i++)
             toucheEnfoncer[i] = false;
@@ -52,7 +52,7 @@ public class ControlClavier extends Control implements KeyListener {
             i++;
         }
 
-        if (e.getKeyCode() == 27) // echap
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
             if (Control.enPartie)
                 jeu.inversePause();
     }

@@ -4,6 +4,7 @@ import model.Jeu;
 import vue.Fenetre;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -50,15 +51,24 @@ public class ControlTimer extends Control implements ActionListener {
             if (!jeu.getPause()) {
                 jeu.incrementeTemps();
 
-                if (ControlClavier.toucheEnfoncer[1]) {// touche de gauche
+                if (ControlClavier.toucheEnfoncer[ControlTouche.GAUCHE]) {
                     jeu.getHero().deplacerAGauche();
                 }
-                if (ControlClavier.toucheEnfoncer[2] && !jeu.getHero().getDessendre() && temps == 0) {// touche du haut
+                if (ControlClavier.toucheEnfoncer[ControlTouche.HAUT] && !jeu.getHero().getDessendre() && temps == 0) {
                     jeu.getHero().setSauter(true);
                     temps = jeu.getTemps();
                 }
-                if (ControlClavier.toucheEnfoncer[3]) {// touche de droite
+                if (ControlClavier.toucheEnfoncer[ControlTouche.DROITE]) {
                     jeu.getHero().deplacerADroite();
+                }
+                if (ControlClavier.toucheEnfoncer[ControlTouche.A]) {
+                    // Problème, il faut seulement attaquer lorsque la touche est relachée. C'est pas géré pour le moment.
+                    int nbMonstre = jeu.getSizeTabMonstre(), i;
+
+                    for(i = 0; i < nbMonstre; i++) {
+                        jeu.getHero().attaquer(jeu.getMonstre(i));
+                        System.out.println("Attaque du personnage");
+                    }
                 }
 
                 if (jeu.getHero().getSauter() && jeu.getTemps() <= temps + 10)
@@ -68,7 +78,7 @@ public class ControlTimer extends Control implements ActionListener {
                     temps = 0;
                 }
 
-                jeu.getHero().dessendre(jeu.getHero().getPositionY() > 800);
+                jeu.getHero().dessendre(jeu.getHero().getPositionY() > 500);
 
 
                 fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getVecteurDeplacementEnX(), jeu.getHero().getVecteurDeplacementEnY());

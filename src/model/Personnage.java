@@ -48,8 +48,17 @@ public abstract class Personnage {
     }
 
     public void attaquer(Personnage cible) {
+        int portee = 5;
+
+        /* Il faut gérer l'orientation du Personnage
+         * Pas fonctionnel pour le moment.
+         */
+
+        if((positionX - portee >= cible.positionX)||
+        (positionX + portee <= cible.positionX ))
+            cible.recevoirDegats(getDegats());
+
         System.out.println(getNom() + " attaque " + cible.getNom() + " !");
-        cible.recevoirDegats(getDegats());
     }
 
     public final boolean estVivant() {
