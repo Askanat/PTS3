@@ -24,7 +24,7 @@ public class Hero extends Personnage {
 
     public Hero(String nom, int niveau, int experience, int experienceMax, int pointCompetence, int pointConstitution,
                 int pointIntelligence, int pointForce, int pointResistance, int or, int chargeMax, int positionX, int positionY) {
-        super(nom, niveau, positionX, positionY, 20);
+        super(nom, niveau, positionX, positionY, 20, 40);
 
         vieMax = pointConstitution * COEF_VIE + VIE_DE_BASE;
         vie = vieMax;

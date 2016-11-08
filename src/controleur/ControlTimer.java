@@ -61,9 +61,9 @@ public class ControlTimer extends Control implements ActionListener {
                     jeu.getHero().deplacerADroite();
                 }
 
-                if (jeu.getHero().getSauter() && jeu.getTemps() <= temps + 6)
+                if (jeu.getHero().getSauter() && jeu.getTemps() <= temps + 10)
                     jeu.getHero().sauter();
-                else {
+                else if (jeu.getHero().getSauter()){
                     jeu.getHero().setSauter(false);
                     temps = 0;
                 }

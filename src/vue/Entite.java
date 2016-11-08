@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static vue.Fenetre.X;
+import static vue.Fenetre.Y;
+
 /**
  * Created by bastien on 02/10/16.
  */
@@ -86,7 +89,7 @@ public class Entite extends JPanel {
                     spriteActuel = tableauSprite[7];
                     break;
             }
-        else if (y < 0)
+       /* else if (y < 0)
             switch (alternerSprite) {
                 case 0:
                     spriteActuel = tableauSprite[9];
@@ -103,7 +106,7 @@ public class Entite extends JPanel {
                 case 3:
                     spriteActuel = tableauSprite[10];
                     break;
-            }
+            }*/
         else if (x < 0)
             switch (alternerSprite) {
                 case 0:
@@ -122,7 +125,7 @@ public class Entite extends JPanel {
                     spriteActuel = tableauSprite[4];
                     break;
             }
-        else if (y > 0)
+        /*else if (y > 0)
             switch (alternerSprite) {
                 case 0:
                     spriteActuel = tableauSprite[0];
@@ -139,7 +142,7 @@ public class Entite extends JPanel {
                 case 3:
                     spriteActuel = tableauSprite[1];
                     break;
-            }
+            }*/
 
         // permet d'alterner les mouvement
         if (x != 0 || y != 0)
@@ -152,7 +155,7 @@ public class Entite extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(spriteActuel, personnage.getPositionX(), personnage.getPositionY(), this);
+        g.drawImage(spriteActuel, personnage.getPositionX(), personnage.getPositionY(), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
     }
 
     public int getSpriteWidth() {

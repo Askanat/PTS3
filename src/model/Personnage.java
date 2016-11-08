@@ -14,22 +14,24 @@ public abstract class Personnage {
     protected int degats, degatMax;
     protected int armure, armureMax;
     protected int positionX, positionY;
-    protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnPixel;
+    protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY;
     protected boolean sauter, dessendre;
+    protected boolean collision;
 
     // Nécessaire pour gérer l'orientation d'un personnage
     public static final int GAUCHE = 0;
     public static final int DROITE = 1;
 
-    public Personnage(String nom, int niveau, int positionX, int positionY, int vitesseDeDeplacementEnPixel) {
+    public Personnage(String nom, int niveau, int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY) {
 
         this.nom = nom;
         this.niveau = niveau;
 
         this.positionX = positionX;
         this.positionY = positionY;
-        this.vitesseDeDeplacementEnPixel = vitesseDeDeplacementEnPixel;
-
+        this.vitesseDeDeplacementEnPixelX = vitesseDeDeplacementEnPixelX;
+        this.vitesseDeDeplacementEnPixelY = vitesseDeDeplacementEnPixelY;
+        collision = false;
         vecteurDeplacementEnX = 0;
         vecteurDeplacementEnY = 0;
     }
@@ -129,17 +131,18 @@ public abstract class Personnage {
     }
 
     public void dessendre(boolean collision) {
-        if (!collision && !sauter) {
-            dessendre = true;
+        setCollision(collision);
+        if (!getCollision() && !sauter) {
+            setDessendre(true);
             setVecteurDeplacementEnY(1);
-        }
-        else
+        } else if (getDessendre()) {
             dessendre = false;
+        }
     }
 
     public void deplacer() {
-        setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnPixel());
-        setPositionY(getPositionY() + getVecteurDeplacementEnY() * getVitesseDeDeplacementEnPixel());
+        setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnPixelX());
+        setPositionY(getPositionY() + getVecteurDeplacementEnY() * getVitesseDeDeplacementEnPixelY());
         setVecteurDeplacementEnX(0);
         setVecteurDeplacementEnY(0);
     }
@@ -168,11 +171,26 @@ public abstract class Personnage {
         return vecteurDeplacementEnY;
     }
 
-    public int getVitesseDeDeplacementEnPixel() {
-        return vitesseDeDeplacementEnPixel;
+    public int getVitesseDeDeplacementEnPixelX() {
+        return vitesseDeDeplacementEnPixelX;
+    }
+    public int getVitesseDeDeplacementEnPixelY() {
+        return vitesseDeDeplacementEnPixelY;
     }
 
     public boolean getDessendre() {
         return dessendre;
+    }
+
+    public void setDessendre(boolean dessendre) {
+        this.dessendre = dessendre;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
+    }
+
+    public boolean getCollision() {
+        return collision;
     }
 }
