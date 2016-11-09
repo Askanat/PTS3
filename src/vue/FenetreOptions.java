@@ -22,7 +22,7 @@ public class FenetreOptions extends JPanel {
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
-        retour = new JButton("Retour");
+        retour = new JButton("");
         retour.setActionCommand("Retour");
 
         add(retour);
@@ -42,7 +42,7 @@ public class FenetreOptions extends JPanel {
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retour.setBorder(null);
 
-        Image img = getToolkit().getImage("images/fondMenuPrinci.png");
+        Image img = getToolkit().getImage("images/menuOptionsTest.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 }
