@@ -27,6 +27,8 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
                 fenetre.requestFocus();
                 break;
             case "Charger Partie":
+                jeu.setHero(1);
+                fenetre.panelFenetreDepart.dessineHero(1);
                 fenetre.setContentPane(fenetre.panelFenetreCharger);
                 fenetre.repaint();
                 fenetre.pack();
