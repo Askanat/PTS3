@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -8,6 +9,10 @@ import java.util.ArrayList;
  */
 
 public class Jeu {
+
+    public static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    public static final int X = (int)tailleEcran.getWidth();
+    public static final int Y = (int)tailleEcran.getHeight();
 
     private int temps;
 
@@ -55,14 +60,14 @@ public class Jeu {
         hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)),
                 Integer.parseInt(donneesHero.get(3)), Integer.parseInt(donneesHero.get(4)), Integer.parseInt(donneesHero.get(5)),
                 Integer.parseInt(donneesHero.get(6)), Integer.parseInt(donneesHero.get(7)), Integer.parseInt(donneesHero.get(8)),
-                Integer.parseInt(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), 500, 500);
+                Integer.parseInt(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), (int) (25/96.0 * X), (int) (25/51.0 * Y));
     }
 
     public Hero getHero() {
         return hero;
     }
 
-    public void setMonstre(int id) {
+    public void setMonstre(int id, int positionX, int positionY) {
         // Pour le moment on sélectionne le hero 1
         if(hero == null)
             setHero(1);
@@ -72,7 +77,7 @@ public class Jeu {
         donneesMonstre = bdd.readMonstre(id);
 
         tableauMonstre.add(new Monstre(donneesMonstre.get(0), Integer.parseInt(donneesMonstre.get(1)), Integer.parseInt(donneesMonstre.get(2)),
-                Integer.parseInt(donneesMonstre.get(3)), Integer.parseInt(donneesMonstre.get(4)), Integer.parseInt(donneesMonstre.get(5)), 300 + 100 * id, 300 + 100 * id,
+                Integer.parseInt(donneesMonstre.get(3)), Integer.parseInt(donneesMonstre.get(4)), Integer.parseInt(donneesMonstre.get(5)), positionX, positionY,
                 Integer.parseInt(donneesMonstre.get(6)), Integer.parseInt(donneesMonstre.get(6)), hero));
     }
 

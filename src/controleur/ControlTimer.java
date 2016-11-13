@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static model.Jeu.Y;
+
 /**
  * Created by bastien on 30/09/16.
  */
@@ -71,14 +73,14 @@ public class ControlTimer extends Control implements ActionListener {
                     }
                 }
 
-                if (jeu.getHero().getSauter() && jeu.getTemps() <= temps + 10)
+                if (jeu.getHero().getSauter() && jeu.getTemps() <= temps + 5)
                     jeu.getHero().sauter();
                 else if (jeu.getHero().getSauter()){
                     jeu.getHero().setSauter(false);
                     temps = 0;
                 }
 
-                jeu.getHero().dessendre(jeu.getHero().getPositionY() > 500);
+                jeu.getHero().dessendre(jeu.getHero().getPositionY() > 35/54.0 *Y);
 
 
                 fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getVecteurDeplacementEnX(), jeu.getHero().getVecteurDeplacementEnY());

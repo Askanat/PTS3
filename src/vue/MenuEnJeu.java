@@ -6,8 +6,8 @@ import model.Jeu;
 import javax.swing.*;
 import java.awt.*;
 
-import static vue.Fenetre.X;
-import static vue.Fenetre.Y;
+import static model.Jeu.X;
+import static model.Jeu.Y;
 
 /**
  * Created by Florian Vaissiere on 06/10/2016.

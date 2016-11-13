@@ -11,10 +11,7 @@ import java.awt.*;
  */
 
 public class Fenetre extends JFrame {
-    public static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
-    public static final int X = (int)tailleEcran.getWidth();
-    public static final int Y = (int)tailleEcran.getHeight();
     private Jeu jeu;
     public MenuPrincipal panelMenuPrincipal;
     public FenetreCharger panelFenetreCharger;
