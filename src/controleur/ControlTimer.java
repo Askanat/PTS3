@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static model.Jeu.Y;
+
 /**
  * Created by bastien on 30/09/16.
  */

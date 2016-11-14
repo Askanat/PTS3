@@ -147,10 +147,15 @@ public abstract class Personnage {
         setPositionY(getPositionY() + getVitesseDeDeplacementEnY());
         setVecteurDeplacementEnX(0);
 
+        setCollision();
+        
         if (!getCollision())
             setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
-        else if (getCollision())
+        else if (getCollision()) {
+            setPositionY((int) (35 / 54.0 * Y));
             setVitesseDeDeplacementEnY(0);
+        }
+
     }
 
     public void setSauter(boolean sauter) {
@@ -202,7 +207,7 @@ public abstract class Personnage {
     }
 
     public void setCollision() {
-        this.collision = getPositionY() + GRAVITE > 35 / 54.0 * Y;
+        this.collision = getPositionY() >= (int) (35 / 54.0 * Y);
     }
 
     public boolean getCollision() {
