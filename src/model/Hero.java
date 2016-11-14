@@ -1,7 +1,5 @@
 package model;
 
-import vue.Entite;
-
 import static model.Jeu.X;
 import static model.Jeu.Y;
 
@@ -27,7 +25,7 @@ public class Hero extends Personnage {
 
     public Hero(String nom, int niveau, int experience, int experienceMax, int pointCompetence, int pointConstitution,
                 int pointIntelligence, int pointForce, int pointResistance, int or, int chargeMax, int positionX, int positionY) {
-        super(nom, niveau, positionX, positionY, (int) (1/96.0 * X), (int) (1/27.0* Y));
+        super(nom, niveau, positionX, positionY, (int) (1 / 96.0 * X), (int) (1 / 36.0 * Y));
 
         vieMax = pointConstitution * COEF_VIE + VIE_DE_BASE;
         vie = vieMax;

@@ -57,65 +57,67 @@ public class Entite extends JPanel {
         return tab;
     }
 
-    public void selectionnerMorceauSpriteDeplacement(int x, int y) {
+    public void selectionnerMorceauSpriteDeplacement(int x) {
 
         // remet le sprite sur ses 2 jambes quand il ne bouge pas
-        if (x == 0 && y == 0)
+        if (x == 0 && personnage.getCollision())
             if (spriteActuel == tableauSprite[6] || spriteActuel == tableauSprite[8])
                 spriteActuel = tableauSprite[7];
             else if (spriteActuel == tableauSprite[3] || spriteActuel == tableauSprite[5])
                 spriteActuel = tableauSprite[4];
 
         // selectionne le sens de déplacement
-        if (!personnage.getCollision() && (x > 0 || (spriteActuel == tableauSprite[6] || spriteActuel == tableauSprite[7] || spriteActuel == tableauSprite[8])))
-            spriteActuel = tableauSprite[2];
-        else if (x > 0 && personnage.getCollision())
-            switch (alternerSprite) {
-                case 0:
-                    spriteActuel = tableauSprite[6];
-                    break;
+        if (!personnage.getCollision())
+            if (x > 0 || (spriteActuel == tableauSprite[6] || spriteActuel == tableauSprite[7] || spriteActuel == tableauSprite[8]))
+                spriteActuel = tableauSprite[2];
+            else if (x < 0 || (spriteActuel == tableauSprite[3] || spriteActuel == tableauSprite[4] || spriteActuel == tableauSprite[5]))
+                spriteActuel = tableauSprite[0];
 
-                case 1:
-                    spriteActuel = tableauSprite[7];
-                    break;
+        if (personnage.getCollision())
+            if (x > 0)
+                switch (alternerSprite) {
+                    case 0:
+                        spriteActuel = tableauSprite[6];
+                        break;
 
-                case 2:
-                    spriteActuel = tableauSprite[8];
-                    break;
+                    case 1:
+                        spriteActuel = tableauSprite[7];
+                        break;
 
-                case 3:
-                    spriteActuel = tableauSprite[7];
-                    break;
+                    case 2:
+                        spriteActuel = tableauSprite[8];
+                        break;
+
+                    case 3:
+                        spriteActuel = tableauSprite[7];
+                        break;
+                }
+            else if (x < 0)
+                switch (alternerSprite) {
+                    case 0:
+                        spriteActuel = tableauSprite[3];
+                        break;
+
+                    case 1:
+                        spriteActuel = tableauSprite[4];
+                        break;
+
+                    case 2:
+                        spriteActuel = tableauSprite[5];
+                        break;
+
+                    case 3:
+                        spriteActuel = tableauSprite[4];
+                        break;
+                }
+
+            else if (spriteActuel == tableauSprite[0]) {
+                spriteActuel = tableauSprite[3];
+                alternerSprite++;
+            } else if (spriteActuel == tableauSprite[2]) {
+                spriteActuel = tableauSprite[8];
+                alternerSprite--;
             }
-
-        else if (!personnage.getCollision() && (x > 0 || (spriteActuel == tableauSprite[3] || spriteActuel == tableauSprite[4] || spriteActuel == tableauSprite[5])))
-            spriteActuel = tableauSprite[0];
-        else if (x < 0 && personnage.getCollision())
-            switch (alternerSprite) {
-                case 0:
-                    spriteActuel = tableauSprite[3];
-                    break;
-
-                case 1:
-                    spriteActuel = tableauSprite[4];
-                    break;
-
-                case 2:
-                    spriteActuel = tableauSprite[5];
-                    break;
-
-                case 3:
-                    spriteActuel = tableauSprite[4];
-                    break;
-            }
-
-        else if (personnage.getCollision() && spriteActuel == tableauSprite[0]) {
-            spriteActuel = tableauSprite[3];
-            alternerSprite++;
-        } else if (personnage.getCollision() && spriteActuel == tableauSprite[2]) {
-            spriteActuel = tableauSprite[8];
-            alternerSprite--;
-        }
 
 
         // permet d'alterner les mouvement

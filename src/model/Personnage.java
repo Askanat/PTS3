@@ -1,5 +1,8 @@
 package model;
 
+import static model.Jeu.GRAVITE;
+import static model.Jeu.Y;
+
 /**
  * Created by bastien on 29/09/16.
  */
@@ -14,7 +17,7 @@ public abstract class Personnage {
     protected int degats, degatMax;
     protected int armure, armureMax;
     protected int positionX, positionY;
-    protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY;
+    protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnX, vitesseDeDeplacementEnY, vitesseDeSaut;
     protected boolean sauter, dessendre;
     protected boolean collision;
 
@@ -22,16 +25,17 @@ public abstract class Personnage {
     public static final int GAUCHE = 0;
     public static final int DROITE = 1;
 
-    public Personnage(String nom, int niveau, int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY) {
+    public Personnage(String nom, int niveau, int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
 
         this.nom = nom;
         this.niveau = niveau;
 
         this.positionX = positionX;
         this.positionY = positionY;
-        this.vitesseDeDeplacementEnPixelX = vitesseDeDeplacementEnPixelX;
-        this.vitesseDeDeplacementEnPixelY = vitesseDeDeplacementEnPixelY;
+        this.vitesseDeDeplacementEnX = vitesseDeDeplacementEnX;
+        this.vitesseDeSaut = vitesseDeSaut;
         collision = false;
+        vitesseDeDeplacementEnY = 0;
         vecteurDeplacementEnX = 0;
         vecteurDeplacementEnY = 0;
     }
@@ -54,8 +58,8 @@ public abstract class Personnage {
          * Pas fonctionnel pour le moment.
          */
 
-        if((positionX - portee >= cible.positionX)||
-        (positionX + portee <= cible.positionX ))
+        if ((positionX - portee >= cible.positionX) ||
+                (positionX + portee <= cible.positionX))
             cible.recevoirDegats(getDegats());
 
         System.out.println(getNom() + " attaque " + cible.getNom() + " !");
@@ -131,29 +135,22 @@ public abstract class Personnage {
     }
 
     public void sauter() {
-        if (!dessendre)
-            setVecteurDeplacementEnY(-1);
+        setVitesseDeDeplacementEnY(0 - vitesseDeSaut);
     }
 
     public void deplacerAGauche() {
         setVecteurDeplacementEnX(-1);
     }
 
-    public void dessendre(boolean collision) {
-        setCollision(collision);
-        if (!getCollision() && !sauter) {
-            setDessendre(true);
-            setVecteurDeplacementEnY(1);
-        } else if (getDessendre()) {
-            dessendre = false;
-        }
-    }
-
     public void deplacer() {
-        setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnPixelX());
-        setPositionY(getPositionY() + getVecteurDeplacementEnY() * getVitesseDeDeplacementEnPixelY());
+        setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
+        setPositionY(getPositionY() + getVitesseDeDeplacementEnY());
         setVecteurDeplacementEnX(0);
-        setVecteurDeplacementEnY(0);
+
+        if (!getCollision())
+            setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
+        else if (getCollision())
+            setVitesseDeDeplacementEnY(0);
     }
 
     public void setSauter(boolean sauter) {
@@ -180,11 +177,20 @@ public abstract class Personnage {
         return vecteurDeplacementEnY;
     }
 
-    public int getVitesseDeDeplacementEnPixelX() {
-        return vitesseDeDeplacementEnPixelX;
+    public void setVitesseDeDeplacementEnX(int vitesseDeDeplacementEnX) {
+        this.vitesseDeDeplacementEnX = vitesseDeDeplacementEnX;
     }
-    public int getVitesseDeDeplacementEnPixelY() {
-        return vitesseDeDeplacementEnPixelY;
+
+    public void setVitesseDeDeplacementEnY(int vitesseDeDeplacementEnY) {
+        this.vitesseDeDeplacementEnY = vitesseDeDeplacementEnY;
+    }
+
+    public int getVitesseDeDeplacementEnX() {
+        return vitesseDeDeplacementEnX;
+    }
+
+    public int getVitesseDeDeplacementEnY() {
+        return vitesseDeDeplacementEnY;
     }
 
     public boolean getDessendre() {
@@ -195,8 +201,8 @@ public abstract class Personnage {
         this.dessendre = dessendre;
     }
 
-    public void setCollision(boolean collision) {
-        this.collision = collision;
+    public void setCollision() {
+        this.collision = getPositionY() + GRAVITE > 35 / 54.0 * Y;
     }
 
     public boolean getCollision() {

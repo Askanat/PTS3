@@ -14,6 +14,8 @@ public class Jeu {
     public static final int X = (int)tailleEcran.getWidth();
     public static final int Y = (int)tailleEcran.getHeight();
 
+    public static final int GRAVITE = (int) (1 / 540.0 * Y);
+
     private int temps;
 
     private Niveau niveau;
@@ -60,7 +62,7 @@ public class Jeu {
         hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)),
                 Integer.parseInt(donneesHero.get(3)), Integer.parseInt(donneesHero.get(4)), Integer.parseInt(donneesHero.get(5)),
                 Integer.parseInt(donneesHero.get(6)), Integer.parseInt(donneesHero.get(7)), Integer.parseInt(donneesHero.get(8)),
-                Integer.parseInt(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), (int) (25/96.0 * X), (int) (25/51.0 * Y));
+                Integer.parseInt(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), (int) (25 / 96.0 * X), (int) (25 / 51.0 * Y));
     }
 
     public Hero getHero() {
@@ -69,7 +71,7 @@ public class Jeu {
 
     public void setMonstre(int id, int positionX, int positionY) {
         // Pour le moment on sélectionne le hero 1
-        if(hero == null)
+        if (hero == null)
             setHero(1);
 
         ArrayList<String> donneesMonstre;

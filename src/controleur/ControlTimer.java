@@ -4,11 +4,8 @@ import model.Jeu;
 import vue.Fenetre;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import static model.Jeu.Y;
 
 /**
  * Created by bastien on 30/09/16.
@@ -23,8 +20,6 @@ public class ControlTimer extends Control implements ActionListener {
 
         Timer timer = new Timer(100, this);
         timer.start();
-
-
     }
 
     @Override
@@ -56,34 +51,27 @@ public class ControlTimer extends Control implements ActionListener {
                 if (ControlClavier.toucheEnfoncer[ControlTouche.GAUCHE]) {
                     jeu.getHero().deplacerAGauche();
                 }
-                if (ControlClavier.toucheEnfoncer[ControlTouche.HAUT] && !jeu.getHero().getDessendre() && temps == 0) {
-                    jeu.getHero().setSauter(true);
-                    temps = jeu.getTemps();
+
+                if (ControlClavier.toucheEnfoncer[ControlTouche.HAUT] && jeu.getHero().getCollision()) {
+                    jeu.getHero().sauter();
                 }
+
                 if (ControlClavier.toucheEnfoncer[ControlTouche.DROITE]) {
                     jeu.getHero().deplacerADroite();
                 }
+
                 if (ControlClavier.toucheEnfoncer[ControlTouche.A]) {
                     // Problème, il faut seulement attaquer lorsque la touche est relachée. C'est pas géré pour le moment.
                     int nbMonstre = jeu.getSizeTabMonstre(), i;
 
-                    for(i = 0; i < nbMonstre; i++) {
+                    for (i = 0; i < nbMonstre; i++) {
                         jeu.getHero().attaquer(jeu.getMonstre(i));
                         System.out.println("Attaque du personnage");
                     }
                 }
 
-                if (jeu.getHero().getSauter() && jeu.getTemps() <= temps + 5)
-                    jeu.getHero().sauter();
-                else if (jeu.getHero().getSauter()){
-                    jeu.getHero().setSauter(false);
-                    temps = 0;
-                }
-
-                jeu.getHero().dessendre(jeu.getHero().getPositionY() > 35/54.0 *Y);
-
-
-                fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getVecteurDeplacementEnX(), jeu.getHero().getVecteurDeplacementEnY());
+                jeu.getHero().setCollision();
+                fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getVecteurDeplacementEnX());
                 jeu.getHero().deplacer();
 /*
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
