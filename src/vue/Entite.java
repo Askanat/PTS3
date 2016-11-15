@@ -34,7 +34,7 @@ public class Entite extends JPanel {
         this.personnage = personnage;
 
         try {
-            tableauSprite = decoupage(ImageIO.read(new File(chemin)), 3, 4);
+            tableauSprite = decoupage(ImageIO.read(new File(chemin)), 3, 5);
         } catch (IOException e) {
             e.printStackTrace();
         }
