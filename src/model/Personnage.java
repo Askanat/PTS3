@@ -18,12 +18,11 @@ public abstract class Personnage {
     protected int armure, armureMax;
     protected int positionX, positionY;
     protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnX, vitesseDeDeplacementEnY, vitesseDeSaut;
-    protected boolean sauter, dessendre;
     protected boolean collision;
+    protected boolean attaquer;
 
     // Nécessaire pour gérer l'orientation d'un personnage
-    public static final int GAUCHE = 0;
-    public static final int DROITE = 1;
+    protected Direction direction;
 
     public Personnage(String nom, int niveau, int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
 
@@ -34,7 +33,9 @@ public abstract class Personnage {
         this.positionY = positionY;
         this.vitesseDeDeplacementEnX = vitesseDeDeplacementEnX;
         this.vitesseDeSaut = vitesseDeSaut;
+        direction = null;
         collision = false;
+        attaquer = false;
         vitesseDeDeplacementEnY = 0;
         vecteurDeplacementEnX = 0;
         vecteurDeplacementEnY = 0;
@@ -143,12 +144,14 @@ public abstract class Personnage {
     }
 
     public void deplacer() {
-        setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
+
+        if (!getAttaquer())
+            setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
         setPositionY(getPositionY() + getVitesseDeDeplacementEnY());
         setVecteurDeplacementEnX(0);
 
         setCollision();
-        
+
         if (!getCollision())
             setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
         else if (getCollision()) {
@@ -158,32 +161,12 @@ public abstract class Personnage {
 
     }
 
-    public void setSauter(boolean sauter) {
-        this.sauter = sauter;
-    }
-
-    public boolean getSauter() {
-        return sauter;
-    }
-
     public void setVecteurDeplacementEnX(int x) {
         vecteurDeplacementEnX = x;
     }
 
-    public void setVecteurDeplacementEnY(int y) {
-        vecteurDeplacementEnY = y;
-    }
-
     public int getVecteurDeplacementEnX() {
         return vecteurDeplacementEnX;
-    }
-
-    public int getVecteurDeplacementEnY() {
-        return vecteurDeplacementEnY;
-    }
-
-    public void setVitesseDeDeplacementEnX(int vitesseDeDeplacementEnX) {
-        this.vitesseDeDeplacementEnX = vitesseDeDeplacementEnX;
     }
 
     public void setVitesseDeDeplacementEnY(int vitesseDeDeplacementEnY) {
@@ -198,19 +181,27 @@ public abstract class Personnage {
         return vitesseDeDeplacementEnY;
     }
 
-    public boolean getDessendre() {
-        return dessendre;
-    }
-
-    public void setDessendre(boolean dessendre) {
-        this.dessendre = dessendre;
-    }
-
     public void setCollision() {
         this.collision = getPositionY() >= (int) (35 / 54.0 * Y);
     }
 
     public boolean getCollision() {
         return collision;
+    }
+
+    public boolean getAttaquer() {
+        return attaquer;
+    }
+
+    public void setAttaquer(boolean attaquer) {
+        this.attaquer = attaquer;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 }

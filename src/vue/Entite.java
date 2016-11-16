@@ -1,5 +1,6 @@
 package vue;
 
+import model.Direction;
 import model.Personnage;
 
 import javax.imageio.ImageIO;
@@ -73,8 +74,9 @@ public class Entite extends JPanel {
             else if (x < 0 || (spriteActuel == tableauSprite[3] || spriteActuel == tableauSprite[4] || spriteActuel == tableauSprite[5]))
                 spriteActuel = tableauSprite[0];
 
+        // permet le déplacement de droite et de gauche
         if (personnage.getCollision())
-            if (x > 0)
+            if (x > 0 || personnage.getDirection() == Direction.DROITE)
                 switch (alternerSprite) {
                     case 0:
                         spriteActuel = tableauSprite[6];
@@ -92,7 +94,7 @@ public class Entite extends JPanel {
                         spriteActuel = tableauSprite[7];
                         break;
                 }
-            else if (x < 0)
+            else if (x < 0 || personnage.getDirection() == Direction.GAUCHE)
                 switch (alternerSprite) {
                     case 0:
                         spriteActuel = tableauSprite[3];
@@ -111,6 +113,7 @@ public class Entite extends JPanel {
                         break;
                 }
 
+                // permet la remise en place des pieds à l'aterrisage après le saut
             else if (spriteActuel == tableauSprite[0]) {
                 spriteActuel = tableauSprite[3];
                 alternerSprite++;
@@ -119,14 +122,58 @@ public class Entite extends JPanel {
                 alternerSprite--;
             }
 
+        // permet d'attaquer
+        if (personnage.getAttaquer()) {
+            if (personnage.getDirection() == Direction.GAUCHE) {
+                switch (alternerSprite) {
+                    case 0:
+                        spriteActuel = tableauSprite[9];
+                        break;
+
+                    case 1:
+                        spriteActuel = tableauSprite[10];
+                        break;
+
+                    case 2:
+                        spriteActuel = tableauSprite[11];
+                        break;
+
+                    case 3:
+                        spriteActuel = tableauSprite[4];
+                        personnage.setAttaquer(false);
+                        break;
+                }
+            } else if (personnage.getDirection() == Direction.DROITE) {
+                switch (alternerSprite) {
+                    case 0:
+                        spriteActuel = tableauSprite[12];
+                        break;
+
+                    case 1:
+                        spriteActuel = tableauSprite[13];
+                        break;
+
+                    case 2:
+                        spriteActuel = tableauSprite[14];
+                        break;
+
+                    case 3:
+                        spriteActuel = tableauSprite[7];
+                        personnage.setAttaquer(false);
+                        break;
+                }
+            }
+        }
 
         // permet d'alterner les mouvement
-        if (x != 0)
-            if ((alternerSprite == 0) || (alternerSprite == 1) || (alternerSprite == 2))
-                alternerSprite++;
+        if (x != 0 || personnage.getAttaquer()) {
+            alternerSprite++;
 
-            else if (alternerSprite == 3)
+            if (alternerSprite == 4)
                 alternerSprite = 0;
+        }
+
+
     }
 
     protected void paintComponent(Graphics g) {
@@ -140,5 +187,9 @@ public class Entite extends JPanel {
 
     public int getSpriteHeight() {
         return tableauSprite[0].getHeight();
+    }
+
+    public void setAlternerSprite(int alternerSprite) {
+        this.alternerSprite = alternerSprite;
     }
 }

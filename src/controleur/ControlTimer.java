@@ -1,5 +1,6 @@
 package controleur;
 
+import model.Direction;
 import model.Jeu;
 import vue.Fenetre;
 
@@ -51,6 +52,7 @@ public class ControlTimer extends Control implements ActionListener {
                 jeu.incrementeTemps();
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.GAUCHE]) {
+                    jeu.getHero().setDirection(Direction.GAUCHE);
                     jeu.getHero().deplacerAGauche();
                 }
 
@@ -59,17 +61,21 @@ public class ControlTimer extends Control implements ActionListener {
                 }
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.DROITE]) {
+                    jeu.getHero().setDirection(Direction.DROITE);
                     jeu.getHero().deplacerADroite();
                 }
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.A]) {
+                    jeu.getHero().setAttaquer(true);
+                    fenetre.panelFenetreDepart.hero.setAlternerSprite(0);
+
                     // Problème, il faut seulement attaquer lorsque la touche est relachée. C'est pas géré pour le moment.
-                    int nbMonstre = jeu.getSizeTabMonstre(), i;
+                   /* int nbMonstre = jeu.getSizeTabMonstre(), i;
 
                     for (i = 0; i < nbMonstre; i++) {
                         jeu.getHero().attaquer(jeu.getMonstre(i));
                         System.out.println("Attaque du personnage");
-                    }
+                    }*/
                 }
 
                 jeu.getHero().setCollision();
