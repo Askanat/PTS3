@@ -8,8 +8,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static model.Jeu.Y;
-
 /**
  * Created by bastien on 30/09/16.
  */
@@ -27,6 +25,12 @@ public class ControlTimer extends Control implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (ControlClavier.toucheRelacher[ControlTouche.ECHAP]) {
+            if (Control.enPartie)
+                jeu.inversePause();
+            ControlClavier.toucheRelacher[ControlTouche.ECHAP] = false;
+        }
 
         if (ControlFenetreCharger.chargerPartie) {
             ControlFenetreCharger.chargerPartie = false;
@@ -65,32 +69,34 @@ public class ControlTimer extends Control implements ActionListener {
                     jeu.getHero().deplacerADroite();
                 }
 
-                if (ControlClavier.toucheEnfoncer[ControlTouche.A]) {
+                if (ControlClavier.toucheRelacher[ControlTouche.A]) {
                     jeu.getHero().setAttaquer(true);
                     fenetre.panelFenetreDepart.hero.setAlternerSprite(0);
 
                     // Problème, il faut seulement attaquer lorsque la touche est relachée. C'est pas géré pour le moment.
-                   /* int nbMonstre = jeu.getSizeTabMonstre(), i;
+                    int nbMonstre = jeu.getSizeTabMonstre(), i;
 
                     for (i = 0; i < nbMonstre; i++) {
                         jeu.getHero().attaquer(jeu.getMonstre(i));
                         System.out.println("Attaque du personnage");
-                    }*/
+                    }
+
+                    ControlClavier.toucheRelacher[ControlTouche.A] = false;
                 }
 
                 jeu.getHero().setCollision();
                 fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement(jeu.getHero().getVecteurDeplacementEnX());
                 jeu.getHero().deplacer();
-/*
-                for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
+
+                /*for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
                     Thread monstreThread = new Thread(jeu.getMonstre(i));
 
-                   if(monstreThread.isAlive() == false)
+                    if (monstreThread.isAlive() == false)
                         monstreThread.start();
 
                     fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(i).getVecteurDeplacementEnX(), jeu.getMonstre(i).getVecteurDeplacementEnY());
-                }
-                */
+                }*/
+
 
             }
             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero

@@ -14,15 +14,21 @@ public class ControlClavier extends Control implements KeyListener {
 
     private final int TOUCHE_CLAVIER[] = ControlTouche.getJavaTouches();
     public static boolean toucheEnfoncer[];
+    public static boolean toucheRelacher[];
+
 
     public ControlClavier(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlClavier(this);
 
         toucheEnfoncer = new boolean[ControlTouche.getNbTouches()];
+        toucheRelacher = new boolean[ControlTouche.getNbTouches()];
 
         for (int i = 0; i < toucheEnfoncer.length; i++)
             toucheEnfoncer[i] = false;
+
+        for (int i = 0; i < toucheRelacher.length; i++)
+            toucheRelacher[i] = false;
     }
 
     @Override
@@ -52,8 +58,11 @@ public class ControlClavier extends Control implements KeyListener {
             i++;
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
-            if (Control.enPartie)
-                jeu.inversePause();
+        i = 0;
+        for (int key : TOUCHE_CLAVIER) {
+            if (e.getKeyCode() == key)
+                toucheRelacher[i] = true;
+            i++;
+        }
     }
 }
