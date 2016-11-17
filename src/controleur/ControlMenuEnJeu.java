@@ -30,6 +30,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 System.out.println("fiche inventaire");
                 break;
             case "Option":
+                Control.enPartie = false;
                 fenetre.setContentPane(fenetre.panelFenetreOptions);
                 fenetre.repaint();
                 fenetre.pack();
