@@ -145,8 +145,7 @@ public abstract class Personnage {
 
     public void deplacer() {
 
-        if (!getAttaquer())
-            setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
+        setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
         setPositionY(getPositionY() + getVitesseDeDeplacementEnY());
         setVecteurDeplacementEnX(0);
 

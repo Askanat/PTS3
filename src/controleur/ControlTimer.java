@@ -71,7 +71,7 @@ public class ControlTimer extends Control implements ActionListener {
 
                 if (ControlClavier.toucheRelacher[ControlTouche.A]) {
                     jeu.getHero().setAttaquer(true);
-                    fenetre.panelFenetreDepart.hero.setAlternerSprite(0);
+                    fenetre.panelFenetreDepart.hero.setAlternerSpriteAttaque(0);
 
                     // Problème, il faut seulement attaquer lorsque la touche est relachée. C'est pas géré pour le moment.
                     int nbMonstre = jeu.getSizeTabMonstre(), i;

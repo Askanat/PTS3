@@ -6,7 +6,6 @@ import model.Jeu;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -55,7 +54,7 @@ public class FenetreCharger extends JPanel {
         retour.addActionListener(controlFenetreCharger);
     }
 
-       protected void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         slot1.setBounds((int) (17 / 96.0 * X), (int) (2 / 9.0 * Y), (int) (1 / 8.0 * X), (int) (7 / 27.0 * Y));
@@ -65,14 +64,14 @@ public class FenetreCharger extends JPanel {
         slot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         slot1.setBorder(null);
 
-        slot2.setBounds((int) (7/16.0*X),(int) (2 / 9.0 * Y), (int) (1 / 8.0 * X), (int) (7 / 27.0 * Y));
+        slot2.setBounds((int) (7 / 16.0 * X), (int) (2 / 9.0 * Y), (int) (1 / 8.0 * X), (int) (7 / 27.0 * Y));
         slot2.setForeground(Color.WHITE);
         slot2.setBackground(new Color(0, 0, 0, 0));
         slot2.setFocusable(false);
         slot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
         slot2.setBorder(null);
 
-        slot3.setBounds((int) (223/320.0*X), (int) (2 / 9.0 * Y), (int) (1 / 8.0 * X), (int) (7 / 27.0 * Y));
+        slot3.setBounds((int) (223 / 320.0 * X), (int) (2 / 9.0 * Y), (int) (1 / 8.0 * X), (int) (7 / 27.0 * Y));
         slot3.setForeground(Color.WHITE);
         slot3.setBackground(new Color(0, 0, 0, 0));
         slot3.setFocusable(false);
@@ -97,23 +96,21 @@ public class FenetreCharger extends JPanel {
         g.drawImage(getToolkit().getImage("images/chargerPartie.png"), 0, 0, getWidth(), getHeight(), this);
 
         try {
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero1.png")), 3, 5)[1], (int) (3 / 16.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero1.png")), 3, 9)[1], (int) (3 / 16.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         try {
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero2.png")), 3, 5)[1], (int) (43 / 96.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero2.png")), 3, 9)[1], (int) (43 / 96.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         try {
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero3.png")), 3, 5)[1], (int) (17 / 24.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero3.png")), 3, 9)[1], (int) (17 / 24.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }
