@@ -20,7 +20,11 @@ public class ControlFenetreOptions extends Control implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Retour":
-                fenetre.setContentPane(fenetre.panelMenuPrincipal);
+                if (Control.enPartie == false) {
+                    fenetre.setContentPane(fenetre.panelMenuPrincipal);
+                } else {
+                    fenetre.setContentPane(fenetre.panelMenuEnJeu);
+                }
                 fenetre.repaint();
                 fenetre.pack();
                 fenetre.setLocationRelativeTo(null);

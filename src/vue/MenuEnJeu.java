@@ -16,7 +16,7 @@ import static model.Jeu.Y;
 public class MenuEnJeu extends JPanel {
 
     private Jeu jeu;
-    public JButton retourJeu, inventaire, fichePersonnage, retourMenuPrincipal, retourBureau;
+    public JButton retourJeu, inventaire, fichePersonnage, option, retourMenuPrincipal, retourBureau;
 
     public MenuEnJeu(Jeu jeu) {
         this.jeu = jeu;
@@ -30,6 +30,8 @@ public class MenuEnJeu extends JPanel {
         inventaire.setActionCommand("Inventaire");
         fichePersonnage = new JButton("Fiche Personnage");
         fichePersonnage.setActionCommand("Fiche Personnage");
+        option= new JButton("Option");
+        option.setActionCommand("Option");
         retourMenuPrincipal = new JButton("Retour au Menu Principal");
         retourMenuPrincipal.setActionCommand("Retour au Menu Principal");
         retourBureau = new JButton("Retour Au Bureau");
@@ -38,6 +40,7 @@ public class MenuEnJeu extends JPanel {
         add(retourJeu);
         add(inventaire);
         add(fichePersonnage);
+        add(option);
         add(retourMenuPrincipal);
         add(retourBureau);
     }
@@ -66,14 +69,21 @@ public class MenuEnJeu extends JPanel {
         fichePersonnage.setCursor(new Cursor(Cursor.HAND_CURSOR));
         fichePersonnage.setBorder(null);
 
-        retourMenuPrincipal.setBounds(290, 300, 228, 40);
+        option.setBounds(290, 300, 228, 40);
+        option.setForeground(Color.WHITE);
+        option.setBackground(new Color(0, 0, 0, 0));
+        option.setFocusable(false);
+        option.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        option.setBorder(null);
+
+        retourMenuPrincipal.setBounds(290, 350, 228, 40);
         retourMenuPrincipal.setForeground(Color.WHITE);
         retourMenuPrincipal.setBackground(new Color(0, 0, 0, 0));
         retourMenuPrincipal.setFocusable(false);
         retourMenuPrincipal.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retourMenuPrincipal.setBorder(null);
 
-        retourBureau.setBounds(290, 350, 228, 40);
+        retourBureau.setBounds(290, 400, 228, 40);
         retourBureau.setForeground(Color.WHITE);
         retourBureau.setBackground(new Color(0, 0, 0, 0));
         retourBureau.setFocusable(false);
@@ -88,6 +98,7 @@ public class MenuEnJeu extends JPanel {
         retourJeu.addActionListener(controlMenuEnJeu);
         inventaire.addActionListener(controlMenuEnJeu);
         fichePersonnage.addActionListener(controlMenuEnJeu);
+        option.addActionListener(controlMenuEnJeu);
         retourMenuPrincipal.addActionListener(controlMenuEnJeu);
         retourBureau.addActionListener(controlMenuEnJeu);
     }

@@ -14,7 +14,7 @@ import static model.Jeu.Y;
 
 public class FenetreOptions extends JPanel {
 
-    public JButton retour;
+    public JButton retour, retour1;
     private JLabel options, texte;
 
     public FenetreOptions() {
