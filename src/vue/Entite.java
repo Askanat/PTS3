@@ -44,6 +44,7 @@ public class Entite extends JPanel {
     }
 
     public static BufferedImage[] decoupage(BufferedImage origin, int divisionHorizontale, int divisionVerticale) {
+
         BufferedImage tab[] = new BufferedImage[divisionHorizontale * divisionVerticale];
         int tailleBaseHeight = origin.getHeight() / divisionVerticale;
         int tailleBaseWidth = origin.getWidth() / divisionHorizontale;
@@ -58,307 +59,96 @@ public class Entite extends JPanel {
         return tab;
     }
 
-    public void selectionnerMorceauSpriteDeplacement(int x) {
+    public void selectionnerMorceauSpriteDeplacement() {
 
-        // remet le sprite sur ses 2 jambes quand il ne bouge pas
-        if (x == 0 && personnage.getCollision())
-            if (spriteActuel == tableauSprite[6] || spriteActuel == tableauSprite[8])
+        if (!personnage.getDeplacement() && personnage.getCollision()) { // remet en place les pieds
+            if (spriteActuel == tableauSprite[0])
+                spriteActuel = tableauSprite[3];
+            else if (spriteActuel == tableauSprite[2])
+                spriteActuel = tableauSprite[8];
+            else if (personnage.getDirection() == Direction.DROITE)
                 spriteActuel = tableauSprite[7];
-            else if (spriteActuel == tableauSprite[3] || spriteActuel == tableauSprite[5])
+            else if (personnage.getDirection() == Direction.GAUCHE)
                 spriteActuel = tableauSprite[4];
+            alternerSpriteDeplacement = 1;
+        }
 
         // selectionne le saut
         if (!personnage.getCollision()) {
-            if (!personnage.getAttaquer()) {
+            if (!personnage.getAttaquer()) { // saut sans attaque
                 if (personnage.getDirection() == Direction.DROITE)
                     spriteActuel = tableauSprite[2];
                 else if (personnage.getDirection() == Direction.GAUCHE)
                     spriteActuel = tableauSprite[0];
-            } else if (personnage.getAttaquer()) {
-                if (personnage.getDirection() == Direction.DROITE)
-                    switch (alternerSpriteAttaque) {
-                        case 0:
-                            spriteActuel = tableauSprite[30];
-                            break;
-
-                        case 1:
-                            spriteActuel = tableauSprite[31];
-                            break;
-
-                        case 2:
-                            spriteActuel = tableauSprite[32];
-                            break;
-
-                        case 3:
-                            spriteActuel = tableauSprite[7];
-                            personnage.setAttaquer(false);
-                            break;
+            } else if (personnage.getAttaquer()) { // saut avec attaque
+                if (personnage.getDirection() == Direction.DROITE) {
+                    spriteActuel = tableauSprite[alternerSpriteAttaque == 3 ? 7 : 30 + alternerSpriteAttaque];
+                    if (alternerSpriteAttaque == 3) {
+                        alternerSpriteAttaque = 0;
+                        personnage.setAttaquer(false);
                     }
-                else if (personnage.getDirection() == Direction.GAUCHE)
-                    switch (alternerSpriteAttaque) {
-                        case 0:
-                            spriteActuel = tableauSprite[27];
-                            break;
-
-                        case 1:
-                            spriteActuel = tableauSprite[28];
-                            break;
-
-                        case 2:
-                            spriteActuel = tableauSprite[29];
-                            break;
-
-                        case 3:
-                            spriteActuel = tableauSprite[4];
-                            personnage.setAttaquer(false);
-                            break;
+                } else if (personnage.getDirection() == Direction.GAUCHE) {
+                    spriteActuel = tableauSprite[alternerSpriteAttaque == 3 ? 4 : 27 + alternerSpriteAttaque];
+                    if (alternerSpriteAttaque == 3) {
+                        alternerSpriteAttaque = 0;
+                        personnage.setAttaquer(false);
                     }
-            }
-
-            // permet le déplacement de droite et de gauche
-        } else if (personnage.getCollision()) {
-            if (!personnage.getAttaquer()) {
-                if (x > 0)
-                    switch (alternerSpriteDeplacement) {
-                        case 0:
-                            spriteActuel = tableauSprite[6];
-                            break;
-
-                        case 1:
-                            spriteActuel = tableauSprite[7];
-                            break;
-
-                        case 2:
-                            spriteActuel = tableauSprite[8];
-                            break;
-
-                        case 3:
-                            spriteActuel = tableauSprite[7];
-                            break;
-                    }
-                else if (x < 0)
-                    switch (alternerSpriteDeplacement) {
-                        case 0:
-                            spriteActuel = tableauSprite[3];
-                            break;
-
-                        case 1:
-                            spriteActuel = tableauSprite[4];
-                            break;
-
-                        case 2:
-                            spriteActuel = tableauSprite[5];
-                            break;
-
-                        case 3:
-                            spriteActuel = tableauSprite[4];
-                            break;
-                    }
-
-                    // permet la remise en place des pieds à l'aterrisage après le saut
-                else if (spriteActuel == tableauSprite[0]) {
-                    spriteActuel = tableauSprite[3];
-                    alternerSpriteDeplacement++;
-                } else if (spriteActuel == tableauSprite[2]) {
-                    spriteActuel = tableauSprite[8];
-                    alternerSpriteDeplacement--;
                 }
             }
 
-            // permet d'attaquer
-            else if (personnage.getAttaquer()) {
-
-                if (x > 0 || personnage.getDirection() == Direction.DROITE)
-                    switch (alternerSpriteDeplacement) {
+            // selectionne le déplacement de droite et de gauche
+        } else if (personnage.getCollision()) {
+            if (!personnage.getAttaquer() && personnage.getDeplacement()) { // deplacement sans attaque
+                if (personnage.getDirection() == Direction.DROITE)
+                    spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 7 : 6 + alternerSpriteDeplacement];
+                else if (personnage.getDirection() == Direction.GAUCHE)
+                    spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 4 : 3 + alternerSpriteDeplacement];
+            } else if (personnage.getAttaquer()) { // attaque
+                if (personnage.getDirection() == Direction.DROITE) {
+                    switch (alternerSpriteAttaque) {
                         case 0:
-                            switch (alternerSpriteAttaque) {
-                                case 0:
-                                    spriteActuel = tableauSprite[18];
-                                    break;
-
-                                case 1:
-                                    spriteActuel = tableauSprite[21];
-                                    break;
-
-                                case 2:
-                                    spriteActuel = tableauSprite[24];
-                                    break;
-
-                                case 3:
-                                    spriteActuel = tableauSprite[7];
-                                    personnage.setAttaquer(false);
-                                    break;
-                            }
+                            spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 19 : 18 + alternerSpriteDeplacement];
                             break;
-
                         case 1:
-                            switch (alternerSpriteAttaque) {
-                                case 0:
-                                    spriteActuel = tableauSprite[19];
-                                    break;
-
-                                case 1:
-                                    spriteActuel = tableauSprite[22];
-                                    break;
-
-                                case 2:
-                                    spriteActuel = tableauSprite[25];
-                                    break;
-
-                                case 3:
-                                    spriteActuel = tableauSprite[7];
-                                    personnage.setAttaquer(false);
-                                    break;
-                            }
+                            spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 22 : 21 + alternerSpriteDeplacement];
                             break;
-
                         case 2:
-                            switch (alternerSpriteAttaque) {
-                                case 0:
-                                    spriteActuel = tableauSprite[20];
-                                    break;
-
-                                case 1:
-                                    spriteActuel = tableauSprite[23];
-                                    break;
-
-                                case 2:
-                                    spriteActuel = tableauSprite[26];
-                                    break;
-
-                                case 3:
-                                    spriteActuel = tableauSprite[7];
-                                    personnage.setAttaquer(false);
-                                    break;
-                            }
+                            spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 25 : 24 + alternerSpriteDeplacement];
                             break;
-
                         case 3:
-                            switch (alternerSpriteAttaque) {
-                                case 0:
-                                    spriteActuel = tableauSprite[19];
-                                    break;
-
-                                case 1:
-                                    spriteActuel = tableauSprite[22];
-                                    break;
-
-                                case 2:
-                                    spriteActuel = tableauSprite[25];
-                                    break;
-
-                                case 3:
-                                    spriteActuel = tableauSprite[7];
-                                    personnage.setAttaquer(false);
-                                    break;
-                            }
+                            spriteActuel = tableauSprite[7];
+                            alternerSpriteAttaque = 0;
+                            personnage.setAttaquer(false);
                             break;
                     }
-                else if (x < 0 || personnage.getDirection() == Direction.GAUCHE)
-                    switch (alternerSpriteDeplacement) {
+                } else if (personnage.getDirection() == Direction.GAUCHE) {
+                    switch (alternerSpriteAttaque) {
                         case 0:
-                            switch (alternerSpriteAttaque) {
-                                case 0:
-                                    spriteActuel = tableauSprite[9];
-                                    break;
-
-                                case 1:
-                                    spriteActuel = tableauSprite[12];
-                                    break;
-
-                                case 2:
-                                    spriteActuel = tableauSprite[15];
-                                    break;
-
-                                case 3:
-                                    spriteActuel = tableauSprite[4];
-                                    personnage.setAttaquer(false);
-                                    break;
-                            }
+                            spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 10 : 9 + alternerSpriteDeplacement];
                             break;
-
                         case 1:
-                            switch (alternerSpriteAttaque) {
-                                case 0:
-                                    spriteActuel = tableauSprite[10];
-                                    break;
-
-                                case 1:
-                                    spriteActuel = tableauSprite[13];
-                                    break;
-
-                                case 2:
-                                    spriteActuel = tableauSprite[16];
-                                    break;
-
-                                case 3:
-                                    spriteActuel = tableauSprite[4];
-                                    personnage.setAttaquer(false);
-                                    break;
-                            }
+                            spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 13 : 12 + alternerSpriteDeplacement];
                             break;
-
                         case 2:
-                            switch (alternerSpriteAttaque) {
-                                case 0:
-                                    spriteActuel = tableauSprite[11];
-                                    break;
-
-                                case 1:
-                                    spriteActuel = tableauSprite[14];
-                                    break;
-
-                                case 2:
-                                    spriteActuel = tableauSprite[17];
-                                    break;
-
-                                case 3:
-                                    spriteActuel = tableauSprite[4];
-                                    personnage.setAttaquer(false);
-                                    break;
-                            }
+                            spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 16 : 15 + alternerSpriteDeplacement];
                             break;
-
                         case 3:
-                            switch (alternerSpriteAttaque) {
-                                case 0:
-                                    spriteActuel = tableauSprite[10];
-                                    break;
-
-                                case 1:
-                                    spriteActuel = tableauSprite[13];
-                                    break;
-
-                                case 2:
-                                    spriteActuel = tableauSprite[16];
-                                    break;
-
-                                case 3:
-                                    spriteActuel = tableauSprite[4];
-                                    personnage.setAttaquer(false);
-                                    break;
-                            }
+                            spriteActuel = tableauSprite[4];
+                            alternerSpriteAttaque = 0;
+                            personnage.setAttaquer(false);
                             break;
                     }
+                }
             }
         }
 
-
         // permet d'alterner les mouvements de deplacement
-        if (x != 0) {
-            alternerSpriteDeplacement++;
-
-            if (alternerSpriteDeplacement == 4)
-                alternerSpriteDeplacement = 0;
-        }
+        if (personnage.getDeplacement())
+            alternerSpriteDeplacement = alternerSpriteDeplacement == 3 ? 0 : alternerSpriteDeplacement + 1;
 
         // permet d'alterner les mouvements de dégats
-        if (personnage.getAttaquer()) {
-            alternerSpriteAttaque++;
-
-            if (alternerSpriteAttaque == 4)
-                alternerSpriteAttaque = 0;
-        }
+        if (personnage.getAttaquer())
+            alternerSpriteAttaque = alternerSpriteAttaque == 3 ? 0 : alternerSpriteAttaque + 1;
     }
 
     protected void paintComponent(Graphics g) {
@@ -372,9 +162,5 @@ public class Entite extends JPanel {
 
     public int getSpriteHeight() {
         return tableauSprite[0].getHeight();
-    }
-
-    public void setAlternerSpriteAttaque(int alternerSpriteAttaque) {
-        this.alternerSpriteAttaque = alternerSpriteAttaque;
     }
 }

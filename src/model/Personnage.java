@@ -18,7 +18,7 @@ public abstract class Personnage {
     protected int armure, armureMax;
     protected int positionX, positionY;
     protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnX, vitesseDeDeplacementEnY, vitesseDeSaut;
-    protected boolean collision;
+    protected boolean collision, deplacement;
     protected boolean attaquer;
 
     // Nécessaire pour gérer l'orientation d'un personnage
@@ -36,6 +36,7 @@ public abstract class Personnage {
         direction = null;
         collision = false;
         attaquer = false;
+        deplacement = false;
         vitesseDeDeplacementEnY = 0;
         vecteurDeplacementEnX = 0;
         vecteurDeplacementEnY = 0;
@@ -132,6 +133,8 @@ public abstract class Personnage {
     }
 
     public void deplacerADroite() {
+        setDeplacement(true);
+        setDirection(Direction.DROITE);
         setVecteurDeplacementEnX(1);
     }
 
@@ -140,6 +143,8 @@ public abstract class Personnage {
     }
 
     public void deplacerAGauche() {
+        setDeplacement(true);
+        setDirection(Direction.GAUCHE);
         setVecteurDeplacementEnX(-1);
     }
 
@@ -158,6 +163,7 @@ public abstract class Personnage {
             setVitesseDeDeplacementEnY(0);
         }
 
+        setDeplacement(false);
     }
 
     public void setVecteurDeplacementEnX(int x) {
@@ -202,5 +208,13 @@ public abstract class Personnage {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public void setDeplacement(boolean deplacement) {
+        this.deplacement = deplacement;
+    }
+
+    public boolean getDeplacement() {
+        return deplacement;
     }
 }
