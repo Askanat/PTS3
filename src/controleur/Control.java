@@ -19,4 +19,11 @@ public class Control {
 
         enPartie = false;
     }
+
+    protected void changerVue() {
+        fenetre.repaint();
+        fenetre.pack();
+        fenetre.setLocationRelativeTo(null);
+        fenetre.requestFocus();
+    }
 }

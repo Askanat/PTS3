@@ -97,17 +97,7 @@ public class FenetreCharger extends JPanel {
 
         try {
             g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero1.png")), 3, 11)[1], (int) (3 / 16.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
             g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero2.png")), 3, 11)[1], (int) (43 / 96.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
             g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero3.png")), 3, 11)[1], (int) (17 / 24.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
         } catch (IOException e) {
             e.printStackTrace();

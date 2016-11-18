@@ -139,7 +139,7 @@ public abstract class Personnage {
     }
 
     public void sauter() {
-        setVitesseDeDeplacementEnY(0 - vitesseDeSaut);
+        if (getCollision()) setVitesseDeDeplacementEnY(0 - vitesseDeSaut);
     }
 
     public void deplacerAGauche() {
@@ -149,7 +149,6 @@ public abstract class Personnage {
     }
 
     public void deplacer() {
-
         setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
         setPositionY(getPositionY() + getVitesseDeDeplacementEnY());
         setVecteurDeplacementEnX(0);

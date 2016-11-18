@@ -34,13 +34,13 @@ public class BarreMenu extends JMenuBar {
         add(test);
     }
 
+    public void setControl(ControlBarreMenu controlBarreMenu) {
+        menu.addActionListener(controlBarreMenu);
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         test.setText("" + jeu.getHero().getVie());
         test.repaint();
-    }
-
-    public void setControl(ControlBarreMenu controlBarreMenu) {
-        menu.addActionListener(controlBarreMenu);
     }
 }

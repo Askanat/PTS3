@@ -45,6 +45,15 @@ public class MenuEnJeu extends JPanel {
         add(retourBureau);
     }
 
+    public void setControl(ControlMenuEnJeu controlMenuEnJeu) {
+        retourJeu.addActionListener(controlMenuEnJeu);
+        inventaire.addActionListener(controlMenuEnJeu);
+        fichePersonnage.addActionListener(controlMenuEnJeu);
+        option.addActionListener(controlMenuEnJeu);
+        retourMenuPrincipal.addActionListener(controlMenuEnJeu);
+        retourBureau.addActionListener(controlMenuEnJeu);
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -92,14 +101,5 @@ public class MenuEnJeu extends JPanel {
 
         Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-    }
-
-    public void setControl(ControlMenuEnJeu controlMenuEnJeu) {
-        retourJeu.addActionListener(controlMenuEnJeu);
-        inventaire.addActionListener(controlMenuEnJeu);
-        fichePersonnage.addActionListener(controlMenuEnJeu);
-        option.addActionListener(controlMenuEnJeu);
-        retourMenuPrincipal.addActionListener(controlMenuEnJeu);
-        retourBureau.addActionListener(controlMenuEnJeu);
     }
 }

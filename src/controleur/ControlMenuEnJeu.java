@@ -32,23 +32,18 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
             case "Option":
                 Control.enPartie = false;
                 fenetre.setContentPane(fenetre.panelFenetreOptions);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                changerVue();
                 break;
             case "Retour au Menu Principal":
                 Control.enPartie = false;
                 jeu.setPause(false);
                 fenetre.barreMenu.setVisible(false);
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                changerVue();
                 // quitte le perso : sauvegarde du perso + mise du perso à null
                 break;
             case "Retour Au Bureau":
+                // sauvegarde du perso
                 System.exit(0);
                 break;
         }

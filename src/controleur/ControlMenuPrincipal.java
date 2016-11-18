@@ -21,33 +21,21 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
         switch (e.getActionCommand()) {
             case "Nouvelle Partie":
                 fenetre.setContentPane(fenetre.panelFenetreNouvellePartie);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                changerVue();
                 break;
             case "Charger Partie":
                 jeu.setHero(1);
                 fenetre.panelFenetreDepart.dessineHero(1);
                 fenetre.setContentPane(fenetre.panelFenetreCharger);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                changerVue();
                 break;
             case "Options":
                 fenetre.setContentPane(fenetre.panelFenetreOptions);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                changerVue();
                 break;
             case "Crédits":
                 fenetre.setContentPane(fenetre.panelFenetreCredits);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                changerVue();
                 break;
             case "Quitter":
                 System.exit(0);

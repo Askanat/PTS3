@@ -1,5 +1,7 @@
 package model;
 
+import controleur.Control;
+
 import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,8 +13,8 @@ import java.util.ArrayList;
 public class Jeu {
 
     public static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-    public static final int X = 600; //(int)tailleEcran.getWidth();
-    public static final int Y = 600; //(int)tailleEcran.getHeight();
+    public static final int X = (int)tailleEcran.getWidth();
+    public static final int Y = (int)tailleEcran.getHeight();
 
     public static final int GRAVITE = (int) (1 / 135.0 * Y);
 
@@ -72,7 +74,7 @@ public class Jeu {
     public void setMonstre(int id, int positionX, int positionY) {
         // Pour le moment on sélectionne le hero 1
         if (hero == null)
-            setHero(1);
+            setHero(1); // je ne comprend pas
 
         ArrayList<String> donneesMonstre;
 
@@ -93,7 +95,7 @@ public class Jeu {
     }
 
     public void inversePause() {
-        setPause(!getPause());
+        if (Control.enPartie) setPause(!getPause());
     }
 
     public void incrementeTemps() {

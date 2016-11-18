@@ -27,10 +27,7 @@ public class ControlFenetreOptions extends Control implements ActionListener {
                     Control.enPartie = true;
                 }
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                changerVue();
                 break;
         }
     }

@@ -26,18 +26,12 @@ public class ControlTimer extends Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (ControlClavier.toucheRelacher[ControlTouche.ECHAP]) {
-            if (Control.enPartie)
-                jeu.inversePause();
+            jeu.inversePause();
             ControlClavier.toucheRelacher[ControlTouche.ECHAP] = false;
         }
 
-        if (ControlFenetreCharger.chargerPartie) {
-            ControlFenetreCharger.chargerPartie = false;
-            enPartie();
-        }
-
         if (Control.enPartie) {
-            if (jeu.getPause()) {// echap
+            if (jeu.getPause()) {
                 fenetre.setContentPane(fenetre.panelMenuEnJeu);
                 fenetre.repaint();
                 fenetre.pack();
@@ -59,8 +53,7 @@ public class ControlTimer extends Control implements ActionListener {
                 }
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.HAUT]) {
-                    if (jeu.getHero().getCollision())
-                        jeu.getHero().sauter();
+                    jeu.getHero().sauter();
                 }
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.DROITE]) {
@@ -102,15 +95,5 @@ public class ControlTimer extends Control implements ActionListener {
         }
 
         fenetre.repaint();
-    }
-
-    void enPartie() {
-        Control.enPartie = true;
-        fenetre.barreMenu.setVisible(true);
-        fenetre.setContentPane(fenetre.panelFenetreDepart);
-        fenetre.repaint();
-        fenetre.pack();
-        fenetre.setLocationRelativeTo(null);
-        fenetre.requestFocus();
     }
 }

@@ -40,6 +40,14 @@ public class MenuPrincipal extends JPanel {
         add(quitter);
     }
 
+    public void setControl(ControlMenuPrincipal controlMenuPrincipal) {
+        nouvellePartie.addActionListener(controlMenuPrincipal);
+        chargerPartie.addActionListener(controlMenuPrincipal);
+        options.addActionListener(controlMenuPrincipal);
+        credits.addActionListener(controlMenuPrincipal);
+        quitter.addActionListener(controlMenuPrincipal);
+    }
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -75,13 +83,5 @@ public class MenuPrincipal extends JPanel {
 
         Image img = getToolkit().getImage("images/testMenu.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-    }
-
-    public void setControl(ControlMenuPrincipal controlMenuPrincipal) {
-        nouvellePartie.addActionListener(controlMenuPrincipal);
-        chargerPartie.addActionListener(controlMenuPrincipal);
-        options.addActionListener(controlMenuPrincipal);
-        credits.addActionListener(controlMenuPrincipal);
-        quitter.addActionListener(controlMenuPrincipal);
     }
 }

@@ -15,7 +15,6 @@ import static model.Jeu.Y;
 public class FenetreCredits extends JPanel {
 
     public JButton retour;
-    private JLabel credits, texte;
 
     public FenetreCredits() {
 

@@ -48,10 +48,7 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
                 break;
             case "Retour":
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                changerVue();
                 break;
         }
     }
