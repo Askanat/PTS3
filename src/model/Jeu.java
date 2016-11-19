@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class Jeu {
 
     public static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-    public static final int X = 600; //(int)tailleEcran.getWidth();
-    public static final int Y = 600; //(int)tailleEcran.getHeight();
+    public static final int X = (int)tailleEcran.getWidth();
+    public static final int Y = (int)tailleEcran.getHeight();
 
     public static final int GRAVITE = (int) (1 / 135.0 * Y);
 
