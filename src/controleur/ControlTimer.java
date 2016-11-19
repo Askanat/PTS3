@@ -1,6 +1,7 @@
 package controleur;
 
 import model.Jeu;
+import vue.Entite;
 import vue.Fenetre;
 
 import javax.swing.*;
@@ -77,7 +78,9 @@ public class ControlTimer extends Control implements ActionListener {
                 }
 
 
-                fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement();
+                for (Entite entite : fenetre.panelFenetreDepart.hero)
+                    entite.selectionnerMorceauSpriteDeplacement();
+
                 jeu.getHero().deplacer();
 
                 /*for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {

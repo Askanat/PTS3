@@ -17,8 +17,13 @@ import static model.Jeu.Y;
 public class FenetreDepart extends JPanel {
 
     private Jeu jeu;
-    public Entite hero;
-    public ArrayList<Entite> monstre;
+
+    private final int NOMBRE_DE_EQUIPEMENT = 0;
+    private final int NOMBRE_DE_PNG = 0;
+
+    public Entite[] hero; // le héro et ses équipements
+    public Entite[] png; // tous les png présents sur la carte de départ
+    public ArrayList<Entite> monstre; // a enlever d'ici
 
     public FenetreDepart(Jeu jeu) {
 
@@ -27,12 +32,22 @@ public class FenetreDepart extends JPanel {
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
-        hero = new Entite();
-        monstre = new ArrayList<Entite>();
+        hero = new Entite[NOMBRE_DE_EQUIPEMENT + 1]; // tableau qui regroupe le héro + ses équipements
+        for (int i = 0; i < hero.length; i++)
+            hero[i] = new Entite();
+
+        png = new Entite[NOMBRE_DE_PNG];
+        for (int i = 0; i < png.length; i++)
+            png[i] = new Entite();
+
+        monstre = new ArrayList<Entite>(); // a enlever d'ici
     }
 
     public void dessineHero(int id) {
-        hero.creationEntite(jeu.getHero(), jeu.getBDD().readHeroTexture(id));
+        hero[0].creationEntite(jeu.getHero(), jeu.getBDD().readHeroTexture(id));
+    }
+
+    public void dessinePng() {
     }
 
     public void dessineMonstre(int id) {
@@ -46,9 +61,15 @@ public class FenetreDepart extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        hero.paintComponent(g);
-
         for (Entite e : monstre)
             e.paintComponent(g);
+
+        for (Entite e : png)
+            e.paintComponent(g);
+
+        for (Entite e : hero)
+            e.paintComponent(g);
+
+        //hero[0].paintComponent(g);
     }
 }
