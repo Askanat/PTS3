@@ -61,7 +61,7 @@ public class FenetreDepart extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (Entite e : monstre)
+        for (Entite e : monstre) // a enlever
             e.paintComponent(g);
 
         for (Entite e : png)
@@ -69,7 +69,5 @@ public class FenetreDepart extends JPanel {
 
         for (Entite e : hero)
             e.paintComponent(g);
-
-        //hero[0].paintComponent(g);
     }
 }
