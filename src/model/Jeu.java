@@ -61,10 +61,10 @@ public class Jeu {
 
         donneesHero = bdd.readHero(id);
 
-        hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)),
-                Integer.parseInt(donneesHero.get(3)), Integer.parseInt(donneesHero.get(4)), Integer.parseInt(donneesHero.get(5)),
-                Integer.parseInt(donneesHero.get(6)), Integer.parseInt(donneesHero.get(7)), Integer.parseInt(donneesHero.get(8)),
-                Integer.parseInt(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), (int) (25 / 96.0 * X), (int) (25 / 51.0 * Y));
+        hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Double.parseDouble(donneesHero.get(2)),
+                Double.parseDouble(donneesHero.get(3)), Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)),
+                Double.parseDouble(donneesHero.get(6)), Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)),
+                Double.parseDouble(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (25 / 96.0 * X), (int) (25 / 51.0 * Y));
     }
 
     public Hero getHero() {
@@ -80,9 +80,9 @@ public class Jeu {
 
         donneesMonstre = bdd.readMonstre(id);
 
-        tableauMonstre.add(new Monstre(donneesMonstre.get(0), Integer.parseInt(donneesMonstre.get(1)), Integer.parseInt(donneesMonstre.get(2)),
-                Integer.parseInt(donneesMonstre.get(3)), Integer.parseInt(donneesMonstre.get(4)), Integer.parseInt(donneesMonstre.get(5)), positionX, positionY,
-                Integer.parseInt(donneesMonstre.get(6)), Integer.parseInt(donneesMonstre.get(6)), hero));
+        tableauMonstre.add(new Monstre(donneesMonstre.get(0), Double.parseDouble(donneesMonstre.get(1)), Double.parseDouble(donneesMonstre.get(2)),
+                Double.parseDouble(donneesMonstre.get(3)), Double.parseDouble(donneesMonstre.get(4)), Double.parseDouble(donneesMonstre.get(5)), positionX, positionY,
+                1, 1, hero));
     }
 
     public Monstre getMonstre(int i) {

@@ -10,40 +10,41 @@ import static model.Jeu.X;
 
 public class Monstre extends Personnage implements Runnable {
 
-    private int coefVie;
-    private int coefMana;
-    private int coefDegat;
-    private int coefArmure;
+    private double coeffVie;
+    private double coeffMana;
+    private double coeffDegat;
+    private double coeffArmure;
     private int distanceVue;
     private Hero hero;
 
-    public Monstre(String nom, int niveau, int coefVie, int coefMana, int coefDegat, int coefArmure,
+    public Monstre(String nom, double coeffMonstre, double coeffArmure, double coeffVie, double coeffMana, double coeffDegat,
                    int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, Hero hero) {
-        super(nom, niveau, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY);
 
-        vieMax = coefVie * niveau;
+        super(nom, (int)coeffMonstre, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY);
+
+        vieMax = coeffVie * niveau;
         vie = vieMax;
 
-        manaMax = coefMana * niveau;
+        manaMax = coeffMana * niveau;
         mana = manaMax;
 
-        degatMax = coefDegat * niveau;
+        degatMax = coeffDegat * niveau;
         degats = degatMax;
 
-        armureMax = coefArmure * niveau;
+        armureMax = coeffArmure * niveau;
         armure = armureMax;
 
-        this.coefVie = coefVie;
-        this.coefMana = coefMana;
-        this.coefDegat = coefDegat;
-        this.coefArmure = coefArmure;
+        this.coeffVie = coeffVie;
+        this.coeffMana = coeffMana;
+        this.coeffDegat = coeffDegat;
+        this.coeffArmure = coeffArmure;
 
         // Le monstre peut voir jusqu'à 100 px devant ou derrière lui, pour 1920/1080 reporter à la taille de l'écran
         this.distanceVue = (int) (5 / 48.0 * X);
 
         this.hero = hero;
 
-        System.out.println("nom:" + nom + ", niveau:" + niveau + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
+        System.out.println("nom:" + nom + ", niveau:" + coeffMonstre + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
                 degatMax + ", armureMax:" + armureMax);
     }
 

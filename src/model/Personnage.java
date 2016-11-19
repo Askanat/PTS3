@@ -12,10 +12,10 @@ public abstract class Personnage {
 
     protected String nom;
     protected int niveau;
-    protected int vie, vieMax;
-    protected int mana, manaMax;
-    protected int degats, degatMax;
-    protected int armure, armureMax;
+    protected double vie, vieMax;
+    protected double mana, manaMax;
+    protected double degats, degatMax;
+    protected double armure, armureMax;
     protected int positionX, positionY;
     protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnX, vitesseDeDeplacementEnY, vitesseDeSaut;
     protected boolean collision, deplacement;
@@ -42,7 +42,7 @@ public abstract class Personnage {
         vecteurDeplacementEnY = 0;
     }
 
-    public void recevoirDegats(int degats) {
+    public void recevoirDegats(double degats) {
 
         if (degats < 0) degats = 0;
 
@@ -79,11 +79,11 @@ public abstract class Personnage {
         return nom;
     }
 
-    public void setVie(int vie) {
+    public void setVie(double vie) {
         this.vie = vie;
     }
 
-    public final int getVie() {
+    public final double getVie() {
         return vie;
     }
 
@@ -91,7 +91,7 @@ public abstract class Personnage {
         this.vieMax = vieMax;
     }
 
-    public final int getVieMax() {
+    public final double getVieMax() {
         return vieMax;
     }
 
@@ -99,7 +99,7 @@ public abstract class Personnage {
         this.degats = degats;
     }
 
-    public final int getDegats() {
+    public final double getDegats() {
         return degats;
     }
 
