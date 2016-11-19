@@ -52,6 +52,10 @@ public class Fenetre extends JFrame {
         panelMenuEnJeu = new MenuEnJeu(jeu);
     }
 
+    public void setPaneSelectionnePersonnage() {
+        JOptionPane.showMessageDialog(null, "Selectionnez un personnage, \n puis cliquez sur jouer", "message", JOptionPane.ERROR_MESSAGE);
+    }
+
     public void setControlMenuPrincipal(ControlMenuPrincipal controlMenuPrincipal) {
         panelMenuPrincipal.setControl(controlMenuPrincipal);
     }
