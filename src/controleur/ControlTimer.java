@@ -35,13 +35,20 @@ public class ControlTimer extends Control implements ActionListener {
 
         if (Control.enPartie) {
             if (jeu.getPause()) {
-                fenetre.getContentPane().setLayout( new BorderLayout());
-                fenetre.getContentPane().add(fenetre.panelMenuEnJeu, BorderLayout.PAGE_START);
-                fenetre.getContentPane().validate();
+                fenetre.getContentPane().setLayout( new GridBagLayout());
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.weightx = 1;
+                gbc.weighty = 1;
 
-                //fenetre.setContentPane(fenetre.panelMenuEnJeu);
-                //changerVue();
+                gbc.gridx = 0;
+                gbc.gridwidth = 2;
+                gbc.gridheight = 2;
+                gbc.gridy = 0;
+
+                fenetre.getContentPane().add(fenetre.panelMenuEnJeu, gbc);
+                fenetre.getContentPane().validate();
             } else {
+                fenetre.getContentPane().removeAll();
                 fenetre.setContentPane(fenetre.panelFenetreDepart);
                 changerVue();
             }

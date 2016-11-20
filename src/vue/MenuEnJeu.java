@@ -22,7 +22,7 @@ public class MenuEnJeu extends JPanel {
         this.jeu = jeu;
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(600, 600));
+        setPreferredSize(new Dimension(X/2, Y/2));
 
         retourJeu = new JButton("Retour");
         retourJeu.setActionCommand("Retour");
