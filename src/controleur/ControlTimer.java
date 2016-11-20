@@ -35,8 +35,8 @@ public class ControlTimer extends Control implements ActionListener {
 
         if (Control.enPartie) {
             if (jeu.getPause()) {
-                fenetre.getContentPane().setLayout(new BorderLayout());
-                fenetre.getContentPane().add(fenetre.panelMenuEnJeu);
+                fenetre.getContentPane().setLayout( new BorderLayout());
+                fenetre.getContentPane().add(fenetre.panelMenuEnJeu, BorderLayout.PAGE_START);
                 fenetre.getContentPane().validate();
 
                 //fenetre.setContentPane(fenetre.panelMenuEnJeu);
