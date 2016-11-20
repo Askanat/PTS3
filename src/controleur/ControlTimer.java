@@ -5,6 +5,8 @@ import vue.Entite;
 import vue.Fenetre;
 
 import javax.swing.*;
+import javax.swing.plaf.BorderUIResource;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,17 +35,15 @@ public class ControlTimer extends Control implements ActionListener {
 
         if (Control.enPartie) {
             if (jeu.getPause()) {
-                fenetre.setContentPane(fenetre.panelMenuEnJeu);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                fenetre.getContentPane().setLayout(new BorderLayout());
+                fenetre.getContentPane().add(fenetre.panelMenuEnJeu);
+                fenetre.getContentPane().validate();
+
+                //fenetre.setContentPane(fenetre.panelMenuEnJeu);
+                //changerVue();
             } else {
                 fenetre.setContentPane(fenetre.panelFenetreDepart);
-                fenetre.repaint();
-                fenetre.pack();
-                fenetre.setLocationRelativeTo(null);
-                fenetre.requestFocus();
+                changerVue();
             }
 
             if (!jeu.getPause()) {
