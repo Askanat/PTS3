@@ -24,17 +24,17 @@ public class MenuEnJeu extends JPanel {
         this.setLayout(null);
         setPreferredSize(new Dimension(X / 2, Y / 2));
 
-        retourJeu = new JButton("Retour");
+        retourJeu = new JButton("");
         retourJeu.setActionCommand("Retour");
-        inventaire = new JButton("Inventaire");
+        inventaire = new JButton("");
         inventaire.setActionCommand("Inventaire");
-        fichePersonnage = new JButton("Fiche Personnage");
+        fichePersonnage = new JButton("Fiche ");
         fichePersonnage.setActionCommand("Fiche Personnage");
-        option = new JButton("Option");
+        option = new JButton("");
         option.setActionCommand("Option");
-        retourMenuPrincipal = new JButton("Retour au Menu Principal");
+        retourMenuPrincipal = new JButton("");
         retourMenuPrincipal.setActionCommand("Retour au Menu Principal");
-        retourBureau = new JButton("Retour Au Bureau");
+        retourBureau = new JButton("");
         retourBureau.setActionCommand("Retour Au Bureau");
 
         add(retourJeu);
