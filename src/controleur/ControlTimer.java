@@ -36,6 +36,7 @@ public class ControlTimer extends Control implements ActionListener {
         if (Control.enPartie) {
             if (jeu.getPause()) {
                 fenetre.getContentPane().setLayout( new GridBagLayout());
+                fenetre.getContentPane().isOpaque();
                 GridBagConstraints gbc = new GridBagConstraints();
                 gbc.weightx = 1;
                 gbc.weighty = 1;

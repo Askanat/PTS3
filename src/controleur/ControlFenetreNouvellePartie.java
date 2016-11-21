@@ -26,6 +26,8 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Slot de Sauvegarde n°1":
+                fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage); // test
+                changerVue(); // test
                 // verif suppresion hero
                 // supprime hero 1
                 // crée un nouveau hero avec le nom rentrer
@@ -33,6 +35,8 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
                 nouvellePartie1 = true;
                 break;
             case "Slot de Sauvegarde n°2":
+                fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage); // test
+                changerVue(); // test
                 // verif suppresion hero
                 // supprime hero 2
                 // crée un nouveau hero avec le nom rentrer
@@ -40,6 +44,8 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
                 nouvellePartie2 = true;
                 break;
             case "Slot de Sauvegarde n°3":
+                fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage); // test
+                changerVue(); // test
                 // verif suppresion hero
                 // supprime hero 3
                 // crée un nouveau hero avec le nom rentrer

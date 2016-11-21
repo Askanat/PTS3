@@ -11,26 +11,25 @@ import java.io.IOException;
 
 public class ControlGroup {
 
-    public Jeu jeu;
     public Fenetre fenetre;
 
     public ControlGroup(Jeu jeu) throws IOException {
-        this.jeu = jeu;
-        fenetre = new Fenetre(this.jeu);
+        fenetre = new Fenetre(jeu);
 
-        ControlMenuPrincipal controlMenuPrincipal = new ControlMenuPrincipal(this.jeu, fenetre);
-        ControlFenetreNouvellePartie controlFenetreNouvellePartie = new ControlFenetreNouvellePartie(this.jeu, fenetre);
-        ControlFenetreCharger controlFenetreCharger = new ControlFenetreCharger(this.jeu, fenetre);
-        ControlFenetreOptions controlFenetreOptions = new ControlFenetreOptions(this.jeu, fenetre);
-        ControlFenetreCredits controlFenetreCredits = new ControlFenetreCredits(this.jeu, fenetre);
+        ControlMenuPrincipal controlMenuPrincipal = new ControlMenuPrincipal(jeu, fenetre);
+        ControlFenetreNouvellePartie controlFenetreNouvellePartie = new ControlFenetreNouvellePartie(jeu, fenetre);
+        ControlFenetreCreationPersonnage controlFenetreCreationPersonnage = new ControlFenetreCreationPersonnage(jeu, fenetre);
+        ControlFenetreCharger controlFenetreCharger = new ControlFenetreCharger(jeu, fenetre);
+        ControlFenetreOptions controlFenetreOptions = new ControlFenetreOptions(jeu, fenetre);
+        ControlFenetreCredits controlFenetreCredits = new ControlFenetreCredits(jeu, fenetre);
 
-        ControlFenetreDepart controlFenetreDepart = new ControlFenetreDepart(this.jeu, fenetre);
-        ControlFenetreDonjon controlFenetreDonjon = new ControlFenetreDonjon(this.jeu, fenetre);
+        ControlFenetreDepart controlFenetreDepart = new ControlFenetreDepart(jeu, fenetre);
+        ControlFenetreDonjon controlFenetreDonjon = new ControlFenetreDonjon(jeu, fenetre);
 
-        ControlBarreMenu controlBarreMenu = new ControlBarreMenu(this.jeu, fenetre);
-        ControlMenuEnJeu controlMenuEnJeu = new ControlMenuEnJeu(this.jeu, fenetre);
+        ControlBarreMenu controlBarreMenu = new ControlBarreMenu(jeu, fenetre);
+        ControlMenuEnJeu controlMenuEnJeu = new ControlMenuEnJeu(jeu, fenetre);
 
-        ControlClavier controlClavier = new ControlClavier(this.jeu, fenetre);
-        ControlTimer controlTimer = new ControlTimer(this.jeu, fenetre);
+        ControlClavier controlClavier = new ControlClavier(jeu, fenetre);
+        ControlTimer controlTimer = new ControlTimer(jeu, fenetre);
     }
 }

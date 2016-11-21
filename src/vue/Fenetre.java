@@ -22,6 +22,7 @@ public class Fenetre extends JFrame {
     public FenetreNouvellePartie panelFenetreNouvellePartie;
     public MenuEnJeu panelMenuEnJeu;
     public BarreMenu barreMenu;
+    public FenetreCreationPersonnage panelFenetreCreationPersonnage;
 
     public Fenetre(Jeu jeu) {
 
@@ -50,6 +51,7 @@ public class Fenetre extends JFrame {
         panelMenuPrincipal = new MenuPrincipal();
         barreMenu = new BarreMenu(jeu);
         panelMenuEnJeu = new MenuEnJeu(jeu);
+        panelFenetreCreationPersonnage = new FenetreCreationPersonnage(jeu);
     }
 
     public void setPaneSelectionnePersonnage() {
@@ -97,6 +99,10 @@ public class Fenetre extends JFrame {
 
     public void setControlClavier(ControlClavier controlClavier) {
         addKeyListener(controlClavier);
+    }
+
+    public void setControlFenetreCreationPersonnage(ControlFenetreCreationPersonnage controlFenetreCreationPersonnage) {
+        panelFenetreCreationPersonnage.setControl(controlFenetreCreationPersonnage);
     }
 
 }
