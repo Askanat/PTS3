@@ -36,6 +36,8 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
                 if (valeurSupprimerPartieHero == 0)
                     fenetre.setPaneSelectionnePersonnageASupprimer();
                 else {
+                    // supprimer la partie corrspondant a valeurSupprimerPartieHero
+                    valeurSupprimerPartieHero = 0;
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                     changerVue();
                 }
