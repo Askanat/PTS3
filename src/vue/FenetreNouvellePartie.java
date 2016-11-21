@@ -89,7 +89,7 @@ public class FenetreNouvellePartie extends JPanel {
         retour.setBorder(null);
 
 
-        g.drawImage(getToolkit().getImage("images/chargerPartie.png"), 0, 0, getWidth(), getHeight(), this); // image a modifier
+        g.drawImage(getToolkit().getImage("images/menuNouvellePartie.png"), 0, 0, getWidth(), getHeight(), this); // image a modifier
 
         try {
             g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero1.png")), 3, 11)[1], (int) (3 / 16.0 * X), (int) (13 / 45.0 * Y), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
