@@ -18,6 +18,9 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
+            case "Joueur":
+                System.out.println(fenetre.panelFenetreCreationPersonnage.getTfNomHero().getText());
+                break;
             case "Retour":
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 changerVue();

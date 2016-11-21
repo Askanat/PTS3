@@ -1,7 +1,6 @@
 package vue;
 
 import controleur.ControlFenetreCreationPersonnage;
-import controleur.ControlFenetreNouvellePartie;
 import model.Jeu;
 
 import javax.swing.*;
@@ -16,7 +15,9 @@ import static model.Jeu.Y;
 public class FenetreCreationPersonnage extends JPanel {
 
     private Jeu jeu;
-    public JButton retour;
+    public JButton jouer, retour;
+    public JLabel lNomHero;
+    public JTextField tfNomHero;
 
     public FenetreCreationPersonnage(Jeu jeu) {
 
@@ -25,19 +26,47 @@ public class FenetreCreationPersonnage extends JPanel {
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
+        jouer = new JButton("Joueur");
+        jouer.setActionCommand("Joueur");
+
+        lNomHero = new JLabel("Nom");
+        tfNomHero = new JTextField();
+        tfNomHero.setColumns(10);
+
         retour = new JButton("Retour");
         retour.setActionCommand("Retour");
 
+        add(jouer);
+        add(lNomHero);
+        add(tfNomHero);
         add(retour);
     }
 
     public void setControl(ControlFenetreCreationPersonnage controlFenetreCreationPersonnage) {
-
+        jouer.addActionListener(controlFenetreCreationPersonnage);
         retour.addActionListener(controlFenetreCreationPersonnage);
+        tfNomHero.addActionListener(controlFenetreCreationPersonnage);
     }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        jouer.setBounds(40, 100, 228, 40);
+        jouer.setForeground(Color.WHITE);
+        jouer.setBackground(new Color(0, 0, 0, 0));
+        jouer.setFocusable(false);
+        jouer.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jouer.setBorder(null);
+
+
+        lNomHero.setBounds(40, 300, 228, 40);
+        lNomHero.setForeground(Color.WHITE);
+        lNomHero.setBackground(new Color(0, 0, 0, 0));
+        lNomHero.setFocusable(false);
+        lNomHero.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lNomHero.setBorder(null);
+
+        tfNomHero.setBounds(40, 400, 228, 40);
 
         retour.setBounds(40, 500, 228, 40);
         retour.setForeground(Color.WHITE);
@@ -50,4 +79,7 @@ public class FenetreCreationPersonnage extends JPanel {
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 
+    public JTextField getTfNomHero() {
+        return tfNomHero;
+    }
 }
