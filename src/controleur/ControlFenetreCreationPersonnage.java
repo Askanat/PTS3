@@ -20,6 +20,8 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
         switch (e.getActionCommand()) {
             case "Jouer":
                 System.out.println(fenetre.panelFenetreCreationPersonnage.getTfNomHero().getText());
+                // enregistre le nouveau perso
+                // lance le jeu avec l'id du perso
                 break;
             case "Retour":
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
