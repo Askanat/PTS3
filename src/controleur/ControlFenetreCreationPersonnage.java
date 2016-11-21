@@ -19,7 +19,6 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Retour":
-                System.out.print("test");
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 changerVue();
                 break;
