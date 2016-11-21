@@ -75,7 +75,7 @@ public class FenetreCreationPersonnage extends JPanel {
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retour.setBorder(null);
 
-        Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
+        Image img = getToolkit().getImage("images/menuCreationPersonnage.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 
