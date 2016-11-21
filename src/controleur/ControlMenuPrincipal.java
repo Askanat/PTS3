@@ -20,7 +20,11 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Nouvelle Partie":
-                fenetre.setContentPane(fenetre.panelFenetreNouvellePartie);
+                int NbPartieDispo = 0; // a rempalcer par la valeur de sql
+                if (NbPartieDispo >= 1)
+                    fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
+                else
+                    fenetre.setContentPane(fenetre.panelFenetreNouvellePartie);
                 changerVue();
                 break;
             case "Charger Partie":

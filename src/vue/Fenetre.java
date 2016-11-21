@@ -55,7 +55,11 @@ public class Fenetre extends JFrame {
     }
 
     public void setPaneSelectionnePersonnage() {
-        JOptionPane.showMessageDialog(null, "Selectionnez un personnage avant de cliquer sur jouer !", "message", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Selectionnez un personnage avant de cliquer sur jouer !", "message", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void setPaneSelectionnePersonnageASupprimer() {
+        JOptionPane.showMessageDialog(this, "Selectionnez une partie à supprimer avant de cliquer sur continuer !", "message", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void setControlMenuPrincipal(ControlMenuPrincipal controlMenuPrincipal) {

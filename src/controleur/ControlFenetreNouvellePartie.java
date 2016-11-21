@@ -12,45 +12,33 @@ import java.awt.event.ActionListener;
 
 public class ControlFenetreNouvellePartie extends Control implements ActionListener {
 
-    public static boolean nouvellePartie1, nouvellePartie2, nouvellePartie3;
+    private int valeurSupprimerPartieHero;
 
     public ControlFenetreNouvellePartie(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlFenetreNouvellePartie(this);
 
-        nouvellePartie1 = false;
-        nouvellePartie2 = false;
-        nouvellePartie3 = false;
+        valeurSupprimerPartieHero = 0;
     }
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case "Slot de Sauvegarde n°1":
-                fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage); // test
-                changerVue(); // test
-                // verif suppresion hero
-                // supprime hero 1
-                // crée un nouveau hero avec le nom rentrer
-                // commencer jeu
-                nouvellePartie1 = true;
+            case "Slot n°1":
+                valeurSupprimerPartieHero = 1;
                 break;
-            case "Slot de Sauvegarde n°2":
-                fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage); // test
-                changerVue(); // test
-                // verif suppresion hero
-                // supprime hero 2
-                // crée un nouveau hero avec le nom rentrer
-                // commencer jeu
-                nouvellePartie2 = true;
+            case "Slot n°2":
+                valeurSupprimerPartieHero = 2;
                 break;
-            case "Slot de Sauvegarde n°3":
-                fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage); // test
-                changerVue(); // test
-                // verif suppresion hero
-                // supprime hero 3
-                // crée un nouveau hero avec le nom rentrer
-                // commencer jeu
-                nouvellePartie3 = true;
+            case "Slot n°3":
+                valeurSupprimerPartieHero = 3;
+                break;
+            case "Continuer":
+                if (valeurSupprimerPartieHero == 0)
+                    fenetre.setPaneSelectionnePersonnageASupprimer();
+                else {
+                    fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
+                    changerVue();
+                }
                 break;
             case "Retour":
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
