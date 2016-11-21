@@ -83,8 +83,8 @@ public class FenetreNouvellePartie extends JPanel {
         continuer.setCursor(new Cursor(Cursor.HAND_CURSOR));
         continuer.setBorder(null);
 
-        retour.setBounds(40, 500, 228, 30);
-        retour.setForeground(Color.WHITE);
+        retour.setBounds((int) (1/48.0*X), (int) (49/54.0 * Y), (int) (19/160.0*X), (int) (1/27.0*Y));
+        retour.setForeground(Color.RED);
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
