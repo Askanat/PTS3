@@ -99,7 +99,7 @@ public class MenuEnJeu extends JPanel {
         retourBureau.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retourBureau.setBorder(null);
 
-        Image img = getToolkit().getImage("images/fondMenuPrinci.jpg");
+        Image img = getToolkit().getImage("images/menuPause.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 }
