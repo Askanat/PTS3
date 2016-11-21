@@ -26,8 +26,8 @@ public class FenetreCreationPersonnage extends JPanel {
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
-        jouer = new JButton("Joueur");
-        jouer.setActionCommand("Joueur");
+        jouer = new JButton("Jouer");
+        jouer.setActionCommand("Jouer");
 
         lNomHero = new JLabel("Nom");
         tfNomHero = new JTextField();

@@ -45,6 +45,7 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
             case "Retour":
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 changerVue();
+                valeurSupprimerPartieHero = 0;
                 break;
         }
     }
