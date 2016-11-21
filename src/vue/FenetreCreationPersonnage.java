@@ -59,14 +59,14 @@ public class FenetreCreationPersonnage extends JPanel {
         jouer.setBorder(null);
 
 
-        lNomHero.setBounds(940, 850, 230, 40);
+        lNomHero.setBounds((int) (47/96.0*X), (int) (85/108.0*Y), (int) (23/192.0*X), (int) (1/27.0*Y));
         lNomHero.setForeground(Color.WHITE);
         lNomHero.setBackground(new Color(0, 0, 0, 0));
         lNomHero.setFocusable(false);
         lNomHero.setCursor(new Cursor(Cursor.HAND_CURSOR));
         lNomHero.setBorder(null);
 
-        tfNomHero.setBounds(845, 890, 230, 40);
+        tfNomHero.setBounds((int) (169/384.0*X), (int) (89/108.0*Y), (int) (23/192.0*X), (int) (1/27.0*Y));
 
         retour.setBounds((int) (1/48.0*X), (int) (49/54.0 * Y), (int) (19/160.0*X), (int) (1/27.0*Y));
         retour.setForeground(Color.WHITE);
