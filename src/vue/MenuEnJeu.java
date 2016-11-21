@@ -22,7 +22,7 @@ public class MenuEnJeu extends JPanel {
         this.jeu = jeu;
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(X/2, Y/2));
+        setPreferredSize(new Dimension(X / 2, Y / 2));
 
         retourJeu = new JButton("Retour");
         retourJeu.setActionCommand("Retour");
@@ -30,7 +30,7 @@ public class MenuEnJeu extends JPanel {
         inventaire.setActionCommand("Inventaire");
         fichePersonnage = new JButton("Fiche Personnage");
         fichePersonnage.setActionCommand("Fiche Personnage");
-        option= new JButton("Option");
+        option = new JButton("Option");
         option.setActionCommand("Option");
         retourMenuPrincipal = new JButton("Retour au Menu Principal");
         retourMenuPrincipal.setActionCommand("Retour au Menu Principal");
@@ -57,42 +57,42 @@ public class MenuEnJeu extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        retourJeu.setBounds(290, 150, 228, 40);
+        retourJeu.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (5 / 18.0 * (Y / 2.0)), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
         retourJeu.setForeground(Color.WHITE);
         retourJeu.setBackground(new Color(0, 0, 0, 0));
         retourJeu.setFocusable(false);
         retourJeu.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retourJeu.setBorder(null);
 
-        inventaire.setBounds(290, 200, 228, 40);
+        inventaire.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (10 / 27.0 * Y / 2.0), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
         inventaire.setForeground(Color.WHITE);
         inventaire.setBackground(new Color(0, 0, 0, 0));
         inventaire.setFocusable(false);
         inventaire.setCursor(new Cursor(Cursor.HAND_CURSOR));
         inventaire.setBorder(null);
 
-        fichePersonnage.setBounds(290, 250, 228, 40);
+        fichePersonnage.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (25 / 54.0 * Y / 2.0), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
         fichePersonnage.setForeground(Color.WHITE);
         fichePersonnage.setBackground(new Color(0, 0, 0, 0));
         fichePersonnage.setFocusable(false);
         fichePersonnage.setCursor(new Cursor(Cursor.HAND_CURSOR));
         fichePersonnage.setBorder(null);
 
-        option.setBounds(290, 300, 228, 40);
+        option.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (5 / 9.0 * Y / 2.0), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
         option.setForeground(Color.WHITE);
         option.setBackground(new Color(0, 0, 0, 0));
         option.setFocusable(false);
         option.setCursor(new Cursor(Cursor.HAND_CURSOR));
         option.setBorder(null);
 
-        retourMenuPrincipal.setBounds(290, 350, 228, 40);
+        retourMenuPrincipal.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (35 / 54.0 * Y / 2.0), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
         retourMenuPrincipal.setForeground(Color.WHITE);
         retourMenuPrincipal.setBackground(new Color(0, 0, 0, 0));
         retourMenuPrincipal.setFocusable(false);
         retourMenuPrincipal.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retourMenuPrincipal.setBorder(null);
 
-        retourBureau.setBounds(290, 400, 228, 40);
+        retourBureau.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (20 / 27.0 * Y / 2.0), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
         retourBureau.setForeground(Color.WHITE);
         retourBureau.setBackground(new Color(0, 0, 0, 0));
         retourBureau.setFocusable(false);
