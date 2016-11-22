@@ -24,6 +24,10 @@ public class Fenetre extends JFrame {
     public BarreMenu barreMenu;
     public FenetreCreationPersonnage panelFenetreCreationPersonnage;
 
+    private static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    public static final int X = (int) tailleEcran.getWidth();
+    public static final int Y = (int) tailleEcran.getHeight();
+
     public Fenetre(Jeu jeu) {
 
         this.jeu = jeu;
@@ -52,6 +56,14 @@ public class Fenetre extends JFrame {
         barreMenu = new BarreMenu(jeu);
         panelMenuEnJeu = new MenuEnJeu(jeu);
         panelFenetreCreationPersonnage = new FenetreCreationPersonnage(jeu);
+    }
+
+    public static int adapterResolutionEnX(int valeur) {
+        return (int) (valeur / 1920.0 * X);
+    }
+
+    public static int adapterResolutionEnY(int valeur) {
+        return (int) (valeur / 1080.0 * Y);
     }
 
     public void setPaneSelectionnePersonnage() {

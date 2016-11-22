@@ -1,8 +1,8 @@
 package model;
 
-import java.util.Random;
+import vue.Fenetre;
 
-import static model.Jeu.X;
+import java.util.Random;
 
 /**
  * Created by bastien on 29/09/16.
@@ -40,7 +40,7 @@ public class Monstre extends Personnage implements Runnable {
         this.coeffArmure = coeffArmure;
 
         // Le monstre peut voir jusqu'à 100 px devant ou derrière lui, pour 1920/1080 reporter à la taille de l'écran
-        this.distanceVue = (int) (5 / 48.0 * X);
+        this.distanceVue = Fenetre.adapterResolutionEnX(200);
 
         this.hero = hero;
 

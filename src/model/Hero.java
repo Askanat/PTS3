@@ -1,7 +1,6 @@
 package model;
 
-import static model.Jeu.X;
-import static model.Jeu.Y;
+import vue.Fenetre;
 
 /**
  * Created by bastien on 29/09/16.
@@ -26,7 +25,7 @@ public class Hero extends Personnage {
     public Hero(String nom, int niveau, double experience, double experienceMax, double forcePerso, double intelPerso,
                 double constiPerso, double armurePerso, double resiPerso, double degatArmePerso,int gold, String texturePerso, int positionX, int positionY) {
 
-        super(nom, niveau, positionX, positionY, (int) (1 / 64.0 * X), (int) (1 / 18.0 * Y));
+        super(nom, niveau, positionX, positionY, Fenetre.adapterResolutionEnX(30), Fenetre.adapterResolutionEnY(60));
 
         vieMax = constiPerso * COEF_VIE + VIE_DE_BASE;
         vie = vieMax;

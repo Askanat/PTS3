@@ -5,8 +5,8 @@ import controleur.ControlFenetreCredits;
 import javax.swing.*;
 import java.awt.*;
 
-import static model.Jeu.X;
-import static model.Jeu.Y;
+import static vue.Fenetre.X;
+import static vue.Fenetre.Y;
 
 /**
  * Created by bastien on 29/09/16.
@@ -34,7 +34,7 @@ public class FenetreCredits extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        retour.setBounds((int) (1/48.0*X), (int) (49/54.0 * Y), (int) (19/160.0*X), (int) (1/27.0*Y));
+        retour.setBounds(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));

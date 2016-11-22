@@ -6,9 +6,6 @@ import vue.Fenetre;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static model.Jeu.X;
-import static model.Jeu.Y;
-
 /**
  * Created by bastien on 29/09/16.
  */
@@ -41,9 +38,9 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                 } else {
                     spawnHero(valeurHero);
                     fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
-                    spawnMonstre(1, (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y)); // a enlever d'ici
-                    spawnMonstre(2, (int) (5 / 24.0 * X), (int) (10 / 27.0 * Y)); // a enlever d'ici
-                    spawnMonstre(3, (int) (5 / 16.0 * X), (int) (5 / 9.0 * Y)); // a enlever d'ici
+                    spawnMonstre(1, Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200)); // a enlever d'ici
+                    spawnMonstre(2, Fenetre.adapterResolutionEnX(250), Fenetre.adapterResolutionEnY(250)); // a enlever d'ici
+                    spawnMonstre(3, Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300)); // a enlever d'ici
                     valeurHero = 0;
                     Control.enPartie = true;
                     fenetre.barreMenu.setVisible(true);

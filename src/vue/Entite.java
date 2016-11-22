@@ -10,8 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static model.Jeu.X;
-import static model.Jeu.Y;
 
 /**
  * Created by bastien on 02/10/16.
@@ -153,7 +151,7 @@ public class Entite extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(spriteActuel, personnage.getPositionX(), personnage.getPositionY(), (int) (5 / 48.0 * X), (int) (5 / 27.0 * Y), this);
+        g.drawImage(spriteActuel, personnage.getPositionX(), personnage.getPositionY(), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
     }
 
     public int getSpriteWidth() {

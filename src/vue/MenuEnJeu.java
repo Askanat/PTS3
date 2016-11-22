@@ -6,8 +6,8 @@ import model.Jeu;
 import javax.swing.*;
 import java.awt.*;
 
-import static model.Jeu.X;
-import static model.Jeu.Y;
+import static vue.Fenetre.X;
+import static vue.Fenetre.Y;
 
 /**
  * Created by Florian Vaissiere on 06/10/2016.
@@ -28,7 +28,7 @@ public class MenuEnJeu extends JPanel {
         retourJeu.setActionCommand("Retour");
         inventaire = new JButton("");
         inventaire.setActionCommand("Inventaire");
-        fichePersonnage = new JButton("Fiche ");
+        fichePersonnage = new JButton("");
         fichePersonnage.setActionCommand("Fiche Personnage");
         option = new JButton("");
         option.setActionCommand("Option");
@@ -57,43 +57,37 @@ public class MenuEnJeu extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        retourJeu.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (5 / 18.0 * (Y / 2.0)), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
-        retourJeu.setForeground(Color.WHITE);
+        retourJeu.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(92), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
         retourJeu.setBackground(new Color(0, 0, 0, 0));
         retourJeu.setFocusable(false);
         retourJeu.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retourJeu.setBorder(null);
 
-        inventaire.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (10 / 27.0 * Y / 2.0), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
-        inventaire.setForeground(Color.WHITE);
+        inventaire.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(160), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(54));
         inventaire.setBackground(new Color(0, 0, 0, 0));
         inventaire.setFocusable(false);
         inventaire.setCursor(new Cursor(Cursor.HAND_CURSOR));
         inventaire.setBorder(null);
 
-        fichePersonnage.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (25 / 54.0 * Y / 2.0), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
-        fichePersonnage.setForeground(Color.WHITE);
+        fichePersonnage.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(227), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
         fichePersonnage.setBackground(new Color(0, 0, 0, 0));
         fichePersonnage.setFocusable(false);
         fichePersonnage.setCursor(new Cursor(Cursor.HAND_CURSOR));
         fichePersonnage.setBorder(null);
 
-        option.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (5 / 9.0 * Y / 2.0), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
-        option.setForeground(Color.WHITE);
+        option.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(293), Fenetre.adapterResolutionEnX(379), Fenetre.adapterResolutionEnY(55));
         option.setBackground(new Color(0, 0, 0, 0));
         option.setFocusable(false);
         option.setCursor(new Cursor(Cursor.HAND_CURSOR));
         option.setBorder(null);
 
-        retourMenuPrincipal.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (35 / 54.0 * Y / 2.0), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
-        retourMenuPrincipal.setForeground(Color.WHITE);
+        retourMenuPrincipal.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(358), Fenetre.adapterResolutionEnX(379), Fenetre.adapterResolutionEnY(55));
         retourMenuPrincipal.setBackground(new Color(0, 0, 0, 0));
         retourMenuPrincipal.setFocusable(false);
         retourMenuPrincipal.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retourMenuPrincipal.setBorder(null);
 
-        retourBureau.setBounds((int) (37 / 96.0 * (X / 2.0)), (int) (20 / 27.0 * Y / 2.0), (int) (11 / 48.0 * (X / 2.0)), (int) (2 / 27.0 * (Y / 2.0)));
-        retourBureau.setForeground(Color.WHITE);
+        retourBureau.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(426), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
         retourBureau.setBackground(new Color(0, 0, 0, 0));
         retourBureau.setFocusable(false);
         retourBureau.setCursor(new Cursor(Cursor.HAND_CURSOR));

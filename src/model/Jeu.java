@@ -1,6 +1,7 @@
 package model;
 
 import controleur.Control;
+import vue.Fenetre;
 
 import java.awt.*;
 import java.sql.SQLException;
@@ -12,11 +13,7 @@ import java.util.ArrayList;
 
 public class Jeu {
 
-    public static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-    public static final int X = (int)tailleEcran.getWidth();
-    public static final int Y = (int)tailleEcran.getHeight();
-
-    public static final int GRAVITE = (int) (1 / 135.0 * Y);
+    public static final int GRAVITE = Fenetre.adapterResolutionEnY(8);
 
     private int temps;
 
@@ -64,7 +61,7 @@ public class Jeu {
         hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Double.parseDouble(donneesHero.get(2)),
                 Double.parseDouble(donneesHero.get(3)), Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)),
                 Double.parseDouble(donneesHero.get(6)), Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)),
-                Double.parseDouble(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (25 / 96.0 * X), (int) (25 / 51.0 * Y));
+                Double.parseDouble(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), Fenetre.adapterResolutionEnX(500), Fenetre.adapterResolutionEnY(500));
     }
 
     public Hero getHero() {

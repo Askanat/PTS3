@@ -1,7 +1,8 @@
 package model;
 
+import vue.Fenetre;
+
 import static model.Jeu.GRAVITE;
-import static model.Jeu.Y;
 
 /**
  * Created by bastien on 29/09/16.
@@ -158,7 +159,7 @@ public abstract class Personnage {
         if (!getCollision())
             setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
         else if (getCollision()) {
-            setPositionY((int) (35 / 54.0 * Y));
+            setPositionY(Fenetre.adapterResolutionEnY(700));
             setVitesseDeDeplacementEnY(0);
         }
 
@@ -186,7 +187,7 @@ public abstract class Personnage {
     }
 
     public void setCollision() {
-        this.collision = getPositionY() >= (int) (35 / 54.0 * Y);
+        this.collision = getPositionY() >= Fenetre.adapterResolutionEnY(700);
     }
 
     public boolean getCollision() {

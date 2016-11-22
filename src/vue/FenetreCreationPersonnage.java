@@ -6,8 +6,8 @@ import model.Jeu;
 import javax.swing.*;
 import java.awt.*;
 
-import static model.Jeu.X;
-import static model.Jeu.Y;
+import static vue.Fenetre.X;
+import static vue.Fenetre.Y;
 
 /**
  * Created by bastien on 21/11/16.
@@ -51,7 +51,7 @@ public class FenetreCreationPersonnage extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        jouer.setBounds((int) (5/6.0*X), (int) (49/54.0 * Y), (int) (2 / 15.0 * X), (int) (2 / 45.0 * Y));
+        jouer.setBounds(Fenetre.adapterResolutionEnX(1600), Fenetre.adapterResolutionEnY(985), Fenetre.adapterResolutionEnX(256), Fenetre.adapterResolutionEnY(41));
         jouer.setForeground(Color.WHITE);
         jouer.setBackground(new Color(0, 0, 0, 0));
         jouer.setFocusable(false);
@@ -59,16 +59,16 @@ public class FenetreCreationPersonnage extends JPanel {
         jouer.setBorder(null);
 
 
-        lNomHero.setBounds((int) (47/96.0*X), (int) (85/108.0*Y), (int) (23/192.0*X), (int) (1/27.0*Y));
+        lNomHero.setBounds(Fenetre.adapterResolutionEnX(940), Fenetre.adapterResolutionEnY(850), Fenetre.adapterResolutionEnX(230), Fenetre.adapterResolutionEnY(40));
         lNomHero.setForeground(Color.WHITE);
         lNomHero.setBackground(new Color(0, 0, 0, 0));
         lNomHero.setFocusable(false);
         lNomHero.setCursor(new Cursor(Cursor.HAND_CURSOR));
         lNomHero.setBorder(null);
 
-        tfNomHero.setBounds((int) (169/384.0*X), (int) (89/108.0*Y), (int) (23/192.0*X), (int) (1/27.0*Y));
+        tfNomHero.setBounds(Fenetre.adapterResolutionEnX(845), Fenetre.adapterResolutionEnY(890), Fenetre.adapterResolutionEnX(230), Fenetre.adapterResolutionEnY(40));
 
-        retour.setBounds((int) (1 / 30.0 * X), (int) (49 / 54.0 * Y), (int) (2 / 15.0 * X), (int) (2 / 45.0 * Y));
+        retour.setBounds(Fenetre.adapterResolutionEnX(64), Fenetre.adapterResolutionEnY(985), Fenetre.adapterResolutionEnX(256), Fenetre.adapterResolutionEnY(41));
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
