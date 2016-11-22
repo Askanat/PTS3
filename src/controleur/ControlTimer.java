@@ -73,13 +73,12 @@ public class ControlTimer extends Control implements ActionListener {
                     if (!jeu.getHero().getAttaquer()) {
                         jeu.getHero().setAttaquer(true);
 
-                        /*
                         int nbMonstre = jeu.getSizeTabMonstre(), i;
 
                         for (i = 0; i < nbMonstre; i++) {
                             jeu.getHero().attaquer(jeu.getMonstre(i));
-                            System.out.println("Attaque du personnage");
-                        }*/
+                            //System.out.println("Attaque du personnage");
+                        }
 
                         ControlClavier.toucheRelacher[ControlTouche.A] = false;
                     }

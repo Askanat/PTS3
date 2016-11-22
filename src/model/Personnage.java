@@ -4,13 +4,12 @@ import vue.Fenetre;
 
 import static model.Jeu.GRAVITE;
 
+
 /**
  * Created by bastien on 29/09/16.
  */
 
 public abstract class Personnage {
-
-
     protected String nom;
     protected int niveau;
     protected double vie, vieMax;
@@ -21,7 +20,6 @@ public abstract class Personnage {
     protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnX, vitesseDeDeplacementEnY, vitesseDeSaut;
     protected boolean collision, deplacement;
     protected boolean attaquer;
-
     // Nécessaire pour gérer l'orientation d'un personnage
     protected Direction direction;
 
@@ -54,18 +52,32 @@ public abstract class Personnage {
         if (getVie() < 0) setVie(0);
     }
 
+    // Ne pas tenir des dernieres modifications ici, je m'en occupe
     public void attaquer(Personnage cible) {
-        int portee = 5;
+        // A changer par la suite
+        // Pour le moment portee = 0 car il attaque à la main
 
-        /* Il faut gérer l'orientation du Personnage
-         * Pas fonctionnel pour le moment.
+        int portee = 0;
+        int largeur = Fenetre.adapterResolutionEnX(200), hauteur = Fenetre.adapterResolutionEnY(200);
+
+        /*
+         * Les trois lignes du if en bref :
+         * 1. L'ennemi est à gauche dans la hitbox du personnage et le personnage est orienté à gauche
+         * 2. L'ennemi est à droite dans la hitbox du personnage et le personnage est orienté à droite
+         * 3. L'ennemi n'est ni trop haut, ni trop bas
          */
 
-        if ((positionX - portee >= cible.positionX) ||
-                (positionX + portee <= cible.positionX))
-            cible.recevoirDegats(getDegats());
+        if(cible.positionY + hauteur < positionY || cible.positionY > positionX + hauteur)
+            System.out.println("position y pas bonne");
 
-        System.out.println(getNom() + " attaque " + cible.getNom() + " !");
+        /*
+        if((positionX - portee >= cible.positionX && positionX - portee <= cible.positionX + largeur && direction == Direction.DROITE) ||
+           (positionX + largeur + portee <= cible.positionX + largeur && positionX + largeur + portee >= cible.positionX && direction == Direction.GAUCHE) &&
+            !(positionY + hauteur > cible.positionY) && !(cible.positionY + hauteur > positionY)) {
+
+            cible.recevoirDegats(getDegats());
+            System.out.println(getNom() + " attaque " + cible.getNom() + " !; posX = " + positionX + "; posY = " + positionY);
+        }*/
     }
 
     public final boolean estVivant() {
