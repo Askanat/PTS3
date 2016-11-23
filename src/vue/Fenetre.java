@@ -25,6 +25,8 @@ public class Fenetre extends JFrame {
     public FenetreCreationPersonnage panelFenetreCreationPersonnage;
 
     private static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    public static final double DEFAUT_X = 1920.0;
+    public static final double DEFAUT_Y = 1080.0;
     public static final int X = (int) tailleEcran.getWidth();
     public static final int Y = (int) tailleEcran.getHeight();
 
@@ -59,11 +61,11 @@ public class Fenetre extends JFrame {
     }
 
     public static int adapterResolutionEnX(int valeur) {
-        return (int) (valeur / 1920.0 * X);
+        return (int) (valeur / DEFAUT_X * X);
     }
 
     public static int adapterResolutionEnY(int valeur) {
-        return (int) (valeur / 1080.0 * Y);
+        return (int) (valeur / DEFAUT_Y * Y);
     }
 
     public void setPaneSelectionnePersonnage() {

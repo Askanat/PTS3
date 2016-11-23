@@ -52,32 +52,32 @@ public abstract class Personnage {
         if (getVie() < 0) setVie(0);
     }
 
-    // Ne pas tenir des dernieres modifications ici, je m'en occupe
+    // A ameliorer
     public void attaquer(Personnage cible) {
-        // A changer par la suite
-        // Pour le moment portee = 0 car il attaque à la main
+        // Le personnage ne touchera pas vraiment le monstre, il y aura un petit espace
 
-        int portee = 0;
+        int portee = Fenetre.adapterResolutionEnX(1);
         int largeur = Fenetre.adapterResolutionEnX(200), hauteur = Fenetre.adapterResolutionEnY(200);
 
-        /*
-         * Les trois lignes du if en bref :
-         * 1. L'ennemi est à gauche dans la hitbox du personnage et le personnage est orienté à gauche
-         * 2. L'ennemi est à droite dans la hitbox du personnage et le personnage est orienté à droite
-         * 3. L'ennemi n'est ni trop haut, ni trop bas
-         */
 
-        if(cible.positionY + hauteur < positionY || cible.positionY > positionX + hauteur)
-            System.out.println("position y pas bonne");
+        // Si l'ennemi n'est pas trop haut et n'est pas trop bas
 
-        /*
-        if((positionX - portee >= cible.positionX && positionX - portee <= cible.positionX + largeur && direction == Direction.DROITE) ||
-           (positionX + largeur + portee <= cible.positionX + largeur && positionX + largeur + portee >= cible.positionX && direction == Direction.GAUCHE) &&
-            !(positionY + hauteur > cible.positionY) && !(cible.positionY + hauteur > positionY)) {
+        if(!(cible.positionY > positionY + hauteur) && !(cible.positionY + hauteur < positionY)) {
 
-            cible.recevoirDegats(getDegats());
-            System.out.println(getNom() + " attaque " + cible.getNom() + " !; posX = " + positionX + "; posY = " + positionY);
-        }*/
+            /* Les deux lignes du if :
+            *  1. Si la cible n'est pas trop à gauche et n'est pas trop à droite
+            *  2. Si la cible est sur la gauche et que le personnage est tourné vers la gauche
+            *     ou si la cible est sur la droite et que le personnage est tourné vers la droite
+            *
+            *  Alors on inflige des dégâts
+            */
+
+            if(!(cible.positionX + largeur < positionX - portee) && !(cible.positionX > positionX + largeur + portee) &&
+              ((cible.positionX < positionX && direction == Direction.GAUCHE) || (cible.positionX > positionX && direction == Direction.DROITE))) {
+                cible.recevoirDegats(getDegats());
+                System.out.println(getNom() + " attaque " + cible.getNom() + " !; posX = " + positionX + "; posY = " + positionY);
+            }
+        }
     }
 
     public final boolean estVivant() {
