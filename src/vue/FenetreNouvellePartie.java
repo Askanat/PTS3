@@ -76,7 +76,7 @@ public class FenetreNouvellePartie extends JPanel {
         slot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
         slot3.setBorder(null);
 
-        continuer.setBounds(Fenetre.adapterResolutionEnX(704), Fenetre.adapterResolutionEnY(792), Fenetre.adapterResolutionEnX(480), Fenetre.adapterResolutionEnY(90));
+        continuer.setBounds(Fenetre.adapterResolutionEnX(706), Fenetre.adapterResolutionEnY(790), Fenetre.adapterResolutionEnX(480), Fenetre.adapterResolutionEnY(90));
         continuer.setBackground(new Color(0, 0, 0, 0));
         continuer.setFocusable(false);
         continuer.setCursor(new Cursor(Cursor.HAND_CURSOR));
