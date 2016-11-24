@@ -36,14 +36,11 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
 
                 try {
                     // supprimer la partie correspondant a valeurSupprimerPartieHero
-                } catch (Exception e1) {
-                    fenetre.setPaneSelectionnePersonnageASupprimer();
-                }
-
-                if (valeurSupprimerPartieHero != 0) {
                     valeurSupprimerPartieHero = 0;
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                     changerVue();
+                } catch (Exception e1) {
+                    fenetre.setPaneSelectionnePersonnageASupprimer();
                 }
                 break;
             case "Retour":

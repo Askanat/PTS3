@@ -35,12 +35,6 @@ public class ControlFenetreCharger extends Control implements ActionListener {
             case "Jouer":
                 try {
                     spawnHero(valeurHero);
-                } catch (Exception e1) {
-                    fenetre.setPaneSelectionnePersonnage();
-                }
-
-                if (valeurHero != 0) {
-                    spawnHero(valeurHero);
                     fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
                     spawnMonstre(1, Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(250)); // a enlever d'ici
                     spawnMonstre(2, Fenetre.adapterResolutionEnX(600), Fenetre.adapterResolutionEnY(700)); // a enlever d'ici
@@ -51,6 +45,8 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                     fenetre.barreMenu.setVisible(true);
                     fenetre.setContentPane(fenetre.panelFenetreDepart);
                     changerVue();
+                } catch (Exception e1) {
+                    fenetre.setPaneSelectionnePersonnage();
                 }
                 break;
             case "Retour":
