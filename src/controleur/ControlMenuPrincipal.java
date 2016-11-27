@@ -20,7 +20,7 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Nouvelle Partie":
-                int NbPartieDispo = 0; // a rempalcer par la valeur de sql
+                int NbPartieDispo = jeu.getNbPartieLibre();
                 if (NbPartieDispo >= 1)
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                 else

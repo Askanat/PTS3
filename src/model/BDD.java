@@ -179,4 +179,55 @@ public class BDD {
 
         return result;
     }
+
+    //Requete nombre de partie disponible sur les 3
+    public int nbPartieLibre() {
+        ResultSet nbPartie;
+       int result = 0;
+        /*try {
+            nbPartie = instruction.executeQuery("SELECT COUNT(*) AS nbPartieLibre FROM personnage WHERE LVLPerso=0;");
+            //System.out.println("Avant affect result :" + result);
+            result = nbPartie.getInt(0);
+            //System.out.println("Apres affect result :" + result);
+        } catch (Exception e) {
+            System.out.println("Donnees nb partie probleme : " + e);
+        }*/
+        return 1;
+    }
+
+    //Requete l'id de partie disponible sur les 3
+    public ArrayList<Integer> idPartieLibre() {
+        ResultSet idPartie = null;
+        ArrayList<Integer> result = new ArrayList<>();
+        /*try {
+            idPartie = instruction.executeQuery("SELECT idPerso FROM personnage WHERE LVLPerso=0;");
+            result.add(idPartie.getInt("idPerso"));
+        } catch (Exception e) {
+            System.out.println("Donnees id partie dispo probleme : " + e);
+        }*/
+        result.add(1);
+        return result;
+    }
+
+    //update la partie correspondante a 0
+    public void resetPartie(int id) {
+        int update;
+
+        try {
+            update = instruction.executeUpdate("UPDATE personnage SET nomPerso='perso1', LVLPerso =0, xpPerso=0, xpMaxPerso=0, forcePerso=0," +
+                    " intelPerso=0, constiPerso=0, armurePerso=0, resiPerso=0, degatArmePerso=0, gold=0 WHERE idPerso=" + id + ";");
+        } catch (Exception e) {
+            System.out.println("Probleme reset partie : " + e);
+        }
+    }
+
+    //update remplacer le nom et mettre niveau a 1
+    public void createPerso(String nom, int id) {
+        int update;
+        try {
+            update = instruction.executeUpdate("UPDATE personnage SET nomPerso='" + nom + "', LVLPerso=1 WHERE idPerso=" + id + ";");
+        } catch (Exception e) {
+            System.out.println("Probleme create partie : " + e);
+        }
+    }
 }

@@ -3,7 +3,6 @@ package model;
 import controleur.Control;
 import vue.Fenetre;
 
-import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -41,6 +40,10 @@ public class Jeu {
 
     }
 
+    public void supprimerPartie(int idPartie) {
+        bdd.resetPartie(idPartie);
+    }
+
     public BDD getBDD() {
         return bdd;
     }
@@ -57,6 +60,8 @@ public class Jeu {
         ArrayList<String> donneesHero;
 
         donneesHero = bdd.readHero(id);
+
+        System.out.println(donneesHero.get(0));
 
         hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Double.parseDouble(donneesHero.get(2)),
                 Double.parseDouble(donneesHero.get(3)), Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)),
@@ -101,5 +106,35 @@ public class Jeu {
 
     public int getTemps() {
         return temps;
+    }
+
+    public int getidPartieLibre() {
+
+        ArrayList<Integer> idPartieDispo = bdd.idPartieLibre();
+        int partieDispo = 0;
+
+        for(int i=0;i<idPartieDispo.size();i++){
+            if(idPartieDispo.get(i) > 0)
+                System.out.println(i);
+                partieDispo = idPartieDispo.get(i);
+        }
+
+        System.out.println("PARTIE DISPO : "+partieDispo);
+
+        if(partieDispo > 0) {
+            return partieDispo;
+        } else {
+            return 0;
+        }
+    }
+
+    public int getNbPartieLibre() {
+        int nbPartieLibre = bdd.nbPartieLibre();
+        System.out.println("id partie libre : " + nbPartieLibre);
+        return nbPartieLibre;
+    }
+
+    public void createHeroBDD(String nom, int id) {
+        bdd.createPerso(nom, id);
     }
 }
