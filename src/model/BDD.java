@@ -90,9 +90,8 @@ public class BDD {
 
     //MODIFIE LES VALEURS DE LA TABLE HERO
     public void updateHero(int id, String[] tabCaracHero) {
-        int update;
         try {
-            update = instruction.executeUpdate("UPDATE personnage SET nomPerso = " + tabCaracHero[0] + ", LVLPerso = " + tabCaracHero[1] + ", xpPerso = " + tabCaracHero[2] +
+            instruction.executeUpdate("UPDATE personnage SET nomPerso = " + tabCaracHero[0] + ", LVLPerso = " + tabCaracHero[1] + ", xpPerso = " + tabCaracHero[2] +
                     ", xpMaxPerso =" + tabCaracHero[3] + ", pointCompetencePerso =" + tabCaracHero[4] + ", forcePerso =" + tabCaracHero[5] + ", intelPerso = " + tabCaracHero[6] +
                     ", constiPerso =" + tabCaracHero[7] + ", armurePerso =" + tabCaracHero[8] + ", resiPerso =" + tabCaracHero[9] + ", degatArmePerso =" + tabCaracHero[10] +
                     ", gold =" + tabCaracHero[11] + ", texturePerso =" + tabCaracHero[12] + " spell_id =" + tabCaracHero[13] +
@@ -104,9 +103,8 @@ public class BDD {
 
     //SUPPRIME UN HERO
     public void deleteHero(int id) {
-        int delete;
         try {
-            delete = instruction.executeUpdate("DELETE FROM personnage WHERE idPerso =" + id + ";");
+            instruction.executeUpdate("DELETE FROM personnage WHERE idPerso =" + id + ";");
         } catch (Exception e) {
             System.out.println("Delete hero problem : " + e);
         }
@@ -114,9 +112,8 @@ public class BDD {
 
     //SUPPRIME UN MONSTRE
     public void deleteMonstre(int id) {
-        int delete;
         try {
-            delete = instruction.executeUpdate("DELETE FROM monstre WHERE idMonstre =" + id + ";");
+            instruction.executeUpdate("DELETE FROM monstre WHERE idMonstre =" + id + ";");
         } catch (Exception e) {
             System.out.println("Delete monstre problem : " + e);
         }
@@ -124,9 +121,8 @@ public class BDD {
 
     //AJOUTE UN HERO
     public void insertHero() {
-        int insert;
         try {
-            insert = instruction.executeUpdate("INSERT INTO personnage (nomPerso, LVLPerso, xpPerso, xpMaxPerso, pointCompetencePerso, forcePerso, intelPerso, constiPerso, armurePerso, resiPerso, degatArmePerso, gold, texturePerso, spell_id) VALUES ('hero1', 1,0,100,4,0,0,0,0,100,100,100,'bidule.png',42);");
+            instruction.executeUpdate("INSERT INTO personnage (nomPerso, LVLPerso, xpPerso, xpMaxPerso, pointCompetencePerso, forcePerso, intelPerso, constiPerso, armurePerso, resiPerso, degatArmePerso, gold, texturePerso, spell_id) VALUES ('hero1', 1,0,100,4,0,0,0,0,100,100,100,'bidule.png',42);");
         } catch (Exception e) {
             System.out.println("Insert perso problem : " + e);
         }
@@ -143,7 +139,6 @@ public class BDD {
         } catch (Exception e) {
             System.out.println("Texture hero problem " + e);
         }
-
         return result;
     }
 
@@ -158,7 +153,6 @@ public class BDD {
         } catch (Exception e) {
             System.out.println("Texture monstre problem " + e);
         }
-
         return result;
     }
 
@@ -176,45 +170,44 @@ public class BDD {
         } catch (Exception e) {
             System.out.println("Donnees choix hero problem " + e);
         }
-
         return result;
     }
 
     //Requete nombre de partie disponible sur les 3
     public int nbPartieLibre() {
         ResultSet nbPartie;
-       int result = 0;
-        /*try {
-            nbPartie = instruction.executeQuery("SELECT COUNT(*) AS nbPartieLibre FROM personnage WHERE LVLPerso=0;");
-            //System.out.println("Avant affect result :" + result);
-            result = nbPartie.getInt(0);
-            //System.out.println("Apres affect result :" + result);
+        int result = 0;
+        int i = 0;
+        try {
+            nbPartie = instruction.executeQuery("SELECT COUNT(nomPerso) AS count FROM personnage WHERE LVLPerso=0;");
+            while (nbPartie.next()) {
+                result = Integer.parseInt(nbPartie.getString("count"));
+            }
         } catch (Exception e) {
             System.out.println("Donnees nb partie probleme : " + e);
-        }*/
-        return 1;
+        }
+        return result;
     }
 
     //Requete l'id de partie disponible sur les 3
     public ArrayList<Integer> idPartieLibre() {
-        ResultSet idPartie = null;
+        ResultSet idPartie;
         ArrayList<Integer> result = new ArrayList<>();
-        /*try {
+        try {
             idPartie = instruction.executeQuery("SELECT idPerso FROM personnage WHERE LVLPerso=0;");
-            result.add(idPartie.getInt("idPerso"));
+            while (idPartie.next()) {
+                result.add(idPartie.getInt("idPerso"));
+            }
         } catch (Exception e) {
             System.out.println("Donnees id partie dispo probleme : " + e);
-        }*/
-        result.add(1);
+        }
         return result;
     }
 
     //update la partie correspondante a 0
     public void resetPartie(int id) {
-        int update;
-
         try {
-            update = instruction.executeUpdate("UPDATE personnage SET nomPerso='perso1', LVLPerso =0, xpPerso=0, xpMaxPerso=0, forcePerso=0," +
+            instruction.executeUpdate("UPDATE personnage SET nomPerso='perso1', LVLPerso =0, xpPerso=0, xpMaxPerso=0, forcePerso=0," +
                     " intelPerso=0, constiPerso=0, armurePerso=0, resiPerso=0, degatArmePerso=0, gold=0 WHERE idPerso=" + id + ";");
         } catch (Exception e) {
             System.out.println("Probleme reset partie : " + e);
@@ -223,9 +216,8 @@ public class BDD {
 
     //update remplacer le nom et mettre niveau a 1
     public void createPerso(String nom, int id) {
-        int update;
         try {
-            update = instruction.executeUpdate("UPDATE personnage SET nomPerso='" + nom + "', LVLPerso=1 WHERE idPerso=" + id + ";");
+            instruction.executeUpdate("UPDATE personnage SET nomPerso='" + nom + "', LVLPerso=1 WHERE idPerso=" + id + ";");
         } catch (Exception e) {
             System.out.println("Probleme create partie : " + e);
         }

@@ -61,8 +61,6 @@ public class Jeu {
 
         donneesHero = bdd.readHero(id);
 
-        System.out.println(donneesHero.get(0));
-
         hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Double.parseDouble(donneesHero.get(2)),
                 Double.parseDouble(donneesHero.get(3)), Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)),
                 Double.parseDouble(donneesHero.get(6)), Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)),
@@ -119,8 +117,6 @@ public class Jeu {
                 partieDispo = idPartieDispo.get(i);
         }
 
-        System.out.println("PARTIE DISPO : "+partieDispo);
-
         if(partieDispo > 0) {
             return partieDispo;
         } else {
@@ -130,7 +126,6 @@ public class Jeu {
 
     public int getNbPartieLibre() {
         int nbPartieLibre = bdd.nbPartieLibre();
-        System.out.println("id partie libre : " + nbPartieLibre);
         return nbPartieLibre;
     }
 

@@ -33,7 +33,6 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
                 valeurSupprimerPartieHero = 3;
                 break;
             case "Continuer":
-
                 try {
                     // supprimer la partie correspondant a valeurSupprimerPartieHero
                     valeurSupprimerPartieHero = 0;
