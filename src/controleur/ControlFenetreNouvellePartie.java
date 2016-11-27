@@ -35,7 +35,6 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
             case "Continuer":
                 try {
                     // supprimer la partie correspondant a valeurSupprimerPartieHero
-                    valeurSupprimerPartieHero = 0;
                     jeu.supprimerPartie(valeurSupprimerPartieHero);
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                     changerVue();

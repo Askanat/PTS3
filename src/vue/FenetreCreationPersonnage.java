@@ -30,7 +30,7 @@ public class FenetreCreationPersonnage extends JPanel {
         jouer.setActionCommand("Jouer");
 
         lNomHero = new JLabel("");
-        tfNomHero = new JTextField();
+        tfNomHero = new JTextField("");
         tfNomHero.setColumns(10);
 
         retour = new JButton("");
