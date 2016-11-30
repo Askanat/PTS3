@@ -89,12 +89,12 @@ public class FenetreNouvellePartie extends JPanel {
         retour.setBorder(null);
 
 
-        g.drawImage(getToolkit().getImage("images/menuNouvellePartie.png"), 0, 0, getWidth(), getHeight(), this); // image a modifier
+        g.drawImage(getToolkit().getImage("images/menuNouvellePartie.png"), 0, 0, getWidth(), getHeight(), this);
 
         try {
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero1.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(360), Fenetre.adapterResolutionEnY(312), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero2.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(860), Fenetre.adapterResolutionEnY(312), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero3.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(1360), Fenetre.adapterResolutionEnY(312), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero1.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(310), Fenetre.adapterResolutionEnY(262), Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300), this);
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero2.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(262), Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300), this);
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/texture_hero3.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(1310), Fenetre.adapterResolutionEnY(262), Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300), this);
         } catch (IOException e) {
             e.printStackTrace();
         }

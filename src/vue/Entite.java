@@ -151,7 +151,7 @@ public class Entite extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(spriteActuel, personnage.getPositionX(), personnage.getPositionY(), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
+        g.drawImage(spriteActuel, personnage.getPositionX(), personnage.getPositionY(), Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300), this);
     }
 
     public int getSpriteWidth() {
