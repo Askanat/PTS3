@@ -18,7 +18,8 @@ import java.io.IOException;
 public class Entite extends JPanel {
 
     public Personnage personnage;
-
+    public static final int TAILLE_SPRITE_HAUTEUR = 300;
+    public static final int TAILLE_SPRITE_LARGEUR = 300;
     private BufferedImage[] tableauSprite;
     public Image spriteActuel;
     private int alternerSpriteDeplacement, alternerSpriteAttaque;
@@ -151,7 +152,7 @@ public class Entite extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(spriteActuel, personnage.getPositionX(), personnage.getPositionY(), Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300), this);
+        g.drawImage(spriteActuel, personnage.getPositionX()-Fenetre.adapterResolutionEnX(TAILLE_SPRITE_LARGEUR/2), personnage.getPositionY()-Fenetre.adapterResolutionEnY(TAILLE_SPRITE_HAUTEUR), Fenetre.adapterResolutionEnX(TAILLE_SPRITE_LARGEUR), Fenetre.adapterResolutionEnY(TAILLE_SPRITE_HAUTEUR), this);
     }
 
     public int getSpriteWidth() {

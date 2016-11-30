@@ -64,7 +64,7 @@ public class Jeu {
         hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Double.parseDouble(donneesHero.get(2)),
                 Double.parseDouble(donneesHero.get(3)), Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)),
                 Double.parseDouble(donneesHero.get(6)), Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)),
-                Double.parseDouble(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), Fenetre.adapterResolutionEnX(500), Fenetre.adapterResolutionEnY(500));
+                Double.parseDouble(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), Fenetre.adapterResolutionEnX(0), Fenetre.adapterResolutionEnY(0));
     }
 
     public Hero getHero() {
