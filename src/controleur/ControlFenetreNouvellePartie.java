@@ -25,14 +25,18 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
         switch (e.getActionCommand()) {
             case "Slot n°1":
                 valeurSupprimerPartieHero = 1;
+                fenetre.numeroPorte = 1;
                 break;
             case "Slot n°2":
                 valeurSupprimerPartieHero = 2;
+                fenetre.numeroPorte = 2;
                 break;
             case "Slot n°3":
                 valeurSupprimerPartieHero = 3;
+                fenetre.numeroPorte = 3;
                 break;
             case "Continuer":
+                fenetre.numeroPorte = -1;
                 try {
                     // supprimer la partie correspondant a valeurSupprimerPartieHero
                     jeu.supprimerPartie(valeurSupprimerPartieHero);
@@ -43,6 +47,7 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
                 }
                 break;
             case "Retour":
+                fenetre.numeroPorte = -1;
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 changerVue();
                 valeurSupprimerPartieHero = 0;

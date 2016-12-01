@@ -12,6 +12,8 @@ import java.awt.*;
 
 public class Fenetre extends JFrame {
 
+    public static int numeroPorte; // permet de selectionner la porte avec les flammes
+
     private Jeu jeu;
     public MenuPrincipal panelMenuPrincipal;
     public FenetreCharger panelFenetreCharger;
@@ -45,6 +47,8 @@ public class Fenetre extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+
+        numeroPorte = -1;
     }
 
     public void init() {

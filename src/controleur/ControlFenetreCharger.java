@@ -25,14 +25,18 @@ public class ControlFenetreCharger extends Control implements ActionListener {
         switch (e.getActionCommand()) {
             case "Slot de Sauvegarde n°1":
                 valeurHero = 1;
+                fenetre.numeroPorte = 1;
                 break;
             case "Slot de Sauvegarde n°2":
                 valeurHero = 2;
+                fenetre.numeroPorte = 2;
                 break;
             case "Slot de Sauvegarde n°3":
                 valeurHero = 3;
+                fenetre.numeroPorte = 3;
                 break;
             case "Jouer":
+                fenetre.numeroPorte = -1;
                 try {
                     spawnHero(valeurHero);
                     fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
@@ -50,6 +54,7 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                 }
                 break;
             case "Retour":
+                fenetre.numeroPorte = -1;
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 changerVue();
                 valeurHero = 0;
