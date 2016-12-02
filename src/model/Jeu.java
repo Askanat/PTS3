@@ -132,4 +132,12 @@ public class Jeu {
     public void createHeroBDD(String nom, int id) {
         bdd.createPerso(nom, id);
     }
+
+    public String readLVLPerso(int id) {
+        return bdd.readNiveauPerso(id);
+    }
+
+    public String readNomPerso(int id) {
+        return bdd.readNomPerso(id);
+    }
 }

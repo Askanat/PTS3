@@ -156,19 +156,32 @@ public class BDD {
         return result;
     }
 
-    //SELECTIONNE LES DONNEES DU CHOIX DE PERSONNAGE
-    public ArrayList<String> readDonneesChoixPerso(int id) {
+    //SELECTIONNE LE NOM DU PERSONNAGE
+    public String readNomPerso(int id) {
         ResultSet perso = null;
-        ArrayList<String> result = new ArrayList<>();
+        String result = "";
         try {
-            perso = instruction.executeQuery("Select nomPerso, LVLPerso, texturePerso FROM personnage WHERE idPerso =" + id + ";");
+            perso = instruction.executeQuery("Select nomPerso FROM personnage WHERE idPerso =" + id + ";");
             while (perso.next()) {
-                result.add(perso.getString("nomPerso"));
-                result.add(perso.getString("LVLPerso"));
-                result.add(perso.getString("texturePerso"));
+                result = perso.getString("nomPerso");
             }
         } catch (Exception e) {
-            System.out.println("Donnees choix hero problem " + e);
+            System.out.println("Donnees nom hero problem " + e);
+        }
+        return result;
+    }
+
+    //SELECTIONNE LE NIVEAU DU PERSONNAGE
+    public String readNiveauPerso(int id) {
+        ResultSet perso = null;
+        String result = "0";
+        try {
+            perso = instruction.executeQuery("Select LVLPerso FROM personnage WHERE idPerso =" + id + ";");
+            while (perso.next()) {
+                result = perso.getString("LVLPerso");
+            }
+        } catch (Exception e) {
+            System.out.println("Donnees LVL hero problem " + e);
         }
         return result;
     }
