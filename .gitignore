@@ -1,0 +1,6 @@
+*.class
+.idea/vcs.xml
+*.xml
+PTS3.iml
+*.iml
+*.iml

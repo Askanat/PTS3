@@ -16,6 +16,7 @@ public class FenetreOptions extends JPanel {
 
     public JButton retour, retour1;
     private JLabel options, texte;
+    public JTextField avancer, sauter, attaquer, reculer;
 
     public FenetreOptions() {
 
@@ -24,8 +25,20 @@ public class FenetreOptions extends JPanel {
 
         retour = new JButton("");
         retour.setActionCommand("Retour");
+        avancer = new JTextField("");
+        avancer.setActionCommand("Avancer");
+        sauter = new JTextField("");
+        sauter.setActionCommand("Sauter");
+        attaquer = new JTextField("");
+        attaquer.setActionCommand("Attaquer");
+        reculer = new JTextField("");
+        reculer.setActionCommand("Reculer");
 
         add(retour);
+        add(avancer);
+        add(sauter);
+        add(attaquer);
+        add(reculer);
     }
 
     public void setControl(ControlFenetreOptions controlFenetreOptions) {
@@ -38,8 +51,27 @@ public class FenetreOptions extends JPanel {
         retour.setBounds(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);
-        retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retour.setBorder(null);
+
+        avancer.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(92), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
+        avancer.setBackground(new Color(0, 0, 0, 0));
+        avancer.setFocusable(false);
+        avancer.setBorder(null);
+
+        sauter.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(160), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(54));
+        sauter.setBackground(new Color(0, 0, 0, 0));
+        sauter.setFocusable(false);
+        sauter.setBorder(null);
+
+        attaquer.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(227), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
+        attaquer.setBackground(new Color(0, 0, 0, 0));
+        attaquer.setFocusable(false);
+        attaquer.setBorder(null);
+
+        reculer.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(293), Fenetre.adapterResolutionEnX(379), Fenetre.adapterResolutionEnY(55));
+        reculer.setBackground(new Color(0, 0, 0, 0));
+        reculer.setFocusable(false);
+        reculer.setBorder(null);
 
         Image img = getToolkit().getImage("images/menuOptionsTest.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
