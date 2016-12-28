@@ -18,21 +18,26 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        jeu.setNbPartieLibre(jeu.getBDDNbPartieLibre());
         switch (e.getActionCommand()) {
             case "Nouvelle Partie":
-                int NbPartieDispo = jeu.getNbPartieLibre();
-                if (NbPartieDispo >= 1)
+                if (jeu.getNbPartieLibre() >= 1) {
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
-                else
+                    changerVue();
+                } else {
                     fenetre.setContentPane(fenetre.panelFenetreNouvellePartie);
-                changerVue();
-                fenetre.setPaneSelectionnePersonnageASupprimer();
+                    changerVue();
+                    fenetre.setPaneSelectionnePersonnageASupprimer();
+                }
                 break;
             case "Charger Partie":
-                jeu.setHero(1);
-                fenetre.panelFenetreDepart.dessineHero(1);
-                fenetre.setContentPane(fenetre.panelFenetreCharger);
-                changerVue();
+                if (3 - jeu.getNbPartieLibre() > 0) {
+                    fenetre.setContentPane(fenetre.panelFenetreCharger);
+                    changerVue();
+                } else {
+                    fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
+                    changerVue();
+                }
                 break;
             case "Options":
                 fenetre.setContentPane(fenetre.panelFenetreOptions);

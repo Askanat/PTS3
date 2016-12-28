@@ -21,6 +21,7 @@ public class Jeu {
     private ArrayList<Monstre> tableauMonstre;
     private BDD bdd;
 
+    private int nbPartieLibre;
     private boolean pause;
 
     public Jeu() throws SQLException {
@@ -124,8 +125,15 @@ public class Jeu {
         }
     }
 
+    public int getBDDNbPartieLibre() {
+        return bdd.nbPartieLibre();
+    }
+
+    public void setNbPartieLibre(int nbPartieLibre) {
+        this.nbPartieLibre = nbPartieLibre;
+    }
+
     public int getNbPartieLibre() {
-        int nbPartieLibre = bdd.nbPartieLibre();
         return nbPartieLibre;
     }
 

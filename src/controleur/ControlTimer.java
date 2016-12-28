@@ -90,14 +90,14 @@ public class ControlTimer extends Control implements ActionListener {
 
                 jeu.getHero().deplacer();
 
-                /*for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
+                for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
                     Thread monstreThread = new Thread(jeu.getMonstre(i));
 
                     if (monstreThread.isAlive() == false)
                         monstreThread.start();
 
-                    fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(i).getVecteurDeplacementEnX(), jeu.getMonstre(i).getVecteurDeplacementEnY());
-                }*/
+                    //fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(i).getVecteurDeplacementEnX(), jeu.getMonstre(i).getVecteurDeplacementEnY());
+                }
 
 
             }
