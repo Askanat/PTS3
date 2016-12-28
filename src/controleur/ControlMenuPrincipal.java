@@ -26,6 +26,7 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
                 else
                     fenetre.setContentPane(fenetre.panelFenetreNouvellePartie);
                 changerVue();
+                fenetre.setPaneSelectionnePersonnageASupprimer();
                 break;
             case "Charger Partie":
                 jeu.setHero(1);

@@ -11,9 +11,9 @@ CREATE TABLE spell (
   PRIMARY KEY(idSpell)
 );
 
-INSERT INTO spell VALUES (default, "Boule de feu", 10, "brule", "boule_de_feu.png");
-INSERT INTO spell VALUES (default, "La boule magique", 20, "aucun", "boule_magique.png");
-INSERT INTO spell VALUES (default, "Eclaire de givre", 50, "givre", "eclaire_de_givre.png");
+INSERT INTO spell VALUES (default, "Boule de feu", 10, "brule", "images/Sorts/boule_de_feu.png");
+INSERT INTO spell VALUES (default, "La boule magique", 20, "aucun", "images/Sorts/boule_magique.png");
+INSERT INTO spell VALUES (default, "Eclaire de givre", 50, "givre", "images/Sorts/eclaire_de_givre.png");
 
 CREATE TABLE personnage (
   idPerso int AUTO_INCREMENT NOT NULL,
@@ -33,9 +33,9 @@ CREATE TABLE personnage (
   PRIMARY KEY(idPerso)
 );
 
-INSERT INTO personnage VALUES (default, "0", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "images/texture_hero1.png");
-INSERT INTO personnage VALUES (default, "0", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "images/texture_hero2.png");
-INSERT INTO personnage VALUES (default, "0", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "images/texture_hero3.png");
+INSERT INTO personnage VALUES (default, "0", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "images/Save/Save1/texture_hero1.png");
+INSERT INTO personnage VALUES (default, "0", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "images/Save/Save2/texture_hero2.png");
+INSERT INTO personnage VALUES (default, "0", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "images/Save/Save3/texture_hero3.png");
 
 CREATE TABLE monstre (
   idMonstre int AUTO_INCREMENT NOT NULL,
@@ -53,9 +53,9 @@ CREATE TABLE monstre (
   CONSTRAINT fk_spell_id_monstre FOREIGN KEY (spell_id) REFERENCES spell(idSpell)
 );
 
-INSERT INTO monstre VALUES (default, "Monstre1", 1.1, 1.1, 1.4, 1.1, 1.1, "images/texture_monstre1.png", null);
-INSERT INTO monstre VALUES (default, "Monstre2", 1.1, 1.1, 1.1, 1.4, 1.1, "images/texture_monstre2.png", null);
-INSERT INTO monstre VALUES (default, "Monstre3", 1.1, 1.1, 1.1, 1.1, 1.4, "images/texture_monstre3.png", null);
+INSERT INTO monstre VALUES (default, "Monstre1", 1.1, 1.1, 1.4, 1.1, 1.1, "images/Monstres/texture_monstre1.png", null);
+INSERT INTO monstre VALUES (default, "Monstre2", 1.1, 1.1, 1.1, 1.4, 1.1, "images/Monstres/texture_monstre2.png", null);
+INSERT INTO monstre VALUES (default, "Monstre3", 1.1, 1.1, 1.1, 1.1, 1.4, "images/Monstres/texture_monstre3.png", null);
 
 CREATE TABLE typeItem (
   typeItem int AUTO_INCREMENT NOT NULL,
@@ -90,14 +90,14 @@ CREATE TABLE item (
   CONSTRAINT fk_typeItem FOREIGN KEY (item_type) REFERENCES typeItem(typeItem)
 );
 
-INSERT INTO item VALUES (default, "Casque en fer", null, 1.2, null, null, null, null, "casque_en_fer.png", 2);
-INSERT INTO item VALUES (default, "Epaulieres en fer", null, 1.2, null, null, null, null, "epaulieres_en_fer.png", 3);
-INSERT INTO item VALUES (default, "Plastron en fer", null, 1.6, null, null, null, null, "plastron_en_fer.png", 1);
-INSERT INTO item VALUES (default, "Pantalon en fer", null, 1.4, null, null, null, null, "pantalon_en_fer.png", 6);
-INSERT INTO item VALUES (default, "Bottes en fer", null, 1.2, null, null, null, null, "bottes_en_fer.png", 4);
-INSERT INTO item VALUES (default, "Gants en fer", null, 1.2, null, null, null, null, "gants_en_fer.png", 5);
-INSERT INTO item VALUES (default, "Pierre enchantee", null, null, 1.1, 1.1, 1.1, null, "pierre_enchantee.png", 7);
-INSERT INTO item VALUES (default, "Epee en fer", null, null, null, null, null, 1.1, "epee_en_fer.png", 8);
+INSERT INTO item VALUES (default, "Casque en fer", null, 1.2, null, null, null, null, "images/Equipements/Casques/casque_en_fer.png", 2);
+INSERT INTO item VALUES (default, "Epaulieres en fer", null, 1.2, null, null, null, null, "images/Equipements/Epaulieres/epaulieres_en_fer.png", 3);
+INSERT INTO item VALUES (default, "Plastron en fer", null, 1.6, null, null, null, null, "images/Equipements/Plastrons/plastron_en_fer.png", 1);
+INSERT INTO item VALUES (default, "Pantalon en fer", null, 1.4, null, null, null, null, "images/Equipements/Pantalons/pantalon_en_fer.png", 6);
+INSERT INTO item VALUES (default, "Bottes en fer", null, 1.2, null, null, null, null, "images/Equipements/Bottes/bottes_en_fer.png", 4);
+INSERT INTO item VALUES (default, "Gants en fer", null, 1.2, null, null, null, null, "images/Equipements/Gants/gants_en_fer.png", 5);
+INSERT INTO item VALUES (default, "Pierre enchantee", null, null, 1.1, 1.1, 1.1, null, "images/Equipements/Bijous/pierre_enchantee.png", 7);
+INSERT INTO item VALUES (default, "Epee en fer", null, null, null, null, null, 1.1, "images/Equipements/Armes/epee_en_fer.png", 8);
 
 CREATE TABLE possede (
   idPersoPossede int,

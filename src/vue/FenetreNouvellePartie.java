@@ -21,6 +21,7 @@ public class FenetreNouvellePartie extends JPanel {
 
     private Jeu jeu;
     public JButton slot1, slot2, slot3, continuer, retour;
+    public JLabel nomSlot1, nomSlot2, nomSlot3, niveauSlot1, niveauSlot2, niveauSlot3;
 
     public FenetreNouvellePartie(Jeu jeu) {
 
@@ -39,12 +40,24 @@ public class FenetreNouvellePartie extends JPanel {
         continuer.setActionCommand("Continuer");
         retour = new JButton("");
         retour.setActionCommand("Retour");
+        nomSlot1 = new JLabel(jeu.readNomPerso(1));
+        nomSlot2 = new JLabel(jeu.readNomPerso(2));
+        nomSlot3 = new JLabel(jeu.readNomPerso(3));
+        niveauSlot1 = new JLabel(jeu.readLVLPerso(1));
+        niveauSlot2 = new JLabel(jeu.readLVLPerso(1));
+        niveauSlot3 = new JLabel(jeu.readLVLPerso(3));
 
         add(slot1);
         add(slot2);
         add(slot3);
         add(continuer);
         add(retour);
+        add(nomSlot1);
+        add(nomSlot2);
+        add(nomSlot3);
+        add(niveauSlot1);
+        add(niveauSlot2);
+        add(niveauSlot3);
     }
 
     public void setControl(ControlFenetreNouvellePartie controlFenetreNouvellePartie) {
@@ -87,6 +100,48 @@ public class FenetreNouvellePartie extends JPanel {
         retour.setFocusable(false);
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retour.setBorder(null);
+
+        nomSlot1.setBounds(Fenetre.adapterResolutionEnX(340), Fenetre.adapterResolutionEnY(340), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(380));
+        nomSlot1.setForeground(Color.WHITE);
+        nomSlot1.setBackground(new Color(0, 0, 0, 0));
+        nomSlot1.setFocusable(false);
+        nomSlot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        nomSlot1.setBorder(null);
+
+        nomSlot2.setBounds(Fenetre.adapterResolutionEnX(840), Fenetre.adapterResolutionEnY(340), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(380));
+        nomSlot2.setForeground(Color.WHITE);
+        nomSlot2.setBackground(new Color(0, 0, 0, 0));
+        nomSlot2.setFocusable(false);
+        nomSlot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        nomSlot2.setBorder(null);
+
+        nomSlot3.setBounds(Fenetre.adapterResolutionEnX(1338), Fenetre.adapterResolutionEnY(340), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(380));
+        nomSlot3.setForeground(Color.WHITE);
+        nomSlot3.setBackground(new Color(0, 0, 0, 0));
+        nomSlot3.setFocusable(false);
+        nomSlot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        nomSlot3.setBorder(null);
+
+        niveauSlot1.setBounds(Fenetre.adapterResolutionEnX(530), Fenetre.adapterResolutionEnY(340), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(380));
+        niveauSlot1.setForeground(Color.WHITE);
+        niveauSlot1.setBackground(new Color(0, 0, 0, 0));
+        niveauSlot1.setFocusable(false);
+        niveauSlot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        niveauSlot1.setBorder(null);
+
+        niveauSlot2.setBounds(Fenetre.adapterResolutionEnX(1030), Fenetre.adapterResolutionEnY(340), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(380));
+        niveauSlot2.setForeground(Color.WHITE);
+        niveauSlot2.setBackground(new Color(0, 0, 0, 0));
+        niveauSlot2.setFocusable(false);
+        niveauSlot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        niveauSlot2.setBorder(null);
+
+        niveauSlot3.setBounds(Fenetre.adapterResolutionEnX(1528), Fenetre.adapterResolutionEnY(340), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(380));
+        niveauSlot3.setForeground(Color.WHITE);
+        niveauSlot3.setBackground(new Color(0, 0, 0, 0));
+        niveauSlot3.setFocusable(false);
+        niveauSlot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        niveauSlot3.setBorder(null);
 
 
         g.drawImage(getToolkit().getImage("images/menuNouvellePartie.png"), 0, 0, getWidth(), getHeight(), this);

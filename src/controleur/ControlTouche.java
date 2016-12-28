@@ -38,7 +38,6 @@ public class ControlTouche {
                 KeyEvent.VK_DOWN,
                 KeyEvent.VK_A
         };
-
         return touches;
     }
 }
