@@ -44,6 +44,30 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 changerVue();
                 break;
+            case "cheveuxGauche":
+                break;
+            case "cheveuxDroite":
+                break;
+            case "yeuxDroite":
+                break;
+            case "yeuxGauche":
+                break;
+            case "sexeFemme":
+                break;
+            case "sexeHomme":
+                break;
+            case "peauGauche":
+                break;
+            case "peauDroite":
+                break;
+            case "pilositeGauche":
+                break;
+            case "pilositeDroite":
+                break;
+            case "personnageGauche":
+                break;
+            case "personnageDroite":
+                break;
         }
     }
 
