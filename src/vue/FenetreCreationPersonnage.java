@@ -3,9 +3,14 @@ package vue;
 import controleur.ControlFenetreCreationPersonnage;
 import model.Jeu;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import static vue.Entite.decoupage;
 import static vue.Fenetre.X;
 import static vue.Fenetre.Y;
 
@@ -18,6 +23,21 @@ public class FenetreCreationPersonnage extends JPanel {
     public JButton jouer, retour, cheveuxGauche, cheveuxDroite, yeuxGauche, yeuxDroite, sexeFemme, sexeHomme, peauGauche, peauDroite, pilositeGauche, pilositeDroite, personnageGauche, personnageDroite;
     public JLabel lNomHero;
     public JTextField tfNomHero;
+
+    // nombre de texture différente
+    private final int NB_YEUX = 1;
+    private final int NB_PEAUX = 3;
+    private final int NB_CHEVEUX = 1;
+    private final int NB_PILOSITE = 1;
+    private final int NB_COULEUR_YEUX = 3;
+    private final int NB_COULEUR_CHEVEUX = 8;
+    private final int NB_COULEUR_PILOSITE = 3;
+
+    private Image[][][] spriteCheveux;
+    private Image[][] spritePeau;
+    private Image[][] spriteYeux;
+    private Image[][] spritePilosite;
+
 
     public FenetreCreationPersonnage(Jeu jeu) {
 
@@ -66,12 +86,6 @@ public class FenetreCreationPersonnage extends JPanel {
         pilositeDroite = new JButton("jjjj");
         pilositeDroite.setActionCommand("pilositeDroite");
 
-        personnageGauche = new JButton("kkkk");
-        personnageGauche.setActionCommand("personnageDroite");
-
-        personnageDroite = new JButton("llll");
-        personnageDroite.setActionCommand("personnageGauche");
-
         add(jouer);
         add(lNomHero);
         add(tfNomHero);
@@ -86,8 +100,78 @@ public class FenetreCreationPersonnage extends JPanel {
         add(peauDroite);
         add(pilositeGauche);
         add(pilositeDroite);
-        add(personnageGauche);
-        add(personnageDroite);
+
+        spriteCheveux = new Image[2][NB_CHEVEUX][NB_COULEUR_CHEVEUX]; // [0 = femme, 1 homme][type][couleur]
+        spriteYeux = new Image[NB_YEUX][NB_COULEUR_YEUX]; // [type][couleur]
+        spritePeau = new Image[2][NB_PEAUX]; // [0 = femme, 1 homme][couleur]
+        spritePilosite = new Image[NB_PILOSITE][NB_COULEUR_PILOSITE]; // [type][couleur]
+    }
+
+    public void initialiseCaracteristiquePhysique() {
+        BufferedImage img = null;
+
+        // cheveux
+        String strSexe;
+        for (int sexe = 0; sexe < 2; sexe++)
+            for (int i = 0; i < NB_CHEVEUX; i++)
+                for (int j = 0; j < NB_COULEUR_CHEVEUX; j++) {
+
+                    if (sexe == 0)
+                        strSexe = "Femme";
+                    else
+                        strSexe = "Homme";
+
+                    try {
+                        img = decoupage(ImageIO.read(new File("images/Personnages/" + strSexe + "/Cheveux/spriteCheveux" + i + "" + j + ".png")), 3, 11)[1];
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    spriteCheveux[sexe][i][j] = img;
+                }
+
+        // peaux
+        for (int sexe = 0; sexe < 2; sexe++)
+            for (int i = 0; i < NB_PEAUX; i++) {
+                if (sexe == 0)
+                    strSexe = "Femme";
+                else
+                    strSexe = "Homme";
+
+                try {
+                    img = decoupage(ImageIO.read(new File("images/Personnages/" + strSexe + "/Peaux/spritePeau" + i + ".png")), 3, 11)[1];
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                spritePeau[sexe][i] = img;
+            }
+
+        // Pilosite
+        for (int i = 0; i < NB_PILOSITE; i++)
+            for (int j = 0; j < NB_COULEUR_PILOSITE; j++) {
+
+                try {
+                    img = decoupage(ImageIO.read(new File("images/Personnages/Pilosite/spritePilosite" + i + "" + j + ".png")), 3, 11)[1];
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                spritePilosite[i][j] = img;
+            }
+
+        // Yeux
+        for (int i = 0; i < NB_YEUX; i++)
+            for (int j = 0; j < NB_COULEUR_YEUX; j++) {
+
+                try {
+                    img = decoupage(ImageIO.read(new File("images/Personnages/Yeux/spriteYeux" + i + "" + j + ".png")), 3, 11)[1];
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                spriteYeux[i][j] = img;
+            }
     }
 
     public void setControl(ControlFenetreCreationPersonnage controlFenetreCreationPersonnage) {
@@ -104,8 +188,6 @@ public class FenetreCreationPersonnage extends JPanel {
         peauDroite.addActionListener(controlFenetreCreationPersonnage);
         pilositeGauche.addActionListener(controlFenetreCreationPersonnage);
         pilositeDroite.addActionListener(controlFenetreCreationPersonnage);
-        personnageGauche.addActionListener(controlFenetreCreationPersonnage);
-        personnageDroite.addActionListener(controlFenetreCreationPersonnage);
     }
 
     protected void paintComponent(Graphics g) {
@@ -203,20 +285,6 @@ public class FenetreCreationPersonnage extends JPanel {
         pilositeDroite.setFocusable(false);
         pilositeDroite.setCursor(new Cursor(Cursor.HAND_CURSOR));
         pilositeDroite.setBorder(null);
-
-        personnageGauche.setBounds(Fenetre.adapterResolutionEnX(712), Fenetre.adapterResolutionEnY(566), Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(100));
-        personnageGauche.setForeground(Color.WHITE);
-        personnageGauche.setBackground(new Color(0, 0, 0, 0));
-        personnageGauche.setFocusable(false);
-        personnageGauche.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        personnageGauche.setBorder(null);
-
-        personnageDroite.setBounds(Fenetre.adapterResolutionEnX(1102), Fenetre.adapterResolutionEnY(566), Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(100));
-        personnageDroite.setForeground(Color.WHITE);
-        personnageDroite.setBackground(new Color(0, 0, 0, 0));
-        personnageDroite.setFocusable(false);
-        personnageDroite.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        personnageDroite.setBorder(null);
 
         Image img = getToolkit().getImage("images/menuCreationPersonnage.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);

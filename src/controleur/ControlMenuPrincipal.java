@@ -22,6 +22,7 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
         switch (e.getActionCommand()) {
             case "Nouvelle Partie":
                 if (jeu.getNbPartieLibre() >= 1) {
+
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                     changerVue();
                 } else {

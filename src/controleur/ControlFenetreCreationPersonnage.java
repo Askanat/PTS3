@@ -64,10 +64,6 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
                 break;
             case "pilositeDroite":
                 break;
-            case "personnageGauche":
-                break;
-            case "personnageDroite":
-                break;
         }
     }
 
