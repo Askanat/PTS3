@@ -430,6 +430,7 @@ public class FenetreCreationPersonnage extends JPanel {
         g.drawImage(image, Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(440), Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300), this);
     }
 
+
     public JTextField getTfNomHero() {
         return tfNomHero;
     }
