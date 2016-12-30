@@ -24,10 +24,12 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 jeu.setPause(false);
                 break;
             case "Inventaire":
-                System.out.println("Inventaire");
+                fenetre.barreMenu.setVisible(false);
+                fenetre.setContentPane(fenetre.panelFenetreInventaire);
+                changerVue();
                 break;
             case "Fiche Personnage":
-                System.out.println("fiche inventaire");
+                System.out.println("fiche personnage");
                 break;
             case "Option":
                 Control.enPartie = false;
