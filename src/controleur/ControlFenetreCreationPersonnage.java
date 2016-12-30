@@ -5,6 +5,7 @@ import vue.Fenetre;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 import static vue.FenetreCreationPersonnage.*;
 
@@ -93,78 +94,14 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
                 if (fenetre.panelFenetreCreationPersonnage.choixPilosite >= NB_PILOSITE)
                     fenetre.panelFenetreCreationPersonnage.choixPilosite = 0;
                 break;
-            case "cheveuxCouleur0":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurCheveux = 3;
-                break;
-            case "cheveuxCouleur1":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurCheveux = 1;
-                break;
-            case "cheveuxCouleur2":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurCheveux = 0;
-                break;
-            case "cheveuxCouleur3":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurCheveux = 5;
-                break;
-            case "cheveuxCouleur4":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurCheveux = 4;
-                break;
-            case "cheveuxCouleur5":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurCheveux = 6;
-                break;
-            case "cheveuxCouleur6":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurCheveux = 7;
-                break;
-            case "cheveuxCouleur7":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurCheveux = 2;
-                break;
-            case "yeuxCouleur0":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurYeux = 3;
-                break;
-            case "yeuxCouleur1":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurYeux = 1;
-                break;
-            case "yeuxCouleur2":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurYeux = 0;
-                break;
-            case "yeuxCouleur3":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurYeux = 5;
-                break;
-            case "yeuxCouleur4":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurYeux = 4;
-                break;
-            case "yeuxCouleur5":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurYeux = 6;
-                break;
-            case "yeuxCouleur6":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurYeux = 7;
-                break;
-            case "yeuxCouleur7":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurYeux = 2;
-                break;
-            case "pilositeCouleur0":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurPilosite = 3;
-                break;
-            case "pilositeCouleur1":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurPilosite = 1;
-                break;
-            case "pilositeCouleur2":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurPilosite = 0;
-                break;
-            case "pilositeCouleur3":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurPilosite = 5;
-                break;
-            case "pilositeCouleur4":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurPilosite = 4;
-                break;
-            case "pilositeCouleur5":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurPilosite = 6;
-                break;
-            case "pilositeCouleur6":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurPilosite = 7;
-                break;
-            case "pilositeCouleur7":
-                fenetre.panelFenetreCreationPersonnage.choixCouleurPilosite = 2;
-                break;
+        }
+        for (int i = 0; i < NB_COULEUR; i++) {
+            if (Objects.equals(e.getActionCommand(), "cheveuxCouleur" + i))
+                fenetre.panelFenetreCreationPersonnage.choixCouleurCheveux = i;
+            if (Objects.equals(e.getActionCommand(), "yeuxCouleur" + i))
+                fenetre.panelFenetreCreationPersonnage.choixCouleurYeux = i;
+            if (Objects.equals(e.getActionCommand(), "pilositeCouleur" + i))
+                fenetre.panelFenetreCreationPersonnage.choixCouleurPilosite = i;
         }
     }
 
