@@ -415,7 +415,7 @@ public class FenetreCreationPersonnage extends JPanel {
         g.drawImage(spritePeau[choixSexe][choixPeau], Fenetre.adapterResolutionEnX(1465), Fenetre.adapterResolutionEnY(272), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
 
 
-        BufferedImage image = createComposite(createComposite(createComposite(spritePeau[choixSexe][choixPeau], spriteYeux[choixYeux][choixCouleurYeux], 1), spriteCheveux[choixSexe][choixCheveux][choixCouleurCheveux], 1), spritePilosite[choixPilosite][choixCouleurPilosite], 1);
+        BufferedImage image = createComposite(createComposite(createComposite(spritePeau[choixSexe][choixPeau], spriteYeux[choixYeux][choixCouleurYeux], 1), spritePilosite[choixPilosite][choixCouleurPilosite], 1), spriteCheveux[choixSexe][choixCheveux][choixCouleurCheveux], 1);
         g.drawImage(image, Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(440), Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300), this);
     }
 
