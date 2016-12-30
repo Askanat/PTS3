@@ -228,7 +228,7 @@ public class FenetreCreationPersonnage extends JPanel {
         if (choixSexe == 1)
             image = createComposite(createComposite(bufferPeau, bufferYeux, 1), bufferCheveux, 1);
         else
-            image = createComposite(createComposite(createComposite(bufferPeau, bufferYeux, 1), bufferCheveux, 1), bufferPilosite, 1);
+            image = createComposite(createComposite(createComposite(bufferPeau, bufferYeux, 1), bufferPilosite, 1), bufferCheveux, 1);
 
 
         try {
