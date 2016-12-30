@@ -410,6 +410,7 @@ public class FenetreCreationPersonnage extends JPanel {
 
         if (choixSexe == 0)
             g.drawImage(spritePilosite[choixPilosite][choixCouleurPilosite], Fenetre.adapterResolutionEnX(1465), Fenetre.adapterResolutionEnY(606), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
+
         g.drawImage(spriteCheveux[choixSexe][choixCheveux][choixCouleurCheveux], Fenetre.adapterResolutionEnX(255), Fenetre.adapterResolutionEnY(272), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
         g.drawImage(spriteYeux[choixYeux][choixCouleurYeux], Fenetre.adapterResolutionEnX(255), Fenetre.adapterResolutionEnY(606), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
         g.drawImage(spritePeau[choixSexe][choixPeau], Fenetre.adapterResolutionEnX(1465), Fenetre.adapterResolutionEnY(272), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
