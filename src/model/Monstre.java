@@ -20,18 +20,18 @@ public class Monstre extends Personnage implements Runnable {
     public Monstre(String nom, double coeffMonstre, double coeffArmure, double coeffVie, double coeffMana, double coeffDegat,
                    int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, Hero hero) {
 
-        super(nom, (int)coeffMonstre, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY);
+        super(nom, (int) coeffMonstre, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY);
 
-        vieMax = coeffVie * niveau;
+        vieMax = coeffVie * niveau + 1;
         vie = vieMax;
 
-        manaMax = coeffMana * niveau;
+        manaMax = coeffMana * niveau + 1;
         mana = manaMax;
 
-        degatMax = coeffDegat * niveau;
+        degatMax = coeffDegat * niveau + 1;
         degats = degatMax;
 
-        armureMax = coeffArmure * niveau;
+        armureMax = coeffArmure * niveau + 1;
         armure = armureMax;
 
         this.coeffVie = coeffVie;
@@ -45,7 +45,7 @@ public class Monstre extends Personnage implements Runnable {
         this.hero = hero;
 
         System.out.println("nom:" + nom + ", niveau:" + coeffMonstre + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
-                degatMax + ", armureMax:" + armureMax);
+                degatMax + ", armureMax:" + armureMax + "xpdonne" + (int) (niveau * (coeffArmure + coeffDegat + coeffMana + coeffVie) * 10));
     }
 
     private void deplacerTete(Direction direction) {
@@ -74,8 +74,11 @@ public class Monstre extends Personnage implements Runnable {
         }
     }
 
-    // Thread destiné à gérer les interactions d'un monstre (déplacement, attaque, etc...)
+    public int donneExperience() {
+        return (int) (niveau * (coeffArmure + coeffDegat + coeffMana + coeffVie) * 10);
+    }
 
+    // Thread destiné à gérer les interactions d'un monstre (déplacement, attaque, etc...)
     @Override
     public void run() {
         try {

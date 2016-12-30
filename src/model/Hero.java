@@ -2,6 +2,8 @@ package model;
 
 import vue.Fenetre;
 
+import static java.lang.Math.pow;
+
 /**
  * Created by bastien on 29/09/16.
  */
@@ -57,5 +59,39 @@ public class Hero extends Personnage {
                 degatMax + ", armureMax:" + armureMax + ", experience:" + experience + ", experienceMax:" + experienceMax +
                 ", or:" + or + ", chargeMax:" + chargeMax + ", forcePerso:" + forcePerso + ", pointConstitution:" +
                 constiPerso + ", pointIntelligence:" + intelPerso + ", pointForce:" + forcePerso + ", pointResistance:" + resiPerso);
+    }
+
+
+    public boolean checkNiveauSup() {
+        return getExperience() >= getExperienceMax() ? true : false;
+    }
+
+    public void upNiveau()
+    {
+        setNiveau(getNiveau() + 1);
+    }
+
+    public void recevoirExperience(Monstre m) {
+        setExperience(getExperience() + m.donneExperience());
+    }
+
+    public void update_ExperienceMax() {
+        setExperienceMax(2 * (-700 + (500 * (getNiveau() + 1)) - (80 * pow((getNiveau() + 1), 2)) + (10 * pow((getNiveau() + 1), 3))));
+    }
+
+    public double getExperience() {
+        return experience;
+    }
+
+    public void setExperience(double experience) {
+        this.experience = experience;
+    }
+
+    public void setExperienceMax(double experienceMax) {
+        this.experienceMax = experienceMax;
+    }
+
+    public double getExperienceMax() {
+        return experienceMax;
     }
 }
