@@ -34,7 +34,7 @@ public class FenetreInventaire extends JPanel {
         for (int i = 0; i < 3;i++ )
         {
             inventaire[i] = new JButton();
-            inventaire[i].setActionCommand("stock"+i);
+            inventaire[i].setActionCommand("inventaire"+i);
             add(inventaire[i]);
         }
     }
