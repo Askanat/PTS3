@@ -421,4 +421,8 @@ public class FenetreCreationPersonnage extends JPanel {
     public JTextField getTfNomHero() {
         return tfNomHero;
     }
+
+    public void nomVide() {
+        JOptionPane.showMessageDialog(null, "Vous devez donner un nom à votre personnage");
+    }
 }

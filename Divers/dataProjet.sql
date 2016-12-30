@@ -98,6 +98,8 @@ INSERT INTO item VALUES (default, "Bottes en fer", null, 1.2, null, null, null, 
 INSERT INTO item VALUES (default, "Gants en fer", null, 1.2, null, null, null, null, "images/Equipements/Gants/gants_en_fer.png", 5);
 INSERT INTO item VALUES (default, "Pierre enchantee", null, null, 1.1, 1.1, 1.1, null, "images/Equipements/Bijous/pierre_enchantee.png", 7);
 INSERT INTO item VALUES (default, "Epee en fer", null, null, null, null, null, 1.1, "images/Equipements/Armes/epee_en_fer.png", 8);
+INSERT INTO item VALUES (default, "Epee noir", null, null, null, null, null, 1.2, "images/Equipements/Armes/epee_noir.png", 8);
+
 
 CREATE TABLE possede (
   idPersoPossede int,
