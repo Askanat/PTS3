@@ -97,11 +97,11 @@ public class FenetreCreationPersonnage extends JPanel {
         yeuxCouleur = new JButton[NB_COULEUR];
         pilositeCouleur = new JButton[NB_COULEUR];
         for (int i = 0; i < NB_COULEUR; i++) {
-            cheveuxCouleur[i] = new JButton("" + i);
+            cheveuxCouleur[i] = new JButton("");
             cheveuxCouleur[i].setActionCommand("cheveuxCouleur" + i);
-            yeuxCouleur[i] = new JButton("" + i);
+            yeuxCouleur[i] = new JButton("");
             yeuxCouleur[i].setActionCommand("yeuxCouleur" + i);
-            pilositeCouleur[i] = new JButton("" + i);
+            pilositeCouleur[i] = new JButton("");
             pilositeCouleur[i].setActionCommand("pilositeCouleur" + i);
         }
 
