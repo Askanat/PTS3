@@ -41,7 +41,7 @@ public class Fenetre extends JFrame {
         barreMenu.setVisible(false);
         setJMenuBar(barreMenu);
         setUndecorated(true);
-        setContentPane(panelFenetreInventaire);
+        setContentPane(panelMenuPrincipal);
         pack();
         setTitle("Jeu");
         setResizable(false);

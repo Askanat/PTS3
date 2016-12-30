@@ -33,7 +33,7 @@ public class FenetreCreationPersonnage extends JPanel {
     public static final int NB_YEUX = 1;
     public static final int NB_PEAUX = 3;
     public static final int NB_CHEVEUX = 1;
-    public static final int NB_PILOSITE = 8;
+    public static final int NB_PILOSITE = 1;
     public static final int NB_COULEUR = 8;
 
     // tableau qui stock les images pour la création du personnage
@@ -408,11 +408,12 @@ public class FenetreCreationPersonnage extends JPanel {
             img = getToolkit().getImage("images/menuCreationPersonnageFemme.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
 
+        if (choixSexe == 0)
+            g.drawImage(spritePilosite[choixPilosite][choixCouleurPilosite], Fenetre.adapterResolutionEnX(1465), Fenetre.adapterResolutionEnY(606), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
         g.drawImage(spriteCheveux[choixSexe][choixCheveux][choixCouleurCheveux], Fenetre.adapterResolutionEnX(255), Fenetre.adapterResolutionEnY(272), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
         g.drawImage(spriteYeux[choixYeux][choixCouleurYeux], Fenetre.adapterResolutionEnX(255), Fenetre.adapterResolutionEnY(606), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
         g.drawImage(spritePeau[choixSexe][choixPeau], Fenetre.adapterResolutionEnX(1465), Fenetre.adapterResolutionEnY(272), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
-        if (choixSexe == 0)
-            g.drawImage(spritePilosite[choixPilosite][choixCouleurPilosite], Fenetre.adapterResolutionEnX(1465), Fenetre.adapterResolutionEnY(606), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
+
 
         BufferedImage image = createComposite(createComposite(createComposite(spritePeau[choixSexe][choixPeau], spriteYeux[choixYeux][choixCouleurYeux], 1), spriteCheveux[choixSexe][choixCheveux][choixCouleurCheveux], 1), spritePilosite[choixPilosite][choixCouleurPilosite], 1);
         g.drawImage(image, Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(440), Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300), this);

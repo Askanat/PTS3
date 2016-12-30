@@ -6,7 +6,7 @@ import java.sql.*;
 /**
  * Created by leo on 02/10/16.
 */
-public class Test {
+public class TestBDD {
 
     public static void main(String[] args){
 
