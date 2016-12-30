@@ -38,8 +38,8 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
             case "Continuer":
                 fenetre.numeroPorte = -1;
                 try {
-                    // supprimer la partie correspondant a valeurSupprimerPartieHero
                     jeu.supprimerPartie(valeurSupprimerPartieHero);
+                    fenetre.panelFenetreCreationPersonnage.initialiseCaracteristiquePhysique();
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                     changerVue();
                 } catch (Exception e1) {

@@ -25,8 +25,24 @@ public class Entite extends JPanel {
     private int alternerSpriteDeplacement, alternerSpriteAttaque;
 
     public Entite() {
-
         alternerSpriteDeplacement = 0;
+    }
+
+    public static BufferedImage createComposite(BufferedImage image1, BufferedImage image2, float alpha)
+    {
+        BufferedImage buffer = new BufferedImage(Math.max(image1.getWidth(), image2.getWidth()),
+                Math.max(image1.getHeight(), image2.getHeight()),
+                BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2=buffer.createGraphics();
+
+        g2.drawImage(image1, null, null);
+        Composite newComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha);
+
+        g2.setComposite(newComposite);
+        g2.drawImage(image2, null, null);
+        g2.dispose();
+
+        return buffer;
     }
 
     public void creationEntite(Personnage personnage, String chemin) {
@@ -39,7 +55,7 @@ public class Entite extends JPanel {
             e.printStackTrace();
         }
 
-        spriteActuel = tableauSprite[1];
+        spriteActuel = tableauSprite[2];
     }
 
     public static BufferedImage[] decoupage(BufferedImage origin, int divisionHorizontale, int divisionVerticale) {
