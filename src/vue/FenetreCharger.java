@@ -19,7 +19,6 @@ import static vue.Fenetre.Y;
 public class FenetreCharger extends JPanel {
 
     private Jeu jeu;
-    private int nbPartieDispo;
     public JButton slot1, slot2, slot3, jouer, retour;
     public JLabel nomSlot1, nomSlot2, nomSlot3, niveauSlot1, niveauSlot2, niveauSlot3;
 
@@ -44,7 +43,7 @@ public class FenetreCharger extends JPanel {
         nomSlot2 = new JLabel(jeu.readNomPerso(2));
         nomSlot3 = new JLabel(jeu.readNomPerso(3));
         niveauSlot1 = new JLabel(jeu.readLVLPerso(1));
-        niveauSlot2 = new JLabel(jeu.readLVLPerso(1));
+        niveauSlot2 = new JLabel(jeu.readLVLPerso(2));
         niveauSlot3 = new JLabel(jeu.readLVLPerso(3));
 
 
@@ -164,5 +163,29 @@ public class FenetreCharger extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setLabelNom1(String nom) {
+        nomSlot1.setText(nom);
+    }
+
+    public void setLabelNom2(String nom) {
+        nomSlot2.setText(nom);
+    }
+
+    public void setLabelNom3(String nom) {
+        nomSlot3.setText(nom);
+    }
+
+    public void setLabelLVL1(String nom) {
+        niveauSlot1.setText(nom);
+    }
+
+    public void setLabelLVL2(String nom) {
+        niveauSlot2.setText(nom);
+    }
+
+    public void setLabelLVL3(String nom) {
+        niveauSlot3.setText(nom);
     }
 }
