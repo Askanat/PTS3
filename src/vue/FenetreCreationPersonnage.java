@@ -223,7 +223,13 @@ public class FenetreCreationPersonnage extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        BufferedImage image = createComposite(createComposite(createComposite(bufferPeau, bufferYeux, 1), bufferCheveux, 1), bufferPilosite, 1);
+
+        BufferedImage image;
+        if (choixSexe == 1)
+            image = createComposite(createComposite(bufferPeau, bufferYeux, 1), bufferCheveux, 1);
+        else
+            image = createComposite(createComposite(createComposite(bufferPeau, bufferYeux, 1), bufferCheveux, 1), bufferPilosite, 1);
+
 
         try {
             ImageIO.write(image, "png", new File("images/Save/texture_hero" + idHero + ".png"));
@@ -415,8 +421,12 @@ public class FenetreCreationPersonnage extends JPanel {
         g.drawImage(spriteYeux[choixYeux][choixCouleurYeux], Fenetre.adapterResolutionEnX(255), Fenetre.adapterResolutionEnY(606), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
         g.drawImage(spritePeau[choixSexe][choixPeau], Fenetre.adapterResolutionEnX(1465), Fenetre.adapterResolutionEnY(272), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);
 
+        BufferedImage image;
+        if (choixSexe == 0)
+            image = createComposite(createComposite(createComposite(spritePeau[choixSexe][choixPeau], spriteYeux[choixYeux][choixCouleurYeux], 1), spritePilosite[choixPilosite][choixCouleurPilosite], 1), spriteCheveux[choixSexe][choixCheveux][choixCouleurCheveux], 1);
+        else
+            image = createComposite(createComposite(spritePeau[choixSexe][choixPeau], spriteYeux[choixYeux][choixCouleurYeux], 1), spriteCheveux[choixSexe][choixCheveux][choixCouleurCheveux], 1);
 
-        BufferedImage image = createComposite(createComposite(createComposite(spritePeau[choixSexe][choixPeau], spriteYeux[choixYeux][choixCouleurYeux], 1), spritePilosite[choixPilosite][choixCouleurPilosite], 1), spriteCheveux[choixSexe][choixCheveux][choixCouleurCheveux], 1);
         g.drawImage(image, Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(440), Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300), this);
     }
 
