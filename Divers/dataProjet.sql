@@ -33,9 +33,9 @@ CREATE TABLE personnage (
   PRIMARY KEY(idPerso)
 );
 
-INSERT INTO personnage VALUES (default, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "images/Save/texture_hero1.png");
-INSERT INTO personnage VALUES (default, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "images/Save/texture_hero2.png");
-INSERT INTO personnage VALUES (default, "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "images/Save/texture_hero3.png");
+INSERT INTO personnage VALUES (default, "", 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, "images/Save/texture_hero1.png");
+INSERT INTO personnage VALUES (default, "", 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, "images/Save/texture_hero2.png");
+INSERT INTO personnage VALUES (default, "", 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, "images/Save/texture_hero3.png");
 
 CREATE TABLE monstre (
   idMonstre int AUTO_INCREMENT NOT NULL,

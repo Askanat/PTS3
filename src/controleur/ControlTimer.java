@@ -5,7 +5,6 @@ import vue.Entite;
 import vue.Fenetre;
 
 import javax.swing.*;
-import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +34,7 @@ public class ControlTimer extends Control implements ActionListener {
 
         if (Control.enPartie) {
             if (jeu.getPause()) {
-                fenetre.getContentPane().setLayout( new GridBagLayout());
+                fenetre.getContentPane().setLayout(new GridBagLayout());
                 fenetre.getContentPane().isOpaque();
                 GridBagConstraints gbc = new GridBagConstraints();
                 gbc.weightx = 1;
@@ -96,11 +95,19 @@ public class ControlTimer extends Control implements ActionListener {
                     if (monstreThread.isAlive() == false)
                         monstreThread.start();
 
+                    //jeu.getMonstre(i).afficherEtat();
+
+                    if (!jeu.getMonstre(i).estVivant()) {
+                        fenetre.panelFenetreDepart.monstre.remove(i);
+                        jeu.getHero().recevoirExperience(jeu.getMonstre(i));
+                    }
                     //fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(i).getVecteurDeplacementEnX(), jeu.getMonstre(i).getVecteurDeplacementEnY());
+                    jeu.updateMonstre(i);
                 }
 
 
             }
+            jeu.getHero().afficherEtat();
             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
         }
 

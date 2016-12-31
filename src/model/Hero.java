@@ -61,7 +61,19 @@ public class Hero extends Personnage {
                 constiPerso + ", pointIntelligence:" + intelPerso + ", pointForce:" + forcePerso + ", pointResistance:" + resiPerso);
     }
 
+    public void afficherEtat() {
+        System.out.println(
 
+                "nom : " + nom +
+                        ", vie : " + vie +
+                        ", vieMax : " + vieMax +
+                        ", degats : " + degats +
+                        ", positionX : " + positionX +
+                        ", positionY : " + positionY +
+                        ", experience: " + experience +
+                        ", experienceMax :" + experienceMax
+        );
+    }
     public boolean checkNiveauSup() {
         return getExperience() >= getExperienceMax() ? true : false;
     }

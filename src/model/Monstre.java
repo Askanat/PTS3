@@ -92,7 +92,7 @@ public class Monstre extends Personnage implements Runnable {
         if (positionX <= hero.positionX &&
                 (positionX + distanceVue) >= hero.positionX) {
             int newPosx = hero.positionX;
-            System.out.println("premier if");
+            //System.out.println("premier if");
 
             while (positionX <= newPosx) {
                 deplacer(Direction.DROITE);
@@ -104,7 +104,7 @@ public class Monstre extends Personnage implements Runnable {
         else if (positionX >= (hero.positionX) &&
                 (positionX - distanceVue) <= hero.positionX) {
             int newPosx = hero.positionX;
-            System.out.println("deuxieme if");
+            //System.out.println("deuxieme if");
 
             deplacerTete(Direction.GAUCHE);
 
@@ -117,7 +117,7 @@ public class Monstre extends Personnage implements Runnable {
         // (distanceVue / 4) et distanceVue
 
         else {
-            System.out.println("troisième if");
+            //System.out.println("troisième if");
             Direction d = null;
             Random rand = new Random();
             int sens = rand.nextInt(2);

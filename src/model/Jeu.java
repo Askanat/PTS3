@@ -68,15 +68,16 @@ public class Jeu {
                 Double.parseDouble(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), Fenetre.adapterResolutionEnX(0), Fenetre.adapterResolutionEnY(0));
     }
 
+    public void updateMonstre(int i) {
+        if (!tableauMonstre.get(i).estVivant())
+            tableauMonstre.remove(i);
+    }
+
     public Hero getHero() {
         return hero;
     }
 
     public void setMonstre(int id, int positionX, int positionY) {
-        // Pour le moment on sélectionne le hero 1
-        if (hero == null)
-            setHero(1); // je ne comprend pas
-
         ArrayList<String> donneesMonstre;
 
         donneesMonstre = bdd.readMonstre(id);
@@ -112,13 +113,13 @@ public class Jeu {
         ArrayList<Integer> idPartieDispo = bdd.idPartieLibre();
         int partieDispo = 0;
 
-        for(int i=0;i<idPartieDispo.size();i++){
-            if(idPartieDispo.get(i) > 0)
+        for (int i = 0; i < idPartieDispo.size(); i++) {
+            if (idPartieDispo.get(i) > 0)
                 System.out.println(i);
-                partieDispo = idPartieDispo.get(i);
+            partieDispo = idPartieDispo.get(i);
         }
 
-        if(partieDispo > 0) {
+        if (partieDispo > 0) {
             return partieDispo;
         } else {
             return 0;
