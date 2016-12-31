@@ -32,15 +32,25 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
                 }
                 break;
             case "Charger Partie":
+
                 if (3 - jeu.getNbPartieLibre() > 0) {
-                    fenetre.panelFenetreCharger.setLabelNom1(jeu.readNomPerso(1));
-                    fenetre.panelFenetreCharger.setLabelNom2(jeu.readNomPerso(2));
-                    fenetre.panelFenetreCharger.setLabelNom3(jeu.readNomPerso(3));
+                    if(jeu.getNbPartieLibre() == 0) {
+                        fenetre.panelFenetreCharger.setLabelNom1(jeu.readNomPerso(1));
+                        fenetre.panelFenetreCharger.setLabelNom2(jeu.readNomPerso(2));
+                        fenetre.panelFenetreCharger.setLabelNom3(jeu.readNomPerso(3));
 
-                    fenetre.panelFenetreCharger.setLabelLVL1(jeu.readLVLPerso(1));
-                    fenetre.panelFenetreCharger.setLabelLVL2(jeu.readLVLPerso(2));
-                    fenetre.panelFenetreCharger.setLabelLVL3(jeu.readLVLPerso(3));
+                        fenetre.panelFenetreCharger.setLabelLVL1(jeu.readLVLPerso(1));
+                        fenetre.panelFenetreCharger.setLabelLVL2(jeu.readLVLPerso(2));
+                        fenetre.panelFenetreCharger.setLabelLVL3(jeu.readLVLPerso(3));
+                    } else {
+                        fenetre.panelFenetreCharger.setLabelNom1(jeu.readNomPerso(3));
+                        fenetre.panelFenetreCharger.setLabelNom2(jeu.readNomPerso(2));
+                        fenetre.panelFenetreCharger.setLabelNom3(jeu.readNomPerso(1));
 
+                        fenetre.panelFenetreCharger.setLabelLVL1(jeu.readLVLPerso(3));
+                        fenetre.panelFenetreCharger.setLabelLVL2(jeu.readLVLPerso(2));
+                        fenetre.panelFenetreCharger.setLabelLVL3(jeu.readLVLPerso(1));
+                    }
                     fenetre.setContentPane(fenetre.panelFenetreCharger);
                     changerVue();
                 } else {
