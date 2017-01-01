@@ -67,11 +67,21 @@ public class Monstre extends Personnage implements Runnable {
                 setPositionX(positionX + 2);
         }
 
+        // Pour tester, les monstres bougeront au ralenti
+        
+        try {
+            System.out.wait(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        /*
         try {
             Thread.sleep(60);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        */
     }
 
     public int donneExperience() {
@@ -81,61 +91,44 @@ public class Monstre extends Personnage implements Runnable {
     // Thread destiné à gérer les interactions d'un monstre (déplacement, attaque, etc...)
     @Override
     public void run() {
-        try {
-            int max = 4000, min = 2000;
-            Thread.sleep(new Random().nextInt((max - min) + 1) + min);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        // Si le hero est dans le champ de vision et à droite, déplace le monstre à droite
+        int largeur = Fenetre.adapterResolutionEnX(200);
+        boolean deplacementAleatoire = true;
 
-        if (positionX <= hero.positionX &&
-                (positionX + distanceVue) >= hero.positionX) {
-            int newPosx = hero.positionX;
-            //System.out.println("premier if");
+        // Si le héro n'est ni trop bas et ni trop haut
+        
+        if(!(positionY + largeur < hero.positionY || positionY > hero.positionY + largeur)) {
+            // Si le hero est dans le champ de vision et à droite, déplace le monstre à droite
 
-            while (positionX <= newPosx) {
-                deplacer(Direction.DROITE);
+            if (positionX + largeur <= hero.positionX + largeur && positionX + largeur + distanceVue >= hero.positionX) {
+                int newPosx = hero.positionX + largeur * 2;
+                deplacerTete(Direction.DROITE);
+
+                while (positionX <= newPosx) {
+                    deplacer(Direction.DROITE);
+                }
+
+                deplacementAleatoire = false;
+            }
+
+            // Sinon si le hero est dans le champ de vision et à gauche, déplace le monstre à gauche
+
+            else if (positionX >= hero.positionX && positionX - distanceVue <= hero.positionX + largeur) {
+                int newPosx = hero.positionX - largeur;
+                deplacerTete(Direction.GAUCHE);
+
+                while (positionX >= newPosx) {
+                    deplacer(Direction.GAUCHE);
+                }
+
+                deplacementAleatoire = false;
             }
         }
 
-        // Sinon si le hero est dans le champ de vision et à gaiche, déplace le monstre à gauche
+        // Deplacement aléatoire si le héro n'est pas dans le champ de vision
+        
+        if(deplacementAleatoire) {
 
-        else if (positionX >= (hero.positionX) &&
-                (positionX - distanceVue) <= hero.positionX) {
-            int newPosx = hero.positionX;
-            //System.out.println("deuxieme if");
-
-            deplacerTete(Direction.GAUCHE);
-
-            while (positionX >= newPosx) {
-                deplacer(Direction.GAUCHE);
-            }
         }
-
-        // Sinon déplace aléatoire à gauche ou à droite, selon une distance aléatoire comprise entre
-        // (distanceVue / 4) et distanceVue
-
-        else {
-            //System.out.println("troisième if");
-            Direction d = null;
-            Random rand = new Random();
-            int sens = rand.nextInt(2);
-            switch (sens) {
-                case 0:
-                    d = Direction.GAUCHE;
-                    break;
-                case 1:
-                    d = Direction.DROITE;
-            }
-
-            int longueur = rand.nextInt((distanceVue - (distanceVue / 4)) + 1) + (distanceVue / 4);
-
-            deplacerTete(d);
-
-            for (int i = 0; i < longueur; i++) {
-                deplacer(d);
-            }
-        }
+    }
     }
 }
