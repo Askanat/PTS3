@@ -130,5 +130,4 @@ public class Monstre extends Personnage implements Runnable {
 
         }
     }
-    }
 }
