@@ -70,7 +70,6 @@ public class Entite extends JPanel {
                 k++;
             }
         }
-
         return tab;
     }
 
