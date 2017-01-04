@@ -1,5 +1,6 @@
 package vue;
 
+import com.sun.org.apache.regexp.internal.RE;
 import controleur.ControlFenetreInventaire;
 
 import javax.swing.*;
@@ -22,6 +23,8 @@ public class FenetreInventaire extends JPanel {
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
+        boutonInventaire();
+
         retour = new JButton("");
         retour.setActionCommand("Retour");
 
@@ -31,7 +34,7 @@ public class FenetreInventaire extends JPanel {
     public void boutonInventaire(){
         inventaire = new JButton[30];
 
-        for (int i = 0; i < 3;i++ )
+        for (int i = 0; i < 30; i++ )
         {
             inventaire[i] = new JButton();
             inventaire[i].setActionCommand("inventaire"+i);
@@ -81,11 +84,26 @@ public class FenetreInventaire extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        Font f=new Font("Arial", Font.BOLD, 18);
+
         retour.setBounds(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retour.setBorder(null);
+
+        int k = 0;
+        for (int i = 0; i < 5; i++) {
+            for(int j = 0; j < 6; j++) {
+                inventaire[k].setBounds(Fenetre.adapterResolutionEnX(1104 + (137 * i)), Fenetre.adapterResolutionEnY(157 + (132 * j)), Fenetre.adapterResolutionEnX(129), Fenetre.adapterResolutionEnX(125));
+                inventaire[k].setBackground(new Color(0, 0, 0, 0));
+                inventaire[k].setFocusable(false);
+                inventaire[k].setCursor(new Cursor(Cursor.HAND_CURSOR));
+                inventaire[k].setBorder(null);
+
+                k += 1;
+            }
+        }
 
         Image img = getToolkit().getImage("images/menuInventaire.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
