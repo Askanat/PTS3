@@ -2,13 +2,11 @@ package model;
 
 import vue.Fenetre;
 
-import java.util.Random;
-
 /**
  * Created by bastien on 29/09/16.
  */
 
-public class Monstre extends Personnage implements Runnable {
+public class Monstre extends Personnage {
 
     private double coeffVie;
     private double coeffMana;
@@ -20,7 +18,7 @@ public class Monstre extends Personnage implements Runnable {
     public Monstre(String nom, double coeffMonstre, double coeffArmure, double coeffVie, double coeffMana, double coeffDegat,
                    int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, Hero hero) {
 
-        super(nom, (int) coeffMonstre, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY);
+        super(nom, (int) coeffMonstre, positionX, positionY, Fenetre.adapterResolutionEnX(vitesseDeDeplacementEnPixelX), Fenetre.adapterResolutionEnY(vitesseDeDeplacementEnPixelY));
 
         vieMax = coeffVie * niveau + 1;
         vie = vieMax;
@@ -48,86 +46,35 @@ public class Monstre extends Personnage implements Runnable {
                 degatMax + ", armureMax:" + armureMax + "xpdonne" + (int) (niveau * (coeffArmure + coeffDegat + coeffMana + coeffVie) * 10));
     }
 
-    private void deplacerTete(Direction direction) {
-        switch (direction) {
-            case GAUCHE:
-                deplacerAGauche();
-                break;
-            case DROITE:
-                deplacerADroite();
-        }
-    }
-
-    public void deplacer(Direction direction) {
-        switch (direction) {
-            case GAUCHE:
-                setPositionX(positionX - 2);
-                break;
-            case DROITE:
-                setPositionX(positionX + 2);
-        }
-
-        // Pour tester, les monstres bougeront au ralenti
-        
-        try {
-            System.out.wait(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        
-        /*
-        try {
-            Thread.sleep(60);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        */
-    }
-
     public int donneExperience() {
         return (int) (niveau * (coeffArmure + coeffDegat + coeffMana + coeffVie) * 10);
     }
 
-    // Thread destiné à gérer les interactions d'un monstre (déplacement, attaque, etc...)
-    @Override
-    public void run() {
+    public void update() {
         int largeur = Fenetre.adapterResolutionEnX(200);
-        boolean deplacementAleatoire = true;
+        // Si le héro est trop haut
+        if (positionY > hero.positionY + largeur && ((positionX + largeur <= hero.positionX + largeur && positionX + largeur + distanceVue >= hero.positionX)|| (positionX >= hero.positionX && positionX - distanceVue <= hero.positionX + largeur))) {
+            sauter();
+        }
 
         // Si le héro n'est ni trop bas et ni trop haut
-        
-        if(!(positionY + largeur < hero.positionY || positionY > hero.positionY + largeur)) {
+        if (!(positionY + largeur < hero.positionY || positionY > hero.positionY + largeur)) {
             // Si le hero est dans le champ de vision et à droite, déplace le monstre à droite
-
             if (positionX + largeur <= hero.positionX + largeur && positionX + largeur + distanceVue >= hero.positionX) {
-                int newPosx = hero.positionX + largeur * 2;
-                deplacerTete(Direction.DROITE);
-
-                while (positionX <= newPosx) {
-                    deplacer(Direction.DROITE);
-                }
-
-                deplacementAleatoire = false;
+                    deplacerADroite();
             }
 
             // Sinon si le hero est dans le champ de vision et à gauche, déplace le monstre à gauche
-
             else if (positionX >= hero.positionX && positionX - distanceVue <= hero.positionX + largeur) {
-                int newPosx = hero.positionX - largeur;
-                deplacerTete(Direction.GAUCHE);
-
-                while (positionX >= newPosx) {
-                    deplacer(Direction.GAUCHE);
-                }
-
-                deplacementAleatoire = false;
+                    deplacerAGauche();
             }
         }
 
-        // Deplacement aléatoire si le héro n'est pas dans le champ de vision
-        
-        if(deplacementAleatoire) {
+    }
 
-        }
+    // interactions d'un monstre (déplacement, attaque, etc...)
+    public void upgrade() {
+
+        deplacer();
     }
 }

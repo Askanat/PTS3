@@ -1,7 +1,6 @@
 package controleur;
 
 import model.Jeu;
-import vue.Entite;
 import vue.Fenetre;
 
 import javax.swing.*;
@@ -76,38 +75,35 @@ public class ControlTimer extends Control implements ActionListener {
 
                         for (i = 0; i < nbMonstre; i++) {
                             jeu.getHero().attaquer(jeu.getMonstre(i));
-                            //System.out.println("Attaque du personnage");
                         }
 
                         ControlClavier.toucheRelacher[ControlTouche.A] = false;
                     }
                 }
 
-
-                for (Entite entite : fenetre.panelFenetreDepart.hero)
-                    entite.selectionnerMorceauSpriteDeplacement();
-
+                // dessine le héro et le fait se déplacer
+                fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement();
                 jeu.getHero().deplacer();
 
+                // dessine les monstres et les fait intéragir
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
-                    Thread monstreThread = new Thread(jeu.getMonstre(i));
-
-                    if (monstreThread.isAlive() == false)
-                        monstreThread.start();
+                    jeu.getMonstre(i).update();
+                    fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement();
+                    jeu.getMonstre(i).upgrade();
 
                     //jeu.getMonstre(i).afficherEtat();
 
-                    if (!jeu.getMonstre(i).estVivant()) {
+                    /*if (!jeu.getMonstre(i).estVivant()) {
                         fenetre.panelFenetreDepart.monstre.remove(i);
                         jeu.getHero().recevoirExperience(jeu.getMonstre(i));
                     }
-                    //fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement(jeu.getMonstre(i).getVecteurDeplacementEnX(), jeu.getMonstre(i).getVecteurDeplacementEnY());
-                    jeu.updateMonstre(i);
+
+                    jeu.updateMonstre(i);*/
                 }
 
 
             }
-            jeu.getHero().afficherEtat();
+            //jeu.getHero().afficherEtat();
             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
         }
 

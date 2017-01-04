@@ -84,7 +84,7 @@ public class Jeu {
 
         tableauMonstre.add(new Monstre(donneesMonstre.get(0), Double.parseDouble(donneesMonstre.get(1)), Double.parseDouble(donneesMonstre.get(2)),
                 Double.parseDouble(donneesMonstre.get(3)), Double.parseDouble(donneesMonstre.get(4)), Double.parseDouble(donneesMonstre.get(5)), positionX, positionY,
-                1, 1, hero));
+                10, 40, hero));
     }
 
     public Monstre getMonstre(int i) {

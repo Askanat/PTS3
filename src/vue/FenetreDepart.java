@@ -21,7 +21,7 @@ public class FenetreDepart extends JPanel {
     private final int NOMBRE_DE_EQUIPEMENT = 0;
     private final int NOMBRE_DE_PNG = 0;
 
-    public Entite[] hero; // le héro et ses équipements
+    public Entite hero; // le héro
     public Entite[] png; // tous les png présents sur la carte de départ
     public ArrayList<Entite> monstre; // a enlever d'ici
 
@@ -32,9 +32,7 @@ public class FenetreDepart extends JPanel {
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
-        hero = new Entite[NOMBRE_DE_EQUIPEMENT + 1]; // tableau qui regroupe le héro + ses équipements
-        for (int i = 0; i < hero.length; i++)
-            hero[i] = new Entite();
+        hero = new Entite();
 
         png = new Entite[NOMBRE_DE_PNG];
         for (int i = 0; i < png.length; i++)
@@ -44,7 +42,7 @@ public class FenetreDepart extends JPanel {
     }
 
     public void dessineHero(int id) {
-        hero[0].creationEntite(jeu.getHero(), jeu.getBDD().readHeroTexture(id));
+        hero.creationEntite(jeu.getHero(), jeu.getBDD().readHeroTexture(id));
     }
 
     public void dessinePng() {
@@ -67,7 +65,6 @@ public class FenetreDepart extends JPanel {
         for (Entite e : png)
             e.paintComponent(g);
 
-        for (Entite e : hero)
-            e.paintComponent(g);
+            hero.paintComponent(g);
     }
 }
