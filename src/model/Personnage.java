@@ -181,7 +181,7 @@ public abstract class Personnage {
         if (!getCollision())
             setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
         else if (getCollision()) {
-            setPositionY((int) (Fenetre.adapterResolutionEnY(1080) - hauteur/2.0));
+            setPositionY((int) (Fenetre.adapterResolutionEnY(1000) - hauteur / 2.0));
             setVitesseDeDeplacementEnY(0);
         }
 
@@ -209,7 +209,7 @@ public abstract class Personnage {
     }
 
     public void setCollision() {
-        this.collision = getPositionY() >= Fenetre.adapterResolutionEnY(1080) - hauteur/2.0; // sol de la fenetre - la hauteur du personnage - la hauteur de parterre
+        this.collision = getPositionY() >= (int) (Fenetre.adapterResolutionEnY(1000) - hauteur / 2.0); // sol de la fenetre - la hauteur du personnage - la hauteur de parterre
     }
 
     public boolean getCollision() {
