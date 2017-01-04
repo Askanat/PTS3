@@ -80,6 +80,21 @@ public class FenetreInventaire extends JPanel {
 
     public void setControl(ControlFenetreInventaire controlFenetreInventaire) {
         retour.addActionListener(controlFenetreInventaire);
+
+        //Equipement
+        casque.addActionListener(controlFenetreInventaire);
+        plastron.addActionListener(controlFenetreInventaire);
+        gant.addActionListener(controlFenetreInventaire);
+        bague.addActionListener(controlFenetreInventaire);
+        pantalon.addActionListener(controlFenetreInventaire);
+        botte.addActionListener(controlFenetreInventaire);
+        arme.addActionListener(controlFenetreInventaire);
+        bouclier.addActionListener(controlFenetreInventaire);
+
+        //Inventaire
+        for (int i = 0; i < 30; i++){
+            inventaire[0].addActionListener(controlFenetreInventaire);
+        }
     }
 
     protected void paintComponent(Graphics g) {
