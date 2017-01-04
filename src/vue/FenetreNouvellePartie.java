@@ -155,4 +155,32 @@ public class FenetreNouvellePartie extends JPanel {
             e.printStackTrace();
         }
     }
+
+    public void setLabelNom1(String nom) {
+        nomSlot1.setText(nom);
+    }
+
+    public void setLabelNom2(String nom) {
+        nomSlot2.setText(nom);
+    }
+
+    public void setLabelNom3(String nom) {
+        nomSlot3.setText(nom);
+    }
+
+    public void setLabelLVL1(String nom) {
+        niveauSlot1.setText(nom);
+    }
+
+    public void setLabelLVL2(String nom) {
+        niveauSlot2.setText(nom);
+    }
+
+    public void setLabelLVL3(String nom) {
+        niveauSlot3.setText(nom);
+    }
+
+    public void setPaneSelectionnePersonnageASupprimer() {
+        JOptionPane.showMessageDialog(this, "Selectionnez une partie à supprimer avant de cliquer sur continuer !", "message", JOptionPane.INFORMATION_MESSAGE);
+    }
 }

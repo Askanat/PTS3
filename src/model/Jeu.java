@@ -76,8 +76,6 @@ public class Jeu {
 
         donneesMonstre = bdd.readMonstre(id);
 
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaa" + getHero().niveau);
-
         tableauMonstre.add(new Monstre(donneesMonstre.get(0), getHero().niveau, Integer.parseInt(donneesMonstre.get(1)), Integer.parseInt(donneesMonstre.get(2)),
                 Double.parseDouble(donneesMonstre.get(3)), Double.parseDouble(donneesMonstre.get(4)), Double.parseDouble(donneesMonstre.get(5)), Double.parseDouble(donneesMonstre.get(6)),
                 positionX, positionY, Integer.parseInt(donneesMonstre.get(7)), Integer.parseInt(donneesMonstre.get(8)), Integer.parseInt(donneesMonstre.get(9))));

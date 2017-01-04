@@ -26,31 +26,28 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                     changerVue();
                 } else {
+                    fenetre.panelFenetreNouvellePartie.setLabelNom1(jeu.readNomPerso(1));
+                    fenetre.panelFenetreNouvellePartie.setLabelLVL1(jeu.readLVLPerso(1));
+                    fenetre.panelFenetreNouvellePartie.setLabelNom2(jeu.readNomPerso(2));
+                    fenetre.panelFenetreNouvellePartie.setLabelLVL2(jeu.readLVLPerso(2));
+                    fenetre.panelFenetreNouvellePartie.setLabelNom3(jeu.readNomPerso(3));
+                    fenetre.panelFenetreNouvellePartie.setLabelLVL3(jeu.readLVLPerso(3));
+
                     fenetre.setContentPane(fenetre.panelFenetreNouvellePartie);
                     changerVue();
-                    fenetre.setPaneSelectionnePersonnageASupprimer();
+                    fenetre.panelFenetreNouvellePartie.setPaneSelectionnePersonnageASupprimer();
                 }
                 break;
             case "Charger Partie":
 
                 if (3 - jeu.getNbPartieLibre() > 0) {
-                    if(jeu.getNbPartieLibre() == 0) {
-                        fenetre.panelFenetreCharger.setLabelNom1(jeu.readNomPerso(1));
-                        fenetre.panelFenetreCharger.setLabelNom2(jeu.readNomPerso(2));
-                        fenetre.panelFenetreCharger.setLabelNom3(jeu.readNomPerso(3));
+                    fenetre.panelFenetreCharger.setLabelNom1(jeu.readNomPerso(1));
+                    fenetre.panelFenetreCharger.setLabelLVL1(jeu.readLVLPerso(1));
+                    fenetre.panelFenetreCharger.setLabelNom2(jeu.readNomPerso(2));
+                    fenetre.panelFenetreCharger.setLabelLVL2(jeu.readLVLPerso(2));
+                    fenetre.panelFenetreCharger.setLabelNom3(jeu.readNomPerso(3));
+                    fenetre.panelFenetreCharger.setLabelLVL3(jeu.readLVLPerso(3));
 
-                        fenetre.panelFenetreCharger.setLabelLVL1(jeu.readLVLPerso(1));
-                        fenetre.panelFenetreCharger.setLabelLVL2(jeu.readLVLPerso(2));
-                        fenetre.panelFenetreCharger.setLabelLVL3(jeu.readLVLPerso(3));
-                    } else {
-                        fenetre.panelFenetreCharger.setLabelNom1(jeu.readNomPerso(3));
-                        fenetre.panelFenetreCharger.setLabelNom2(jeu.readNomPerso(2));
-                        fenetre.panelFenetreCharger.setLabelNom3(jeu.readNomPerso(1));
-
-                        fenetre.panelFenetreCharger.setLabelLVL1(jeu.readLVLPerso(3));
-                        fenetre.panelFenetreCharger.setLabelLVL2(jeu.readLVLPerso(2));
-                        fenetre.panelFenetreCharger.setLabelLVL3(jeu.readLVLPerso(1));
-                    }
                     fenetre.setContentPane(fenetre.panelFenetreCharger);
                     changerVue();
                 } else {

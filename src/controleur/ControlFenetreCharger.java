@@ -51,7 +51,7 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                     fenetre.setContentPane(fenetre.panelFenetreDepart);
                     changerVue();
                 } catch (Exception e1) {
-                    fenetre.setPaneSelectionnePersonnage();
+                    fenetre.panelFenetreCharger.setPaneSelectionnePersonnage();
                 }
                 break;
             case "Retour":

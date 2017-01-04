@@ -435,6 +435,18 @@ public class FenetreCreationPersonnage extends JPanel {
         return tfNomHero;
     }
 
+    public void initCreationPerso() {
+        tfNomHero.setText("");
+        choixSexe = 0;
+        choixCouleurCheveux = 0;
+        choixCheveux = 0;
+        choixPeau = 0;
+        choixCouleurYeux = 0;
+        choixYeux = 0;
+        choixCouleurPilosite = 0;
+        choixPilosite = 0;
+    }
+
     public void nomVide() {
         JOptionPane.showMessageDialog(null, "Vous devez donner un nom à votre personnage");
     }

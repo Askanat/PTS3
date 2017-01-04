@@ -26,7 +26,9 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
                     fenetre.panelFenetreCreationPersonnage.nomVide();
                 } else {
                     String nomPerso = fenetre.panelFenetreCreationPersonnage.getTfNomHero().getText();
-                    int idHero = jeu.getidPartieLibre();
+                    int idHero = 3 - jeu.getNbPartieLibre() + 1;
+                    if (jeu.getNbPartieLibre() == 1)
+                        idHero = jeu.getidPartieLibre();
                     fenetre.panelFenetreCreationPersonnage.sauvegardeSprite(idHero);
                     jeu.createHeroBDD(nomPerso, idHero);
                     spawnHero(idHero);
@@ -39,11 +41,13 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
                     Control.enPartie = true;
                     fenetre.barreMenu.setVisible(true);
                     fenetre.setContentPane(fenetre.panelFenetreDepart);
+                    fenetre.panelFenetreCreationPersonnage.initCreationPerso();
                     changerVue();
                 }
                 break;
             case "Retour":
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
+                fenetre.panelFenetreCreationPersonnage.initCreationPerso();
                 changerVue();
                 break;
             case "cheveuxGauche":

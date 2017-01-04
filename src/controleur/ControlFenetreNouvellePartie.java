@@ -41,11 +41,13 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
                     jeu.supprimerPartie(choixSupprimerPartieHero);
                     choixSupprimerPartieHero = 0;
 
+                    jeu.setNbPartieLibre(jeu.getBDDNbPartieLibre());
+
                     fenetre.panelFenetreCreationPersonnage.initialiseCaracteristiquePhysique();
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                     changerVue();
                 } catch (Exception e1) {
-                    fenetre.setPaneSelectionnePersonnageASupprimer();
+                    fenetre.panelFenetreNouvellePartie.setPaneSelectionnePersonnageASupprimer();
                 }
                 break;
             case "Retour":

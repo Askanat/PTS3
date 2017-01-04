@@ -187,4 +187,9 @@ public class FenetreCharger extends JPanel {
     public void setLabelLVL3(String nom) {
         niveauSlot3.setText(nom);
     }
+
+    public void setPaneSelectionnePersonnage() {
+        JOptionPane.showMessageDialog(this, "Selectionnez un personnage avant de cliquer sur jouer !", "message", JOptionPane.INFORMATION_MESSAGE);
+    }
 }
+

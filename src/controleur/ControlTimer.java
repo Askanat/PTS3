@@ -96,7 +96,7 @@ public class ControlTimer extends Control implements ActionListener {
 
 
 
-                    jeu.getMonstre(i).afficherEtat();
+                   // jeu.getMonstre(i).afficherEtat();
 
 
 
