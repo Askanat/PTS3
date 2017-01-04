@@ -12,33 +12,35 @@ import java.awt.event.ActionListener;
 
 public class ControlFenetreNouvellePartie extends Control implements ActionListener {
 
-    private int valeurSupprimerPartieHero;
+    private int choixSupprimerPartieHero;
 
     public ControlFenetreNouvellePartie(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlFenetreNouvellePartie(this);
 
-        valeurSupprimerPartieHero = 0;
+        choixSupprimerPartieHero = 0;
     }
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Slot n°1":
-                valeurSupprimerPartieHero = 1;
-                fenetre.numeroPorte = 1;
+                choixSupprimerPartieHero = 1;
+                Fenetre.numeroPorte = 1;
                 break;
             case "Slot n°2":
-                valeurSupprimerPartieHero = 2;
-                fenetre.numeroPorte = 2;
+                choixSupprimerPartieHero = 2;
+                Fenetre.numeroPorte = 2;
                 break;
             case "Slot n°3":
-                valeurSupprimerPartieHero = 3;
-                fenetre.numeroPorte = 3;
+                choixSupprimerPartieHero = 3;
+                Fenetre.numeroPorte = 3;
                 break;
             case "Continuer":
-                fenetre.numeroPorte = -1;
+                Fenetre.numeroPorte = -1;
                 try {
-                    jeu.supprimerPartie(valeurSupprimerPartieHero);
+                    jeu.supprimerPartie(choixSupprimerPartieHero);
+                    choixSupprimerPartieHero = 0;
+
                     fenetre.panelFenetreCreationPersonnage.initialiseCaracteristiquePhysique();
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                     changerVue();
@@ -47,10 +49,10 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
                 }
                 break;
             case "Retour":
-                fenetre.numeroPorte = -1;
+                Fenetre.numeroPorte = -1;
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 changerVue();
-                valeurSupprimerPartieHero = 0;
+                choixSupprimerPartieHero = 0;
                 break;
         }
     }

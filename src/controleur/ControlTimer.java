@@ -87,21 +87,21 @@ public class ControlTimer extends Control implements ActionListener {
 
                 // dessine les monstres et les fait intéragir
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
-                    jeu.getMonstre(i).update();
+                    jeu.getMonstre(i).update(jeu.getHero());
                     fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement();
+                    if (!jeu.getMonstre(i).estVivant())
+                        fenetre.panelFenetreDepart.monstre.remove(i);
                     jeu.getMonstre(i).upgrade();
 
-                    //jeu.getMonstre(i).afficherEtat();
 
-                    /*if (!jeu.getMonstre(i).estVivant()) {
-                        fenetre.panelFenetreDepart.monstre.remove(i);
-                        jeu.getHero().recevoirExperience(jeu.getMonstre(i));
-                    }
 
-                    jeu.updateMonstre(i);*/
+
+                    jeu.getMonstre(i).afficherEtat();
+
+
+
+                    jeu.updateMonstre(i); // supprime les montres si ils sont morts
                 }
-
-
             }
             //jeu.getHero().afficherEtat();
             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero

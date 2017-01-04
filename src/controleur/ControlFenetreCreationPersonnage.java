@@ -22,26 +22,20 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Jouer":
-                if(fenetre.panelFenetreCreationPersonnage.getTfNomHero().getText().isEmpty()) {
+                if (fenetre.panelFenetreCreationPersonnage.getTfNomHero().getText().isEmpty()) {
                     fenetre.panelFenetreCreationPersonnage.nomVide();
                 } else {
                     String nomPerso = fenetre.panelFenetreCreationPersonnage.getTfNomHero().getText();
                     int idHero = jeu.getidPartieLibre();
                     fenetre.panelFenetreCreationPersonnage.sauvegardeSprite(idHero);
                     jeu.createHeroBDD(nomPerso, idHero);
-                    jeu.setHero(idHero);
-                    fenetre.panelFenetreDepart.dessineHero(idHero);
-
                     spawnHero(idHero);
                     fenetre.barreMenu.test(); // ajout du composant vie dans la barre menu
-                    spawnMonstre(1, Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(250)); // a enlever d'ici
-                    spawnMonstre(2, Fenetre.adapterResolutionEnX(600), Fenetre.adapterResolutionEnY(700)); // a enlever d'ici
-                    spawnMonstre(3, Fenetre.adapterResolutionEnX(900), Fenetre.adapterResolutionEnY(900)); // a enlever d'ici
 
-                    Control.enPartie = true;
-                    fenetre.barreMenu.setVisible(true);
-                    fenetre.setContentPane(fenetre.panelFenetreDepart);
-                    changerVue();
+                    spawnMonstre(1, 300, 250); // a enlever d'ici
+                    spawnMonstre(2, 600, 700); // a enlever d'ici
+                    spawnMonstre(3, 900, 900); // a enlever d'ici
+
                     Control.enPartie = true;
                     fenetre.barreMenu.setVisible(true);
                     fenetre.setContentPane(fenetre.panelFenetreDepart);
@@ -107,15 +101,5 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
             if (Objects.equals(e.getActionCommand(), "pilositeCouleur" + i))
                 fenetre.panelFenetreCreationPersonnage.choixCouleurPilosite = i;
         }
-    }
-
-    private void spawnHero(int i) {
-        jeu.setHero(i);
-        fenetre.panelFenetreDepart.dessineHero(i);
-    }
-
-    private void spawnMonstre(int i, int positionX, int positionY) { // a enlever d'ici
-        jeu.setMonstre(i, positionX, positionY);
-        fenetre.panelFenetreDepart.dessineMonstre(i);
     }
 }

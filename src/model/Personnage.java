@@ -12,36 +12,40 @@ import static model.Jeu.GRAVITE;
 public abstract class Personnage {
     protected String nom;
     protected int niveau;
-    protected double vie, vieMax;
-    protected double mana, manaMax;
-    protected double degats, degatMax;
-    protected double armure, armureMax;
+    protected int vie, vieMax;
+    protected int mana, manaMax;
+    protected int degats, degatMax;
+    protected int armure, armureMax;
     protected int positionX, positionY;
     protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnX, vitesseDeDeplacementEnY, vitesseDeSaut;
     protected boolean collision, deplacement;
     protected boolean attaquer;
-    // Nécessaire pour gérer l'orientation d'un personnage
-    protected Direction direction;
+    protected int largeur, hauteur;
+    protected Direction directionOrientation;
 
-    public Personnage(String nom, int niveau, int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
+    public Personnage(String nom, int niveau, int largeur, int hauteur, int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
 
         this.nom = nom;
         this.niveau = niveau;
 
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.vitesseDeDeplacementEnX = vitesseDeDeplacementEnX;
-        this.vitesseDeSaut = vitesseDeSaut;
-        direction = null;
-        collision = false;
-        attaquer = false;
-        deplacement = false;
+        this.positionX = Fenetre.adapterResolutionEnX(positionX);
+        this.positionY = Fenetre.adapterResolutionEnY(positionY);
+        this.vitesseDeDeplacementEnX = Fenetre.adapterResolutionEnX(vitesseDeDeplacementEnX);
+        this.vitesseDeSaut = Fenetre.adapterResolutionEnY(vitesseDeSaut);
         vitesseDeDeplacementEnY = 0;
         vecteurDeplacementEnX = 0;
         vecteurDeplacementEnY = 0;
+        directionOrientation = null;
+        collision = false;
+        deplacement = false;
+
+        this.largeur = Fenetre.adapterResolutionEnX(largeur);
+        this.hauteur = Fenetre.adapterResolutionEnY(hauteur);
+
+        attaquer = false;
     }
 
-    public void recevoirDegats(double degats) {
+    public void recevoirDegats(int degats) {
 
         if (degats < 0) degats = 0;
 
@@ -57,12 +61,10 @@ public abstract class Personnage {
         // Le personnage ne touchera pas vraiment le monstre, il y aura un petit espace
 
         int portee = Fenetre.adapterResolutionEnX(1);
-        int largeur = Fenetre.adapterResolutionEnX(200), hauteur = Fenetre.adapterResolutionEnY(200);
-
 
         // Si l'ennemi n'est pas trop haut et n'est pas trop bas
 
-        if(!(cible.positionY > positionY + hauteur) && !(cible.positionY + hauteur < positionY)) {
+        if (!(cible.positionY > positionY + hauteur) && !(cible.positionY + cible.hauteur < positionY)) {
 
             /* Les deux lignes du if :
             *  1. Si la cible n'est pas trop à gauche et n'est pas trop à droite
@@ -72,8 +74,8 @@ public abstract class Personnage {
             *  Alors on inflige des dégâts
             */
 
-            if(!(cible.positionX + largeur < positionX - portee) && !(cible.positionX > positionX + largeur + portee) &&
-              ((cible.positionX < positionX && direction == Direction.GAUCHE) || (cible.positionX > positionX && direction == Direction.DROITE))) {
+            if (!(cible.positionX + cible.largeur < positionX - portee) && !(cible.positionX > positionX + largeur + portee) &&
+                    ((cible.positionX < positionX && directionOrientation == Direction.GAUCHE) || (cible.positionX > positionX && directionOrientation == Direction.DROITE))) {
                 cible.recevoirDegats(getDegats());
                 System.out.println(getNom() + " attaque " + cible.getNom() + " !; posX = " + positionX + "; posY = " + positionY);
             }
@@ -81,11 +83,11 @@ public abstract class Personnage {
     }
 
     public final boolean estVivant() {
-        return getVie() > 0 ? true : false;
+        return getVie() > 0;
     }
 
     public void setNom(String nom) {
-        this.nom = new String(nom);
+        this.nom = nom;
     }
 
     public final String getNom() {
@@ -100,11 +102,11 @@ public abstract class Personnage {
         return niveau;
     }
 
-    public void setVie(double vie) {
+    public void setVie(int vie) {
         this.vie = vie;
     }
 
-    public final double getVie() {
+    public final int getVie() {
         return vie;
     }
 
@@ -112,7 +114,7 @@ public abstract class Personnage {
         this.vieMax = vieMax;
     }
 
-    public final double getVieMax() {
+    public final int getVieMax() {
         return vieMax;
     }
 
@@ -120,7 +122,7 @@ public abstract class Personnage {
         this.degats = degats;
     }
 
-    public final double getDegats() {
+    public final int getDegats() {
         return degats;
     }
 
@@ -155,7 +157,7 @@ public abstract class Personnage {
 
     public void deplacerADroite() {
         setDeplacement(true);
-        setDirection(Direction.DROITE);
+        setDirectionOrientation(Direction.DROITE);
         setVecteurDeplacementEnX(1);
     }
 
@@ -165,7 +167,7 @@ public abstract class Personnage {
 
     public void deplacerAGauche() {
         setDeplacement(true);
-        setDirection(Direction.GAUCHE);
+        setDirectionOrientation(Direction.GAUCHE);
         setVecteurDeplacementEnX(-1);
     }
 
@@ -179,7 +181,7 @@ public abstract class Personnage {
         if (!getCollision())
             setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
         else if (getCollision()) {
-            setPositionY(Fenetre.adapterResolutionEnY(1000));
+            setPositionY((int) (Fenetre.adapterResolutionEnY(1080) - hauteur/2.0));
             setVitesseDeDeplacementEnY(0);
         }
 
@@ -207,7 +209,7 @@ public abstract class Personnage {
     }
 
     public void setCollision() {
-        this.collision = getPositionY() >= Fenetre.adapterResolutionEnY(1000);
+        this.collision = getPositionY() >= Fenetre.adapterResolutionEnY(1080) - hauteur/2.0; // sol de la fenetre - la hauteur du personnage - la hauteur de parterre
     }
 
     public boolean getCollision() {
@@ -222,12 +224,12 @@ public abstract class Personnage {
         this.attaquer = attaquer;
     }
 
-    public Direction getDirection() {
-        return direction;
+    public Direction getDirectionOrientation() {
+        return directionOrientation;
     }
 
-    public void setDirection(Direction direction) {
-        this.direction = direction;
+    public void setDirectionOrientation(Direction directionOrientation) {
+        this.directionOrientation = directionOrientation;
     }
 
     public void setDeplacement(boolean deplacement) {

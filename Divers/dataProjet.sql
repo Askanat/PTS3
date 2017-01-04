@@ -40,11 +40,15 @@ INSERT INTO personnage VALUES (default, "", 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, "ima
 CREATE TABLE monstre (
   idMonstre int AUTO_INCREMENT NOT NULL,
   libelleMonstre varchar(10),
-  coeffMonstre float(3,2),
+  largeur int,
+  hauteur int,
+  vitesseDeDeplacementEnX int,
+  vitesseDeDeplacementEnY int,
   coeffArmure float(3,2),
   coeffVie float(3,2),
   coeffMana float(3,2),
   coeffDegat float(3,2),
+  distanceVisibilite int,
   textureMonstre varchar(50),
   spell_id int,
 
@@ -53,9 +57,9 @@ CREATE TABLE monstre (
   CONSTRAINT fk_spell_id_monstre FOREIGN KEY (spell_id) REFERENCES spell(idSpell)
 );
 
-INSERT INTO monstre VALUES (default, "Monstre1", 1.1, 1.1, 1.4, 1.1, 1.1, "images/Monstres/texture_monstre1.png", null);
-INSERT INTO monstre VALUES (default, "Monstre2", 1.1, 1.1, 1.1, 1.4, 1.1, "images/Monstres/texture_monstre2.png", null);
-INSERT INTO monstre VALUES (default, "Monstre3", 1.1, 1.1, 1.1, 1.1, 1.4, "images/Monstres/texture_monstre3.png", null);
+INSERT INTO monstre VALUES (default, "Monstre1", 200, 200, 10, 20, 3.5, 5, 3.2, 4, 150, "images/Monstres/texture_monstre1.png", null);
+INSERT INTO monstre VALUES (default, "Monstre2", 200, 200, 20, 40, 2, 10, 4.8, 5.7, 100, "images/Monstres/texture_monstre2.png", null);
+INSERT INTO monstre VALUES (default, "Monstre3", 200, 200, 40, 60, 1.7, 15, 0, 8, 70, "images/Monstres/texture_monstre3.png", null);
 
 CREATE TABLE typeItem (
   typeItem int AUTO_INCREMENT NOT NULL,

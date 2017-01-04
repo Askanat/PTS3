@@ -23,7 +23,7 @@ public class FenetreDepart extends JPanel {
 
     public Entite hero; // le héro
     public Entite[] png; // tous les png présents sur la carte de départ
-    public ArrayList<Entite> monstre; // a enlever d'ici
+    public ArrayList<Entite> monstre; // a déplacer
 
     public FenetreDepart(Jeu jeu) {
 
@@ -59,7 +59,8 @@ public class FenetreDepart extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (Entite e : monstre) // a enlever
+        // a déplacer
+        for (Entite e : monstre)
             e.paintComponent(g);
 
         for (Entite e : png)

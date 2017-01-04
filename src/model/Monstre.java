@@ -12,24 +12,23 @@ public class Monstre extends Personnage {
     private double coeffMana;
     private double coeffDegat;
     private double coeffArmure;
-    private int distanceVue;
-    private Hero hero;
+    private int distanceVisibilite;
 
-    public Monstre(String nom, double coeffMonstre, double coeffArmure, double coeffVie, double coeffMana, double coeffDegat,
-                   int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, Hero hero) {
+    public Monstre(String nom, int niveau, int largeur, int hauteur, double coeffArmure, double coeffVie, double coeffMana, double coeffDegat,
+                   int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, int distanceVisibilite) {
 
-        super(nom, (int) coeffMonstre, positionX, positionY, Fenetre.adapterResolutionEnX(vitesseDeDeplacementEnPixelX), Fenetre.adapterResolutionEnY(vitesseDeDeplacementEnPixelY));
+        super(nom, niveau, largeur, hauteur, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY);
 
-        vieMax = coeffVie * niveau + 1;
+        vieMax = (int) (coeffVie * niveau);
         vie = vieMax;
 
-        manaMax = coeffMana * niveau + 1;
+        manaMax = (int) (coeffMana * niveau);
         mana = manaMax;
 
-        degatMax = coeffDegat * niveau + 1;
+        degatMax = (int) (coeffDegat * niveau);
         degats = degatMax;
 
-        armureMax = coeffArmure * niveau + 1;
+        armureMax = (int) (coeffArmure * niveau);
         armure = armureMax;
 
         this.coeffVie = coeffVie;
@@ -37,44 +36,33 @@ public class Monstre extends Personnage {
         this.coeffDegat = coeffDegat;
         this.coeffArmure = coeffArmure;
 
-        // Le monstre peut voir jusqu'à 100 px devant ou derrière lui, pour 1920/1080 reporter à la taille de l'écran
-        this.distanceVue = Fenetre.adapterResolutionEnX(200);
+        this.distanceVisibilite = Fenetre.adapterResolutionEnX(2 * distanceVisibilite);
 
-        this.hero = hero;
-
-        System.out.println("nom:" + nom + ", niveau:" + coeffMonstre + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
-                degatMax + ", armureMax:" + armureMax + "xpdonne" + (int) (niveau * (coeffArmure + coeffDegat + coeffMana + coeffVie) * 10));
+        System.out.println("nom:" + nom + ", niveau:" + niveau + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
+                degatMax + ", armureMax:" + armureMax + "xpdonne" + donneExperience());
     }
 
     public int donneExperience() {
-        return (int) (niveau * (coeffArmure + coeffDegat + coeffMana + coeffVie) * 10);
+        return (int) (niveau * (coeffArmure + coeffDegat + coeffMana + coeffVie));
     }
 
-    public void update() {
-        int largeur = Fenetre.adapterResolutionEnX(200);
-        // Si le héro est trop haut
-        if (positionY > hero.positionY + largeur && ((positionX + largeur <= hero.positionX + largeur && positionX + largeur + distanceVue >= hero.positionX)|| (positionX >= hero.positionX && positionX - distanceVue <= hero.positionX + largeur))) {
-            sauter();
+    public void update(Hero hero) {
+        // Si le hero est dans le champs de vision du monstre
+        if ((positionX + largeur / 2.0 + distanceVisibilite >= hero.positionX - hero.largeur / 2.0 ||
+                positionX - largeur / 2.0 - distanceVisibilite <= hero.positionX + hero.largeur / 2.0) &&
+                (positionY - distanceVisibilite - hauteur / 2.0 <= hero.positionY + hero.hauteur / 2.0 ||
+                        positionY + hauteur / 2.0 + distanceVisibilite >= hero.positionY - hero.hauteur / 2.0)) {
+            // déplacement
+            if (positionY - hauteur / 2.0 > hero.positionY + hero.hauteur / 2.0) // si le héro est plus haut que le monstre
+                sauter();
+            if (positionX + largeur / 2.0 <= hero.positionX - hero.largeur / 2.0) // si le héro est à droite
+                deplacerADroite();
+            else if (positionX - largeur / 2.0 >= hero.positionX + hero.largeur / 2.0) // si héro est à gauche
+                deplacerAGauche();
         }
-
-        // Si le héro n'est ni trop bas et ni trop haut
-        if (!(positionY + largeur < hero.positionY || positionY > hero.positionY + largeur)) {
-            // Si le hero est dans le champ de vision et à droite, déplace le monstre à droite
-            if (positionX + largeur <= hero.positionX + largeur && positionX + largeur + distanceVue >= hero.positionX) {
-                    deplacerADroite();
-            }
-
-            // Sinon si le hero est dans le champ de vision et à gauche, déplace le monstre à gauche
-            else if (positionX >= hero.positionX && positionX - distanceVue <= hero.positionX + largeur) {
-                    deplacerAGauche();
-            }
-        }
-
     }
 
-    // interactions d'un monstre (déplacement, attaque, etc...)
     public void upgrade() {
-
         deplacer();
     }
 }

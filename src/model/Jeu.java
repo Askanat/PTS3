@@ -33,14 +33,6 @@ public class Jeu {
         bdd = new BDD();
     }
 
-    public void nouvellePartie() {
-
-    }
-
-    public void continuerPartie() {
-
-    }
-
     public void supprimerPartie(int idPartie) {
         bdd.resetPartie(idPartie);
     }
@@ -65,12 +57,14 @@ public class Jeu {
         hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Double.parseDouble(donneesHero.get(2)),
                 Double.parseDouble(donneesHero.get(3)), Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)),
                 Double.parseDouble(donneesHero.get(6)), Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)),
-                Double.parseDouble(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), Fenetre.adapterResolutionEnX(0), Fenetre.adapterResolutionEnY(0));
+                Double.parseDouble(donneesHero.get(9)), Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), 0, 0);
     }
 
     public void updateMonstre(int i) {
-        if (!tableauMonstre.get(i).estVivant())
+        if (!tableauMonstre.get(i).estVivant()) {
+            getHero().recevoirExperience(getMonstre(i));
             tableauMonstre.remove(i);
+        }
     }
 
     public Hero getHero() {
@@ -82,9 +76,11 @@ public class Jeu {
 
         donneesMonstre = bdd.readMonstre(id);
 
-        tableauMonstre.add(new Monstre(donneesMonstre.get(0), Double.parseDouble(donneesMonstre.get(1)), Double.parseDouble(donneesMonstre.get(2)),
-                Double.parseDouble(donneesMonstre.get(3)), Double.parseDouble(donneesMonstre.get(4)), Double.parseDouble(donneesMonstre.get(5)), positionX, positionY,
-                10, 40, hero));
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaa" + getHero().niveau);
+
+        tableauMonstre.add(new Monstre(donneesMonstre.get(0), getHero().niveau, Integer.parseInt(donneesMonstre.get(1)), Integer.parseInt(donneesMonstre.get(2)),
+                Double.parseDouble(donneesMonstre.get(3)), Double.parseDouble(donneesMonstre.get(4)), Double.parseDouble(donneesMonstre.get(5)), Double.parseDouble(donneesMonstre.get(6)),
+                positionX, positionY, Integer.parseInt(donneesMonstre.get(7)), Integer.parseInt(donneesMonstre.get(8)), Integer.parseInt(donneesMonstre.get(9))));
     }
 
     public Monstre getMonstre(int i) {

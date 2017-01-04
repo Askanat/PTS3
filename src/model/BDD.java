@@ -73,11 +73,15 @@ public class BDD {
         try {
             while (resultat.next()) {
                 valMonstre.add(resultat.getString("libelleMonstre"));
-                valMonstre.add(resultat.getString("coeffMonstre"));
+                valMonstre.add(resultat.getString("largeur"));
+                valMonstre.add(resultat.getString("hauteur"));
                 valMonstre.add(resultat.getString("coeffArmure"));
                 valMonstre.add(resultat.getString("coeffVie"));
                 valMonstre.add(resultat.getString("coeffMana"));
                 valMonstre.add(resultat.getString("coeffDegat"));
+                valMonstre.add(resultat.getString("vitesseDeDeplacementEnX"));
+                valMonstre.add(resultat.getString("vitesseDeDeplacementEnY"));
+                valMonstre.add(resultat.getString("distanceVisibilite"));
                 valMonstre.add(resultat.getString("textureMonstre"));
                 valMonstre.add(resultat.getString("spell_id"));
             }

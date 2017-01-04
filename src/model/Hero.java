@@ -1,7 +1,5 @@
 package model;
 
-import vue.Fenetre;
-
 import static java.lang.Math.pow;
 
 /**
@@ -25,20 +23,17 @@ public class Hero extends Personnage {
     private final int DEGATS_DE_BASE = 1;
 
     public Hero(String nom, int niveau, double experience, double experienceMax, double forcePerso, double intelPerso,
-                double constiPerso, double armurePerso, double resiPerso, double degatArmePerso,int gold, String texturePerso, int positionX, int positionY) {
+                double constiPerso, double armurePerso, double resiPerso, double degatArmePerso, int gold, String texturePerso, int positionX, int positionY) {
 
-        super(nom, niveau, positionX, positionY, Fenetre.adapterResolutionEnX(30), Fenetre.adapterResolutionEnY(60));
+        super(nom, niveau, 200, 200, positionX, positionY, 30, 60);
 
-        vieMax = constiPerso * COEF_VIE + VIE_DE_BASE;
+        vieMax = (int) (constiPerso * COEF_VIE + VIE_DE_BASE);
         vie = vieMax;
-
-        manaMax = intelPerso * COEF_MANA + MANA_DE_BASE;
+        manaMax = (int) (intelPerso * COEF_MANA + MANA_DE_BASE);
         mana = manaMax;
-
-        degatMax = forcePerso * COEF_DEGATS + DEGATS_DE_BASE;
+        degatMax = (int) (forcePerso * COEF_DEGATS + DEGATS_DE_BASE);
         degats = degatMax;
-
-        armureMax = resiPerso * COEF_ARMURE;
+        armureMax = (int) (resiPerso * COEF_ARMURE);
         armure = armureMax;
 
         this.experience = experience;
@@ -65,21 +60,21 @@ public class Hero extends Personnage {
         System.out.println(
 
                 "nom : " + nom +
-                        ", vie : " + vie +
-                        ", vieMax : " + vieMax +
-                        ", degats : " + degats +
-                        ", positionX : " + positionX +
-                        ", positionY : " + positionY +
-                        ", experience: " + experience +
-                        ", experienceMax :" + experienceMax
+                ", vie : " + vie +
+                ", vieMax : " + vieMax +
+                ", degats : " + degats +
+                ", positionX : " + positionX +
+                ", positionY : " + positionY +
+                ", experience: " + experience +
+                ", experienceMax :" + experienceMax
         );
     }
+
     public boolean checkNiveauSup() {
-        return getExperience() >= getExperienceMax() ? true : false;
+        return getExperience() >= getExperienceMax();
     }
 
-    public void upNiveau()
-    {
+    public void upNiveau() {
         setNiveau(getNiveau() + 1);
     }
 

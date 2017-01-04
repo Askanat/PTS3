@@ -18,8 +18,8 @@ import java.io.IOException;
 public class Entite extends JPanel {
 
     public Personnage personnage;
-    public static final int TAILLE_SPRITE_HAUTEUR = 300;
-    public static final int TAILLE_SPRITE_LARGEUR = 300;
+    public static final int TAILLE_SPRITE_HAUTEUR = Fenetre.adapterResolutionEnY(300);
+    public static final int TAILLE_SPRITE_LARGEUR = Fenetre.adapterResolutionEnX(300);
     private BufferedImage[] tableauSprite;
     public Image spriteActuel;
     private int alternerSpriteDeplacement, alternerSpriteAttaque;
@@ -28,12 +28,11 @@ public class Entite extends JPanel {
         alternerSpriteDeplacement = 0;
     }
 
-    public static BufferedImage createComposite(BufferedImage image1, BufferedImage image2, float alpha)
-    {
+    public static BufferedImage createComposite(BufferedImage image1, BufferedImage image2, float alpha) {
         BufferedImage buffer = new BufferedImage(Math.max(image1.getWidth(), image2.getWidth()),
                 Math.max(image1.getHeight(), image2.getHeight()),
                 BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2=buffer.createGraphics();
+        Graphics2D g2 = buffer.createGraphics();
 
         g2.drawImage(image1, null, null);
         Composite newComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha);
@@ -80,9 +79,9 @@ public class Entite extends JPanel {
                 spriteActuel = tableauSprite[3];
             else if (spriteActuel == tableauSprite[2])
                 spriteActuel = tableauSprite[8];
-            else if (personnage.getDirection() == Direction.DROITE)
+            else if (personnage.getDirectionOrientation() == Direction.DROITE)
                 spriteActuel = tableauSprite[7];
-            else if (personnage.getDirection() == Direction.GAUCHE)
+            else if (personnage.getDirectionOrientation() == Direction.GAUCHE)
                 spriteActuel = tableauSprite[4];
             alternerSpriteDeplacement = 1;
         }
@@ -90,18 +89,18 @@ public class Entite extends JPanel {
         // selectionne le saut
         if (!personnage.getCollision()) {
             if (!personnage.getAttaquer()) { // saut sans attaque
-                if (personnage.getDirection() == Direction.DROITE)
+                if (personnage.getDirectionOrientation() == Direction.DROITE)
                     spriteActuel = tableauSprite[2];
-                else if (personnage.getDirection() == Direction.GAUCHE)
+                else if (personnage.getDirectionOrientation() == Direction.GAUCHE)
                     spriteActuel = tableauSprite[0];
             } else if (personnage.getAttaquer()) { // saut avec attaque
-                if (personnage.getDirection() == Direction.DROITE) {
+                if (personnage.getDirectionOrientation() == Direction.DROITE) {
                     spriteActuel = tableauSprite[alternerSpriteAttaque == 3 ? 7 : 30 + alternerSpriteAttaque];
                     if (alternerSpriteAttaque == 3) {
                         alternerSpriteAttaque = 0;
                         personnage.setAttaquer(false);
                     }
-                } else if (personnage.getDirection() == Direction.GAUCHE) {
+                } else if (personnage.getDirectionOrientation() == Direction.GAUCHE) {
                     spriteActuel = tableauSprite[alternerSpriteAttaque == 3 ? 4 : 27 + alternerSpriteAttaque];
                     if (alternerSpriteAttaque == 3) {
                         alternerSpriteAttaque = 0;
@@ -113,12 +112,12 @@ public class Entite extends JPanel {
             // selectionne le déplacement de droite et de gauche
         } else if (personnage.getCollision()) {
             if (!personnage.getAttaquer() && personnage.getDeplacement()) { // deplacement sans attaque
-                if (personnage.getDirection() == Direction.DROITE)
+                if (personnage.getDirectionOrientation() == Direction.DROITE)
                     spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 7 : 6 + alternerSpriteDeplacement];
-                else if (personnage.getDirection() == Direction.GAUCHE)
+                else if (personnage.getDirectionOrientation() == Direction.GAUCHE)
                     spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 4 : 3 + alternerSpriteDeplacement];
             } else if (personnage.getAttaquer()) { // attaque
-                if (personnage.getDirection() == Direction.DROITE) {
+                if (personnage.getDirectionOrientation() == Direction.DROITE) {
                     switch (alternerSpriteAttaque) {
                         case 0:
                             spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 19 : 18 + alternerSpriteDeplacement];
@@ -135,7 +134,7 @@ public class Entite extends JPanel {
                             personnage.setAttaquer(false);
                             break;
                     }
-                } else if (personnage.getDirection() == Direction.GAUCHE) {
+                } else if (personnage.getDirectionOrientation() == Direction.GAUCHE) {
                     switch (alternerSpriteAttaque) {
                         case 0:
                             spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 10 : 9 + alternerSpriteDeplacement];
@@ -167,14 +166,6 @@ public class Entite extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(spriteActuel, personnage.getPositionX()-Fenetre.adapterResolutionEnX(TAILLE_SPRITE_LARGEUR/2), personnage.getPositionY()-Fenetre.adapterResolutionEnY(TAILLE_SPRITE_HAUTEUR), Fenetre.adapterResolutionEnX(TAILLE_SPRITE_LARGEUR), Fenetre.adapterResolutionEnY(TAILLE_SPRITE_HAUTEUR), this);
-    }
-
-    public int getSpriteWidth() {
-        return tableauSprite[0].getWidth();
-    }
-
-    public int getSpriteHeight() {
-        return tableauSprite[0].getHeight();
+        g.drawImage(spriteActuel, (int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 2.0), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), TAILLE_SPRITE_LARGEUR, TAILLE_SPRITE_HAUTEUR, this);
     }
 }

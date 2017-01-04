@@ -26,4 +26,14 @@ public class Control {
         fenetre.setLocationRelativeTo(null);
         fenetre.requestFocus();
     }
+
+    protected void spawnHero(int i) {
+        jeu.setHero(i);
+        fenetre.panelFenetreDepart.dessineHero(i);
+    }
+
+    protected void spawnMonstre(int i, int positionX, int positionY) {
+        jeu.setMonstre(i, positionX, positionY);
+        fenetre.panelFenetreDepart.dessineMonstre(i);
+    }
 }

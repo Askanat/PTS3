@@ -77,31 +77,6 @@ public class FenetreCharger extends JPanel {
         slot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         slot1.setBorder(null);
 
-        slot2.setBounds(Fenetre.adapterResolutionEnX(840), Fenetre.adapterResolutionEnY(240), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(280));
-        slot2.setBackground(new Color(0, 0, 0, 0));
-        slot2.setFocusable(false);
-        slot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        slot2.setBorder(null);
-
-        slot3.setBounds(Fenetre.adapterResolutionEnX(1338), Fenetre.adapterResolutionEnY(240), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(280));
-        slot3.setBackground(new Color(0, 0, 0, 0));
-        slot3.setFocusable(false);
-        slot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        slot3.setBorder(null);
-
-        jouer.setBounds(Fenetre.adapterResolutionEnX(704), Fenetre.adapterResolutionEnY(792), Fenetre.adapterResolutionEnX(480), Fenetre.adapterResolutionEnY(90));
-        jouer.setBackground(new Color(0, 0, 0, 0));
-        jouer.setFocusable(false);
-        jouer.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        jouer.setBorder(null);
-
-        retour.setBounds(Fenetre.adapterResolutionEnX(64), Fenetre.adapterResolutionEnY(985), Fenetre.adapterResolutionEnX(256), Fenetre.adapterResolutionEnY(41));
-        retour.setBackground(new Color(0, 0, 0, 0));
-        retour.setFocusable(false);
-        retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        retour.setBorder(null);
-
-
         nomSlot1.setBounds(Fenetre.adapterResolutionEnX(340), Fenetre.adapterResolutionEnY(340), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(380));
         nomSlot1.setForeground(Color.WHITE);
         nomSlot1.setBackground(new Color(0, 0, 0, 0));
@@ -116,8 +91,13 @@ public class FenetreCharger extends JPanel {
         niveauSlot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         niveauSlot1.setBorder(null);
 
-
         if (3 - jeu.getNbPartieLibre() >= 2) {
+            slot2.setBounds(Fenetre.adapterResolutionEnX(840), Fenetre.adapterResolutionEnY(240), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(280));
+            slot2.setBackground(new Color(0, 0, 0, 0));
+            slot2.setFocusable(false);
+            slot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            slot2.setBorder(null);
+
             nomSlot2.setBounds(Fenetre.adapterResolutionEnX(840), Fenetre.adapterResolutionEnY(340), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(380));
             nomSlot2.setForeground(Color.WHITE);
             nomSlot2.setBackground(new Color(0, 0, 0, 0));
@@ -134,6 +114,12 @@ public class FenetreCharger extends JPanel {
         }
 
         if (3 - jeu.getNbPartieLibre() >= 3) {
+            slot3.setBounds(Fenetre.adapterResolutionEnX(1338), Fenetre.adapterResolutionEnY(240), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(280));
+            slot3.setBackground(new Color(0, 0, 0, 0));
+            slot3.setFocusable(false);
+            slot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            slot3.setBorder(null);
+
             nomSlot3.setBounds(Fenetre.adapterResolutionEnX(1338), Fenetre.adapterResolutionEnY(340), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(380));
             nomSlot3.setForeground(Color.WHITE);
             nomSlot3.setBackground(new Color(0, 0, 0, 0));
@@ -149,17 +135,30 @@ public class FenetreCharger extends JPanel {
             niveauSlot3.setBorder(null);
         }
 
+        jouer.setBounds(Fenetre.adapterResolutionEnX(704), Fenetre.adapterResolutionEnY(792), Fenetre.adapterResolutionEnX(480), Fenetre.adapterResolutionEnY(90));
+        jouer.setBackground(new Color(0, 0, 0, 0));
+        jouer.setFocusable(false);
+        jouer.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jouer.setBorder(null);
+
+        retour.setBounds(Fenetre.adapterResolutionEnX(64), Fenetre.adapterResolutionEnY(985), Fenetre.adapterResolutionEnX(256), Fenetre.adapterResolutionEnY(41));
+        retour.setBackground(new Color(0, 0, 0, 0));
+        retour.setFocusable(false);
+        retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        retour.setBorder(null);
+
+
         g.drawImage(getToolkit().getImage("images/chargerPartie.png"), 0, 0, getWidth(), getHeight(), this);
 
         try {
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/Save/texture_hero1.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(310), Fenetre.adapterResolutionEnY(262), Fenetre.adapterResolutionEnX(Entite.TAILLE_SPRITE_LARGEUR), Fenetre.adapterResolutionEnY(Entite.TAILLE_SPRITE_HAUTEUR), this);
+            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/Save/texture_hero1.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(310), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
             if (3 - jeu.getNbPartieLibre() >= 2) {
-                g.drawImage(Entite.decoupage(ImageIO.read(new File("images/Save/texture_hero2.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(262), Fenetre.adapterResolutionEnX(Entite.TAILLE_SPRITE_LARGEUR), Fenetre.adapterResolutionEnY(Entite.TAILLE_SPRITE_HAUTEUR), this);
+                g.drawImage(Entite.decoupage(ImageIO.read(new File("images/Save/texture_hero2.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
             }
             if (3 - jeu.getNbPartieLibre() >= 3) {
-                g.drawImage(Entite.decoupage(ImageIO.read(new File("images/Save/texture_hero3.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(1310), Fenetre.adapterResolutionEnY(262), Fenetre.adapterResolutionEnX(Entite.TAILLE_SPRITE_LARGEUR), Fenetre.adapterResolutionEnY(Entite.TAILLE_SPRITE_HAUTEUR), this);
+                g.drawImage(Entite.decoupage(ImageIO.read(new File("images/Save/texture_hero3.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(1310), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
             }
-            g.drawImage(getToolkit().getImage("images/feuPorte.png"), Fenetre.adapterResolutionEnX(-194 + 500 * Fenetre.numeroPorte), Fenetre.adapterResolutionEnY(200), Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300), this);
+            g.drawImage(getToolkit().getImage("images/feuPorte.png"), Fenetre.adapterResolutionEnX(-194 + 500 * Fenetre.numeroPorte), Fenetre.adapterResolutionEnY(200), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
         } catch (IOException e) {
             e.printStackTrace();
         }
