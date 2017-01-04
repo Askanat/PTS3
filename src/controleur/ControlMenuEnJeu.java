@@ -24,7 +24,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 jeu.setPause(false);
                 break;
             case "Inventaire":
-                fenetre.barreMenu.setVisible(false);
+                Control.enPartie = false;
                 fenetre.setContentPane(fenetre.panelFenetreInventaire);
                 changerVue();
                 break;
