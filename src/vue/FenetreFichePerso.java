@@ -1,7 +1,6 @@
 package vue;
 
 import controleur.ControlFenetreFichePerso;
-import controleur.ControlFenetreOptions;
 import model.Jeu;
 
 import javax.swing.*;
@@ -24,62 +23,62 @@ public class FenetreFichePerso extends JPanel {
         setPreferredSize(new Dimension(X, Y));
 
         //JButton
-            retour = new JButton();
-            retour.setActionCommand("Retour");
+        retour = new JButton();
+        retour.setActionCommand("Retour");
 
-            plusForce = new JButton();
-            plusForce.setActionCommand("PlusForce");
-            moinsForce = new JButton();
-            moinsForce.setActionCommand("MoinsForce");
+        plusForce = new JButton();
+        plusForce.setActionCommand("PlusForce");
+        moinsForce = new JButton();
+        moinsForce.setActionCommand("MoinsForce");
 
-            plusInt = new JButton();
-            plusInt.setActionCommand("PlusInt");
-            moinsInt = new JButton();
-            moinsInt.setActionCommand("MoinsInt");
+        plusInt = new JButton();
+        plusInt.setActionCommand("PlusInt");
+        moinsInt = new JButton();
+        moinsInt.setActionCommand("MoinsInt");
 
-            plusConst = new JButton();
-            plusConst.setActionCommand("PlusConst");
-            moinsConst = new JButton();
-            moinsConst.setActionCommand("MoinsConst");
+        plusConst = new JButton();
+        plusConst.setActionCommand("PlusConst");
+        moinsConst = new JButton();
+        moinsConst.setActionCommand("MoinsConst");
 
-            plusResist = new JButton();
-            plusResist.setActionCommand("PlusResist");
-            moinsResist = new JButton();
-            moinsResist.setActionCommand("MoinsResist");
+        plusResist = new JButton();
+        plusResist.setActionCommand("PlusResist");
+        moinsResist = new JButton();
+        moinsResist.setActionCommand("MoinsResist");
 
-            valider = new JButton();
-            valider.setActionCommand("Valider les Modifications");
+        valider = new JButton();
+        valider.setActionCommand("Valider les Modifications");
 
         //JLabel
-            valForce = new JLabel("" + jeu.getHero().getForcePerso());
-            valInt = new JLabel("" + jeu.getHero().getIntelPerso());
-            valConst  = new JLabel("" + jeu.getHero().getConstiPerso());
-            valResist = new JLabel("" + jeu.getHero().getResiPerso());
-            niveau = new JLabel("" + jeu.getHero().getNiveau());
-            pointCaracteristique = new JLabel("" + jeu.getHero().getPointCaracteristique());
-            pointCompetence = new JLabel("" + jeu.getHero().getPointCompetence());
-            nomHero = new JLabel(jeu.getHero().getNom());
+        valForce = new JLabel("");
+        valInt = new JLabel("");
+        valConst = new JLabel("");
+        valResist = new JLabel("");
+        niveau = new JLabel("");
+        pointCaracteristique = new JLabel("");
+        pointCompetence = new JLabel("");
+        nomHero = new JLabel("");
 
         //Ajout JButton
-            add(retour);
-            add(plusForce);
-            add(moinsForce);
-            add(plusInt);
-            add(moinsInt);
-            add(plusConst);
-            add(moinsConst);
-            add(plusResist);
-            add(moinsResist);
+        add(retour);
+        add(plusForce);
+        add(moinsForce);
+        add(plusInt);
+        add(moinsInt);
+        add(plusConst);
+        add(moinsConst);
+        add(plusResist);
+        add(moinsResist);
 
         //Ajout JLabel
-            add(valForce);
-            add(valInt);
-            add(valConst);
-            add(valResist);
-            add(niveau);
-            add(pointCaracteristique);
-            add(pointCompetence);
-            add(nomHero);
+        add(valForce);
+        add(valInt);
+        add(valConst);
+        add(valResist);
+        add(niveau);
+        add(pointCaracteristique);
+        add(pointCompetence);
+        add(nomHero);
     }
 
     public void setControl(ControlFenetreFichePerso controlFenetreFichePerso) {

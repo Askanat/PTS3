@@ -22,8 +22,9 @@ public abstract class Personnage {
     protected boolean attaquer;
     protected int largeurDevant, largeurDerriere, hauteurHaut, hauteurBas;
     protected Direction directionOrientation;
+    protected String texture;
 
-    public Personnage(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
+    public Personnage(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, String texture, int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
 
         this.nom = nom;
         this.niveau = niveau;
@@ -45,6 +46,8 @@ public abstract class Personnage {
         this.hauteurBas = Fenetre.adapterResolutionEnY(hauteurBas);
 
         attaquer = false;
+
+        this.texture = texture;
     }
 
     public void recevoirDegats(int degats) {
@@ -240,5 +243,13 @@ public abstract class Personnage {
 
     public boolean getDeplacement() {
         return deplacement;
+    }
+
+    public void setTexture(String texture) {
+        this.texture = texture;
+    }
+
+    public String getTexture() {
+        return texture;
     }
 }

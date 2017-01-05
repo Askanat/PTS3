@@ -21,8 +21,6 @@ public class FenetreDonjon extends JPanel {
 
     private final int NOMBRE_DE_EQUIPEMENT = 0;
 
-    private ArrayList<JProgressBar> barreDeVie;
-
     public Entite[] hero; // le héro et ses équipements
     public ArrayList<Entite> monstre; // a enlever d'ici
 
@@ -38,16 +36,15 @@ public class FenetreDonjon extends JPanel {
             hero[i] = new Entite();
 
         monstre = new ArrayList<Entite>();
-        barreDeVie = new ArrayList<>();
     }
 
-    public void dessineHero(int id) {
-        hero[0].creationEntite(jeu.getHero(), jeu.getBDD().readHeroTexture(id));
+    public void dessineHero() {
+        hero[0].creationEntite(jeu.getHero());
     }
 
     public void dessineMonstre(int id) {
         monstre.add(new Entite());
-        monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(id - 1), jeu.getBDD().readMonstreTexture(id));
+        monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(id - 1));
     }
 
     public void setControl(ControlFenetreDonjon controlFenetreDonjon) {
@@ -58,20 +55,6 @@ public class FenetreDonjon extends JPanel {
 
         for (Entite e : monstre)
             e.paintComponent(g);
-
-        System.out.println("JE SUIS LAAAAA");
-
-        for (int i = 0;i<=barreDeVie.size();i++) {
-            barreDeVie.get(i).setMaximum((int)jeu.getMonstre(i).getVieMax());
-            barreDeVie.get(i).setMinimum(0);
-            barreDeVie.get(i).setAlignmentX(jeu.getMonstre(i).getPositionX());
-            barreDeVie.get(i).setAlignmentY(jeu.getMonstre(i).getPositionY());
-            barreDeVie.get(i).setBorderPainted(true);
-            barreDeVie.get(i).setBackground(Color.red);
-        }
-
-        for(JProgressBar j : barreDeVie)
-            j.paintComponents(g);
 
         for (Entite e : hero)
             e.paintComponent(g);

@@ -11,7 +11,7 @@ public class Hero extends Personnage {
     private double experience, experienceMax;
     private int or;
     private int pointCaracteristique, pointCompetence;
-    private double forcePerso, intelPerso, constiPerso, resiPerso;
+    private double force, intelligence, constitution, resistance;
 
     private final int POINTCOMPETENCE = 1;
     private final int POINTCARACTERISQUE = 15;
@@ -25,9 +25,9 @@ public class Hero extends Personnage {
     private final int DEGATS_DE_BASE = 1;
 
     public Hero(String nom, int niveau, int pointCaracteristique, int pointCompetence, double experience, double experienceMax, double forcePerso, double intelPerso,
-                double constiPerso, double resiPerso, int or, String texturePerso, int positionX, int positionY) {
+                double constiPerso, double resiPerso, int or, String texture, int positionX, int positionY) {
 
-        super(nom, niveau, 52, 52, 90, 90, positionX, positionY, 30, 60);
+        super(nom, niveau, 52, 52, 90, 90, texture, positionX, positionY, 30, 60);
 
         vieMax = (int) (constiPerso * COEF_VIE + VIE_DE_BASE);
         vie = vieMax;
@@ -49,17 +49,17 @@ public class Hero extends Personnage {
             this.pointCompetence = pointCompetence;
         }
 
-        this.forcePerso = forcePerso;
-        this.constiPerso = constiPerso;
-        this.intelPerso = intelPerso;
-        this.resiPerso = resiPerso;
+        this.force = forcePerso;
+        this.constitution = constiPerso;
+        this.intelligence = intelPerso;
+        this.resistance = resiPerso;
 
         this.or = or;
 
         System.out.println("nom:" + nom + ", niveau:" + niveau + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
                 degatMax + ", armureMax:" + armureMax + ", experience:" + experience + ", experienceMax:" + experienceMax +
                 ", or:" + or + ", forcePerso:" + forcePerso + ", pointConstitution:" +
-                constiPerso + ", pointIntelligence:" + intelPerso + ", pointForce:" + forcePerso + ", pointResistance:" + resiPerso);
+                constitution + ", pointIntelligence:" + intelligence + ", pointForce:" + force + ", pointResistance:" + resistance);
     }
 
     public void afficherEtat() {
@@ -74,6 +74,24 @@ public class Hero extends Personnage {
                 ", experience: " + experience +
                 ", experienceMax :" + experienceMax
         );
+    }
+
+    //fonction qui renvoie un tableau de string contenant les informations à sauvegarder dans la bdd
+    public String[] sauvegardeDonneesHeros() {
+        String donnee [] = new String[11];
+
+        donnee[0] = ""+nom;
+        donnee[1] = ""+niveau;
+        donnee[2] = ""+pointCompetence;
+        donnee[3] = ""+pointCaracteristique;
+        donnee[4] = ""+experience;
+        donnee[5] = ""+experienceMax;
+        donnee[6] = ""+force;
+        donnee[7] = ""+intelligence;
+        donnee[8] = ""+constitution;
+        donnee[9] = ""+resistance;
+        donnee[10] = ""+or;
+        return donnee;
     }
 
     //Verification et Augmentation de Niveau avec ajout de Points de Compétences et Caractéristiques et augmentation du seuil d'expérience à atteindre
@@ -92,36 +110,36 @@ public class Hero extends Personnage {
 
     //Modification Caractéristiques
         //Force
-            public void setForcePerso(double forcePerso){
-                this.forcePerso = forcePerso;
+            public void setForce(double force){
+                this.force = force;
             }
 
-            public double getForcePerso() {
-                return forcePerso;
+            public double getForce() {
+                return force;
             }
         //Intelligence
-            public void setIntelPerso(double intelPerso) {
-                this.intelPerso = intelPerso;
+            public void setIntelligence(double intelligence) {
+                this.intelligence = intelligence;
             }
 
-            public double getIntelPerso() {
-                return intelPerso;
+            public double getIntelligence() {
+                return intelligence;
             }
         //Constitution
-            public void setConstiPerso(double constiPerso) {
-                this.constiPerso = constiPerso;
+            public void setConstitution(double constitution) {
+                this.constitution = constitution;
             }
 
-            public double getConstiPerso() {
-                return constiPerso;
+            public double getConstitution() {
+                return constitution;
             }
         //Résistance
-            public void setResiPerso(double resiPerso) {
-                this.resiPerso = resiPerso;
+            public void setResistance(double resistance) {
+                this.resistance = resistance;
             }
 
-            public double getResiPerso() {
-                return resiPerso;
+            public double getResistance() {
+                return resistance;
             }
 
     //Gestion de l'ajout de Point de Caractéristique et le Return

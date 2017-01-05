@@ -101,7 +101,7 @@ public class BDD {
                     ", experiencePerso = " + tabCaracHero[4] +
                     ", experienceMaxPerso =" + tabCaracHero[5] + ", forcePerso =" + tabCaracHero[6] + ", intelPerso = " + tabCaracHero[7] +
                     ", constiPerso =" + tabCaracHero[8] + ", resiPerso =" + tabCaracHero[9] +
-                    ", gold =" + tabCaracHero[10] + ", texturePerso =" + tabCaracHero[11] +
+                    ", gold =" + tabCaracHero[10] +
                     " WHERE idPerso = " + id + ";");
         } catch (Exception e) {
             System.out.println("Update perso problem " + e);

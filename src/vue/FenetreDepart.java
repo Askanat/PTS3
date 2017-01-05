@@ -41,8 +41,8 @@ public class FenetreDepart extends JPanel {
         monstre = new ArrayList<Entite>(); // a enlever d'ici
     }
 
-    public void dessineHero(int id) {
-        hero.creationEntite(jeu.getHero(), jeu.getBDD().readHeroTexture(id));
+    public void dessineHero() {
+        hero.creationEntite(jeu.getHero());
     }
 
     public void dessinePng() {
@@ -50,7 +50,7 @@ public class FenetreDepart extends JPanel {
 
     public void dessineMonstre(int id) {
         monstre.add(new Entite());
-        monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(id - 1), jeu.getBDD().readMonstreTexture(id));
+        monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(id - 1));
     }
 
     public void setControl(ControlFenetreDepart controlFenetreDepart) {

@@ -24,6 +24,8 @@ public class Entite extends JPanel {
     public Image spriteActuel;
     private int alternerSpriteDeplacement, alternerSpriteAttaque;
 
+    private JProgressBar barreDeVie;
+
     public Entite() {
         alternerSpriteDeplacement = 0;
     }
@@ -44,17 +46,19 @@ public class Entite extends JPanel {
         return buffer;
     }
 
-    public void creationEntite(Personnage personnage, String chemin) {
+    public void creationEntite(Personnage personnage) {
 
         this.personnage = personnage;
 
         try {
-            tableauSprite = decoupage(ImageIO.read(new File(chemin)), 3, 11);
+            tableauSprite = decoupage(ImageIO.read(new File(personnage.getTexture())), 3, 11);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         spriteActuel = tableauSprite[2];
+
+        barreDeVie = new JProgressBar();
     }
 
     public static BufferedImage[] decoupage(BufferedImage origin, int divisionHorizontale, int divisionVerticale) {
@@ -167,5 +171,17 @@ public class Entite extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(spriteActuel, (int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 2.0), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), TAILLE_SPRITE_LARGEUR, TAILLE_SPRITE_HAUTEUR, this);
+
+        g.drawRect(personnage.getPositionX(), personnage.getPositionY(), 200, 200 ); // test
+
+        // barre de vie avec une barre de progression
+        barreDeVie.setMaximum(personnage.getVieMax());
+        barreDeVie.setMinimum(0);
+        barreDeVie.setValue(50);
+        barreDeVie.setAlignmentX(personnage.getPositionX());
+        barreDeVie.setAlignmentY(personnage.getPositionY());
+        barreDeVie.setBorderPainted(true);
+        barreDeVie.setBackground(Color.red);
+        barreDeVie.paintComponents(g);
     }
 }
