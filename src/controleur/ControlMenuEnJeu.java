@@ -29,7 +29,17 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 changerVue();
                 break;
             case "Fiche Personnage":
-                System.out.println("fiche personnage");
+                Control.enPartie = false;
+                fenetre.setContentPane(fenetre.panelFenetreFichePerso);
+                fenetre.panelFenetreFichePerso.valForce.setText("" + jeu.getHero().getForce());
+                fenetre.panelFenetreFichePerso.valInt.setText("" + jeu.getHero().getIntelligence());
+                fenetre.panelFenetreFichePerso.valConst.setText("" + jeu.getHero().getConstitution());
+                fenetre.panelFenetreFichePerso.valResist.setText("" + jeu.getHero().getResistance());
+                fenetre.panelFenetreFichePerso.pointCaracteristique.setText("" + jeu.getHero().getPointCaracteristique());
+                fenetre.panelFenetreFichePerso.pointCompetence.setText("" + jeu.getHero().getPointCompetence());
+                fenetre.panelFenetreFichePerso.niveau.setText("" + jeu.getHero().getNiveau());
+                fenetre.panelFenetreFichePerso.nomHero.setText("" + jeu.getHero().getNom());
+                changerVue();
                 break;
             case "Option":
                 Control.enPartie = false;

@@ -14,7 +14,6 @@ import static vue.Fenetre.Y;
  */
 public class FenetreFichePerso extends JPanel {
 
-    private Jeu jeu;
     public JButton retour, plusForce, moinsForce, plusInt, moinsInt, plusConst, moinsConst, plusResist, moinsResist, valider;
     public JLabel valForce, valInt, valConst, valResist, niveau, pointCaracteristique, pointCompetence, nomHero;
 
