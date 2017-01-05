@@ -42,9 +42,9 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                     choixHero = 0;
                     fenetre.barreMenu.test(); // ajout du composant vie dans la bare menu
 
-                    spawnMonstre(1, 300, 250); // a enlever d'ici
-                    spawnMonstre(2, 600, 700); // a enlever d'ici
-                    spawnMonstre(3, 900, 900); // a enlever d'ici
+                    spawnMonstre(1, 500, 250); // a enlever d'ici
+                    //spawnMonstre(2, 600, 700); // a enlever d'ici
+                    //spawnMonstre(3, 900, 900); // a enlever d'ici
 
                     Control.enPartie = true;
                     fenetre.barreMenu.setVisible(true);

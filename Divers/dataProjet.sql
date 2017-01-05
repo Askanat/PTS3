@@ -33,9 +33,9 @@ CREATE TABLE personnage (
   PRIMARY KEY(idPerso)
 );
 
-INSERT INTO personnage VALUES (default, "", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero1.png");
-INSERT INTO personnage VALUES (default, "", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero2.png");
-INSERT INTO personnage VALUES (default, "", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero3.png");
+INSERT INTO personnage VALUES (default, "", 0, 1, 15, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero1.png");
+INSERT INTO personnage VALUES (default, "", 0, 1, 15, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero2.png");
+INSERT INTO personnage VALUES (default, "", 0, 1, 15, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero3.png");
 
 CREATE TABLE monstre (
   idMonstre int AUTO_INCREMENT NOT NULL,
@@ -59,9 +59,9 @@ CREATE TABLE monstre (
   CONSTRAINT fk_spell_id_monstre FOREIGN KEY (spell_id) REFERENCES spell(idSpell)
 );
 
-INSERT INTO monstre VALUES (default, "Monstre1", 52, 52, 90, 90, 10, 20, 3.5, 5, 3.2, 4, 150, "images/Monstres/texture_monstre1.png", null);
-INSERT INTO monstre VALUES (default, "Monstre2", 52, 52, 90, 90, 20, 40, 2, 10, 4.8, 5.7, 100, "images/Monstres/texture_monstre2.png", null);
-INSERT INTO monstre VALUES (default, "Monstre3", 52, 52, 90, 90, 40, 60, 1.7, 15, 0, 8, 70, "images/Monstres/texture_monstre3.png", null);
+INSERT INTO monstre VALUES (default, "Monstre1", 52, 52, 81, 98, 10, 20, 3.5, 5, 3.2, 4, 150, "images/Monstres/texture_monstre1.png", null);
+INSERT INTO monstre VALUES (default, "Monstre2", 52, 52, 81, 98, 20, 40, 2, 10, 4.8, 5.7, 100, "images/Monstres/texture_monstre2.png", null);
+INSERT INTO monstre VALUES (default, "Monstre3", 52, 52, 81, 98, 40, 60, 1.7, 15, 0, 8, 70, "images/Monstres/texture_monstre3.png", null);
 
 CREATE TABLE typeItem (
   typeItem int AUTO_INCREMENT NOT NULL,

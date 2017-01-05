@@ -172,7 +172,11 @@ public class Entite extends JPanel {
         super.paintComponent(g);
         g.drawImage(spriteActuel, (int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 2.0), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), TAILLE_SPRITE_LARGEUR, TAILLE_SPRITE_HAUTEUR, this);
 
-        g.drawRect(personnage.getPositionX(), personnage.getPositionY(), 200, 200 ); // test
+
+        g.drawRect(personnage.getPositionX()  - personnage.getLargeurDevant() - 200,
+                personnage.getPositionY() -  personnage.getHauteurHaut() - 200,
+                (personnage.getLargeurDerriere() + 200  + personnage.getLargeurDevant() + 200),
+                (personnage.getHauteurBas() + 200 +  personnage.getHauteurHaut() + 200)); // test
 
         // barre de vie avec une barre de progression
         barreDeVie.setMaximum(personnage.getVieMax());
@@ -183,5 +187,17 @@ public class Entite extends JPanel {
         barreDeVie.setBorderPainted(true);
         barreDeVie.setBackground(Color.red);
         barreDeVie.paintComponents(g);
+
+        // barre de vie avec des rectangles
+        g.setColor(Color.BLACK);
+        g.fillRect((int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0) - Fenetre.adapterResolutionEnX(1), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0) - Fenetre.adapterResolutionEnY(1), Fenetre.adapterResolutionEnX(75) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+        g.setColor(Color.WHITE);
+        g.fillRect((int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), Fenetre.adapterResolutionEnX(75), Fenetre.adapterResolutionEnY(15));
+        g.setColor(Color.RED);
+        g.fillRect((int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), Fenetre.adapterResolutionEnX(75 * personnage.getVie() / personnage.getVieMax()), Fenetre.adapterResolutionEnY(15));
+
+
+        // remet la couleur par defaut
+        g.setColor(Color.BLACK);
     }
 }

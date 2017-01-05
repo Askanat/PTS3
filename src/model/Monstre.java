@@ -39,7 +39,7 @@ public class Monstre extends Personnage {
         this.distanceVisibilite = Fenetre.adapterResolutionEnX(distanceVisibilite);
 
         System.out.println("nom:" + nom + ", niveau:" + niveau + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
-                degatMax + ", armureMax:" + armureMax + "xpdonne" + donneExperience());
+                degatMax + ", armureMax:" + armureMax + ", xpdonne: " + donneExperience());
     }
 
     public int donneExperience() {
@@ -48,16 +48,16 @@ public class Monstre extends Personnage {
 
     public void update(Hero hero) {
         // Si le hero est dans le champs de vision du monstre
-        if ((positionX + largeurDerriere + distanceVisibilite >= hero.positionX - hero.largeurDevant ||
-                positionX - largeurDevant - distanceVisibilite <= hero.positionX + hero.largeurDerriere) &&
-                (positionY - hauteurHaut - distanceVisibilite <= hero.positionY + hero.hauteurBas ||
-                        positionY + hauteurBas + distanceVisibilite >= hero.positionY - hero.hauteurHaut)) {
+        if (positionX + largeurDerriere + distanceVisibilite >= hero.positionX  - hero.largeurDevant &&
+                positionX - largeurDevant - distanceVisibilite <= hero.positionX + hero.largeurDerriere &&
+                positionY - hauteurHaut - distanceVisibilite <= hero.positionY + hero.hauteurBas &&
+                positionY + hauteurBas + distanceVisibilite >= hero.positionY - hero.hauteurHaut) {
             // déplacement
             if (positionY - hauteurHaut > hero.positionY + hero.hauteurBas) // si le héro est plus haut que le monstre
                 sauter();
-            if (positionX + largeurDerriere <= hero.positionX - hero.largeurDevant) // si le héro est à droite
+            if (positionX + largeurDerriere < hero.positionX - hero.largeurDevant) // si le héro est à droite
                 deplacerADroite();
-            else if (positionX - largeurDevant >= hero.positionX + hero.largeurDerriere) // si héro est à gauche
+            else if (positionX - largeurDevant > hero.positionX + hero.largeurDerriere) // si héro est à gauche
                 deplacerAGauche();
         }
     }

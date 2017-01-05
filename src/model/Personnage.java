@@ -252,4 +252,20 @@ public abstract class Personnage {
     public String getTexture() {
         return texture;
     }
+
+    public int getLargeurDerriere() {
+        return largeurDerriere;
+    }
+
+    public int getLargeurDevant() {
+        return largeurDevant;
+    }
+
+    public int getHauteurBas() {
+        return hauteurBas;
+    }
+
+    public int getHauteurHaut() {
+        return hauteurHaut;
+    }
 }
