@@ -2,6 +2,7 @@ package vue;
 
 import controleur.ControlFenetreFichePerso;
 import controleur.ControlFenetreOptions;
+import model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,21 +15,87 @@ import static vue.Fenetre.Y;
  */
 public class FenetreFichePerso extends JPanel {
 
-    public JButton retour;
+    private Jeu jeu;
+    public JButton retour, plusForce, moinsForce, plusInt, moinsInt, plusConst, moinsConst, plusResist, moinsResist, valider;
+    public JLabel valForce, valInt, valConst, valResist, niveau, pointCaracteristique, pointCompetence, nomHero;
 
     public FenetreFichePerso() {
-
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
-        retour = new JButton("");
-        retour.setActionCommand("Retour");
+        //JButton
+            retour = new JButton();
+            retour.setActionCommand("Retour");
 
-        add(retour);
+            plusForce = new JButton();
+            plusForce.setActionCommand("PlusForce");
+            moinsForce = new JButton();
+            moinsForce.setActionCommand("MoinsForce");
+
+            plusInt = new JButton();
+            plusInt.setActionCommand("PlusInt");
+            moinsInt = new JButton();
+            moinsInt.setActionCommand("MoinsInt");
+
+            plusConst = new JButton();
+            plusConst.setActionCommand("PlusConst");
+            moinsConst = new JButton();
+            moinsConst.setActionCommand("MoinsConst");
+
+            plusResist = new JButton();
+            plusResist.setActionCommand("PlusResist");
+            moinsResist = new JButton();
+            moinsResist.setActionCommand("MoinsResist");
+
+            valider = new JButton();
+            valider.setActionCommand("Valider les Modifications");
+
+        //JLabel
+            valForce = new JLabel("" + jeu.getHero().getForcePerso());
+            valInt = new JLabel("" + jeu.getHero().getIntelPerso());
+            valConst  = new JLabel("" + jeu.getHero().getConstiPerso());
+            valResist = new JLabel("" + jeu.getHero().getResiPerso());
+            niveau = new JLabel("" + jeu.getHero().getNiveau());
+            pointCaracteristique = new JLabel("" + jeu.getHero().getPointCaracteristique());
+            pointCompetence = new JLabel("" + jeu.getHero().getPointCompetence());
+            nomHero = new JLabel(jeu.getHero().getNom());
+
+        //Ajout JButton
+            add(retour);
+            add(plusForce);
+            add(moinsForce);
+            add(plusInt);
+            add(moinsInt);
+            add(plusConst);
+            add(moinsConst);
+            add(plusResist);
+            add(moinsResist);
+
+        //Ajout JLabel
+            add(valForce);
+            add(valInt);
+            add(valConst);
+            add(valResist);
+            add(niveau);
+            add(pointCaracteristique);
+            add(pointCompetence);
+            add(nomHero);
     }
 
     public void setControl(ControlFenetreFichePerso controlFenetreFichePerso) {
         retour.addActionListener(controlFenetreFichePerso);
+
+        plusForce.addActionListener(controlFenetreFichePerso);
+        moinsForce.addActionListener(controlFenetreFichePerso);
+
+        plusInt.addActionListener(controlFenetreFichePerso);
+        moinsInt.addActionListener(controlFenetreFichePerso);
+
+        plusConst.addActionListener(controlFenetreFichePerso);
+        moinsConst.addActionListener(controlFenetreFichePerso);
+
+        plusResist.addActionListener(controlFenetreFichePerso);
+        moinsResist.addActionListener(controlFenetreFichePerso);
     }
 
     protected void paintComponent(Graphics g) {
