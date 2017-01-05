@@ -14,10 +14,10 @@ public class Monstre extends Personnage {
     private double coeffArmure;
     private int distanceVisibilite;
 
-    public Monstre(String nom, int niveau, int largeur, int hauteur, double coeffArmure, double coeffVie, double coeffMana, double coeffDegat,
+    public Monstre(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, double coeffArmure, double coeffVie, double coeffMana, double coeffDegat,
                    int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, int distanceVisibilite) {
 
-        super(nom, niveau, largeur, hauteur, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY);
+        super(nom, niveau, largeurDevant, largeurDerriere, hauteurHaut, hauteurBas, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY);
 
         vieMax = (int) (coeffVie * niveau);
         vie = vieMax;
@@ -36,7 +36,7 @@ public class Monstre extends Personnage {
         this.coeffDegat = coeffDegat;
         this.coeffArmure = coeffArmure;
 
-        this.distanceVisibilite = Fenetre.adapterResolutionEnX(2 * distanceVisibilite);
+        this.distanceVisibilite = Fenetre.adapterResolutionEnX(distanceVisibilite);
 
         System.out.println("nom:" + nom + ", niveau:" + niveau + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
                 degatMax + ", armureMax:" + armureMax + "xpdonne" + donneExperience());
@@ -48,16 +48,16 @@ public class Monstre extends Personnage {
 
     public void update(Hero hero) {
         // Si le hero est dans le champs de vision du monstre
-        if ((positionX + largeur / 2.0 + distanceVisibilite >= hero.positionX - hero.largeur / 2.0 ||
-                positionX - largeur / 2.0 - distanceVisibilite <= hero.positionX + hero.largeur / 2.0) &&
-                (positionY - distanceVisibilite - hauteur / 2.0 <= hero.positionY + hero.hauteur / 2.0 ||
-                        positionY + hauteur / 2.0 + distanceVisibilite >= hero.positionY - hero.hauteur / 2.0)) {
+        if ((positionX + largeurDerriere + distanceVisibilite >= hero.positionX - hero.largeurDevant ||
+                positionX - largeurDevant - distanceVisibilite <= hero.positionX + hero.largeurDerriere) &&
+                (positionY - hauteurHaut - distanceVisibilite <= hero.positionY + hero.hauteurBas ||
+                        positionY + hauteurBas + distanceVisibilite >= hero.positionY - hero.hauteurHaut)) {
             // déplacement
-            if (positionY - hauteur / 2.0 > hero.positionY + hero.hauteur / 2.0) // si le héro est plus haut que le monstre
+            if (positionY - hauteurHaut > hero.positionY + hero.hauteurBas) // si le héro est plus haut que le monstre
                 sauter();
-            if (positionX + largeur / 2.0 <= hero.positionX - hero.largeur / 2.0) // si le héro est à droite
+            if (positionX + largeurDerriere <= hero.positionX - hero.largeurDevant) // si le héro est à droite
                 deplacerADroite();
-            else if (positionX - largeur / 2.0 >= hero.positionX + hero.largeur / 2.0) // si héro est à gauche
+            else if (positionX - largeurDevant >= hero.positionX + hero.largeurDerriere) // si héro est à gauche
                 deplacerAGauche();
         }
     }

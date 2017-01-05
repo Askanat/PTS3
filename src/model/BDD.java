@@ -38,15 +38,15 @@ public class BDD {
         try {
             while (resultat.next()) {
                 valeur.add(resultat.getString("nomPerso"));
-                valeur.add(resultat.getString("LVLPerso"));
-                valeur.add(resultat.getString("xpPerso"));
-                valeur.add(resultat.getString("xpMaxPerso"));
+                valeur.add(resultat.getString("niveauPerso"));
+                valeur.add(resultat.getString("pointCompetence"));
+                valeur.add(resultat.getString("pointCaracteristique"));
+                valeur.add(resultat.getString("experiencePerso"));
+                valeur.add(resultat.getString("experienceMaxPerso"));
                 valeur.add(resultat.getString("forcePerso"));
                 valeur.add(resultat.getString("intelPerso"));
                 valeur.add(resultat.getString("constiPerso"));
-                valeur.add(resultat.getString("armurePerso"));
                 valeur.add(resultat.getString("resiPerso"));
-                valeur.add(resultat.getString("degatArmePerso"));
                 valeur.add(resultat.getString("gold"));
                 valeur.add(resultat.getString("texturePerso"));
             }
@@ -73,8 +73,10 @@ public class BDD {
         try {
             while (resultat.next()) {
                 valMonstre.add(resultat.getString("libelleMonstre"));
-                valMonstre.add(resultat.getString("largeur"));
-                valMonstre.add(resultat.getString("hauteur"));
+                valMonstre.add(resultat.getString("largeurDevant"));
+                valMonstre.add(resultat.getString("largeurDerriere"));
+                valMonstre.add(resultat.getString("hauteurHaut"));
+                valMonstre.add(resultat.getString("hauteurBas"));
                 valMonstre.add(resultat.getString("coeffArmure"));
                 valMonstre.add(resultat.getString("coeffVie"));
                 valMonstre.add(resultat.getString("coeffMana"));
@@ -95,10 +97,11 @@ public class BDD {
     //MODIFIE LES VALEURS DE LA TABLE HERO
     public void updateHero(int id, String[] tabCaracHero) {
         try {
-            instruction.executeUpdate("UPDATE personnage SET nomPerso = " + tabCaracHero[0] + ", LVLPerso = " + tabCaracHero[1] + ", xpPerso = " + tabCaracHero[2] +
-                    ", xpMaxPerso =" + tabCaracHero[3] + ", pointCompetencePerso =" + tabCaracHero[4] + ", forcePerso =" + tabCaracHero[5] + ", intelPerso = " + tabCaracHero[6] +
-                    ", constiPerso =" + tabCaracHero[7] + ", armurePerso =" + tabCaracHero[8] + ", resiPerso =" + tabCaracHero[9] + ", degatArmePerso =" + tabCaracHero[10] +
-                    ", gold =" + tabCaracHero[11] + ", texturePerso =" + tabCaracHero[12] + " spell_id =" + tabCaracHero[13] +
+            instruction.executeUpdate("UPDATE personnage SET nomPerso = " + tabCaracHero[0] + ", niveauPerso = " + tabCaracHero[1] + ", pointCompetence = " + tabCaracHero[2] + ", pointCaracteristique = " + tabCaracHero[3] +
+                    ", experiencePerso = " + tabCaracHero[4] +
+                    ", experienceMaxPerso =" + tabCaracHero[5] + ", forcePerso =" + tabCaracHero[6] + ", intelPerso = " + tabCaracHero[7] +
+                    ", constiPerso =" + tabCaracHero[8] + ", resiPerso =" + tabCaracHero[9] +
+                    ", gold =" + tabCaracHero[10] + ", texturePerso =" + tabCaracHero[11] +
                     " WHERE idPerso = " + id + ";");
         } catch (Exception e) {
             System.out.println("Update perso problem " + e);
@@ -180,9 +183,9 @@ public class BDD {
         ResultSet perso = null;
         String result = "0";
         try {
-            perso = instruction.executeQuery("Select LVLPerso FROM personnage WHERE idPerso =" + id + ";");
+            perso = instruction.executeQuery("Select niveauPerso FROM personnage WHERE idPerso =" + id + ";");
             while (perso.next()) {
-                result = perso.getString("LVLPerso");
+                result = perso.getString("niveauPerso");
             }
         } catch (Exception e) {
             System.out.println("Donnees LVL hero problem " + e);
@@ -196,7 +199,7 @@ public class BDD {
         int result = 0;
         int i = 0;
         try {
-            nbPartie = instruction.executeQuery("SELECT COUNT(nomPerso) AS count FROM personnage WHERE LVLPerso=0;");
+            nbPartie = instruction.executeQuery("SELECT COUNT(nomPerso) AS count FROM personnage WHERE niveauPerso=0;");
             while (nbPartie.next()) {
                 result = Integer.parseInt(nbPartie.getString("count"));
             }
@@ -211,7 +214,7 @@ public class BDD {
         ResultSet idPartie;
         ArrayList<Integer> result = new ArrayList<>();
         try {
-            idPartie = instruction.executeQuery("SELECT idPerso FROM personnage WHERE LVLPerso=0;");
+            idPartie = instruction.executeQuery("SELECT idPerso FROM personnage WHERE niveauPerso=0;");
             while (idPartie.next()) {
                 result.add(idPartie.getInt("idPerso"));
             }
@@ -224,8 +227,9 @@ public class BDD {
     //update la partie correspondante a 0
     public void resetPartie(int id) {
         try {
-            instruction.executeUpdate("UPDATE personnage SET nomPerso='perso1', LVLPerso =0, xpPerso=0, xpMaxPerso=0, forcePerso=0," +
-                    " intelPerso=0, constiPerso=0, armurePerso=0, resiPerso=0, degatArmePerso=0, gold=0 WHERE idPerso=" + id + ";");
+            instruction.executeUpdate("UPDATE personnage SET nomPerso='', niveauPerso =0, pointCompetence=0, pointCaracteristique=0," +
+                    " experiencePerso=0, experienceMaxPerso=0, forcePerso=0," +
+                    " intelPerso=0, constiPerso=0, resiPerso=0, gold=0 WHERE idPerso=" + id + ";");
         } catch (Exception e) {
             System.out.println("Probleme reset partie : " + e);
         }
@@ -234,7 +238,7 @@ public class BDD {
     //update remplacer le nom et mettre niveau a 1
     public void createPerso(String nom, int id) {
         try {
-            instruction.executeUpdate("UPDATE personnage SET nomPerso='" + nom + "', LVLPerso=1 WHERE idPerso=" + id + ";");
+            instruction.executeUpdate("UPDATE personnage SET nomPerso='" + nom + "', niveauPerso=1 WHERE idPerso=" + id + ";");
         } catch (Exception e) {
             System.out.println("Probleme create partie : " + e);
         }

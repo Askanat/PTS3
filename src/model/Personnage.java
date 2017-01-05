@@ -20,10 +20,10 @@ public abstract class Personnage {
     protected int vecteurDeplacementEnX, vecteurDeplacementEnY, vitesseDeDeplacementEnX, vitesseDeDeplacementEnY, vitesseDeSaut;
     protected boolean collision, deplacement;
     protected boolean attaquer;
-    protected int largeur, hauteur;
+    protected int largeurDevant, largeurDerriere, hauteurHaut, hauteurBas;
     protected Direction directionOrientation;
 
-    public Personnage(String nom, int niveau, int largeur, int hauteur, int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
+    public Personnage(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
 
         this.nom = nom;
         this.niveau = niveau;
@@ -39,8 +39,10 @@ public abstract class Personnage {
         collision = false;
         deplacement = false;
 
-        this.largeur = Fenetre.adapterResolutionEnX(largeur);
-        this.hauteur = Fenetre.adapterResolutionEnY(hauteur);
+        this.largeurDevant = Fenetre.adapterResolutionEnX(largeurDevant);
+        this.largeurDerriere = Fenetre.adapterResolutionEnX(largeurDerriere);
+        this.hauteurHaut = Fenetre.adapterResolutionEnY(hauteurHaut);
+        this.hauteurBas = Fenetre.adapterResolutionEnY(hauteurBas);
 
         attaquer = false;
     }
@@ -64,7 +66,7 @@ public abstract class Personnage {
 
         // Si l'ennemi n'est pas trop haut et n'est pas trop bas
 
-        if (!(cible.positionY > positionY + hauteur) && !(cible.positionY + cible.hauteur < positionY)) {
+        if (cible.positionY <= positionY + hauteurBas && cible.positionY >= positionY - cible.hauteurHaut) {
 
             /* Les deux lignes du if :
             *  1. Si la cible n'est pas trop à gauche et n'est pas trop à droite
@@ -74,11 +76,11 @@ public abstract class Personnage {
             *  Alors on inflige des dégâts
             */
 
-            if (!(cible.positionX + cible.largeur < positionX - portee) && !(cible.positionX > positionX + largeur + portee) &&
+           /* if (!(cible.positionX + cible.largeur < positionX - portee) && !(cible.positionX > positionX + largeur + portee) &&
                     ((cible.positionX < positionX && directionOrientation == Direction.GAUCHE) || (cible.positionX > positionX && directionOrientation == Direction.DROITE))) {
                 cible.recevoirDegats(getDegats());
                 System.out.println(getNom() + " attaque " + cible.getNom() + " !; posX = " + positionX + "; posY = " + positionY);
-            }
+            }*/
         }
     }
 
@@ -181,7 +183,7 @@ public abstract class Personnage {
         if (!getCollision())
             setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
         else if (getCollision()) {
-            setPositionY((int) (Fenetre.adapterResolutionEnY(1000) - hauteur / 2.0));
+            setPositionY(Fenetre.adapterResolutionEnY(1000) - hauteurBas);
             setVitesseDeDeplacementEnY(0);
         }
 
@@ -209,7 +211,7 @@ public abstract class Personnage {
     }
 
     public void setCollision() {
-        this.collision = getPositionY() >= (int) (Fenetre.adapterResolutionEnY(1000) - hauteur / 2.0); // sol de la fenetre - la hauteur du personnage - la hauteur de parterre
+        this.collision = getPositionY() >= Fenetre.adapterResolutionEnY(1000) - hauteurBas; // sol de la fenetre - la hauteur du personnage - la hauteur de parterre
     }
 
     public boolean getCollision() {

@@ -18,30 +18,32 @@ INSERT INTO spell VALUES (default, "Eclaire de givre", 50, "givre", "images/Sort
 CREATE TABLE personnage (
   idPerso int AUTO_INCREMENT NOT NULL,
   nomPerso varchar(25),
-  LVLPerso int,
-  xpPerso int,
-  xpMaxPerso int,
+  niveauPerso int,
+  pointCompetence int,
+  pointCaracteristique int,
+  experiencePerso int,
+  experienceMaxPerso int,
   forcePerso float(3,2),
   intelPerso float(3,2),
   constiPerso float(3,2),
-  armurePerso float(3,2),
   resiPerso float(3,2),
-  degatArmePerso int,
   gold int,
   texturePerso varchar(50),
 
   PRIMARY KEY(idPerso)
 );
 
-INSERT INTO personnage VALUES (default, "", 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, "images/Save/texture_hero1.png");
-INSERT INTO personnage VALUES (default, "", 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, "images/Save/texture_hero2.png");
-INSERT INTO personnage VALUES (default, "", 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, "images/Save/texture_hero3.png");
+INSERT INTO personnage VALUES (default, "", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero1.png");
+INSERT INTO personnage VALUES (default, "", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero2.png");
+INSERT INTO personnage VALUES (default, "", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero3.png");
 
 CREATE TABLE monstre (
   idMonstre int AUTO_INCREMENT NOT NULL,
   libelleMonstre varchar(10),
-  largeur int,
-  hauteur int,
+  largeurDevant int,
+  largeurDerriere int,
+  hauteurHaut int,
+  hauteurBas int,
   vitesseDeDeplacementEnX int,
   vitesseDeDeplacementEnY int,
   coeffArmure float(3,2),
@@ -57,9 +59,9 @@ CREATE TABLE monstre (
   CONSTRAINT fk_spell_id_monstre FOREIGN KEY (spell_id) REFERENCES spell(idSpell)
 );
 
-INSERT INTO monstre VALUES (default, "Monstre1", 104, 179, 10, 20, 3.5, 5, 3.2, 4, 150, "images/Monstres/texture_monstre1.png", null);
-INSERT INTO monstre VALUES (default, "Monstre2", 104, 179, 20, 40, 2, 10, 4.8, 5.7, 100, "images/Monstres/texture_monstre2.png", null);
-INSERT INTO monstre VALUES (default, "Monstre3", 104, 179, 40, 60, 1.7, 15, 0, 8, 70, "images/Monstres/texture_monstre3.png", null);
+INSERT INTO monstre VALUES (default, "Monstre1", 52, 52, 90, 90, 10, 20, 3.5, 5, 3.2, 4, 150, "images/Monstres/texture_monstre1.png", null);
+INSERT INTO monstre VALUES (default, "Monstre2", 52, 52, 90, 90, 20, 40, 2, 10, 4.8, 5.7, 100, "images/Monstres/texture_monstre2.png", null);
+INSERT INTO monstre VALUES (default, "Monstre3", 52, 52, 90, 90, 40, 60, 1.7, 15, 0, 8, 70, "images/Monstres/texture_monstre3.png", null);
 
 CREATE TABLE typeItem (
   typeItem int AUTO_INCREMENT NOT NULL,

@@ -10,8 +10,8 @@ public class Hero extends Personnage {
 
     private double experience, experienceMax;
     private int or;
-    private int charge, chargeMax, pointCaracteristique, pointCompetence;
-    private double constiPerso, forcePerso, intelPerso, armurePerso, resiPerso;
+    private int pointCaracteristique, pointCompetence;
+    private double forcePerso, intelPerso, constiPerso, resiPerso;
 
     private final int POINTCOMPETENCE = 1;
     private final int POINTCARACTERISQUE = 15;
@@ -24,10 +24,10 @@ public class Hero extends Personnage {
     private final int MANA_DE_BASE = 100;
     private final int DEGATS_DE_BASE = 1;
 
-    public Hero(String nom, int niveau, double experience, double experienceMax, double forcePerso, double intelPerso,
-                double constiPerso, double armurePerso, double resiPerso, double degatArmePerso, int gold, String texturePerso, int positionX, int positionY) {
+    public Hero(String nom, int niveau, int pointCaracteristique, int pointCompetence, double experience, double experienceMax, double forcePerso, double intelPerso,
+                double constiPerso, double resiPerso, int or, String texturePerso, int positionX, int positionY) {
 
-        super(nom, niveau, 104, 179, positionX, positionY, 30, 60);
+        super(nom, niveau, 52, 52, 90, 90, positionX, positionY, 30, 60);
 
         vieMax = (int) (constiPerso * COEF_VIE + VIE_DE_BASE);
         vie = vieMax;
@@ -42,11 +42,11 @@ public class Hero extends Personnage {
         this.experienceMax = experienceMax;
 
         if(niveau == 1){
-            pointCaracteristique = POINTCARACTERISQUE;
-            pointCompetence = POINTCOMPETENCE;
+            this.pointCaracteristique = POINTCARACTERISQUE;
+            this.pointCompetence = POINTCOMPETENCE;
         }else{
-            //this.pointCaracteristique = pointCaracteristique;
-            //this.pointCompetence = pointCompetence;
+            this.pointCaracteristique = pointCaracteristique;
+            this.pointCompetence = pointCompetence;
         }
 
         this.forcePerso = forcePerso;
@@ -56,12 +56,9 @@ public class Hero extends Personnage {
 
         this.or = or;
 
-        this.chargeMax = chargeMax;
-        charge = 0;
-
         System.out.println("nom:" + nom + ", niveau:" + niveau + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
                 degatMax + ", armureMax:" + armureMax + ", experience:" + experience + ", experienceMax:" + experienceMax +
-                ", or:" + or + ", chargeMax:" + chargeMax + ", forcePerso:" + forcePerso + ", pointConstitution:" +
+                ", or:" + or + ", forcePerso:" + forcePerso + ", pointConstitution:" +
                 constiPerso + ", pointIntelligence:" + intelPerso + ", pointForce:" + forcePerso + ", pointResistance:" + resiPerso);
     }
 
