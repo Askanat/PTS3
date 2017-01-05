@@ -10,9 +10,11 @@ public class Hero extends Personnage {
 
     private double experience, experienceMax;
     private int or;
-    private int charge, chargeMax;
+    private int charge, chargeMax, pointCaracteristique, pointCompetence;
     private double constiPerso, forcePerso, intelPerso, armurePerso, resiPerso;
 
+    private final int POINTCOMPETENCE = 1;
+    private final int POINTCARACTERISQUE = 15;
     private final int COEF_VIE = 3;
     private final int COEF_MANA = 3;
     private final int COEF_DEGATS = 1;
@@ -38,6 +40,14 @@ public class Hero extends Personnage {
 
         this.experience = experience;
         this.experienceMax = experienceMax;
+
+        if(niveau == 1){
+            pointCaracteristique = POINTCARACTERISQUE;
+            pointCompetence = POINTCOMPETENCE;
+        }else{
+            //this.pointCaracteristique = pointCaracteristique;
+            //this.pointCompetence = pointCompetence;
+        }
 
         this.forcePerso = forcePerso;
         this.constiPerso = constiPerso;
@@ -75,7 +85,28 @@ public class Hero extends Personnage {
     }
 
     public void upNiveau() {
-        setNiveau(getNiveau() + 1);
+        if (getExperience() == getExperienceMax()){
+            setNiveau(getNiveau() + 1);
+            update_ExperienceMax();
+            setPointCaractéristique();
+            setPointCompetence();
+        }
+    }
+
+    public void setPointCaractéristique(){
+        pointCaracteristique = getPointCaracteristique() + 10;
+    }
+
+    public int getPointCaracteristique() {
+        return pointCaracteristique;
+    }
+
+    public void setPointCompetence(){
+        pointCompetence = getPointCompetence() + 1;
+    }
+
+    public int getPointCompetence() {
+        return pointCompetence;
     }
 
     public void recevoirExperience(Monstre m) {

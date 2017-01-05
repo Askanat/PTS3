@@ -89,8 +89,10 @@ public class ControlTimer extends Control implements ActionListener {
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
                     jeu.getMonstre(i).update(jeu.getHero());
                     fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement();
-                    if (!jeu.getMonstre(i).estVivant())
+                    if (!jeu.getMonstre(i).estVivant()){
+                        jeu.getHero().recevoirExperience(jeu.getMonstre(i));
                         fenetre.panelFenetreDepart.monstre.remove(i);
+                    }
                     jeu.getMonstre(i).upgrade();
 
 
@@ -102,6 +104,7 @@ public class ControlTimer extends Control implements ActionListener {
 
                     jeu.updateMonstre(i); // supprime les montres si ils sont morts
                 }
+                jeu.getHero().upNiveau();
             }
             //jeu.getHero().afficherEtat();
             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
