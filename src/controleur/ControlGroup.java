@@ -23,6 +23,7 @@ public class ControlGroup {
         ControlFenetreOptions controlFenetreOptions = new ControlFenetreOptions(jeu, fenetre);
         ControlFenetreCredits controlFenetreCredits = new ControlFenetreCredits(jeu, fenetre);
         ControlFenetreInventaire controlFenetreInventaire = new ControlFenetreInventaire(jeu, fenetre);
+        ControlFenetreFichePerso controlFenetreFichePerso = new ControlFenetreFichePerso(jeu, fenetre);
 
         ControlFenetreDepart controlFenetreDepart = new ControlFenetreDepart(jeu, fenetre);
         ControlFenetreDonjon controlFenetreDonjon = new ControlFenetreDonjon(jeu, fenetre);

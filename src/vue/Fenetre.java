@@ -26,6 +26,7 @@ public class Fenetre extends JFrame {
     public MenuEnJeu panelMenuEnJeu;
     public BarreMenu barreMenu;
     public FenetreCreationPersonnage panelFenetreCreationPersonnage;
+    public FenetreFichePerso panelFenetreFichePerso;
 
     private static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     public static final double DEFAUT_X = 1920;
@@ -64,6 +65,7 @@ public class Fenetre extends JFrame {
         barreMenu = new BarreMenu(jeu);
         panelMenuEnJeu = new MenuEnJeu(jeu);
         panelFenetreCreationPersonnage = new FenetreCreationPersonnage(jeu);
+        panelFenetreFichePerso = new FenetreFichePerso();
     }
 
     public static int adapterResolutionEnX(int valeur) {
@@ -107,6 +109,14 @@ public class Fenetre extends JFrame {
         panelFenetreInventaire.setControl(controlFenetreInventaire);
     }
 
+    public void setControlFenetreCreationPersonnage(ControlFenetreCreationPersonnage controlFenetreCreationPersonnage) {
+        panelFenetreCreationPersonnage.setControl(controlFenetreCreationPersonnage);
+    }
+
+    public void setControlFenetreFichePerso(ControlFenetreFichePerso controlFenetreFichePerso) {
+        panelFenetreFichePerso.setControl(controlFenetreFichePerso);
+    }
+
     public void setControlMenuEnJeu(ControlMenuEnJeu controlMenuEnJeu) {
         panelMenuEnJeu.setControl(controlMenuEnJeu);
     }
@@ -119,8 +129,5 @@ public class Fenetre extends JFrame {
         addKeyListener(controlClavier);
     }
 
-    public void setControlFenetreCreationPersonnage(ControlFenetreCreationPersonnage controlFenetreCreationPersonnage) {
-        panelFenetreCreationPersonnage.setControl(controlFenetreCreationPersonnage);
-    }
 
 }
