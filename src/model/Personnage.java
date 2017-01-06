@@ -28,8 +28,6 @@ public abstract class Personnage {
     protected String texture;
 
     protected Rectangle hitBoxCorps;
-    // variable pour la hitBoxAttaque
-    protected int hitBoxAttaqueX, hitBoxAttaqueY, hitBoxAttaqueWidth, hitBoxAttaqueHeight;
 
 
     public Personnage(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, String texture, int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
@@ -58,10 +56,6 @@ public abstract class Personnage {
         this.texture = texture;
 
         hitBoxCorps = new Rectangle();
-        hitBoxAttaqueX = (int) (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() * 1.5 : getLargeurDerriere() / 2.0);
-        hitBoxAttaqueY = (int) (-getHauteurHaut() / 2.0);
-        hitBoxAttaqueWidth = (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere());
-        hitBoxAttaqueHeight = getHauteurBas();
     }
 
     public void recevoirDegats(int degats) {
@@ -271,7 +265,12 @@ public abstract class Personnage {
     }
 
     public Rectangle getHitBoxAttaque() {
-        Rectangle r = new Rectangle(positionX + hitBoxAttaqueX, positionY + hitBoxAttaqueY, hitBoxAttaqueWidth, hitBoxAttaqueHeight);
+        Rectangle r = new Rectangle(
+                positionX + (int) (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() * 1.5 : getLargeurDerriere() / 2.0),
+                positionY + (int) (-getHauteurHaut() / 2.0),
+                (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()),
+                getHauteurBas()
+        );
         return r;
     }
 
