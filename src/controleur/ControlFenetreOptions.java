@@ -20,6 +20,16 @@ public class ControlFenetreOptions extends Control implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
+            case "Hitbox":
+                if (jeu.getHitBox()==false){
+                    jeu.sethibox()=true;
+                    hitbox.setForeground(Color.GREEN);
+                }else{
+                    jeu.sethibox()=false;
+                    hitbox.setForeground(Color.RED);
+                }
+
+
             case "Retour":
                 if (!jeu.getPause()) {
                     fenetre.setContentPane(fenetre.panelMenuPrincipal);

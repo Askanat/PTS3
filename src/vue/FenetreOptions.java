@@ -14,7 +14,7 @@ import static vue.Fenetre.Y;
 
 public class FenetreOptions extends JPanel {
 
-    public JButton retour, retour1;
+    public JButton retour, hitbox;
     private JLabel options, texte;
     public JTextField avancer, sauter, attaquer, reculer;
 
@@ -25,6 +25,8 @@ public class FenetreOptions extends JPanel {
 
         retour = new JButton("");
         retour.setActionCommand("Retour");
+        hitbox = new JButton("Hitbox");
+        hitbox.setActionCommand("Hitbox");
         avancer = new JTextField("");
         avancer.setActionCommand("Avancer");
         sauter = new JTextField("");
@@ -35,6 +37,7 @@ public class FenetreOptions extends JPanel {
         reculer.setActionCommand("Reculer");
 
         add(retour);
+        add(hitbox);
         add(avancer);
         add(sauter);
         add(attaquer);
@@ -43,15 +46,26 @@ public class FenetreOptions extends JPanel {
 
     public void setControl(ControlFenetreOptions controlFenetreOptions) {
         retour.addActionListener(controlFenetreOptions);
+        hitbox.addActionListener(controlFenetreOptions);
     }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        Font f=new Font("Arial", Font.BOLD, 20);
+
         retour.setBounds(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);
         retour.setBorder(null);
+
+        hitbox.setBounds(Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
+        hitbox.setBackground(new Color(0, 0, 0, 0));
+        hitbox.setFont(f);
+        hitbox.setForeground(Color.RED);
+        hitbox.setFocusable(false);
+        hitbox.setBorder(null);
+
 
         avancer.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(92), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
         avancer.setBackground(new Color(0, 0, 0, 0));
