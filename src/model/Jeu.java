@@ -22,6 +22,7 @@ public class Jeu {
     private BDD bdd;
 
     private boolean hitBox;
+    private boolean save;
 
     private int nbPartieLibre;
     private boolean pause;
@@ -168,4 +169,12 @@ public class Jeu {
     public boolean getHitBox(){
         return hitBox;
     }
+
+    public void setSave(boolean save) {
+        this.save = save;
+    }
+    public boolean getSave(){
+        return save;
+    }
+
 }

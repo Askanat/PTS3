@@ -66,6 +66,12 @@ public class FenetreDepart extends JPanel {
         for (Entite e : png)
             e.paintComponent(g);
 
-            hero.paintComponent(g);
+        hero.paintComponent(g);
+
+        Image img = null;
+        if (jeu.getSave())
+            img = getToolkit().getImage("images/iconeSave.png");
+        g.drawImage(img, Fenetre.adapterResolutionEnX(5), Fenetre.adapterResolutionEnY(5), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
+
     }
 }

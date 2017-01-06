@@ -52,8 +52,14 @@ public class ControlTimer extends Control implements ActionListener {
 
             if (!jeu.getPause()) {
                 jeu.incrementeTemps();
-                if (jeu.getTemps() % 20 == 0) {
+                if (jeu.getTemps() % 300 == 0) {
                     jeu.sauvegardeHero();
+                    jeu.setSave(true);
+                    changerVue();
+                }
+                if(jeu.getTemps() % 310 == 0){
+                    jeu.setSave(false);
+                    changerVue();
                 }
 
 
