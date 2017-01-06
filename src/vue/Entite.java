@@ -206,7 +206,7 @@ public class Entite extends JPanel {
 
         // test zone hitbox de l'attaque
         if (personnage instanceof Hero) {
-            g.drawRect((int) (personnage.getPositionX() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) / 2.0),
+            g.drawRect((int) (personnage.getPositionX() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? -personnage.getLargeurDevant() * 1.5 : personnage.getLargeurDerriere() / 2.0)),
                     (int) (personnage.getPositionY() - personnage.getHauteurHaut() / 2.0),
                     (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
                     personnage.getHauteurBas());

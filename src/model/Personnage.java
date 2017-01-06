@@ -69,7 +69,7 @@ public abstract class Personnage {
         int portee = Fenetre.adapterResolutionEnX(1); // portee du bras puis portee des armes
 
 
-        Rectangle recA = new Rectangle((int) (getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()) / 2.0),
+        Rectangle recA = new Rectangle((int) (getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() * 1.5 : getLargeurDerriere() / 2.0)),
                 (int) (getPositionY() - getHauteurHaut() / 2.0),
                 (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()),
                 getHauteurBas());
@@ -80,19 +80,7 @@ public abstract class Personnage {
                 cible.getHauteurHaut() + cible.getHauteurBas());
 
         if (collision(recA, recB)) {
-            // Si la cible à son origine compris entre la tête et les pieds de l'attaquant
-        /*if (cible.positionY <= positionY + hauteurBas && cible.positionY >= positionY - cible.hauteurHaut)
-
-            if ((cible.positionX + cible.largeurDevant <= positionX - portee) &&
-
-
-                    (cible.positionX <= positionX + largeur + portee) &&
-
-                    ((cible.positionX < positionX && directionOrientation == Direction.GAUCHE) || (cible.positionX > positionX && directionOrientation == Direction.DROITE))) {*/
-
-
             cible.recevoirDegats(getDegats());
-            System.out.println(getNom() + " attaque " + cible.getNom() + " !; posX = " + positionX + "; posY = " + positionY);
         }
     }
 

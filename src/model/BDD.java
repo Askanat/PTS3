@@ -225,8 +225,8 @@ public class BDD {
     //update la partie correspondante a 0
     public void resetPartie(int id) {
         try {
-            instruction.executeUpdate("UPDATE personnage SET nomPerso='', niveauPerso =0, pointCompetence=0, pointCaracteristique=0," +
-                    " experiencePerso=0, experienceMaxPerso=0, forcePerso=0," +
+            instruction.executeUpdate("UPDATE personnage SET nomPerso='', niveauPerso =0, pointCompetence=1, pointCaracteristique=15," +
+                    " experiencePerso=0, experienceMaxPerso=100, forcePerso=0," +
                     " intelPerso=0, constiPerso=0, resiPerso=0, gold=0 WHERE idPerso=" + id + ";");
         } catch (Exception e) {
             System.out.println("Probleme reset partie : " + e);
