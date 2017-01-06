@@ -2,6 +2,9 @@ package model;
 
 import vue.Fenetre;
 
+import java.awt.*;
+
+import static java.lang.Math.abs;
 import static model.Jeu.GRAVITE;
 
 
@@ -65,7 +68,19 @@ public abstract class Personnage {
 
         int portee = Fenetre.adapterResolutionEnX(1); // portee du bras puis portee des armes
 
-        // Si la cible à son origine compris entre la tête et les pieds de l'attaquant
+
+        Rectangle recA = new Rectangle((int) (getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()) / 2.0),
+                (int) (getPositionY() - getHauteurHaut() / 2.0),
+                (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()),
+                getHauteurBas());
+
+        Rectangle recB = new Rectangle(cible.getPositionX() - (cible.getDirectionOrientation() == Direction.GAUCHE ? cible.getLargeurDevant() : cible.getLargeurDerriere()),
+                cible.getPositionY() - cible.getHauteurHaut(),
+                cible.getLargeurDevant() + (cible.getDirectionOrientation() == Direction.GAUCHE ? cible.getLargeurDevant() : cible.getLargeurDerriere()),
+                cible.getHauteurHaut() + cible.getHauteurBas());
+
+        if (collision(recA, recB)) {
+            // Si la cible à son origine compris entre la tête et les pieds de l'attaquant
         /*if (cible.positionY <= positionY + hauteurBas && cible.positionY >= positionY - cible.hauteurHaut)
 
             if ((cible.positionX + cible.largeurDevant <= positionX - portee) &&
@@ -76,9 +91,9 @@ public abstract class Personnage {
                     ((cible.positionX < positionX && directionOrientation == Direction.GAUCHE) || (cible.positionX > positionX && directionOrientation == Direction.DROITE))) {*/
 
 
-                cible.recevoirDegats(getDegats());
-                System.out.println(getNom() + " attaque " + cible.getNom() + " !; posX = " + positionX + "; posY = " + positionY);
-            //}
+            cible.recevoirDegats(getDegats());
+            System.out.println(getNom() + " attaque " + cible.getNom() + " !; posX = " + positionX + "; posY = " + positionY);
+        }
     }
 
     public final boolean estVivant() {
@@ -239,10 +254,6 @@ public abstract class Personnage {
         return deplacement;
     }
 
-    public void setTexture(String texture) {
-        this.texture = texture;
-    }
-
     public String getTexture() {
         return texture;
     }
@@ -261,5 +272,14 @@ public abstract class Personnage {
 
     public int getHauteurHaut() {
         return hauteurHaut;
+    }
+
+    public boolean collision(Rectangle A, Rectangle B) {
+        if ((abs((A.getLocation().x + (A.getSize().width / 2)) - (B.getLocation().x + (B.getSize().width / 2))) < (A.getSize().width + B.getSize().width) / 2)
+                &&
+                (abs((A.getLocation().y + (A.getSize().height / 2)) - (B.getLocation().y + (B.getSize().height / 2))) < (A.getSize().height + B.getSize().height) / 2))
+            return true;
+        else
+            return false;
     }
 }

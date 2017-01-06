@@ -51,10 +51,8 @@ public class ControlTimer extends Control implements ActionListener {
             }
 
             if (!jeu.getPause()) {
-                jeu.incrementeTemps();
-                if (jeu.getTemps() % 100 == 0) {
-                    jeu.sauvegardeHero();
-                }
+                jeu.sauvegardeHero();
+
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.GAUCHE]) {
                     jeu.getHero().deplacerAGauche();

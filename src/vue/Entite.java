@@ -1,6 +1,7 @@
 package vue;
 
 import model.Direction;
+import model.Hero;
 import model.Monstre;
 import model.Personnage;
 
@@ -196,6 +197,7 @@ public class Entite extends JPanel {
                     (personnage.getHauteurBas() + ((Monstre) personnage).getDistanceVisibilite()));
         }
 
+
         // test zone hitbox du sprite
         g.drawRect(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
                 personnage.getPositionY() - personnage.getHauteurHaut(),
@@ -203,8 +205,21 @@ public class Entite extends JPanel {
                 personnage.getHauteurHaut() + personnage.getHauteurBas());
 
         // test zone hitbox de l'attaque
-            // a faire
+        if (personnage instanceof Hero) {
+            g.drawRect((int) (personnage.getPositionX() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) / 2.0),
+                    (int) (personnage.getPositionY() - personnage.getHauteurHaut() / 2.0),
+                    (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
+                    personnage.getHauteurBas());
+        }
+        /*Rectangle recA = new Rectangle((int) (personnage.getPositionX() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) / 2.0),
+                (int) (personnage.getPositionY() - personnage.getHauteurHaut() / 2.0),
+                (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
+                personnage.getHauteurBas());
 
+        Rectangle recB = new Rectangle(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
+                personnage.getPositionY() - personnage.getHauteurHaut(),
+                personnage.getLargeurDevant() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
+                personnage.getHauteurHaut() + personnage.getHauteurBas());*/
 
         // barre de vie avec une barre de progression
         barreDeVie.setMaximum(personnage.getVieMax());
