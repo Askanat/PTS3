@@ -33,6 +33,9 @@ public class Jeu {
         bdd = new BDD();
     }
 
+    public void sauvegardeHero() {
+        bdd.updateHero(hero.getIdHero(),hero.sauvegardeDonneesHeros());
+    }
     public void supprimerPartie(int idPartie) {
         bdd.resetPartie(idPartie);
     }
@@ -63,8 +66,16 @@ public class Jeu {
     public void updateMonstre(int i) {
         if (!tableauMonstre.get(i).estVivant()) {
             getHero().recevoirExperience(getMonstre(i));
-            tableauMonstre.remove(i);
+            supprimeMonstre(i);
         }
+    }
+
+    public void supprimeMonstre(int i) {
+        tableauMonstre.remove(i);
+    }
+
+    public void supprimeHero() {
+        hero = null;
     }
 
     public Hero getHero() {

@@ -14,8 +14,6 @@ import java.awt.event.ActionListener;
 
 public class ControlTimer extends Control implements ActionListener {
 
-    private int temps = 0;
-
     public ControlTimer(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
 
@@ -26,12 +24,12 @@ public class ControlTimer extends Control implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (ControlClavier.toucheRelacher[ControlTouche.ECHAP]) {
-            jeu.inversePause();
-            ControlClavier.toucheRelacher[ControlTouche.ECHAP] = false;
-        }
-
         if (Control.enPartie) {
+            if (ControlClavier.toucheRelacher[ControlTouche.ECHAP]) {
+                jeu.inversePause();
+                ControlClavier.toucheRelacher[ControlTouche.ECHAP] = false;
+            }
+
             if (jeu.getPause()) {
                 fenetre.getContentPane().setLayout(new GridBagLayout());
                 fenetre.getContentPane().isOpaque();
@@ -54,6 +52,9 @@ public class ControlTimer extends Control implements ActionListener {
 
             if (!jeu.getPause()) {
                 jeu.incrementeTemps();
+                if (jeu.getTemps() % 100 == 0) {
+                    jeu.sauvegardeHero();
+                }
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.GAUCHE]) {
                     jeu.getHero().deplacerAGauche();
@@ -89,17 +90,13 @@ public class ControlTimer extends Control implements ActionListener {
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
                     jeu.getMonstre(i).update(jeu.getHero());
                     fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement();
-                    if (!jeu.getMonstre(i).estVivant()){
+                    if (!jeu.getMonstre(i).estVivant()) {
                         jeu.getHero().recevoirExperience(jeu.getMonstre(i));
                         fenetre.panelFenetreDepart.monstre.remove(i);
                     }
                     jeu.getMonstre(i).upgrade();
 
-
-
-
-                   // jeu.getMonstre(i).afficherEtat();
-
+                    // jeu.getMonstre(i).afficherEtat();
 
 
                     jeu.updateMonstre(i); // supprime les montres si ils sont morts

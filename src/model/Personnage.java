@@ -61,30 +61,24 @@ public abstract class Personnage {
         if (getVie() < 0) setVie(0);
     }
 
-    // A ameliorer
     public void attaquer(Personnage cible) {
-        // Le personnage ne touchera pas vraiment le monstre, il y aura un petit espace
 
-        int portee = Fenetre.adapterResolutionEnX(1);
+        int portee = Fenetre.adapterResolutionEnX(1); // portee du bras puis portee des armes
 
-        // Si l'ennemi n'est pas trop haut et n'est pas trop bas
+        // Si la cible à son origine compris entre la tête et les pieds de l'attaquant
+        /*if (cible.positionY <= positionY + hauteurBas && cible.positionY >= positionY - cible.hauteurHaut)
 
-        if (cible.positionY <= positionY + hauteurBas && cible.positionY >= positionY - cible.hauteurHaut) {
+            if ((cible.positionX + cible.largeurDevant <= positionX - portee) &&
 
-            /* Les deux lignes du if :
-            *  1. Si la cible n'est pas trop à gauche et n'est pas trop à droite
-            *  2. Si la cible est sur la gauche et que le personnage est tourné vers la gauche
-            *     ou si la cible est sur la droite et que le personnage est tourné vers la droite
-            *
-            *  Alors on inflige des dégâts
-            */
 
-           /* if (!(cible.positionX + cible.largeur < positionX - portee) && !(cible.positionX > positionX + largeur + portee) &&
-                    ((cible.positionX < positionX && directionOrientation == Direction.GAUCHE) || (cible.positionX > positionX && directionOrientation == Direction.DROITE))) {
+                    (cible.positionX <= positionX + largeur + portee) &&
+
+                    ((cible.positionX < positionX && directionOrientation == Direction.GAUCHE) || (cible.positionX > positionX && directionOrientation == Direction.DROITE))) {*/
+
+
                 cible.recevoirDegats(getDegats());
                 System.out.println(getNom() + " attaque " + cible.getNom() + " !; posX = " + positionX + "; posY = " + positionY);
-            }*/
-        }
+            //}
     }
 
     public final boolean estVivant() {

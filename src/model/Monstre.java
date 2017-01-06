@@ -48,21 +48,30 @@ public class Monstre extends Personnage {
 
     public void update(Hero hero) {
         // Si le hero est dans le champs de vision du monstre
-        if (positionX + largeurDerriere + distanceVisibilite >= hero.positionX  - hero.largeurDevant &&
-                positionX - largeurDevant - distanceVisibilite <= hero.positionX + hero.largeurDerriere &&
+        if (positionX + (directionOrientation == Direction.GAUCHE ? largeurDevant : largeurDerriere) + distanceVisibilite >=
+                hero.positionX - (hero.directionOrientation == Direction.GAUCHE ? hero.largeurDevant : hero.largeurDerriere) &&
+                positionX - (directionOrientation == Direction.GAUCHE ? largeurDevant : largeurDerriere) - distanceVisibilite <=
+                        hero.positionX + (hero.directionOrientation == Direction.GAUCHE ? hero.largeurDevant : hero.largeurDerriere) &&
                 positionY - hauteurHaut - distanceVisibilite <= hero.positionY + hero.hauteurBas &&
                 positionY + hauteurBas + distanceVisibilite >= hero.positionY - hero.hauteurHaut) {
             // déplacement
             if (positionY - hauteurHaut > hero.positionY + hero.hauteurBas) // si le héro est plus haut que le monstre
                 sauter();
-            if (positionX + largeurDerriere < hero.positionX - hero.largeurDevant) // si le héro est à droite
+            if (positionX + (directionOrientation == Direction.GAUCHE ? largeurDevant : largeurDerriere) <
+                    hero.positionX - (hero.directionOrientation == Direction.GAUCHE ? hero.largeurDevant : hero.largeurDerriere)) // si le héro est à droite
                 deplacerADroite();
-            else if (positionX - largeurDevant > hero.positionX + hero.largeurDerriere) // si héro est à gauche
+            else if (positionX - (directionOrientation == Direction.GAUCHE ? largeurDevant : largeurDerriere) >
+                    hero.positionX + (hero.directionOrientation == Direction.GAUCHE ? hero.largeurDevant : hero.largeurDerriere)) // si héro est à gauche
                 deplacerAGauche();
         }
     }
 
     public void upgrade() {
         deplacer();
+    }
+
+
+    public int getDistanceVisibilite() {
+        return distanceVisibilite;
     }
 }

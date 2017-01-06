@@ -30,15 +30,8 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 break;
             case "Fiche Personnage":
                 Control.enPartie = false;
+                fenetre.panelFenetreFichePerso.init();
                 fenetre.setContentPane(fenetre.panelFenetreFichePerso);
-                fenetre.panelFenetreFichePerso.valForce.setText("" + jeu.getHero().getForce());
-                fenetre.panelFenetreFichePerso.valInt.setText("" + jeu.getHero().getIntelligence());
-                fenetre.panelFenetreFichePerso.valConst.setText("" + jeu.getHero().getConstitution());
-                fenetre.panelFenetreFichePerso.valResist.setText("" + jeu.getHero().getResistance());
-                fenetre.panelFenetreFichePerso.pointCaracteristique.setText("" + jeu.getHero().getPointCaracteristique());
-                fenetre.panelFenetreFichePerso.pointCompetence.setText("" + jeu.getHero().getPointCompetence());
-                fenetre.panelFenetreFichePerso.niveau.setText("" + jeu.getHero().getNiveau());
-                fenetre.panelFenetreFichePerso.nomHero.setText("" + jeu.getHero().getNom());
                 changerVue();
                 break;
             case "Option":
@@ -47,9 +40,18 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 changerVue();
                 break;
             case "Retour au Menu Principal":
+                // supprime les monstre
+                for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
+                    fenetre.panelFenetreDepart.monstre.remove(i);
+                    jeu.supprimeMonstre(i);
+                }
+
+                // supprime le héro
+                fenetre.panelFenetreDepart.hero.removeAll();
+                jeu.supprimeHero();
+
                 Control.enPartie = false;
                 jeu.setPause(false);
-                fenetre.barreMenu.setVisible(false);
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 changerVue();
                 // quitte le perso : sauvegarde du perso + mise du perso à null

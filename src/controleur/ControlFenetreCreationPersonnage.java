@@ -32,14 +32,12 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
                     fenetre.panelFenetreCreationPersonnage.sauvegardeSprite(idHero);
                     jeu.createHeroBDD(nomPerso, idHero);
                     spawnHero(idHero);
-                    fenetre.barreMenu.test(); // ajout du composant vie dans la barre menu
 
-                    spawnMonstre(1, 300, 250); // a enlever d'ici
-                    spawnMonstre(2, 600, 700); // a enlever d'ici
-                    spawnMonstre(3, 900, 900); // a enlever d'ici
+                    spawnMonstre(1, 500, 500); // a enlever d'ici
+                    //spawnMonstre(2, 100, 700); // a enlever d'ici
+                    //spawnMonstre(3, 1500, 900); // a enlever d'ici
 
                     Control.enPartie = true;
-                    fenetre.barreMenu.setVisible(true);
                     fenetre.setContentPane(fenetre.panelFenetreDepart);
                     fenetre.panelFenetreCreationPersonnage.initCreationPerso();
                     changerVue();

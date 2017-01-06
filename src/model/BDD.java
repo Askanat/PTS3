@@ -98,10 +98,8 @@ public class BDD {
     public void updateHero(int id, String[] tabCaracHero) {
         try {
             instruction.executeUpdate("UPDATE personnage SET nomPerso = " + tabCaracHero[0] + ", niveauPerso = " + tabCaracHero[1] + ", pointCompetence = " + tabCaracHero[2] + ", pointCaracteristique = " + tabCaracHero[3] +
-                    ", experiencePerso = " + tabCaracHero[4] +
-                    ", experienceMaxPerso =" + tabCaracHero[5] + ", forcePerso =" + tabCaracHero[6] + ", intelPerso = " + tabCaracHero[7] +
-                    ", constiPerso =" + tabCaracHero[8] + ", resiPerso =" + tabCaracHero[9] +
-                    ", gold =" + tabCaracHero[10] +
+                    ", experiencePerso = " + tabCaracHero[4] + ", experienceMaxPerso =" + tabCaracHero[5] + ", forcePerso =" + tabCaracHero[6] + ", intelPerso = " + tabCaracHero[7] +
+                    ", constiPerso =" + tabCaracHero[8] + ", resiPerso =" + tabCaracHero[9] + ", gold =" + tabCaracHero[10] +
                     " WHERE idPerso = " + id + ";");
         } catch (Exception e) {
             System.out.println("Update perso problem " + e);

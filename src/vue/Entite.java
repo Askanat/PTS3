@@ -1,6 +1,7 @@
 package vue;
 
 import model.Direction;
+import model.Monstre;
 import model.Personnage;
 
 import javax.imageio.ImageIO;
@@ -172,11 +173,38 @@ public class Entite extends JPanel {
         super.paintComponent(g);
         g.drawImage(spriteActuel, (int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 2.0), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), TAILLE_SPRITE_LARGEUR, TAILLE_SPRITE_HAUTEUR, this);
 
+        // test zone détection monstre
+        if (personnage instanceof Monstre) {
+            g.drawRect(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) - ((Monstre) personnage).getDistanceVisibilite(),
+                    personnage.getPositionY() - personnage.getHauteurHaut() - ((Monstre) personnage).getDistanceVisibilite(),
+                    ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
+                    (personnage.getHauteurHaut() + ((Monstre) personnage).getDistanceVisibilite()));
 
-        g.drawRect(personnage.getPositionX()  - personnage.getLargeurDevant() - 200,
-                personnage.getPositionY() -  personnage.getHauteurHaut() - 200,
-                (personnage.getLargeurDerriere() + 200  + personnage.getLargeurDevant() + 200),
-                (personnage.getHauteurBas() + 200 +  personnage.getHauteurHaut() + 200)); // test
+            g.drawRect(personnage.getPositionX(),
+                    personnage.getPositionY() - personnage.getHauteurHaut() - ((Monstre) personnage).getDistanceVisibilite(),
+                    ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
+                    (personnage.getHauteurHaut() + ((Monstre) personnage).getDistanceVisibilite()));
+
+            g.drawRect(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) - ((Monstre) personnage).getDistanceVisibilite(),
+                    personnage.getPositionY(),
+                    ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
+                    (personnage.getHauteurBas() + ((Monstre) personnage).getDistanceVisibilite()));
+
+            g.drawRect(personnage.getPositionX(),
+                    personnage.getPositionY(),
+                    ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
+                    (personnage.getHauteurBas() + ((Monstre) personnage).getDistanceVisibilite()));
+        }
+
+        // test zone hitbox du sprite
+        g.drawRect(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
+                personnage.getPositionY() - personnage.getHauteurHaut(),
+                personnage.getLargeurDevant() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
+                personnage.getHauteurHaut() + personnage.getHauteurBas());
+
+        // test zone hitbox de l'attaque
+            // a faire
+
 
         // barre de vie avec une barre de progression
         barreDeVie.setMaximum(personnage.getVieMax());

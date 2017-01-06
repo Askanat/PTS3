@@ -14,10 +14,14 @@ import static vue.Fenetre.Y;
  */
 public class FenetreFichePerso extends JPanel {
 
+    private Jeu jeu;
+
     public JButton retour, plusForce, moinsForce, plusInt, moinsInt, plusConst, moinsConst, plusResist, moinsResist, valider;
     public JLabel valForce, valInt, valConst, valResist, niveau, pointCaracteristique, pointCompetence, nomHero;
 
-    public FenetreFichePerso() {
+    public FenetreFichePerso(Jeu jeu) {
+        this.jeu = jeu;
+
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
@@ -106,5 +110,16 @@ public class FenetreFichePerso extends JPanel {
 
         Image img = getToolkit().getImage("images/menuOptionsTest.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+    }
+
+    public void init() {
+        valForce.setText("" + jeu.getHero().getForce());
+        valInt.setText("" + jeu.getHero().getIntelligence());
+        valConst.setText("" + jeu.getHero().getConstitution());
+        valResist.setText("" + jeu.getHero().getResistance());
+        pointCaracteristique.setText("" + jeu.getHero().getPointCaracteristique());
+        pointCompetence.setText("" + jeu.getHero().getPointCompetence());
+        niveau.setText("" + jeu.getHero().getNiveau());
+        nomHero.setText("" + jeu.getHero().getNom());
     }
 }

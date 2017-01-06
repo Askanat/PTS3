@@ -24,7 +24,6 @@ public class Fenetre extends JFrame {
     public FenetreNouvellePartie panelFenetreNouvellePartie;
     public FenetreInventaire panelFenetreInventaire;
     public MenuEnJeu panelMenuEnJeu;
-    public BarreMenu barreMenu;
     public FenetreCreationPersonnage panelFenetreCreationPersonnage;
     public FenetreFichePerso panelFenetreFichePerso;
 
@@ -39,8 +38,6 @@ public class Fenetre extends JFrame {
         this.jeu = jeu;
 
         init();
-        barreMenu.setVisible(false);
-        setJMenuBar(barreMenu);
         setUndecorated(true);
         setContentPane(panelMenuPrincipal);
         pack();
@@ -62,10 +59,9 @@ public class Fenetre extends JFrame {
         panelFenetreNouvellePartie = new FenetreNouvellePartie(jeu);
         panelMenuPrincipal = new MenuPrincipal();
         panelFenetreInventaire = new FenetreInventaire();
-        barreMenu = new BarreMenu(jeu);
         panelMenuEnJeu = new MenuEnJeu(jeu);
         panelFenetreCreationPersonnage = new FenetreCreationPersonnage(jeu);
-        panelFenetreFichePerso = new FenetreFichePerso();
+        panelFenetreFichePerso = new FenetreFichePerso(jeu);
     }
 
     public static int adapterResolutionEnX(int valeur) {
@@ -119,10 +115,6 @@ public class Fenetre extends JFrame {
 
     public void setControlMenuEnJeu(ControlMenuEnJeu controlMenuEnJeu) {
         panelMenuEnJeu.setControl(controlMenuEnJeu);
-    }
-
-    public void setControlBarreMenu(ControlBarreMenu controlBarreMenu) {
-        barreMenu.setControl(controlBarreMenu);
     }
 
     public void setControlClavier(ControlClavier controlClavier) {

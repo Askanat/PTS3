@@ -187,4 +187,10 @@ public class Hero extends Personnage {
     public double getExperienceMax() {
         return experienceMax;
     }
+
+    // retourne id de l'hero avec sa texture
+    public int getIdHero() {
+        return Integer.parseInt(""+texture.toCharArray()[texture.length() -1 - 4]);
+// renvoie l'id de l'héro
+    }
 }
