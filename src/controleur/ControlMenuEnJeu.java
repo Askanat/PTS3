@@ -41,10 +41,8 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 break;
             case "Retour au Menu Principal":
                 // supprime les monstre
-                for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
-                    fenetre.panelFenetreDepart.monstre.remove(i);
-                    jeu.supprimeMonstre(i);
-                }
+                fenetre.panelFenetreDepart.monstre.clear();
+                jeu.supprimeMonstre();
 
                 // supprime le héro
                 fenetre.panelFenetreDepart.hero.removeAll();

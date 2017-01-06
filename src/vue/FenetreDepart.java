@@ -50,7 +50,7 @@ public class FenetreDepart extends JPanel {
 
     public void dessineMonstre(int id) {
         monstre.add(new Entite());
-        monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(id - 1));
+        monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(jeu.getSizeTabMonstre() - 1));
     }
 
     public void setControl(ControlFenetreDepart controlFenetreDepart) {

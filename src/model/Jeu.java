@@ -73,6 +73,9 @@ public class Jeu {
     public void supprimeMonstre(int i) {
         tableauMonstre.remove(i);
     }
+    public void supprimeMonstre() {
+        tableauMonstre.clear();
+    }
 
     public void supprimeHero() {
         hero = null;
