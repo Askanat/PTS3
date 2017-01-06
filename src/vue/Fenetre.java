@@ -120,6 +120,4 @@ public class Fenetre extends JFrame {
     public void setControlClavier(ControlClavier controlClavier) {
         addKeyListener(controlClavier);
     }
-
-
 }

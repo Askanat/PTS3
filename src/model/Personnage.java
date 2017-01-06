@@ -13,10 +13,11 @@ import static model.Jeu.GRAVITE;
  */
 
 public abstract class Personnage {
+
     protected String nom;
     protected int niveau;
     protected int vie, vieMax;
-    protected int mana, manaMax = 50;
+    protected int mana, manaMax;
     protected int degats, degatMax;
     protected int armure, armureMax;
     protected int positionX, positionY;
@@ -29,8 +30,14 @@ public abstract class Personnage {
 
     protected Rectangle hitBoxCorps;
 
+    protected int porteeDeAttaque;
+    protected int distanceDeAttaqueDeOrigineAX;
+    protected int distanceDeAttaqueDeOrigineAY;
 
-    public Personnage(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, String texture, int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
+
+    public Personnage(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, String texture,
+                      int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut, int porteeDeAttaque,
+                      int distanceDeAttaqueDeOrigineAX, int distanceDeAttaqueDeOrigineAY) {
 
         this.nom = nom;
         this.niveau = niveau;
@@ -56,6 +63,10 @@ public abstract class Personnage {
         this.texture = texture;
 
         hitBoxCorps = new Rectangle();
+
+        this.porteeDeAttaque = porteeDeAttaque;
+        this.distanceDeAttaqueDeOrigineAX = distanceDeAttaqueDeOrigineAX;
+        this.distanceDeAttaqueDeOrigineAY = distanceDeAttaqueDeOrigineAY;
     }
 
     public void recevoirDegats(int degats) {
@@ -282,10 +293,10 @@ public abstract class Personnage {
 
     public Rectangle getHitBoxAttaque() {
         Rectangle r = new Rectangle(
-                positionX + (int) (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() * 1.5 : getLargeurDerriere() / 2.0),
-                positionY + (int) (-getHauteurHaut() / 2.0),
-                (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()),
-                getHauteurBas()
+                positionX + (getDirectionOrientation() == Direction.GAUCHE ? -(distanceDeAttaqueDeOrigineAX + porteeDeAttaque) : distanceDeAttaqueDeOrigineAX),
+                positionY - distanceDeAttaqueDeOrigineAY,
+                porteeDeAttaque,
+                porteeDeAttaque
         );
         return r;
     }
