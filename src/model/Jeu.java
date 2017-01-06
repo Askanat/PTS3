@@ -43,9 +43,6 @@ public class Jeu {
         bdd.resetPartie(idPartie);
     }
 
-    public BDD getBDD() {
-        return bdd;
-    }
 
     public void setPause(boolean pause) {
         this.pause = pause;
@@ -173,6 +170,7 @@ public class Jeu {
     public void setSave(boolean save) {
         this.save = save;
     }
+
     public boolean getSave(){
         return save;
     }

@@ -16,7 +16,7 @@ public abstract class Personnage {
     protected String nom;
     protected int niveau;
     protected int vie, vieMax;
-    protected int mana, manaMax;
+    protected int mana, manaMax = 50;
     protected int degats, degatMax;
     protected int armure, armureMax;
     protected int positionX, positionY;
@@ -101,6 +101,22 @@ public abstract class Personnage {
 
     public final int getVie() {
         return vie;
+    }
+
+    public final int getMana() {
+        return mana;
+    }
+
+    public final int getManaMax() {
+        return manaMax;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+    public void setManaMax(int manaMax) {
+        this.manaMax = manaMax;
     }
 
     public void setVieMax(int vieMax) {

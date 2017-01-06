@@ -1,9 +1,6 @@
 package vue;
 
-import model.Direction;
-import model.Jeu;
-import model.Monstre;
-import model.Personnage;
+import model.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -25,8 +22,6 @@ public class Entite extends JPanel {
     private BufferedImage[] tableauSprite;
     public Image spriteActuel;
     private int alternerSpriteDeplacement, alternerSpriteAttaque;
-
-    private JProgressBar barreDeVie;
 
     public Entite(Jeu jeu) {
         this.jeu = jeu;
@@ -60,8 +55,6 @@ public class Entite extends JPanel {
         }
 
         spriteActuel = tableauSprite[2];
-
-        barreDeVie = new JProgressBar();
     }
 
     public static BufferedImage[] decoupage(BufferedImage origin, int divisionHorizontale, int divisionVerticale) {
@@ -187,24 +180,31 @@ public class Entite extends JPanel {
             g.drawRect(personnage.getHitBoxAttaque().x, personnage.getHitBoxAttaque().y, personnage.getHitBoxAttaque().width, personnage.getHitBoxAttaque().height);
         }
 
-        // barre de vie avec une barre de progression
-        barreDeVie.setMaximum(personnage.getVieMax());
-        barreDeVie.setMinimum(0);
-        barreDeVie.setValue(50);
-        barreDeVie.setAlignmentX(personnage.getPositionX());
-        barreDeVie.setAlignmentY(personnage.getPositionY());
-        barreDeVie.setBorderPainted(true);
-        barreDeVie.setBackground(Color.red);
-        barreDeVie.paintComponents(g);
-
         // barre de vie avec des rectangles
-        g.setColor(Color.BLACK);
-        g.fillRect((int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0) - Fenetre.adapterResolutionEnX(1), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0) - Fenetre.adapterResolutionEnY(1), Fenetre.adapterResolutionEnX(75) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
-        g.setColor(Color.WHITE);
-        g.fillRect((int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), Fenetre.adapterResolutionEnX(75), Fenetre.adapterResolutionEnY(15));
-        g.setColor(Color.RED);
-        g.fillRect((int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), Fenetre.adapterResolutionEnX(75 * personnage.getVie() / personnage.getVieMax()), Fenetre.adapterResolutionEnY(15));
+        if(personnage instanceof Monstre) {
+            g.setColor(Color.BLACK);
+            g.fillRect((int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0) - Fenetre.adapterResolutionEnX(1), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0) - Fenetre.adapterResolutionEnY(1), Fenetre.adapterResolutionEnX(75) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+            g.setColor(Color.WHITE);
+            g.fillRect((int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), Fenetre.adapterResolutionEnX(75), Fenetre.adapterResolutionEnY(15));
+            g.setColor(Color.RED);
+            g.fillRect((int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), Fenetre.adapterResolutionEnX(75 * personnage.getVie() / personnage.getVieMax()), Fenetre.adapterResolutionEnY(15));
+        } else if(personnage instanceof Hero) {
+            // Vie du héro
+            g.setColor(Color.BLACK);
+            g.fillRect(50,20, Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+            g.setColor(Color.WHITE);
+            g.fillRect(50,20, Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
+            g.setColor(Color.GREEN);
+            g.fillRect(50,20, Fenetre.adapterResolutionEnX(200 * personnage.getVie() / personnage.getVieMax()), Fenetre.adapterResolutionEnY(15));
 
+            //Mana du Héro
+            g.setColor(Color.BLACK);
+            g.fillRect(50,35, Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+            g.setColor(Color.WHITE);
+            g.fillRect(50,35, Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
+            g.setColor(Color.BLUE);
+            g.fillRect(50,35, Fenetre.adapterResolutionEnX(200 * personnage.getMana() / personnage.getManaMax()), Fenetre.adapterResolutionEnY(15));
+        }
 
         // remet la couleur par defaut
         g.setColor(Color.BLACK);

@@ -45,9 +45,6 @@ public class FenetreDepart extends JPanel {
         hero.creationEntite(jeu.getHero());
     }
 
-    public void dessinePng() {
-    }
-
     public void dessineMonstre(int id) {
         monstre.add(new Entite(jeu));
         monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(jeu.getSizeTabMonstre() - 1));
