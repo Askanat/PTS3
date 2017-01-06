@@ -52,10 +52,8 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 jeu.setPause(false);
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 changerVue();
-                // quitte le perso : sauvegarde du perso + mise du perso à null
                 break;
             case "Retour Au Bureau":
-                // sauvegarde du perso
                 System.exit(0);
                 break;
         }
