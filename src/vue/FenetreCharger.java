@@ -164,28 +164,13 @@ public class FenetreCharger extends JPanel {
         }
     }
 
-    public void setLabelNom1(String nom) {
-        nomSlot1.setText(nom);
-    }
-
-    public void setLabelNom2(String nom) {
-        nomSlot2.setText(nom);
-    }
-
-    public void setLabelNom3(String nom) {
-        nomSlot3.setText(nom);
-    }
-
-    public void setLabelLVL1(String nom) {
-        niveauSlot1.setText(nom);
-    }
-
-    public void setLabelLVL2(String nom) {
-        niveauSlot2.setText(nom);
-    }
-
-    public void setLabelLVL3(String nom) {
-        niveauSlot3.setText(nom);
+    public void init(){
+        nomSlot1.setText(jeu.readNomPerso(1));
+        niveauSlot1.setText(jeu.readLVLPerso(1));
+        nomSlot2.setText(jeu.readNomPerso(2));
+        niveauSlot2.setText(jeu.readLVLPerso(2));
+        nomSlot3.setText(jeu.readNomPerso(3));
+        niveauSlot3.setText(jeu.readLVLPerso(3));
     }
 
     public void setPaneSelectionnePersonnage() {
