@@ -2,6 +2,8 @@ package model;
 
 import vue.Fenetre;
 
+import java.awt.*;
+
 /**
  * Created by bastien on 29/09/16.
  */
@@ -13,6 +15,8 @@ public class Monstre extends Personnage {
     private double coeffDegat;
     private double coeffArmure;
     private int distanceVisibilite;
+
+    private Rectangle hitBoxVue;
 
     public Monstre(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, double coeffArmure, double coeffVie, double coeffMana, double coeffDegat,
                    String texture, int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, int distanceVisibilite) {
@@ -38,6 +42,7 @@ public class Monstre extends Personnage {
 
         this.distanceVisibilite = Fenetre.adapterResolutionEnX(distanceVisibilite);
 
+        hitBoxVue = new Rectangle();
         System.out.println("nom:" + nom + ", niveau:" + niveau + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
                 degatMax + ", armureMax:" + armureMax + ", xpdonne: " + donneExperience());
     }
@@ -48,20 +53,13 @@ public class Monstre extends Personnage {
 
     public void update(Hero hero) {
         // Si le hero est dans le champs de vision du monstre
-        if (positionX + (directionOrientation == Direction.GAUCHE ? largeurDevant : largeurDerriere) + distanceVisibilite >=
-                hero.positionX - (hero.directionOrientation == Direction.GAUCHE ? hero.largeurDevant : hero.largeurDerriere) &&
-                positionX - (directionOrientation == Direction.GAUCHE ? largeurDevant : largeurDerriere) - distanceVisibilite <=
-                        hero.positionX + (hero.directionOrientation == Direction.GAUCHE ? hero.largeurDevant : hero.largeurDerriere) &&
-                positionY - hauteurHaut - distanceVisibilite <= hero.positionY + hero.hauteurBas &&
-                positionY + hauteurBas + distanceVisibilite >= hero.positionY - hero.hauteurHaut) {
+        if (collision(getHitBoxVue(), hero.getHitBoxCorps())) {
             // déplacement
             if (positionY - hauteurHaut > hero.positionY + hero.hauteurBas) // si le héro est plus haut que le monstre
                 sauter();
-            if (positionX + (directionOrientation == Direction.GAUCHE ? largeurDevant : largeurDerriere) <
-                    hero.positionX - (hero.directionOrientation == Direction.GAUCHE ? hero.largeurDevant : hero.largeurDerriere)) // si le héro est à droite
+            if (positionX < hero.positionX && !collision(getHitBoxCorps(), hero.getHitBoxCorps())) // si le héro est à droite
                 deplacerADroite();
-            else if (positionX - (directionOrientation == Direction.GAUCHE ? largeurDevant : largeurDerriere) >
-                    hero.positionX + (hero.directionOrientation == Direction.GAUCHE ? hero.largeurDevant : hero.largeurDerriere)) // si héro est à gauche
+            else if (positionX > hero.positionX && !collision(getHitBoxCorps(), hero.getHitBoxCorps())) // si héro est à gauche
                 deplacerAGauche();
         }
     }
@@ -73,5 +71,16 @@ public class Monstre extends Personnage {
 
     public int getDistanceVisibilite() {
         return distanceVisibilite;
+    }
+
+    public Rectangle getHitBoxVue() {
+        hitBoxVue = new Rectangle(
+                getPositionX() - (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()) - getDistanceVisibilite(),
+                getPositionY() - getHauteurHaut() - getDistanceVisibilite(),
+                getLargeurDevant() + getLargeurDerriere() + getDistanceVisibilite() + getDistanceVisibilite(),
+                getHauteurHaut() + getDistanceVisibilite() + getHauteurBas() + getDistanceVisibilite()
+        );
+
+        return hitBoxVue;
     }
 }

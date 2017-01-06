@@ -27,6 +27,11 @@ public abstract class Personnage {
     protected Direction directionOrientation;
     protected String texture;
 
+    protected Rectangle hitBoxCorps;
+    // variable pour la hitBoxAttaque
+    protected int hitBoxAttaqueX, hitBoxAttaqueY, hitBoxAttaqueWidth, hitBoxAttaqueHeight;
+
+
     public Personnage(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, String texture, int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
 
         this.nom = nom;
@@ -51,6 +56,12 @@ public abstract class Personnage {
         attaquer = false;
 
         this.texture = texture;
+
+        hitBoxCorps = new Rectangle();
+        hitBoxAttaqueX = (int) (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() * 1.5 : getLargeurDerriere() / 2.0);
+        hitBoxAttaqueY = (int) (-getHauteurHaut() / 2.0);
+        hitBoxAttaqueWidth = (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere());
+        hitBoxAttaqueHeight = getHauteurBas();
     }
 
     public void recevoirDegats(int degats) {
@@ -65,21 +76,7 @@ public abstract class Personnage {
     }
 
     public void attaquer(Personnage cible) {
-
-        int portee = Fenetre.adapterResolutionEnX(1); // portee du bras puis portee des armes
-
-
-        Rectangle recA = new Rectangle((int) (getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() * 1.5 : getLargeurDerriere() / 2.0)),
-                (int) (getPositionY() - getHauteurHaut() / 2.0),
-                (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()),
-                getHauteurBas());
-
-        Rectangle recB = new Rectangle(cible.getPositionX() - (cible.getDirectionOrientation() == Direction.GAUCHE ? cible.getLargeurDevant() : cible.getLargeurDerriere()),
-                cible.getPositionY() - cible.getHauteurHaut(),
-                cible.getLargeurDevant() + (cible.getDirectionOrientation() == Direction.GAUCHE ? cible.getLargeurDevant() : cible.getLargeurDerriere()),
-                cible.getHauteurHaut() + cible.getHauteurBas());
-
-        if (collision(recA, recB)) {
+        if (collision(getHitBoxAttaque(), cible.getHitBoxCorps())) {
             cible.recevoirDegats(getDegats());
         }
     }
@@ -263,11 +260,28 @@ public abstract class Personnage {
     }
 
     public boolean collision(Rectangle A, Rectangle B) {
-        if ((abs((A.getLocation().x + (A.getSize().width / 2)) - (B.getLocation().x + (B.getSize().width / 2))) < (A.getSize().width + B.getSize().width) / 2)
+        if ((abs((A.getLocation().x + (A.getSize().width / 2)) - (B.getLocation().x + (B.getSize().width / 2))) <
+                (A.getSize().width + B.getSize().width) / 2)
                 &&
-                (abs((A.getLocation().y + (A.getSize().height / 2)) - (B.getLocation().y + (B.getSize().height / 2))) < (A.getSize().height + B.getSize().height) / 2))
+                (abs((A.getLocation().y + (A.getSize().height / 2)) - (B.getLocation().y + (B.getSize().height / 2))) <
+                        (A.getSize().height + B.getSize().height) / 2))
             return true;
         else
             return false;
+    }
+
+    public Rectangle getHitBoxAttaque() {
+        Rectangle r = new Rectangle(positionX + hitBoxAttaqueX, positionY + hitBoxAttaqueY, hitBoxAttaqueWidth, hitBoxAttaqueHeight);
+        return r;
+    }
+
+    public Rectangle getHitBoxCorps() {
+        hitBoxCorps = new Rectangle(
+                getPositionX() - (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()),
+                getPositionY() - getHauteurHaut(),
+                getLargeurDevant() + getLargeurDerriere(),
+                getHauteurHaut() + getHauteurBas()
+        );
+        return hitBoxCorps;
     }
 }
