@@ -32,11 +32,11 @@ public class FenetreDepart extends JPanel {
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
-        hero = new Entite();
+        hero = new Entite(jeu);
 
         png = new Entite[NOMBRE_DE_PNG];
         for (int i = 0; i < png.length; i++)
-            png[i] = new Entite();
+            png[i] = new Entite(jeu);
 
         monstre = new ArrayList<Entite>(); // a enlever d'ici
     }
@@ -49,7 +49,7 @@ public class FenetreDepart extends JPanel {
     }
 
     public void dessineMonstre(int id) {
-        monstre.add(new Entite());
+        monstre.add(new Entite(jeu));
         monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(jeu.getSizeTabMonstre() - 1));
     }
 

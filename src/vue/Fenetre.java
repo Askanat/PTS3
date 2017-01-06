@@ -52,7 +52,7 @@ public class Fenetre extends JFrame {
 
     public void init() {
         panelFenetreCharger = new FenetreCharger(jeu);
-        panelFenetreOptions = new FenetreOptions();
+        panelFenetreOptions = new FenetreOptions(jeu);
         panelFenetreCredits = new FenetreCredits();
         panelFenetreDepart = new FenetreDepart(jeu);
         panelFenetreDonjon = new FenetreDonjon(jeu);

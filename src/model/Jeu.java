@@ -21,6 +21,8 @@ public class Jeu {
     private ArrayList<Monstre> tableauMonstre;
     private BDD bdd;
 
+    private boolean hitBox;
+
     private int nbPartieLibre;
     private boolean pause;
 
@@ -157,5 +159,13 @@ public class Jeu {
 
     public String readNomPerso(int id) {
         return bdd.readNomPerso(id);
+    }
+
+    public void setHitBox(boolean hitBox) {
+        this.hitBox = hitBox;
+    }
+
+    public boolean getHitBox(){
+        return hitBox;
     }
 }

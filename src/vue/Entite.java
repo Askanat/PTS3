@@ -1,9 +1,6 @@
 package vue;
 
-import model.Direction;
-import model.Hero;
-import model.Monstre;
-import model.Personnage;
+import model.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,7 +15,7 @@ import java.io.IOException;
  */
 
 public class Entite extends JPanel {
-
+    Jeu jeu;
     public Personnage personnage;
     public static final int TAILLE_SPRITE_HAUTEUR = Fenetre.adapterResolutionEnY(300);
     public static final int TAILLE_SPRITE_LARGEUR = Fenetre.adapterResolutionEnX(300);
@@ -28,7 +25,8 @@ public class Entite extends JPanel {
 
     private JProgressBar barreDeVie;
 
-    public Entite() {
+    public Entite(Jeu jeu ) {
+        this.jeu = jeu;
         alternerSpriteDeplacement = 0;
     }
 
@@ -174,52 +172,53 @@ public class Entite extends JPanel {
         super.paintComponent(g);
         g.drawImage(spriteActuel, (int) (personnage.getPositionX() - TAILLE_SPRITE_LARGEUR / 2.0), (int) (personnage.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), TAILLE_SPRITE_LARGEUR, TAILLE_SPRITE_HAUTEUR, this);
 
-        // test zone détection monstre
-        if (personnage instanceof Monstre) {
-            g.drawRect(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) - ((Monstre) personnage).getDistanceVisibilite(),
-                    personnage.getPositionY() - personnage.getHauteurHaut() - ((Monstre) personnage).getDistanceVisibilite(),
-                    ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
-                    (personnage.getHauteurHaut() + ((Monstre) personnage).getDistanceVisibilite()));
+        if (jeu.getHitBox()) {
+            // test zone détection monstre
+            if (personnage instanceof Monstre) {
+                g.drawRect(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) - ((Monstre) personnage).getDistanceVisibilite(),
+                        personnage.getPositionY() - personnage.getHauteurHaut() - ((Monstre) personnage).getDistanceVisibilite(),
+                        ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
+                        (personnage.getHauteurHaut() + ((Monstre) personnage).getDistanceVisibilite()));
 
-            g.drawRect(personnage.getPositionX(),
-                    personnage.getPositionY() - personnage.getHauteurHaut() - ((Monstre) personnage).getDistanceVisibilite(),
-                    ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
-                    (personnage.getHauteurHaut() + ((Monstre) personnage).getDistanceVisibilite()));
+                g.drawRect(personnage.getPositionX(),
+                        personnage.getPositionY() - personnage.getHauteurHaut() - ((Monstre) personnage).getDistanceVisibilite(),
+                        ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
+                        (personnage.getHauteurHaut() + ((Monstre) personnage).getDistanceVisibilite()));
 
-            g.drawRect(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) - ((Monstre) personnage).getDistanceVisibilite(),
-                    personnage.getPositionY(),
-                    ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
-                    (personnage.getHauteurBas() + ((Monstre) personnage).getDistanceVisibilite()));
+                g.drawRect(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) - ((Monstre) personnage).getDistanceVisibilite(),
+                        personnage.getPositionY(),
+                        ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
+                        (personnage.getHauteurBas() + ((Monstre) personnage).getDistanceVisibilite()));
 
-            g.drawRect(personnage.getPositionX(),
-                    personnage.getPositionY(),
-                    ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
-                    (personnage.getHauteurBas() + ((Monstre) personnage).getDistanceVisibilite()));
-        }
+                g.drawRect(personnage.getPositionX(),
+                        personnage.getPositionY(),
+                        ((personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) + ((Monstre) personnage).getDistanceVisibilite()),
+                        (personnage.getHauteurBas() + ((Monstre) personnage).getDistanceVisibilite()));
+            }
 
+            // test zone hitbox du sprite
+            g.drawRect(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
+                    personnage.getPositionY() - personnage.getHauteurHaut(),
+                    personnage.getLargeurDevant() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
+                    personnage.getHauteurHaut() + personnage.getHauteurBas());
 
-        // test zone hitbox du sprite
-        g.drawRect(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
-                personnage.getPositionY() - personnage.getHauteurHaut(),
-                personnage.getLargeurDevant() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
-                personnage.getHauteurHaut() + personnage.getHauteurBas());
-
-        // test zone hitbox de l'attaque
-        if (personnage instanceof Hero) {
-            g.drawRect((int) (personnage.getPositionX() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? -personnage.getLargeurDevant() * 1.5 : personnage.getLargeurDerriere() / 2.0)),
+            // test zone hitbox de l'attaque
+            if (personnage instanceof Hero) {
+                g.drawRect((int) (personnage.getPositionX() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? -personnage.getLargeurDevant() * 1.5 : personnage.getLargeurDerriere() / 2.0)),
+                        (int) (personnage.getPositionY() - personnage.getHauteurHaut() / 2.0),
+                        (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
+                        personnage.getHauteurBas());
+            }
+            /*Rectangle recA = new Rectangle((int) (personnage.getPositionX() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) / 2.0),
                     (int) (personnage.getPositionY() - personnage.getHauteurHaut() / 2.0),
                     (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
                     personnage.getHauteurBas());
-        }
-        /*Rectangle recA = new Rectangle((int) (personnage.getPositionX() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()) / 2.0),
-                (int) (personnage.getPositionY() - personnage.getHauteurHaut() / 2.0),
-                (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
-                personnage.getHauteurBas());
 
-        Rectangle recB = new Rectangle(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
-                personnage.getPositionY() - personnage.getHauteurHaut(),
-                personnage.getLargeurDevant() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
-                personnage.getHauteurHaut() + personnage.getHauteurBas());*/
+            Rectangle recB = new Rectangle(personnage.getPositionX() - (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
+                    personnage.getPositionY() - personnage.getHauteurHaut(),
+                    personnage.getLargeurDevant() + (personnage.getDirectionOrientation() == Direction.GAUCHE ? personnage.getLargeurDevant() : personnage.getLargeurDerriere()),
+                    personnage.getHauteurHaut() + personnage.getHauteurBas());*/
+        }
 
         // barre de vie avec une barre de progression
         barreDeVie.setMaximum(personnage.getVieMax());

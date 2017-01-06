@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.ControlFenetreOptions;
+import model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,19 +15,20 @@ import static vue.Fenetre.Y;
 
 public class FenetreOptions extends JPanel {
 
-    public JButton retour, hitbox;
+    Jeu jeu;
+    public JButton retour, hitBox;
     private JLabel options, texte;
     public JTextField avancer, sauter, attaquer, reculer;
 
-    public FenetreOptions() {
-
+    public FenetreOptions(Jeu jeu) {
+        this.jeu = jeu;
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
         retour = new JButton("");
         retour.setActionCommand("Retour");
-        hitbox = new JButton("Hitbox");
-        hitbox.setActionCommand("Hitbox");
+        hitBox = new JButton("Hitbox");
+        hitBox.setActionCommand("Hitbox");
         avancer = new JTextField("");
         avancer.setActionCommand("Avancer");
         sauter = new JTextField("");
@@ -37,7 +39,7 @@ public class FenetreOptions extends JPanel {
         reculer.setActionCommand("Reculer");
 
         add(retour);
-        add(hitbox);
+        add(hitBox);
         add(avancer);
         add(sauter);
         add(attaquer);
@@ -46,7 +48,7 @@ public class FenetreOptions extends JPanel {
 
     public void setControl(ControlFenetreOptions controlFenetreOptions) {
         retour.addActionListener(controlFenetreOptions);
-        hitbox.addActionListener(controlFenetreOptions);
+        hitBox.addActionListener(controlFenetreOptions);
     }
 
     protected void paintComponent(Graphics g) {
@@ -59,13 +61,16 @@ public class FenetreOptions extends JPanel {
         retour.setFocusable(false);
         retour.setBorder(null);
 
-        hitbox.setBounds(Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
-        hitbox.setBackground(new Color(0, 0, 0, 0));
-        hitbox.setFont(f);
-        hitbox.setForeground(Color.RED);
-        hitbox.setFocusable(false);
-        hitbox.setBorder(null);
-
+        hitBox.setBounds(Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
+        hitBox.setBackground(new Color(0, 0, 0, 0));
+        hitBox.setFont(f);
+        if(!jeu.getHitBox()) {
+            hitBox.setForeground(Color.RED);
+        }else{
+            hitBox.setForeground(Color.GREEN);
+        }
+        hitBox.setFocusable(false);
+        hitBox.setBorder(null);
 
         avancer.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(92), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
         avancer.setBackground(new Color(0, 0, 0, 0));

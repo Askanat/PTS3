@@ -33,7 +33,7 @@ public class FenetreDonjon extends JPanel {
 
         hero = new Entite[NOMBRE_DE_EQUIPEMENT + 1]; // tableau qui regroupe le héro + ses équipements
         for (int i = 0; i < hero.length; i++)
-            hero[i] = new Entite();
+            hero[i] = new Entite(jeu);
 
         monstre = new ArrayList<Entite>();
     }
@@ -43,7 +43,7 @@ public class FenetreDonjon extends JPanel {
     }
 
     public void dessineMonstre(int id) {
-        monstre.add(new Entite());
+        monstre.add(new Entite(jeu));
         monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(id - 1));
     }
 
