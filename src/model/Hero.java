@@ -8,6 +8,8 @@ import static java.lang.Math.pow;
 
 public class Hero extends Personnage {
 
+    Jeu jeu;
+
     private double experience, experienceMax;
     private int or;
     private int pointCaracteristique, pointCompetence;
@@ -101,6 +103,7 @@ public class Hero extends Personnage {
             update_ExperienceMax();
             setPointCaractéristique();
             setPointCompetence();
+            jeu.setSave(true);
         }
     }
 
