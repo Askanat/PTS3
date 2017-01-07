@@ -192,19 +192,19 @@ public class Entite extends JPanel {
         } else if (personnage instanceof Hero) {
             // barre de vie pour le héro
             g.setColor(Color.BLACK);
-            g.fillRect(50, 20, Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+            g.fillRect(Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1), Fenetre.adapterResolutionEnY(40) - Fenetre.adapterResolutionEnY(1), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
             g.setColor(Color.WHITE);
-            g.fillRect(50, 20, Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
+            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(40), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
             g.setColor(Color.RED);
-            g.fillRect(50, 20, Fenetre.adapterResolutionEnX(200 * personnage.getVie() / personnage.getVieMax()), Fenetre.adapterResolutionEnY(15));
+            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(40), Fenetre.adapterResolutionEnX(200 * personnage.getVie() / personnage.getVieMax()), Fenetre.adapterResolutionEnY(15));
 
             // barre de mana pour le Héro
             g.setColor(Color.BLACK);
-            g.fillRect(50, 35, Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+            g.fillRect(Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1), Fenetre.adapterResolutionEnY(70) - Fenetre.adapterResolutionEnY(1), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
             g.setColor(Color.WHITE);
-            g.fillRect(50, 35, Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
+            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(70), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
             g.setColor(Color.BLUE);
-            g.fillRect(50, 35, Fenetre.adapterResolutionEnX(200 * personnage.getMana() / personnage.getManaMax()), Fenetre.adapterResolutionEnY(15));
+            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(70), Fenetre.adapterResolutionEnX(200 * personnage.getMana() / personnage.getManaMax()), Fenetre.adapterResolutionEnY(15));
         }
     }
 }

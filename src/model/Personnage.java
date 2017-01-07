@@ -64,9 +64,9 @@ public abstract class Personnage {
 
         hitBoxCorps = new Rectangle();
 
-        this.porteeDeAttaque = porteeDeAttaque;
-        this.distanceDeAttaqueDeOrigineAX = distanceDeAttaqueDeOrigineAX;
-        this.distanceDeAttaqueDeOrigineAY = distanceDeAttaqueDeOrigineAY;
+        this.porteeDeAttaque = Fenetre.adapterResolutionEnX(porteeDeAttaque);
+        this.distanceDeAttaqueDeOrigineAX = Fenetre.adapterResolutionEnX(distanceDeAttaqueDeOrigineAX);
+        this.distanceDeAttaqueDeOrigineAY = Fenetre.adapterResolutionEnY(distanceDeAttaqueDeOrigineAY);
     }
 
     public void recevoirDegats(int degats) {

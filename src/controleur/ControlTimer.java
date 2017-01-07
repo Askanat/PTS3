@@ -55,11 +55,9 @@ public class ControlTimer extends Control implements ActionListener {
                 if (jeu.getTemps() % 300 == 0) {
                     jeu.sauvegardeHero();
                     jeu.setSave(true);
-                    changerVue();
                 }
                 if(jeu.getTemps() % 310 == 0){
                     jeu.setSave(false);
-                    changerVue();
                 }
 
 
@@ -108,7 +106,7 @@ public class ControlTimer extends Control implements ActionListener {
 
                     jeu.updateMonstre(i); // supprime les montres si ils sont morts
                 }
-                jeu.getHero().upNiveau();
+                jeu.getHero().upNiveau(); // à mettre dans une fonction jeu qui fait la sauvegarde si le héro up de niveau
             }
             //jeu.getHero().afficherEtat();
             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
