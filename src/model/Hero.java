@@ -103,7 +103,6 @@ public class Hero extends Personnage {
             update_ExperienceMax();
             setPointCaractéristique();
             setPointCompetence();
-            jeu.setSave(true);
         }
     }
 
