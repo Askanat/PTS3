@@ -100,8 +100,9 @@ public class Hero extends Personnage {
     public void upNiveau() {
         if (checkNiveauSup()) {
             setNiveau(getNiveau() + 1);
+            setExperience(getExperience()-getExperienceMax());
             update_ExperienceMax();
-            setPointCaractéristique();
+            gainPointCaracteristique();
             setPointCompetence();
         }
     }
@@ -144,8 +145,12 @@ public class Hero extends Personnage {
     }
 
     //Gestion de l'ajout de Point de Caractéristique et le Return
-    public void setPointCaractéristique() {
-        pointCaracteristique = getPointCaracteristique() + 10;
+    public void setPointCaracteristique(int pointCaracteristique) {
+        this.pointCaracteristique = pointCaracteristique;
+    }
+
+    public void gainPointCaracteristique(){
+        pointCaracteristique = getPointCaracteristique() +10;
     }
 
     public int getPointCaracteristique() {

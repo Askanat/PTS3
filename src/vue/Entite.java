@@ -195,16 +195,25 @@ public class Entite extends JPanel {
             g.fillRect(Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1), Fenetre.adapterResolutionEnY(40) - Fenetre.adapterResolutionEnY(1), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
             g.setColor(Color.WHITE);
             g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(40), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
-            g.setColor(Color.RED);
+            g.setColor(Color.GREEN);
             g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(40), Fenetre.adapterResolutionEnX(200 * personnage.getVie() / personnage.getVieMax()), Fenetre.adapterResolutionEnY(15));
 
             // barre de mana pour le Héro
             g.setColor(Color.BLACK);
-            g.fillRect(Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1), Fenetre.adapterResolutionEnY(70) - Fenetre.adapterResolutionEnY(1), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+            g.fillRect(Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1), Fenetre.adapterResolutionEnY(60) - Fenetre.adapterResolutionEnY(1), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
             g.setColor(Color.WHITE);
-            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(70), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
+            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(60), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
             g.setColor(Color.BLUE);
-            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(70), Fenetre.adapterResolutionEnX(200 * personnage.getMana() / personnage.getManaMax()), Fenetre.adapterResolutionEnY(15));
+            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(60), Fenetre.adapterResolutionEnX(200 * personnage.getMana() / personnage.getManaMax()), Fenetre.adapterResolutionEnY(15));
+
+            // barre de exp pour le Héro
+            g.setColor(Color.BLACK);
+            g.fillRect(Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1), Fenetre.adapterResolutionEnY(80) - Fenetre.adapterResolutionEnY(1), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+            g.setColor(Color.WHITE);
+            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(80), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
+            g.setColor(Color.ORANGE);
+            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(80), Fenetre.adapterResolutionEnX(200 * (int)((Hero) personnage).getExperience() / (int)((Hero) personnage).getExperienceMax()), Fenetre.adapterResolutionEnY(15));
+
         }
     }
 }

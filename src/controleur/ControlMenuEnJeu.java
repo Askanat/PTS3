@@ -40,6 +40,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 changerVue();
                 break;
             case "Retour au Menu Principal":
+                jeu.sauvegardeHero();
                 // supprime les monstre
                 fenetre.panelFenetreDepart.monstre.clear();
                 jeu.supprimeMonstre();
@@ -54,6 +55,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 changerVue();
                 break;
             case "Retour Au Bureau":
+                jeu.sauvegardeHero();
                 System.exit(0);
                 break;
         }

@@ -19,6 +19,54 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
+            case "PlusForce":
+                jeu.getHero().setForce(jeu.getHero().getForce() + 1);
+                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()-1);
+                fenetre.panelFenetreFichePerso.init();
+                break;
+
+            case "MoinsForce":
+                jeu.getHero().setForce(jeu.getHero().getForce()-1);
+                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()+1);
+                fenetre.panelFenetreFichePerso.init();
+                break;
+
+            case "PlusInt":
+                jeu.getHero().setIntelligence(jeu.getHero().getIntelligence()+1);
+                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()-1);
+                fenetre.panelFenetreFichePerso.init();
+                break;
+
+            case "MoinsInt":
+                jeu.getHero().setIntelligence(jeu.getHero().getIntelligence()-1);
+                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()+1);
+                fenetre.panelFenetreFichePerso.init();
+                break;
+
+            case "PlusResist":
+                jeu.getHero().setResistance(jeu.getHero().getResistance()+1);
+                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()-1);
+                fenetre.panelFenetreFichePerso.init();
+                break;
+
+            case "MoinsResist":
+                jeu.getHero().setResistance(jeu.getHero().getResistance()-1);
+                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()+1);
+                fenetre.panelFenetreFichePerso.init();
+                break;
+
+            case "PlusConst":
+                jeu.getHero().setConstitution(jeu.getHero().getConstitution()+1);
+                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()-1);
+                fenetre.panelFenetreFichePerso.init();
+                break;
+
+            case "MoinsConst":
+                jeu.getHero().setConstitution(jeu.getHero().getConstitution()-1);
+                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()+1);
+                fenetre.panelFenetreFichePerso.init();
+                break;
+
             case "Retour":
                     //Permet de réafficher le menu en jeu et superposer les vues
                     fenetre.setContentPane(fenetre.panelFenetreDepart);

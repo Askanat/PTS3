@@ -92,7 +92,6 @@ public class Fenetre extends JFrame {
         panelFenetreCredits.setControl(controlFenetreCredits);
     }
 
-
     public void setControlFenetreDepart(ControlFenetreDepart controlFenetreDepart) {
         panelFenetreDepart.setControl(controlFenetreDepart);
     }
