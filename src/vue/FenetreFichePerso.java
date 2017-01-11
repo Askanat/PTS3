@@ -108,7 +108,47 @@ public class FenetreFichePerso extends JPanel {
         retour.setFocusable(false);
         retour.setBorder(null);
 
-        Image img = getToolkit().getImage("images/menuOptionsTest.png");
+        plusForce.setBounds(Fenetre.adapterResolutionEnX(1388), Fenetre.adapterResolutionEnY(265), Fenetre.adapterResolutionEnX(38), Fenetre.adapterResolutionEnX(38));
+        plusForce.setBackground(new Color(0, 0, 0, 0));
+        plusForce.setFocusable(false);
+        plusForce.setBorder(null);
+
+        moinsForce.setBounds(Fenetre.adapterResolutionEnX(1337), Fenetre.adapterResolutionEnY(265), Fenetre.adapterResolutionEnX(38), Fenetre.adapterResolutionEnX(38));
+        moinsForce.setBackground(new Color(0, 0, 0, 0));
+        moinsForce.setFocusable(false);
+        moinsForce.setBorder(null);
+
+        plusResist.setBounds(Fenetre.adapterResolutionEnX(1388), Fenetre.adapterResolutionEnY(367), Fenetre.adapterResolutionEnX(38), Fenetre.adapterResolutionEnX(38));
+        plusResist.setBackground(new Color(0, 0, 0, 0));
+        plusResist.setFocusable(false);
+        plusResist.setBorder(null);
+
+        moinsResist.setBounds(Fenetre.adapterResolutionEnX(1337), Fenetre.adapterResolutionEnY(367), Fenetre.adapterResolutionEnX(38), Fenetre.adapterResolutionEnX(38));
+        moinsResist.setBackground(new Color(0, 0, 0, 0));
+        moinsResist.setFocusable(false);
+        moinsResist.setBorder(null);
+
+        plusInt.setBounds(Fenetre.adapterResolutionEnX(1388), Fenetre.adapterResolutionEnY(470), Fenetre.adapterResolutionEnX(38), Fenetre.adapterResolutionEnX(38));
+        plusInt.setBackground(new Color(0, 0, 0, 0));
+        plusInt.setFocusable(false);
+        plusInt.setBorder(null);
+
+        moinsInt.setBounds(Fenetre.adapterResolutionEnX(1337), Fenetre.adapterResolutionEnY(470), Fenetre.adapterResolutionEnX(38), Fenetre.adapterResolutionEnX(38));
+        moinsInt.setBackground(new Color(0, 0, 0, 0));
+        moinsInt.setFocusable(false);
+        moinsInt.setBorder(null);
+
+        plusConst.setBounds(Fenetre.adapterResolutionEnX(1388), Fenetre.adapterResolutionEnY(572), Fenetre.adapterResolutionEnX(38), Fenetre.adapterResolutionEnX(39));
+        plusConst.setBackground(new Color(0, 0, 0, 0));
+        plusConst.setFocusable(false);
+        plusConst.setBorder(null);
+
+        moinsConst.setBounds(Fenetre.adapterResolutionEnX(1337), Fenetre.adapterResolutionEnY(572), Fenetre.adapterResolutionEnX(38), Fenetre.adapterResolutionEnX(38));
+        moinsConst.setBackground(new Color(0, 0, 0, 0));
+        moinsConst.setFocusable(false);
+        moinsConst.setBorder(null);
+
+        Image img = getToolkit().getImage("images/fichePerso.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 
