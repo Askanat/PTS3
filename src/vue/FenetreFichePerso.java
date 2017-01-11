@@ -53,11 +53,11 @@ public class FenetreFichePerso extends JPanel {
         valider.setActionCommand("Valider les Modifications");
 
         //JLabel
-        valForce = new JLabel("");
-        valInt = new JLabel("");
-        valConst = new JLabel("");
-        valResist = new JLabel("");
-        niveau = new JLabel("");
+        valForce = new JLabel("1");
+        valInt = new JLabel("666");
+        valConst = new JLabel("444");
+        valResist = new JLabel("333");
+        niveau = new JLabel("999");
         pointCaracteristique = new JLabel("");
         pointCompetence = new JLabel("");
         nomHero = new JLabel("");
@@ -78,6 +78,7 @@ public class FenetreFichePerso extends JPanel {
         add(valInt);
         add(valConst);
         add(valResist);
+        add(valider);
         add(niveau);
         add(pointCaracteristique);
         add(pointCompetence);
@@ -103,6 +104,9 @@ public class FenetreFichePerso extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        Font f=new Font("Arial", Font.BOLD, 18);
+
+        //JButton
         retour.setBounds(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
         retour.setBackground(new Color(0, 0, 0, 0));
         retour.setFocusable(false);
@@ -147,6 +151,42 @@ public class FenetreFichePerso extends JPanel {
         moinsConst.setBackground(new Color(0, 0, 0, 0));
         moinsConst.setFocusable(false);
         moinsConst.setBorder(null);
+
+        valider.setBounds(Fenetre.adapterResolutionEnX(1365), Fenetre.adapterResolutionEnY(970), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
+        valider.setBackground(new Color(0, 0, 0, 0));
+        valider.setFocusable(false);
+        valider.setBorder(null);
+
+        //JLabel
+        valForce.setBounds(Fenetre.adapterResolutionEnX(1461), Fenetre.adapterResolutionEnY(265), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnX(38));
+        valForce.setFocusable(false);
+        valForce.setForeground(Color.WHITE);
+        valForce.setFont(f);
+        valForce.setBorder(null);
+
+        valResist.setBounds(Fenetre.adapterResolutionEnX(1461), Fenetre.adapterResolutionEnY(367), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnX(38));
+        valResist.setFocusable(false);
+        valResist.setForeground(Color.WHITE);
+        valResist.setFont(f);
+        valResist.setBorder(null);
+
+        valInt.setBounds(Fenetre.adapterResolutionEnX(1461), Fenetre.adapterResolutionEnY(470), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnX(38));
+        valInt.setFocusable(false);
+        valInt.setForeground(Color.WHITE);
+        valInt.setFont(f);
+        valInt.setBorder(null);
+
+        valConst.setBounds(Fenetre.adapterResolutionEnX(1461), Fenetre.adapterResolutionEnY(572), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnX(38));
+        valConst.setFocusable(false);
+        valConst.setForeground(Color.WHITE);
+        valConst.setFont(f);
+        valConst.setBorder(null);
+
+        niveau.setBounds(Fenetre.adapterResolutionEnX(1050), Fenetre.adapterResolutionEnY(592), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnX(38));
+        niveau.setFocusable(false);
+        niveau.setForeground(Color.WHITE);
+        niveau.setFont(f);
+        niveau.setBorder(null);
 
         Image img = getToolkit().getImage("images/fichePerso.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
