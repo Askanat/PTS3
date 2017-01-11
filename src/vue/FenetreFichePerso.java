@@ -51,7 +51,7 @@ public class FenetreFichePerso extends JPanel {
         moinsResist.setActionCommand("MoinsResist");
 
         valider = new JButton();
-        valider.setActionCommand("Valider les Modifications");
+        valider.setActionCommand("Valider");
 
         //JLabel
         valForce = new JLabel("");
