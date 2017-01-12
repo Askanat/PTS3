@@ -106,7 +106,13 @@ public class ControlTimer extends Control implements ActionListener {
 
                     jeu.updateMonstre(i); // supprime les montres si ils sont morts
                 }
-                jeu.getHero().upNiveau(); // à mettre dans une fonction jeu qui fait la sauvegarde si le héro up de niveau
+
+                //Sauvegarde quand gain Niveau
+                int niveau = jeu.getHero().getNiveau();
+                jeu.getHero().upNiveau();
+                if (niveau < jeu.getHero().getNiveau()){ // à mettre dans une fonction jeu qui fait la sauvegarde si le héro up de niveau
+                    jeu.sauvegardeHero();
+                }
             }
             //jeu.getHero().afficherEtat();
             // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
