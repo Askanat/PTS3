@@ -19,10 +19,10 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
 
     public void actionPerformed(ActionEvent e) {
 
-        int force = (int)jeu.getHero().getForce()-(int)(jeu.getHero().getForce()+1);
-        int intelligence = (int)jeu.getHero().getIntelligence()-(int)(jeu.getHero().getIntelligence()+1);
-        int resistance = (int)jeu.getHero().getResistance()-(int)(jeu.getHero().getResistance()+1);
-        int constitution = (int)jeu.getHero().getConstitution()-(int)(jeu.getHero().getConstitution()+1);
+        int force = (int) jeu.getHero().getForce() - (int) (jeu.getHero().getForce() + 1);
+        int intelligence = (int) jeu.getHero().getIntelligence() - (int) (jeu.getHero().getIntelligence() + 1);
+        int resistance = (int) jeu.getHero().getResistance() - (int) (jeu.getHero().getResistance() + 1);
+        int constitution = (int) jeu.getHero().getConstitution() - (int) (jeu.getHero().getConstitution() + 1);
 
         switch (e.getActionCommand()) {
             case "PlusForce":
@@ -34,7 +34,7 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "MoinsForce":
-                if (jeu.getHero().getForce()-1 > force + jeu.getHero().getLimiteForce()) {
+                if (jeu.getHero().getForce() - 1 > force + jeu.getHero().getLimiteForce()) {
                     jeu.getHero().setForce(jeu.getHero().getForce() - 1);
                     jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() + 1);
                     fenetre.panelFenetreFichePerso.init();
@@ -50,7 +50,7 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "MoinsInt":
-                if (jeu.getHero().getIntelligence()-1 > intelligence + jeu.getHero().getLimiteIntelligence()) {
+                if (jeu.getHero().getIntelligence() - 1 > intelligence + jeu.getHero().getLimiteIntelligence()) {
                     jeu.getHero().setIntelligence(jeu.getHero().getIntelligence() - 1);
                     jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() + 1);
                     fenetre.panelFenetreFichePerso.init();
@@ -66,7 +66,7 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "MoinsResist":
-                if (jeu.getHero().getResistance()-1 > resistance + jeu.getHero().getLimiteResistance()) {
+                if (jeu.getHero().getResistance() - 1 > resistance + jeu.getHero().getLimiteResistance()) {
                     jeu.getHero().setResistance(jeu.getHero().getResistance() - 1);
                     jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() + 1);
                     fenetre.panelFenetreFichePerso.init();
@@ -82,7 +82,7 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "MoinsConst":
-                if (jeu.getHero().getConstitution()-1 > (constitution + jeu.getHero().getLimiteConstitution())) {
+                if (jeu.getHero().getConstitution() - 1 > (constitution + jeu.getHero().getLimiteConstitution())) {
                     jeu.getHero().setConstitution(jeu.getHero().getConstitution() - 1);
                     jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() + 1);
                     fenetre.panelFenetreFichePerso.init();
@@ -94,29 +94,29 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 jeu.getHero().setLimiteIntelligence(jeu.getHero().getIntelligence());
                 jeu.getHero().setLimiteResistance(jeu.getHero().getResistance());
                 jeu.getHero().setLimiteConstitution(jeu.getHero().getConstitution());
+                jeu.getHero().updateCaracteristique();
                 jeu.sauvegardeHero();
                 fenetre.panelFenetreFichePerso.init();
-                System.out.println(jeu.getHero().getLimiteConstitution());
                 break;
 
             case "Retour":
-                    //Permet de réafficher le menu en jeu et superposer les vues
-                    fenetre.setContentPane(fenetre.panelFenetreDepart);
-                    Control.enPartie = true;
-                    changerVue();
-                    fenetre.getContentPane().setLayout(new GridBagLayout());
-                    fenetre.getContentPane().isOpaque();
-                    GridBagConstraints gbc = new GridBagConstraints();
-                    gbc.weightx = 1;
-                    gbc.weighty = 1;
+                //Permet de réafficher le menu en jeu et superposer les vues
+                fenetre.setContentPane(fenetre.panelFenetreDepart);
+                Control.enPartie = true;
+                changerVue();
+                fenetre.getContentPane().setLayout(new GridBagLayout());
+                fenetre.getContentPane().isOpaque();
+                GridBagConstraints gbc = new GridBagConstraints();
+                gbc.weightx = 1;
+                gbc.weighty = 1;
 
-                    gbc.gridx = 0;
-                    gbc.gridwidth = 2;
-                    gbc.gridheight = 2;
-                    gbc.gridy = 0;
+                gbc.gridx = 0;
+                gbc.gridwidth = 2;
+                gbc.gridheight = 2;
+                gbc.gridy = 0;
 
-                    fenetre.getContentPane().add(fenetre.panelMenuEnJeu, gbc);
-                    fenetre.getContentPane().validate();
+                fenetre.getContentPane().add(fenetre.panelMenuEnJeu, gbc);
+                fenetre.getContentPane().validate();
                 break;
         }
     }

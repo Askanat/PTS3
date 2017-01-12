@@ -8,8 +8,6 @@ import static java.lang.Math.pow;
 
 public class Hero extends Personnage {
 
-    Jeu jeu;
-
     private double experience, experienceMax;
     private int or;
     private int pointCaracteristique, pointCompetence;
@@ -27,15 +25,20 @@ public class Hero extends Personnage {
     public Hero(String nom, int niveau, int pointCompetence, int pointCaracteristique, double experience, double experienceMax, double forcePerso, double intelPerso,
                 double constiPerso, double resiPerso, int or, String texture, int positionX, int positionY) {
 
-        super(nom, niveau, 52, 52, 81, 98, texture, positionX, positionY, 30, 60, 64, 8, 30);
+        super(nom, niveau, 52, 52, 81, 98, texture, positionX, positionY, 30, 60, 68, 8, 30);
 
-        vieMax = (int) (constiPerso * COEF_VIE + VIE_DE_BASE);
+        this.force = forcePerso;
+        this.constitution = constiPerso;
+        this.intelligence = intelPerso;
+        this.resistance = resiPerso;
+
+        vieMax = (int) (constitution * COEF_VIE + VIE_DE_BASE);
         vie = vieMax;
-        manaMax = (int) (intelPerso * COEF_MANA + MANA_DE_BASE);
+        manaMax = (int) (intelligence * COEF_MANA + MANA_DE_BASE);
         mana = manaMax;
-        degatMax = (int) (forcePerso * COEF_DEGATS + DEGATS_DE_BASE);
+        degatMax = (int) (force * COEF_DEGATS + DEGATS_DE_BASE);
         degats = degatMax;
-        armureMax = (int) (resiPerso * COEF_ARMURE);
+        armureMax = (int) (resistance * COEF_ARMURE);
         armure = armureMax;
 
         this.experience = experience;
@@ -43,11 +46,6 @@ public class Hero extends Personnage {
 
         this.pointCaracteristique = pointCaracteristique;
         this.pointCompetence = pointCompetence;
-
-        this.force = forcePerso;
-        this.constitution = constiPerso;
-        this.intelligence = intelPerso;
-        this.resistance = resiPerso;
 
         this.or = or;
 
@@ -104,7 +102,20 @@ public class Hero extends Personnage {
             update_ExperienceMax();
             gainPointCaracteristique();
             setPointCompetence();
+            // sauvegarde du hero quand il monte de niveau
         }
+    }
+
+    // update les caracteristiques
+    public void updateCaracteristique() {
+        vieMax = (int) (constitution * COEF_VIE + VIE_DE_BASE);
+        vie = vieMax;
+        manaMax = (int) (intelligence * COEF_MANA + MANA_DE_BASE);
+        mana = manaMax;
+        degatMax = (int) (force * COEF_DEGATS + DEGATS_DE_BASE);
+        degats = degatMax;
+        armureMax = (int) (resistance * COEF_ARMURE);
+        armure = armureMax;
     }
 
     //Modification Caractéristiques

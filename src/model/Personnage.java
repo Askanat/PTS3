@@ -281,14 +281,11 @@ public abstract class Personnage {
     }
 
     public boolean collision(Rectangle A, Rectangle B) {
-        if ((abs((A.getLocation().x + (A.getSize().width / 2)) - (B.getLocation().x + (B.getSize().width / 2))) <
+        return (abs((A.getLocation().x + (A.getSize().width / 2)) - (B.getLocation().x + (B.getSize().width / 2))) <
                 (A.getSize().width + B.getSize().width) / 2)
                 &&
                 (abs((A.getLocation().y + (A.getSize().height / 2)) - (B.getLocation().y + (B.getSize().height / 2))) <
-                        (A.getSize().height + B.getSize().height) / 2))
-            return true;
-        else
-            return false;
+                        (A.getSize().height + B.getSize().height) / 2);
     }
 
     public Rectangle getHitBoxAttaque() {
