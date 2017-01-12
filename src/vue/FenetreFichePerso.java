@@ -53,17 +53,17 @@ public class FenetreFichePerso extends JPanel {
         moinsResist.setActionCommand("MoinsResist");
 
         //JLabel
-        valForce = new JLabel("");
-        valInt = new JLabel("");
-        valConst = new JLabel("");
-        valResist = new JLabel("");
+        valForce = new JLabel("", JLabel.CENTER);
+        valInt = new JLabel("", JLabel.CENTER);
+        valConst = new JLabel("", JLabel.CENTER);
+        valResist = new JLabel("", JLabel.CENTER);
         niveau = new JLabel("");
-        pointCaracteristique = new JLabel("");
-        pointCompetence = new JLabel("");
+        pointCaracteristique = new JLabel("", JLabel.CENTER);
+        pointCompetence = new JLabel("", JLabel.CENTER);
         nomHero = new JLabel("");
-        vie = new JLabel("");
-        mana = new JLabel("");
-        exp = new JLabel("");
+        vie = new JLabel("", JLabel.CENTER);
+        mana = new JLabel("", JLabel.CENTER);
+        exp = new JLabel("", JLabel.CENTER);
 
         //Ajout JButton
         add(retour);
@@ -112,7 +112,7 @@ public class FenetreFichePerso extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Font fontCompetence = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX (20));
+        Font fontCompetence = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
 
         //JButton
         retour.setBounds(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
@@ -165,196 +165,77 @@ public class FenetreFichePerso extends JPanel {
         valider.setFocusable(false);
         valider.setBorder(null);
 
+        Image img = getToolkit().getImage("images/fichePerso.png");
+        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+
         //JLabel avec adaptation de taille
-            //Force
-                if (valForce.getText().length() == 1) {
-                    valForce.setBounds(Fenetre.adapterResolutionEnX(1470), Fenetre.adapterResolutionEnY(265), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valForce.setForeground(Color.WHITE);
-                    valForce.setFont(fontCompetence);
-                    valForce.setBorder(null);
-                }
-                if (valForce.getText().length() == 2) {
-                    valForce.setBounds(Fenetre.adapterResolutionEnX(1464), Fenetre.adapterResolutionEnY(265), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valForce.setForeground(Color.WHITE);
-                    valForce.setFont(fontCompetence);
-                    valForce.setBorder(null);
-                }
-                if (valForce.getText().length() == 3) {
-                    valForce.setBounds(Fenetre.adapterResolutionEnX(1460), Fenetre.adapterResolutionEnY(265), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valForce.setForeground(Color.WHITE);
-                    valForce.setFont(fontCompetence);
-                    valForce.setBorder(null);
-                }
-                if (valForce.getText().length() == 4) {
-                    valForce.setBounds(Fenetre.adapterResolutionEnX(1454), Fenetre.adapterResolutionEnY(265), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valForce.setForeground(Color.WHITE);
-                    valForce.setFont(fontCompetence);
-                    valForce.setBorder(null);
-                }
+        //Force
+        valForce.setBounds(Fenetre.adapterResolutionEnX(1454), Fenetre.adapterResolutionEnY(265), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
+        valForce.setForeground(Color.WHITE);
+        valForce.setFont(fontCompetence);
+        valForce.setBorder(null);
 
-            //Resistance
-                if(valResist.getText().length() == 1) {
-                    valResist.setBounds(Fenetre.adapterResolutionEnX(1470), Fenetre.adapterResolutionEnY(316), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valResist.setForeground(Color.WHITE);
-                    valResist.setFont(fontCompetence);
-                    valResist.setBorder(null);
-                }
-                if (valResist.getText().length() == 2) {
-                    valResist.setBounds(Fenetre.adapterResolutionEnX(1464), Fenetre.adapterResolutionEnY(316), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valResist.setForeground(Color.WHITE);
-                    valResist.setFont(fontCompetence);
-                    valResist.setBorder(null);
-                }
-                if (valResist.getText().length() == 3) {
-                    valResist.setBounds(Fenetre.adapterResolutionEnX(1460), Fenetre.adapterResolutionEnY(316), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valResist.setForeground(Color.WHITE);
-                    valResist.setFont(fontCompetence);
-                    valResist.setBorder(null);
-                }
-                if (valResist.getText().length() == 4) {
-                    valResist.setBounds(Fenetre.adapterResolutionEnX(1454), Fenetre.adapterResolutionEnY(316), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valResist.setForeground(Color.WHITE);
-                    valResist.setFont(fontCompetence);
-                    valResist.setBorder(null);
-                }
+        //Resistance
+        valResist.setBounds(Fenetre.adapterResolutionEnX(1454), Fenetre.adapterResolutionEnY(316), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
+        valResist.setForeground(Color.WHITE);
+        valResist.setFont(fontCompetence);
+        valResist.setBorder(null);
 
-            //Intelligence
-                if(valInt.getText().length() == 1) {
-                    valInt.setBounds(Fenetre.adapterResolutionEnX(1470), Fenetre.adapterResolutionEnY(367), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valInt.setForeground(Color.WHITE);
-                    valInt.setFont(fontCompetence);
-                    valInt.setBorder(null);
-                }
-                if (valInt.getText().length() == 2) {
-                    valInt.setBounds(Fenetre.adapterResolutionEnX(1464), Fenetre.adapterResolutionEnY(367), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valInt.setForeground(Color.WHITE);
-                    valInt.setFont(fontCompetence);
-                    valInt.setBorder(null);
-                }
-                if (valInt.getText().length() == 3) {
-                    valInt.setBounds(Fenetre.adapterResolutionEnX(1460), Fenetre.adapterResolutionEnY(367), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valInt.setForeground(Color.WHITE);
-                    valInt.setFont(fontCompetence);
-                    valInt.setBorder(null);
-                }
-                if (valInt.getText().length() == 4) {
-                    valInt.setBounds(Fenetre.adapterResolutionEnX(1454), Fenetre.adapterResolutionEnY(367), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valInt.setForeground(Color.WHITE);
-                    valInt.setFont(fontCompetence);
-                    valInt.setBorder(null);
-                }
+        //Intelligence
+        valInt.setBounds(Fenetre.adapterResolutionEnX(1454), Fenetre.adapterResolutionEnY(367), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
+        valInt.setForeground(Color.WHITE);
+        valInt.setFont(fontCompetence);
+        valInt.setBorder(null);
 
-            //Constitution
-                if(valConst.getText().length() == 1) {
-                    valConst.setBounds(Fenetre.adapterResolutionEnX(1470), Fenetre.adapterResolutionEnY(418), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valConst.setForeground(Color.WHITE);
-                    valConst.setFont(fontCompetence);
-                    valConst.setBorder(null);
-                }
-                if (valConst.getText().length() == 2) {
-                    valConst.setBounds(Fenetre.adapterResolutionEnX(1464), Fenetre.adapterResolutionEnY(418), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valConst.setForeground(Color.WHITE);
-                    valConst.setFont(fontCompetence);
-                    valConst.setBorder(null);
-                }
-                if (valConst.getText().length() == 3) {
-                    valConst.setBounds(Fenetre.adapterResolutionEnX(1460), Fenetre.adapterResolutionEnY(418), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valConst.setForeground(Color.WHITE);
-                    valConst.setFont(fontCompetence);
-                    valConst.setBorder(null);
-                }
-                if (valConst.getText().length() == 4) {
-                    valConst.setBounds(Fenetre.adapterResolutionEnX(1454), Fenetre.adapterResolutionEnY(418), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
-                    valConst.setForeground(Color.WHITE);
-                    valConst.setFont(fontCompetence);
-                    valConst.setBorder(null);
-                }
+        //Constitution
+        valConst.setBounds(Fenetre.adapterResolutionEnX(1454), Fenetre.adapterResolutionEnY(418), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
+        valConst.setForeground(Color.WHITE);
+        valConst.setFont(fontCompetence);
+        valConst.setBorder(null);
 
-            //Point de Caractéristique
-                if(pointCaracteristique.getText().length() == 1) {
-                    pointCaracteristique.setBounds(Fenetre.adapterResolutionEnX(1791), Fenetre.adapterResolutionEnY(210), Fenetre.adapterResolutionEnX(80), Fenetre.adapterResolutionEnX(40));
-                    pointCaracteristique.setForeground(Color.WHITE);
-                    pointCaracteristique.setFont(fontCompetence);
-                    pointCaracteristique.setBorder(null);
-                }
-                if (pointCaracteristique.getText().length() == 2) {
-                    pointCaracteristique.setBounds(Fenetre.adapterResolutionEnX(1785), Fenetre.adapterResolutionEnY(210), Fenetre.adapterResolutionEnX(80), Fenetre.adapterResolutionEnX(40));
-                    pointCaracteristique.setForeground(Color.WHITE);
-                    pointCaracteristique.setFont(fontCompetence);
-                    pointCaracteristique.setBorder(null);
-                }
-                if (pointCaracteristique.getText().length() == 3) {
-                    pointCaracteristique.setBounds(Fenetre.adapterResolutionEnX(1781), Fenetre.adapterResolutionEnY(210), Fenetre.adapterResolutionEnX(80), Fenetre.adapterResolutionEnX(40));
-                    pointCaracteristique.setForeground(Color.WHITE);
-                    pointCaracteristique.setFont(fontCompetence);
-                    pointCaracteristique.setBorder(null);
-                }
-                if (pointCaracteristique.getText().length() == 4) {
-                    pointCaracteristique.setBounds(Fenetre.adapterResolutionEnX(1775), Fenetre.adapterResolutionEnY(210), Fenetre.adapterResolutionEnX(80), Fenetre.adapterResolutionEnX(40));
-                    pointCaracteristique.setForeground(Color.WHITE);
-                    pointCaracteristique.setFont(fontCompetence);
-                    pointCaracteristique.setBorder(null);
-                }
+        //Point de Caractéristique
+        pointCaracteristique.setBounds(Fenetre.adapterResolutionEnX(1775), Fenetre.adapterResolutionEnY(210), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
+        pointCaracteristique.setForeground(Color.WHITE);
+        pointCaracteristique.setFont(fontCompetence);
+        pointCaracteristique.setBorder(null);
 
-            //Point de Caractéristique
-                if(pointCompetence.getText().length() == 1) {
-                    pointCompetence.setBounds(Fenetre.adapterResolutionEnX(1791), Fenetre.adapterResolutionEnY(572), Fenetre.adapterResolutionEnX(80), Fenetre.adapterResolutionEnX(40));
-                    pointCompetence.setForeground(Color.WHITE);
-                    pointCompetence.setFont(fontCompetence);
-                    pointCompetence.setBorder(null);
-                }
-                if (pointCompetence.getText().length() == 2) {
-                    pointCompetence.setBounds(Fenetre.adapterResolutionEnX(1785), Fenetre.adapterResolutionEnY(572), Fenetre.adapterResolutionEnX(80), Fenetre.adapterResolutionEnX(40));
-                    pointCompetence.setForeground(Color.WHITE);
-                    pointCompetence.setFont(fontCompetence);
-                    pointCompetence.setBorder(null);
-                }
-                if (pointCompetence.getText().length() == 3) {
-                    pointCompetence.setBounds(Fenetre.adapterResolutionEnX(1781), Fenetre.adapterResolutionEnY(572), Fenetre.adapterResolutionEnX(80), Fenetre.adapterResolutionEnX(40));
-                    pointCompetence.setForeground(Color.WHITE);
-                    pointCompetence.setFont(fontCompetence);
-                    pointCompetence.setBorder(null);
-                }
-                if (pointCompetence.getText().length() == 4) {
-                    pointCompetence.setBounds(Fenetre.adapterResolutionEnX(1775), Fenetre.adapterResolutionEnY(572), Fenetre.adapterResolutionEnX(80), Fenetre.adapterResolutionEnX(40));
-                    pointCompetence.setForeground(Color.WHITE);
-                    pointCompetence.setFont(fontCompetence);
-                    pointCompetence.setBorder(null);
-                }
+        //Point de competence
+        pointCompetence.setBounds(Fenetre.adapterResolutionEnX(1775), Fenetre.adapterResolutionEnY(572), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
+        pointCompetence.setForeground(Color.WHITE);
+        pointCompetence.setFont(fontCompetence);
+        pointCompetence.setBorder(null);
+
 
         //Fond Nom et Niveau
-        Font fontNomLVL = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX (32));
-
+        Font fontNomLVL = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(32));
 
         nomHero.setBounds(Fenetre.adapterResolutionEnX(160), Fenetre.adapterResolutionEnY(592), Fenetre.adapterResolutionEnX(400), Fenetre.adapterResolutionEnX(40));
         nomHero.setForeground(Color.WHITE);
         nomHero.setFont(fontNomLVL);
         nomHero.setBorder(null);
 
-        niveau.setBounds(Fenetre.adapterResolutionEnX(1040), Fenetre.adapterResolutionEnY(592), Fenetre.adapterResolutionEnX(80), Fenetre.adapterResolutionEnX(40));
+        niveau.setBounds(Fenetre.adapterResolutionEnX(1040), Fenetre.adapterResolutionEnY(592), Fenetre.adapterResolutionEnX(70), Fenetre.adapterResolutionEnX(40));
         niveau.setFocusable(false);
         niveau.setForeground(Color.WHITE);
         niveau.setFont(fontNomLVL);
         niveau.setBorder(null);
 
-        Image img = getToolkit().getImage("images/fichePerso.png");
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
 
         //Fond Barre
-        Font fontBarre = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX (20));
+        Font fontBarre = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
 
         //Texte Barre
-        vie.setBounds(Fenetre.adapterResolutionEnX(540), Fenetre.adapterResolutionEnY(280), Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(32));
+        vie.setBounds(Fenetre.adapterResolutionEnX(126), Fenetre.adapterResolutionEnY(280), Fenetre.adapterResolutionEnX(932), Fenetre.adapterResolutionEnY(32));
         vie.setForeground(Color.BLACK);
         vie.setFont(fontBarre);
         vie.setBorder(null);
 
-        mana.setBounds(Fenetre.adapterResolutionEnX(540), Fenetre.adapterResolutionEnY(375), Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(32));
+        mana.setBounds(Fenetre.adapterResolutionEnX(126), Fenetre.adapterResolutionEnY(375), Fenetre.adapterResolutionEnX(932), Fenetre.adapterResolutionEnY(32));
         mana.setForeground(Color.BLACK);
         mana.setFont(fontBarre);
         mana.setBorder(null);
 
-        exp.setBounds(Fenetre.adapterResolutionEnX(540), Fenetre.adapterResolutionEnY(470), Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(32));
+        exp.setBounds(Fenetre.adapterResolutionEnX(126), Fenetre.adapterResolutionEnY(470), Fenetre.adapterResolutionEnX(932), Fenetre.adapterResolutionEnY(32));
         exp.setForeground(Color.BLACK);
         exp.setFont(fontBarre);
         exp.setBorder(null);
@@ -381,20 +262,20 @@ public class FenetreFichePerso extends JPanel {
         g.setColor(Color.WHITE);
         g.fillRect(Fenetre.adapterResolutionEnX(126), Fenetre.adapterResolutionEnY(470), Fenetre.adapterResolutionEnX(932), Fenetre.adapterResolutionEnY(32));
         g.setColor(Color.ORANGE);
-        g.fillRect(Fenetre.adapterResolutionEnX(126), Fenetre.adapterResolutionEnY(470), Fenetre.adapterResolutionEnX(932 * (int)jeu.getHero().getExperience() / (int)jeu.getHero().getExperienceMax()), Fenetre.adapterResolutionEnY(32));
+        g.fillRect(Fenetre.adapterResolutionEnX(126), Fenetre.adapterResolutionEnY(470), Fenetre.adapterResolutionEnX(932 * (int) jeu.getHero().getExperience() / (int) jeu.getHero().getExperienceMax()), Fenetre.adapterResolutionEnY(32));
 
     }
 
     public void init() {
-        valForce.setText("" + (int)jeu.getHero().getForce());
-        valInt.setText("" + (int)jeu.getHero().getIntelligence());
-        valConst.setText("" + (int)jeu.getHero().getConstitution());
-        valResist.setText("" + (int)jeu.getHero().getResistance());
+        valForce.setText("" + (int) jeu.getHero().getForce());
+        valInt.setText("" + (int) jeu.getHero().getIntelligence());
+        valConst.setText("" + (int) jeu.getHero().getConstitution());
+        valResist.setText("" + (int) jeu.getHero().getResistance());
         pointCaracteristique.setText("" + jeu.getHero().getPointCaracteristique());
         pointCompetence.setText("" + jeu.getHero().getPointCompetence());
         niveau.setText("" + jeu.getHero().getNiveau());
         nomHero.setText("" + jeu.getHero().getNom());
-        exp.setText((int)jeu.getHero().getExperience() + " / " + (int)jeu.getHero().getExperienceMax());
+        exp.setText((int) jeu.getHero().getExperience() + " / " + (int) jeu.getHero().getExperienceMax());
         vie.setText(jeu.getHero().getVie() + " / " + jeu.getHero().getVieMax());
         mana.setText(jeu.getHero().getMana() + " / " + jeu.getHero().getManaMax());
     }
