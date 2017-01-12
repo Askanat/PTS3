@@ -30,6 +30,11 @@ public class Control {
     protected void spawnHero(int i) {
         jeu.setHero(i);
         fenetre.panelFenetreDepart.dessineHero();
+
+        // a enlever
+        spawnMonstre(1, 900, 0);
+        spawnMonstre(2, 1400, 0);
+        spawnMonstre(3, 1900, 0);
     }
 
     protected void spawnMonstre(int i, int positionX, int positionY) {

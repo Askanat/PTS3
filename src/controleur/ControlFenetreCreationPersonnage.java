@@ -32,11 +32,6 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
                     fenetre.panelFenetreCreationPersonnage.sauvegardeSprite(idHero);
                     jeu.createHeroBDD(nomPerso, idHero);
                     spawnHero(idHero);
-
-                    //spawnMonstre(1, 500, 500); // a enlever d'ici
-                    spawnMonstre(2, 1000, 700); // a enlever d'ici
-                    //spawnMonstre(3, 1500, 900); // a enlever d'ici
-
                     Control.enPartie = true;
                     fenetre.setContentPane(fenetre.panelFenetreDepart);
                     fenetre.panelFenetreCreationPersonnage.initCreationPerso();
