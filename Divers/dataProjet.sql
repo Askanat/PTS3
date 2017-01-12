@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS lache, spellEquipe, itemEquipe, possede, item, typeItem, mo
 
 
 CREATE TABLE spell (
-  idSpell int AUTO_INCREMENT NOT default,
+  idSpell int AUTO_INCREMENT NOT NULL,
   libelleSpell varchar(25),
   degatSpell int,
   effetSpell varchar(10),
@@ -16,7 +16,7 @@ INSERT INTO spell VALUES (default, "La boule magique", 20, "aucun", "images/Sort
 INSERT INTO spell VALUES (default, "Eclaire de givre", 50, "givre", "images/Sorts/eclaire_de_givre.png");
 
 CREATE TABLE personnage (
-  idPerso int AUTO_INCREMENT NOT default,
+  idPerso int AUTO_INCREMENT NOT NULL,
   nomPerso varchar(25),
   niveauPerso int,
   pointCompetence int,
@@ -38,7 +38,7 @@ INSERT INTO personnage VALUES (default, "", 0, 1, 15, 0, 100, 0, 0, 0, 0, 0, "im
 INSERT INTO personnage VALUES (default, "", 0, 1, 15, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero3.png");
 
 CREATE TABLE monstre (
-  idMonstre int AUTO_INCREMENT NOT default,
+  idMonstre int AUTO_INCREMENT NOT NULL,
   libelleMonstre varchar(10),
   largeurDevant int,
   largeurDerriere int,
@@ -64,7 +64,7 @@ INSERT INTO monstre VALUES (default, "Monstre2", 53, 64, 73, 42, 20, 40, 2, 10, 
 INSERT INTO monstre VALUES (default, "Monstre3", 53, 64, 73, 42, 40, 60, 1.7, 15, 0, 8, 70, "images/Monstres/texture_monstre3.png", default);
 
 CREATE TABLE typeItem (
-  typeItem int AUTO_INCREMENT NOT default,
+  typeItem int AUTO_INCREMENT NOT NULL,
   libelleTypeItem varchar(25),
 
   PRIMARY KEY(typeItem)
@@ -80,7 +80,7 @@ INSERT INTO typeItem VALUES (default, "bijou");
 INSERT INTO typeItem VALUES (default, "arme");
 
 CREATE TABLE item (
-  idItem int AUTO_INCREMENT NOT default,
+  idItem int AUTO_INCREMENT NOT NULL,
   libelleItem varchar(50),
   coeffPotion float(10,2),
   armureItem float(10,2),
