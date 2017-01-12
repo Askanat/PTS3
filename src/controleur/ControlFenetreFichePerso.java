@@ -34,7 +34,7 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "MoinsForce":
-                if (jeu.getHero().getForce()-1 > force) {
+                if (jeu.getHero().getForce()-1 > force + jeu.getHero().getLimiteForce()) {
                     jeu.getHero().setForce(jeu.getHero().getForce() - 1);
                     jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() + 1);
                     fenetre.panelFenetreFichePerso.init();
@@ -50,7 +50,7 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "MoinsInt":
-                if (jeu.getHero().getIntelligence()-1 > intelligence) {
+                if (jeu.getHero().getIntelligence()-1 > intelligence + jeu.getHero().getLimiteIntelligence()) {
                     jeu.getHero().setIntelligence(jeu.getHero().getIntelligence() - 1);
                     jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() + 1);
                     fenetre.panelFenetreFichePerso.init();
@@ -66,7 +66,7 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "MoinsResist":
-                if (jeu.getHero().getResistance()-1 > resistance) {
+                if (jeu.getHero().getResistance()-1 > resistance + jeu.getHero().getLimiteResistance()) {
                     jeu.getHero().setResistance(jeu.getHero().getResistance() - 1);
                     jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() + 1);
                     fenetre.panelFenetreFichePerso.init();
@@ -82,7 +82,7 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "MoinsConst":
-                if (jeu.getHero().getConstitution()-1 > constitution) {
+                if (jeu.getHero().getConstitution()-1 > (constitution + jeu.getHero().getLimiteConstitution())) {
                     jeu.getHero().setConstitution(jeu.getHero().getConstitution() - 1);
                     jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() + 1);
                     fenetre.panelFenetreFichePerso.init();
@@ -90,8 +90,13 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "Valider":
+                jeu.getHero().setLimiteForce(jeu.getHero().getForce());
+                jeu.getHero().setLimiteIntelligence(jeu.getHero().getIntelligence());
+                jeu.getHero().setLimiteResistance(jeu.getHero().getResistance());
+                jeu.getHero().setLimiteConstitution(jeu.getHero().getConstitution());
                 jeu.sauvegardeHero();
                 fenetre.panelFenetreFichePerso.init();
+                System.out.println(jeu.getHero().getLimiteConstitution());
                 break;
 
             case "Retour":

@@ -2,7 +2,6 @@ package vue;
 
 import controleur.ControlFenetreFichePerso;
 import model.Jeu;
-import model.Personnage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,6 +29,9 @@ public class FenetreFichePerso extends JPanel {
         retour = new JButton();
         retour.setActionCommand("Retour");
 
+        valider = new JButton();
+        valider.setActionCommand("Valider");
+
         plusForce = new JButton();
         plusForce.setActionCommand("PlusForce");
         moinsForce = new JButton();
@@ -49,9 +51,6 @@ public class FenetreFichePerso extends JPanel {
         plusResist.setActionCommand("PlusResist");
         moinsResist = new JButton();
         moinsResist.setActionCommand("MoinsResist");
-
-        valider = new JButton();
-        valider.setActionCommand("Valider");
 
         //JLabel
         valForce = new JLabel("");
@@ -76,6 +75,7 @@ public class FenetreFichePerso extends JPanel {
         add(moinsConst);
         add(plusResist);
         add(moinsResist);
+        add(valider);
 
         //Ajout JLabel
         add(valForce);
@@ -94,6 +94,7 @@ public class FenetreFichePerso extends JPanel {
 
     public void setControl(ControlFenetreFichePerso controlFenetreFichePerso) {
         retour.addActionListener(controlFenetreFichePerso);
+        valider.addActionListener(controlFenetreFichePerso);
 
         plusForce.addActionListener(controlFenetreFichePerso);
         moinsForce.addActionListener(controlFenetreFichePerso);

@@ -13,7 +13,7 @@ public class Hero extends Personnage {
     private double experience, experienceMax;
     private int or;
     private int pointCaracteristique, pointCompetence;
-    private double force, intelligence, constitution, resistance;
+    private double force, intelligence, constitution, resistance, limiteForce = 0, limiteIntelligence = 0, limiteConstitution = 0, limiteResistance = 0;
 
     private final int COEF_VIE = 5;
     private final int COEF_MANA = 5;
@@ -167,39 +167,77 @@ public class Hero extends Personnage {
     }
 
     //Ajout et update de l'Expérience
-    //Ajout d'EXP
-    //EXP ajouté au héros
-    public void recevoirExperience(Monstre m) {
-        setExperience(getExperience() + m.donneExperience());
-    }
+        //Ajout d'EXP
+            //EXP ajouté au héros
+            public void recevoirExperience(Monstre m) {
+                setExperience(getExperience() + m.donneExperience());
+            }
 
-    //EXP maximum augmenté
-    public void update_ExperienceMax() {
-        setExperienceMax(2 * (-700 + (500 * (getNiveau() + 1)) - (80 * pow((getNiveau() + 1), 2)) + (10 * pow((getNiveau() + 1), 3))));
-    }
+        //EXP maximum augmenté
+            public void update_ExperienceMax() {
+                setExperienceMax(2 * (-700 + (500 * (getNiveau() + 1)) - (80 * pow((getNiveau() + 1), 2)) + (10 * pow((getNiveau() + 1), 3))));
+            }
 
     //Affichage EXP
-    //EXP progression
-    public void setExperience(double experience) {
-        this.experience = experience;
-    }
+        //EXP progression
+            public void setExperience(double experience) {
+                this.experience = experience;
+            }
 
-    public double getExperience() {
-        return experience;
-    }
+            public double getExperience() {
+                return experience;
+            }
 
-    //EXP MAX
-    public void setExperienceMax(double experienceMax) {
-        this.experienceMax = experienceMax;
-    }
+        //EXP MAX
+            public void setExperienceMax(double experienceMax) {
+                this.experienceMax = experienceMax;
+            }
 
-    public double getExperienceMax() {
-        return experienceMax;
-    }
+            public double getExperienceMax() {
+                return experienceMax;
+            }
 
     // retourne id de l'hero avec sa texture
-    public int getIdHero() {
-        return Integer.parseInt(""+texture.toCharArray()[texture.length() -1 - 4]);
-    // renvoie l'id de l'héro
+        public int getIdHero() {
+            return Integer.parseInt(""+texture.toCharArray()[texture.length() -1 - 4]);
+        // renvoie l'id de l'héro
     }
+
+    //Fiche Perso Limite après mise à jour des caractéristiques
+        //Limite Force
+            public void setLimiteForce(double limiteForce){
+                this.limiteForce = limiteForce;
+            }
+
+            public double getLimiteForce(){
+                return limiteForce;
+            }
+
+        //Limite Resistance
+            public void setLimiteResistance(double limiteResistance){
+                this.limiteResistance = limiteResistance;
+            }
+
+            public double getLimiteResistance(){
+                return limiteResistance;
+            }
+
+        //Limite Intelligence
+            public  void setLimiteIntelligence(double limiteIntelligence){
+                this.limiteIntelligence = limiteIntelligence;
+            }
+
+            public double getLimiteIntelligence(){
+                return limiteIntelligence;
+            }
+
+        //Limite Constitution
+            public void setLimiteConstitution(double limiteConstitution){
+                this.limiteConstitution = limiteConstitution;
+            }
+
+            public double getLimiteConstitution(){
+                return limiteConstitution;
+            }
+
 }
