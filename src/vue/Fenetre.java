@@ -30,8 +30,8 @@ public class Fenetre extends JFrame {
     private static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     public static final double DEFAUT_X = 1920;
     public static final double DEFAUT_Y = 1080;
-    public static final int X = (int) tailleEcran.getWidth();
-    public static final int Y = (int) tailleEcran.getHeight();
+    public static final int X = 1280;//(int) tailleEcran.getWidth();
+    public static final int Y = 720;//(int) tailleEcran.getHeight();
 
     public Fenetre(Jeu jeu) {
 

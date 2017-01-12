@@ -26,9 +26,11 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
 
         switch (e.getActionCommand()) {
             case "PlusForce":
-                jeu.getHero().setForce(jeu.getHero().getForce() + 1);
-                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()-1);
-                fenetre.panelFenetreFichePerso.init();
+                if (jeu.getHero().getPointCaracteristique() > 0) {
+                    jeu.getHero().setForce(jeu.getHero().getForce() + 1);
+                    jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() - 1);
+                    fenetre.panelFenetreFichePerso.init();
+                }
                 break;
 
             case "MoinsForce":
@@ -40,9 +42,11 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "PlusInt":
-                jeu.getHero().setIntelligence(jeu.getHero().getIntelligence()+1);
-                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()-1);
-                fenetre.panelFenetreFichePerso.init();
+                if (jeu.getHero().getPointCaracteristique() > 0) {
+                    jeu.getHero().setIntelligence(jeu.getHero().getIntelligence() + 1);
+                    jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() - 1);
+                    fenetre.panelFenetreFichePerso.init();
+                }
                 break;
 
             case "MoinsInt":
@@ -54,9 +58,11 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "PlusResist":
-                jeu.getHero().setResistance(jeu.getHero().getResistance()+1);
-                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()-1);
-                fenetre.panelFenetreFichePerso.init();
+                if (jeu.getHero().getPointCaracteristique() > 0) {
+                    jeu.getHero().setResistance(jeu.getHero().getResistance() + 1);
+                    jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() - 1);
+                    fenetre.panelFenetreFichePerso.init();
+                }
                 break;
 
             case "MoinsResist":
@@ -68,9 +74,11 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
                 break;
 
             case "PlusConst":
-                jeu.getHero().setConstitution(jeu.getHero().getConstitution()+1);
-                jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique()-1);
-                fenetre.panelFenetreFichePerso.init();
+                if (jeu.getHero().getPointCaracteristique() > 0) {
+                    jeu.getHero().setConstitution(jeu.getHero().getConstitution() + 1);
+                    jeu.getHero().setPointCaracteristique(jeu.getHero().getPointCaracteristique() - 1);
+                    fenetre.panelFenetreFichePerso.init();
+                }
                 break;
 
             case "MoinsConst":
