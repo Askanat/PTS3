@@ -5,6 +5,7 @@ import model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import static vue.Fenetre.X;
@@ -18,11 +19,13 @@ import static vue.Fenetre.Y;
 public class FenetreDonjon extends JPanel {
 
     private Jeu jeu;
+    private ActionListener control;
 
     private final int NOMBRE_DE_EQUIPEMENT = 0;
 
     public Entite[] hero; // le héro et ses équipements
     public ArrayList<Entite> monstre; // a enlever d'ici
+    public JButton menu;
 
     public FenetreDonjon(Jeu jeu) {
 
@@ -36,6 +39,17 @@ public class FenetreDonjon extends JPanel {
             hero[i] = new Entite(jeu);
 
         monstre = new ArrayList<Entite>();
+
+        bouttonMenu();
+    }
+
+    public void bouttonMenu() {
+        menu = new JButton("");
+        menu.setActionCommand("Menu");
+        Image img = getToolkit().getImage("images/iconeMenu.png").getScaledInstance(Fenetre.adapterResolutionEnX(40),Fenetre.adapterResolutionEnY(40), java.awt.Image.SCALE_SMOOTH);
+        menu.setIcon(new ImageIcon(img));
+        add(menu);
+        menu.addActionListener(control);
     }
 
     public void dessineHero() {
@@ -48,6 +62,8 @@ public class FenetreDonjon extends JPanel {
     }
 
     public void setControl(ControlFenetreDonjon controlFenetreDonjon) {
+        menu.addActionListener(controlFenetreDonjon);
+        control = controlFenetreDonjon;
     }
 
     protected void paintComponent(Graphics g) {

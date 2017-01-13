@@ -66,6 +66,7 @@ public class FenetreDepart extends JPanel {
     }
 
     public void setControl(ControlFenetreDepart controlFenetreDepart) {
+        menu.addActionListener(controlFenetreDepart);
         control = controlFenetreDepart;
     }
 
