@@ -19,9 +19,14 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         switch (e.getActionCommand()) {
             case "Retour":
                 jeu.setPause(false);
+                fenetre.getContentPane().removeAll();
+                fenetre.panelFenetreDepart.bouttonMenu();
+                fenetre.setContentPane(fenetre.panelFenetreDepart);
+                changerVue();
                 break;
             case "Inventaire":
                 Control.enPartie = false;
@@ -40,6 +45,10 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 changerVue();
                 break;
             case "Retour au Menu Principal":
+                fenetre.getContentPane().removeAll();
+                fenetre.panelFenetreDepart.bouttonMenu();
+                fenetre.setContentPane(fenetre.panelFenetreDepart);
+
                 jeu.sauvegardeHero();
                 // supprime les monstre
                 fenetre.panelFenetreDepart.monstre.clear();
