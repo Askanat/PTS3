@@ -45,6 +45,8 @@ public class ControlTimer extends Control implements ActionListener {
                 fenetre.getContentPane().add(fenetre.panelMenuEnJeu, gbc);
                 fenetre.getContentPane().validate();
             } else {
+                fenetre.getContentPane().removeAll();
+                fenetre.panelFenetreDepart.bouttonMenu();
                 fenetre.setContentPane(fenetre.panelFenetreDepart);
                 changerVue();
             }

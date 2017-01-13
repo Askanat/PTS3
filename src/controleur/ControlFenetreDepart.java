@@ -3,6 +3,7 @@ package controleur;
 import model.Jeu;
 import vue.Fenetre;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +20,8 @@ public class ControlFenetreDepart extends Control implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case "":
+            case "Menu":
+                jeu.inversePause();
                 break;
         }
     }

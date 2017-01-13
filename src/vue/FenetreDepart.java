@@ -25,6 +25,8 @@ public class FenetreDepart extends JPanel {
     public Entite[] png; // tous les png présents sur la carte de départ
     public ArrayList<Entite> monstre; // a déplacer
 
+    public JButton menu;
+
     public FenetreDepart(Jeu jeu) {
 
         this.jeu = jeu;
@@ -39,6 +41,15 @@ public class FenetreDepart extends JPanel {
             png[i] = new Entite(jeu);
 
         monstre = new ArrayList<Entite>(); // a enlever d'ici
+
+        bouttonMenu();
+    }
+
+    public void bouttonMenu(){
+        menu = new JButton("YOLO");
+        menu.setActionCommand("Menu");
+
+        add(menu);
     }
 
     public void dessineHero() {
@@ -51,6 +62,7 @@ public class FenetreDepart extends JPanel {
     }
 
     public void setControl(ControlFenetreDepart controlFenetreDepart) {
+        menu.addActionListener(controlFenetreDepart);
     }
 
     protected void paintComponent(Graphics g) {
@@ -58,6 +70,15 @@ public class FenetreDepart extends JPanel {
 
         Image img = getToolkit().getImage("images/fondJeux.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+
+        menu.setBounds(Fenetre.adapterResolutionEnX(1860), Fenetre.adapterResolutionEnY(10), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50));
+        menu.setBackground(new Color(0, 0, 0, 0));
+        menu.setFocusable(false);
+        menu.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        menu.setBorder(null);
+
+        Image imageMenu = getToolkit().getImage("images/iconMenu.png");
+        g.drawImage(imageMenu, Fenetre.adapterResolutionEnX(1860), Fenetre.adapterResolutionEnY(10), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
 
         // a déplacer
         for (Entite e : monstre)
@@ -67,7 +88,6 @@ public class FenetreDepart extends JPanel {
             e.paintComponent(g);
 
         hero.paintComponent(g);
-
         img = null;
         if (jeu.getSave())
             img = getToolkit().getImage("images/iconeSave.png");
