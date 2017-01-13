@@ -54,7 +54,7 @@ public class FenetreOptions extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Font f=new Font("Arial", Font.BOLD, 20);
+        Font f=new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
 
         retour.setBounds(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
         retour.setBackground(new Color(0, 0, 0, 0));
