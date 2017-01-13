@@ -52,7 +52,6 @@ public class FenetreCreationPersonnage extends JPanel {
     public int choixCouleurPilosite;
     public int choixPilosite;
 
-
     public FenetreCreationPersonnage(Jeu jeu) {
 
         this.jeu = jeu;
