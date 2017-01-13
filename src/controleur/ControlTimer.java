@@ -27,28 +27,28 @@ public class ControlTimer extends Control implements ActionListener {
         if (Control.enPartie) {
             if (ControlClavier.toucheRelacher[ControlTouche.ECHAP]) {
                 jeu.inversePause();
+
+                if (jeu.getPause()) {
+                    fenetre.getContentPane().setLayout(new GridBagLayout());
+                    fenetre.getContentPane().isOpaque();
+                    GridBagConstraints gbc = new GridBagConstraints();
+                    gbc.weightx = 1;
+                    gbc.weighty = 1;
+
+                    gbc.gridx = 0;
+                    gbc.gridwidth = 2;
+                    gbc.gridheight = 2;
+                    gbc.gridy = 0;
+
+                    fenetre.getContentPane().add(fenetre.panelMenuEnJeu, gbc);
+                    fenetre.getContentPane().validate();
+                } else {
+                    fenetre.getContentPane().removeAll();
+                    fenetre.panelFenetreDepart.bouttonMenu();
+                    fenetre.setContentPane(fenetre.panelFenetreDepart);
+                    changerVue();
+                }
                 ControlClavier.toucheRelacher[ControlTouche.ECHAP] = false;
-            }
-
-            if (jeu.getPause()) {
-                fenetre.getContentPane().setLayout(new GridBagLayout());
-                fenetre.getContentPane().isOpaque();
-                GridBagConstraints gbc = new GridBagConstraints();
-                gbc.weightx = 1;
-                gbc.weighty = 1;
-
-                gbc.gridx = 0;
-                gbc.gridwidth = 2;
-                gbc.gridheight = 2;
-                gbc.gridy = 0;
-
-                fenetre.getContentPane().add(fenetre.panelMenuEnJeu, gbc);
-                fenetre.getContentPane().validate();
-            } else {
-                fenetre.getContentPane().removeAll();
-                fenetre.panelFenetreDepart.bouttonMenu();
-                fenetre.setContentPane(fenetre.panelFenetreDepart);
-                changerVue();
             }
 
             if (!jeu.getPause()) {
@@ -60,7 +60,7 @@ public class ControlTimer extends Control implements ActionListener {
                     jeu.sauvegardeHero();
                     jeu.setSave(true);
                 }
-                if(jeu.getTemps() % 310 == 0){
+                if (jeu.getTemps() % 310 == 0) {
                     jeu.setSave(false);
                 }
 
@@ -114,7 +114,7 @@ public class ControlTimer extends Control implements ActionListener {
                 //Sauvegarde quand gain Niveau
                 int niveau = jeu.getHero().getNiveau();
                 jeu.getHero().upNiveau();
-                if (niveau < jeu.getHero().getNiveau()){ // à mettre dans une fonction jeu qui fait la sauvegarde si le héro up de niveau
+                if (niveau < jeu.getHero().getNiveau()) { // à mettre dans une fonction jeu qui fait la sauvegarde si le héro up de niveau
                     jeu.sauvegardeHero();
                 }
             }
