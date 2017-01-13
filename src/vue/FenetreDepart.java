@@ -5,6 +5,7 @@ import model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import static vue.Fenetre.X;
@@ -17,6 +18,7 @@ import static vue.Fenetre.Y;
 public class FenetreDepart extends JPanel {
 
     private Jeu jeu;
+    private ActionListener control;
 
     private final int NOMBRE_DE_EQUIPEMENT = 0;
     private final int NOMBRE_DE_PNG = 0;
@@ -45,11 +47,13 @@ public class FenetreDepart extends JPanel {
         bouttonMenu();
     }
 
-    public void bouttonMenu(){
-        menu = new JButton("YOLO");
+    public void bouttonMenu() {
+        menu = new JButton("");
         menu.setActionCommand("Menu");
-
+        Image img = getToolkit().getImage("images/iconeMenu.png").getScaledInstance(Fenetre.adapterResolutionEnX(40),Fenetre.adapterResolutionEnY(40), java.awt.Image.SCALE_SMOOTH);
+        menu.setIcon(new ImageIcon(img));
         add(menu);
+        menu.addActionListener(control);
     }
 
     public void dessineHero() {
@@ -62,7 +66,7 @@ public class FenetreDepart extends JPanel {
     }
 
     public void setControl(ControlFenetreDepart controlFenetreDepart) {
-        menu.addActionListener(controlFenetreDepart);
+        control = controlFenetreDepart;
     }
 
     protected void paintComponent(Graphics g) {
@@ -71,14 +75,11 @@ public class FenetreDepart extends JPanel {
         Image img = getToolkit().getImage("images/fondJeux.png");
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
 
-        menu.setBounds(Fenetre.adapterResolutionEnX(1860), Fenetre.adapterResolutionEnY(10), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50));
+        menu.setBounds(Fenetre.adapterResolutionEnX(1860), Fenetre.adapterResolutionEnY(10), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40));
         menu.setBackground(new Color(0, 0, 0, 0));
         menu.setFocusable(false);
         menu.setCursor(new Cursor(Cursor.HAND_CURSOR));
         menu.setBorder(null);
-
-        Image imageMenu = getToolkit().getImage("images/iconMenu.png");
-        g.drawImage(imageMenu, Fenetre.adapterResolutionEnX(1860), Fenetre.adapterResolutionEnY(10), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
 
         // a déplacer
         for (Entite e : monstre)
