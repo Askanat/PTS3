@@ -45,6 +45,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 changerVue();
                 break;
             case "Retour au Menu Principal":
+                jeu.setTemps(0);
                 fenetre.getContentPane().removeAll();
                 fenetre.panelFenetreDepart.bouttonMenu();
                 fenetre.setContentPane(fenetre.panelFenetreDepart);

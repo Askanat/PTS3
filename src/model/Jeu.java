@@ -109,6 +109,10 @@ public class Jeu {
         if (Control.enPartie) setPause(!getPause());
     }
 
+    public void setTemps (int temps){
+        this.temps = temps;
+    }
+
     public void incrementeTemps() {
         temps++;
     }
