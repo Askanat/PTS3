@@ -2,13 +2,9 @@ package model;
 
 import java.util.Random;
 
-/**
- * Created by leo on 02/10/16.
- */
-
 public class Niveau {
 
-    private int tableau[][];
+	private int tableau[][];
 
 	// nb_niveaux doit etre impair, pour commencer a gauche et finir a droite
 
@@ -16,19 +12,26 @@ public class Niveau {
 	private int taille_x;
 	private int taille_y;
 
-	private static final int NB_LIGNE_NIVEAU_MAX = 3;
-	private static final int ESPACE_NIVEAU = 2;
+	private static final int ESPACE_NIVEAU = 3;
 	private static final int TAILLE_VIDE_MAX = 8;
 	private static final int TAILLE_VIDE_FOND_MAX = 2;
+	private static final int EPAISSEUR_PLATEFORME_MIN = 1;
+	private static final int EPAISSEUR_PLATEFORME_MAX = 2;
 
-    public Niveau(int _taille_x, int _nb_niveaux) {
+	public Niveau(int _taille_x, int _nb_niveaux) {
 		// Ligne du haut et ligne du bas
-		taille_y = ESPACE_NIVEAU;
-		taille_x = _taille_x + ESPACE_NIVEAU;
+
+		/*TODO : régler problème de talle_y
+		 * Si taille_y = ESPACE_NIVEAU -> problème car il y a un
+		 * espace entre le bas et la première plateforme
+		 */
+
+		taille_y = ESPACE_NIVEAU - (ESPACE_NIVEAU - 2);
+		taille_x = _taille_x;
 		nb_niveaux = _nb_niveaux;
 
-        gen();
-    }
+		gen();
+	}
 
 	// Construction du cadre limitant le niveau
 
@@ -55,11 +58,13 @@ public class Niveau {
 		int i;
 
 		for(i = 0; i < nb_niveaux; i++)
-			epaisseur[i] = rand.nextInt(3) + 1;
+			epaisseur[i] = rand.nextInt(EPAISSEUR_PLATEFORME_MAX - EPAISSEUR_PLATEFORME_MIN + 1) + 1;
 
 		for(i = 0; i < nb_niveaux; i++)
 			taille_y += epaisseur[i] + ESPACE_NIVEAU;
 	}
+
+	// Retourne l'espace en block avant le niveau (numero de la plateforme)
 
 	private int getEspaceAvantNiveau(int[] epaisseur, int niveau) {
 		int i, espace = 1;
@@ -90,8 +95,8 @@ public class Niveau {
 					else
 						faireVide = rand.nextInt(3) + 1;
 
-					if(i > 2 && i < taille_x - 2 && faireVide == 1 && 
-					videCompteur < videMax) {
+					if(i > 2 && i < taille_x - 2 && faireVide == 1 &&
+							videCompteur < videMax) {
 						videCompteur++;
 					}
 					else {
@@ -104,13 +109,13 @@ public class Niveau {
 
 					tableau[y][i] = Block.MUR;
 
-					if(tableau[y - 1][i] == 0 && 
-					tableau[y - 1][i - 1] == 0 && 
-					tableau[y - 1][i + 1] == 0) {
+					if(tableau[y - 1][i] == 0 &&
+							tableau[y - 1][i - 1] == 0 &&
+							tableau[y - 1][i + 1] == 0) {
 						faireVide = rand.nextInt(4) + 1;
 
-					if(faireVide > 1)
-						tableau[y][i] = Block.MUR_FOND;
+						if(faireVide > 1)
+							tableau[y][i] = Block.MUR_FOND;
 					}
 				}
 			}
@@ -123,9 +128,9 @@ public class Niveau {
 					else
 						faireVide = rand.nextInt(3) + 1;
 
-					if(((debut > 1 && i < taille_x - 4) || 
-					(debut == 1 && i > 2)) &&
-					(faireVide == 1 && videCompteur < videMax)) {
+					if(((debut > 1 && i < taille_x - 4) ||
+							(debut == 1 && i > 2)) &&
+							(faireVide == 1 && videCompteur < videMax)) {
 						videCompteur++;
 					}
 					else {
@@ -143,12 +148,12 @@ public class Niveau {
 							videCompteur = 0;
 					}
 
-					if(!(((debut > 1 && i < taille_x - 5) || 
-					(debut == 1 && i > 3)) && 
-					  tableau[y - 1][i] == 0 && 
-					  tableau[y - 1][i - 1] == 0 &&
-					  tableau[y - 1][i + 1] == 0 &&
-					  faireVide > 1)) {
+					if(!(((debut > 1 && i < taille_x - 5) ||
+							(debut == 1 && i > 3)) &&
+							tableau[y - 1][i] == 0 &&
+							tableau[y - 1][i - 1] == 0 &&
+							tableau[y - 1][i + 1] == 0 &&
+							faireVide > 1)) {
 						tableau[y][i] = Block.MUR;
 					}
 				}
@@ -157,7 +162,7 @@ public class Niveau {
 	}
 
 	private void remplirNiveau(int[] epaisseur, int epaisseurN, int niveau, int dir) {
-		int i, espaceBase, espace, debut, fin, tailleVide = TAILLE_VIDE_MAX;
+		int i, j, k, espaceBase, espace, debut, fin, tailleVide = TAILLE_VIDE_MAX;
 
 		// Note : dir == 0 => accès à la plateforme supérieure par la gauche
 		//        dir != 0 => accès à la plateforme supérieure par la droite
@@ -170,12 +175,12 @@ public class Niveau {
 
 			if(espaceBase + epaisseurN != taille_y - 1) {
 				if(dir == 0) {
-					debut = 4;
+					debut = ESPACE_NIVEAU + 2;
 					fin = taille_x - 1;
 				}
 				else {
 					debut = 1;
-					fin = taille_x - 4;
+					fin = taille_x - (ESPACE_NIVEAU + 2);
 				}
 
 				if(i == epaisseurN - 1)
@@ -185,13 +190,26 @@ public class Niveau {
 
 				remplirLigne(debut, fin, i, epaisseurN, espace, tailleVide);
 
+				// Escaliers pour pouvoir passer à la plateforme suivante
+
+				debut = espaceBase + epaisseurN - 1;
+				fin = espaceBase + epaisseurN + (ESPACE_NIVEAU - 2);
+
 				if(dir == 0) {
-					tableau[espaceBase + epaisseurN - 1][3] = Block.MUR;
-					tableau[espaceBase + epaisseurN][2] = Block.MUR;
+					k = ESPACE_NIVEAU + 1;
+
+					for(j = debut; j <= fin; j++) {
+						tableau[j][k] = 2;
+						k--;
+					}
 				}
 				else {
-					tableau[espaceBase + epaisseurN - 1][taille_x - 4] = Block.MUR;
-					tableau[espaceBase + epaisseurN][taille_x - 3] = Block.MUR;
+					k = taille_x - ESPACE_NIVEAU * 2;
+
+					for(j = debut; j <= fin; j++) {
+						tableau[j][k] = 2;
+						k++;
+					}
 				}
 			}
 			else {
@@ -204,7 +222,7 @@ public class Niveau {
 	}
 
 	// Generation du niveau
-	
+
 	public void gen() {
 		Random rand = new Random();
 		int[] epaisseur = new int[nb_niveaux];
@@ -226,6 +244,7 @@ public class Niveau {
 			for(j = 0; j < taille_x; j++) {
 				System.out.print(tableau[i][j] + " ");
 			}
+
 			System.out.println();
 			System.out.println();
 		}
