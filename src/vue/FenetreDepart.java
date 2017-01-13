@@ -56,6 +56,9 @@ public class FenetreDepart extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        Image img = getToolkit().getImage("images/fondJeux.png");
+        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+
         // a déplacer
         for (Entite e : monstre)
             e.paintComponent(g);
@@ -65,10 +68,9 @@ public class FenetreDepart extends JPanel {
 
         hero.paintComponent(g);
 
-        Image img = null;
+        img = null;
         if (jeu.getSave())
             img = getToolkit().getImage("images/iconeSave.png");
         g.drawImage(img, Fenetre.adapterResolutionEnX(5), Fenetre.adapterResolutionEnY(5), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
-
     }
 }
