@@ -71,6 +71,8 @@ public class FenetreCharger extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        Font taillePolice = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
+
         g.drawImage(getToolkit().getImage("images/chargerPartie.png"), 0, 0, getWidth(), getHeight(), this);
 
         slot1.setBounds(Fenetre.adapterResolutionEnX(340), Fenetre.adapterResolutionEnY(240), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(280));
@@ -82,6 +84,7 @@ public class FenetreCharger extends JPanel {
         nomSlot1.setBounds(Fenetre.adapterResolutionEnX(360), Fenetre.adapterResolutionEnY(524), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
         nomSlot1.setForeground(Color.WHITE);
         nomSlot1.setBackground(new Color(0, 0, 0, 0));
+        nomSlot1.setFont(taillePolice);
         nomSlot1.setFocusable(false);
         nomSlot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         nomSlot1.setBorder(null);
@@ -89,6 +92,7 @@ public class FenetreCharger extends JPanel {
         niveauSlot1.setBounds(Fenetre.adapterResolutionEnX(360), Fenetre.adapterResolutionEnY(561), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
         niveauSlot1.setForeground(Color.WHITE);
         niveauSlot1.setBackground(new Color(0, 0, 0, 0));
+        niveauSlot1.setFont(taillePolice);
         niveauSlot1.setFocusable(false);
         niveauSlot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
         niveauSlot1.setBorder(null);
@@ -103,6 +107,7 @@ public class FenetreCharger extends JPanel {
             nomSlot2.setBounds(Fenetre.adapterResolutionEnX(860), Fenetre.adapterResolutionEnY(524), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
             nomSlot2.setForeground(Color.WHITE);
             nomSlot2.setBackground(new Color(0, 0, 0, 0));
+            nomSlot2.setFont(taillePolice);
             nomSlot2.setFocusable(false);
             nomSlot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
             nomSlot2.setBorder(null);
@@ -110,6 +115,7 @@ public class FenetreCharger extends JPanel {
             niveauSlot2.setBounds(Fenetre.adapterResolutionEnX(860), Fenetre.adapterResolutionEnY(561), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
             niveauSlot2.setForeground(Color.WHITE);
             niveauSlot2.setBackground(new Color(0, 0, 0, 0));
+            niveauSlot2.setFont(taillePolice);
             niveauSlot2.setFocusable(false);
             niveauSlot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
             niveauSlot2.setBorder(null);
@@ -125,6 +131,7 @@ public class FenetreCharger extends JPanel {
             nomSlot3.setBounds(Fenetre.adapterResolutionEnX(1360), Fenetre.adapterResolutionEnY(524), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
             nomSlot3.setForeground(Color.WHITE);
             nomSlot3.setBackground(new Color(0, 0, 0, 0));
+            nomSlot3.setFont(taillePolice);
             nomSlot3.setFocusable(false);
             nomSlot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
             nomSlot3.setBorder(null);
@@ -132,6 +139,7 @@ public class FenetreCharger extends JPanel {
             niveauSlot3.setBounds(Fenetre.adapterResolutionEnX(1360), Fenetre.adapterResolutionEnY(561), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
             niveauSlot3.setForeground(Color.WHITE);
             niveauSlot3.setBackground(new Color(0, 0, 0, 0));
+            niveauSlot3.setFont(taillePolice);
             niveauSlot3.setFocusable(false);
             niveauSlot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
             niveauSlot3.setBorder(null);
