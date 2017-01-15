@@ -2,6 +2,13 @@ package model;
 
 import java.util.Random;
 
+/*
+ * TODO : Bugs à corriger
+ *
+ * - mur au dessus de l'escalier
+ * - trou en dessous de la porte
+ */
+
 public class Niveau {
 
     private int tableau[][];
@@ -11,6 +18,8 @@ public class Niveau {
     private int nb_niveaux;
     private int taille_x;
     private int taille_y;
+	private int[] epaisseur;
+	private Direction sortie;
 
     private static final int ESPACE_NIVEAU = 3;
     private static final int TAILLE_VIDE_MAX = 8;
@@ -21,14 +30,14 @@ public class Niveau {
     public Niveau(int _taille_x, int _nb_niveaux) {
         // Ligne du haut et ligne du bas
 
-		/*TODO : régler problème de talle_y
-         * Si taille_y = ESPACE_NIVEAU -> problème car il y a un
-		 * espace entre le bas et la première plateforme
-		 */
-
         taille_y = ESPACE_NIVEAU - (ESPACE_NIVEAU - 2);
         taille_x = _taille_x;
         nb_niveaux = _nb_niveaux;
+
+		if(nb_niveaux % 2 == 0)
+			sortie = Direction.DROITE;
+		else
+			sortie = Direction.GAUCHE;
 
         gen();
     }
@@ -51,9 +60,9 @@ public class Niveau {
             tableau[i][taille_x - 1] = Block.MUR;
     }
 
-    // Retourne l'epaisseur de toutes les lignes et calcule taille_y
+    // Calcule l'epaisseur de toutes les lignes et calcule taille_y
 
-    private void genTailleY(int[] epaisseur) {
+    private void genTailleY() {
         Random rand = new Random();
         int i;
 
@@ -66,7 +75,7 @@ public class Niveau {
 
     // Retourne l'espace en block avant le niveau (numero de la plateforme)
 
-    private int getEspaceAvantNiveau(int[] epaisseur, int niveau) {
+    private int getEspaceAvantNiveau(int niveau) {
         int i, espace = 1;
 
         for (i = 0; i < niveau; i++)
@@ -75,19 +84,42 @@ public class Niveau {
         return espace + ESPACE_NIVEAU;
     }
 
-    private void remplirPlateformeFondSup(int plateforme, int[] epaisseur) {
+	private void ajoutPorteSortie() {
+		int y = getEspaceAvantNiveau(0) - 1;
+
+		if(sortie == Direction.DROITE) {
+			tableau[y][taille_x - 4] = Block.PORTE_BAS_GAUCHE;
+			tableau[y - 1][taille_x - 4] = Block.PORTE_MILIEU_GAUCHE;
+			tableau[y - 2][taille_x - 4] = Block.PORTE_HAUT_GAUCHE;
+			tableau[y][taille_x - 3] = Block.PORTE_BAS_DROITE;
+			tableau[y - 1][taille_x - 3] = Block.PORTE_MILIEU_DROITE;
+			tableau[y - 2][taille_x - 3] = Block.PORTE_HAUT_DROITE;
+		}
+		else {
+			tableau[y][3] = Block.PORTE_BAS_GAUCHE;
+			tableau[y - 1][3] = Block.PORTE_MILIEU_GAUCHE;
+			tableau[y - 2][3] = Block.PORTE_HAUT_GAUCHE;
+			tableau[y][2] = Block.PORTE_BAS_DROITE;
+			tableau[y - 1][2] = Block.PORTE_MILIEU_DROITE;
+			tableau[y - 2][2] = Block.PORTE_HAUT_DROITE;
+		}
+	}
+
+    private void remplirPlateformeFondSup(int plateforme) {
         Random rand = new Random();
-        int y = getEspaceAvantNiveau(epaisseur, plateforme) - 2;
+        int y = getEspaceAvantNiveau(plateforme) - 2;
         int r;
 
         for(int i = 1; i < taille_x - 1; i++) {
             if(i % 15 == 0)
                 tableau[y][i] = Block.TORCHE;
-            else if (tableau[y][i] == Block.MUR_FOND){
+            else if (tableau[y][i] == Block.MUR_FOND)
+			{
                 r = rand.nextInt(10);
 
-            if(r == 0)
-                tableau[y][i] = Block.VITRE;
+	            if(r == 0)
+    	            tableau[y][i] = Block.VITRE;
+			}
         }
     }
 	
@@ -172,14 +204,16 @@ public class Niveau {
         }
     }
 
-    private void remplirNiveau(int[] epaisseur, int epaisseurN, int niveau, int dir) {
-        int i, j, k, espaceBase, espace, debut, fin, tailleVide = TAILLE_VIDE_MAX;
+    private void remplirNiveau(int niveau, int dir) {
+        int i, j, k, debut, fin;
+		int espaceBase, espace, tailleVide = TAILLE_VIDE_MAX;
+		int epaisseurN = epaisseur[niveau];
 
         // Note : dir == 0 => accès à la plateforme supérieure par la gauche
         //        dir != 0 => accès à la plateforme supérieure par la droite
 
         for (i = 0; i < epaisseurN; i++) {
-            espaceBase = getEspaceAvantNiveau(epaisseur, niveau);
+            espaceBase = getEspaceAvantNiveau(niveau);
             espace = espaceBase + i;
 
             // S'il ne s'agit pas d'une des premières lignes du bas
@@ -233,17 +267,19 @@ public class Niveau {
 
     public void gen() {
         Random rand = new Random();
-        int[] epaisseur = new int[nb_niveaux];
         int i;
 
-        genTailleY(epaisseur);
+		epaisseur = new int[nb_niveaux];
+        genTailleY();
         tableau = new int[taille_y][taille_x];
         genCadre();
 
         for (i = 0; i < nb_niveaux; i++) {
-            remplirNiveau(epaisseur, epaisseur[i], i, (i + 1) % 2);
-            remplirPlateformeFondSup(i, epaisseur);
+            remplirNiveau(i, (i + 1) % 2);
+            remplirPlateformeFondSup(i);
         }
+
+		ajoutPorteSortie();
     }
 
     public void print() {
