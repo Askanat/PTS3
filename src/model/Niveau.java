@@ -75,6 +75,22 @@ public class Niveau {
         return espace + ESPACE_NIVEAU;
     }
 
+    private void remplirPlateformeFondSup(int plateforme, int[] epaisseur) {
+        Random rand = new Random();
+        int y = getEspaceAvantNiveau(epaisseur, plateforme) - 2;
+        int r;
+
+        for(int i = 1; i < taille_x - 1; i++) {
+            if(i % 15 == 0)
+                tableau[y][i] = Block.TORCHE;
+            else if (tableau[y][i] == Block.MUR_FOND){
+                r = rand.nextInt(10);
+
+            if(r == 0)
+                tableau[y][i] = Block.VITRE;
+        }
+    }
+	
     // posLigne = 0 => debut
     // posLigne = epaisseur - 1 => fin
     // sinon => une des lignes du milieu
@@ -90,7 +106,7 @@ public class Niveau {
                 // Si c'est la toute première ligne du block
 
                 if (posLigne == 0) {
-                    if (videCompteur > 0)
+                    if (videCompteur > 0)   
                         faireVide = rand.nextInt(2) + 1;
                     else
                         faireVide = rand.nextInt(3) + 1;
@@ -226,6 +242,7 @@ public class Niveau {
 
         for (i = 0; i < nb_niveaux; i++) {
             remplirNiveau(epaisseur, epaisseur[i], i, (i + 1) % 2);
+            remplirPlateformeFondSup(i, epaisseur);
         }
     }
 
