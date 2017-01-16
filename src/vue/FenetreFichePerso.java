@@ -19,11 +19,19 @@ public class FenetreFichePerso extends JPanel {
     public JButton retour, plusForce, moinsForce, plusInt, moinsInt, plusConst, moinsConst, plusResist, moinsResist, valider;
     public JLabel valForce, valInt, valConst, valResist, niveau, pointCaracteristique, pointCompetence, nomHero, vie, mana, exp;
 
+    private Image imageFenetreFichePerso;
+    private Font fontCompetence, fontBarre, fontNomLVL;
+
     public FenetreFichePerso(Jeu jeu) {
         this.jeu = jeu;
 
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
+
+        imageFenetreFichePerso = getToolkit().getImage("images/fichePerso.png");
+        fontCompetence = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
+        fontBarre = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
+        fontNomLVL = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(32));
 
         //JButton
         retour = new JButton();
@@ -112,7 +120,7 @@ public class FenetreFichePerso extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Font fontCompetence = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
+        g.drawImage(imageFenetreFichePerso, 0, 0, getWidth(), getHeight(), this);
 
         //JButton
         retour.setBounds(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
@@ -165,9 +173,6 @@ public class FenetreFichePerso extends JPanel {
         valider.setFocusable(false);
         valider.setBorder(null);
 
-        Image img = getToolkit().getImage("images/fichePerso.png");
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-
         //JLabel avec adaptation de taille
         //Force
         valForce.setBounds(Fenetre.adapterResolutionEnX(1454), Fenetre.adapterResolutionEnY(265), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
@@ -206,9 +211,6 @@ public class FenetreFichePerso extends JPanel {
         pointCompetence.setBorder(null);
 
 
-        //Fond Nom et Niveau
-        Font fontNomLVL = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(32));
-
         nomHero.setBounds(Fenetre.adapterResolutionEnX(160), Fenetre.adapterResolutionEnY(592), Fenetre.adapterResolutionEnX(400), Fenetre.adapterResolutionEnX(40));
         nomHero.setForeground(Color.WHITE);
         nomHero.setFont(fontNomLVL);
@@ -219,10 +221,6 @@ public class FenetreFichePerso extends JPanel {
         niveau.setForeground(Color.WHITE);
         niveau.setFont(fontNomLVL);
         niveau.setBorder(null);
-
-
-        //Fond Barre
-        Font fontBarre = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
 
         //Texte Barre
         vie.setBounds(Fenetre.adapterResolutionEnX(126), Fenetre.adapterResolutionEnY(280), Fenetre.adapterResolutionEnX(932), Fenetre.adapterResolutionEnY(32));

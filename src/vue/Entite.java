@@ -212,7 +212,7 @@ public class Entite extends JPanel {
             g.setColor(Color.WHITE);
             g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(80), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
             g.setColor(Color.ORANGE);
-            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(80), Fenetre.adapterResolutionEnX(200 * (int)((Hero) personnage).getExperience() / (int)((Hero) personnage).getExperienceMax()), Fenetre.adapterResolutionEnY(15));
+            g.fillRect(Fenetre.adapterResolutionEnX(100), Fenetre.adapterResolutionEnY(80), Fenetre.adapterResolutionEnX(200 * (int) ((Hero) personnage).getExperience() / (int) ((Hero) personnage).getExperienceMax()), Fenetre.adapterResolutionEnY(15));
 
         }
     }

@@ -17,13 +17,18 @@ public class FenetreOptions extends JPanel {
 
     Jeu jeu;
     public JButton retour, hitBox;
-    private JLabel options, texte;
     public JTextField avancer, sauter, attaquer, reculer;
+
+    private Image imageFenetreOption;
+    private Font f;
 
     public FenetreOptions(Jeu jeu) {
         this.jeu = jeu;
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
+
+        imageFenetreOption = getToolkit().getImage("images/menuOptionsTest.png");
+        f = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
 
         retour = new JButton("");
         retour.setActionCommand("Retour");
@@ -54,7 +59,7 @@ public class FenetreOptions extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Font f=new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
+        g.drawImage(imageFenetreOption, 0, 0, getWidth(), getHeight(), this);
 
         retour.setBounds(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
         retour.setBackground(new Color(0, 0, 0, 0));
@@ -64,11 +69,11 @@ public class FenetreOptions extends JPanel {
         hitBox.setBounds(Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
         hitBox.setBackground(new Color(0, 0, 0, 0));
         hitBox.setFont(f);
-        if(!jeu.getHitBox()) {
+        if (!jeu.getHitBox())
             hitBox.setForeground(Color.RED);
-        }else{
+        else
             hitBox.setForeground(Color.GREEN);
-        }
+
         hitBox.setFocusable(false);
         hitBox.setBorder(null);
 
@@ -91,8 +96,5 @@ public class FenetreOptions extends JPanel {
         reculer.setBackground(new Color(0, 0, 0, 0));
         reculer.setFocusable(false);
         reculer.setBorder(null);
-
-        Image img = getToolkit().getImage("images/menuOptionsTest.png");
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 }

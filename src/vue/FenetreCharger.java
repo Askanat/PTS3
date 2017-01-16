@@ -22,12 +22,19 @@ public class FenetreCharger extends JPanel {
     public JButton slot1, slot2, slot3, jouer, retour;
     public JLabel nomSlot1, nomSlot2, nomSlot3, niveauSlot1, niveauSlot2, niveauSlot3;
 
+    private Image imagePorte, imageFenetreCharger;
+    private Font taillePolice;
+
     public FenetreCharger(Jeu jeu) {
 
         this.jeu = jeu;
 
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
+
+        imagePorte = getToolkit().getImage("images/feuPorte.png");
+        imageFenetreCharger = getToolkit().getImage("images/chargerPartie.png");
+        taillePolice = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
 
         slot1 = new JButton("");
         slot1.setActionCommand("Slot de Sauvegarde n°1");
@@ -71,9 +78,7 @@ public class FenetreCharger extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Font taillePolice = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
-
-        g.drawImage(getToolkit().getImage("images/chargerPartie.png"), 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(imageFenetreCharger, 0, 0, getWidth(), getHeight(), this);
 
         if (!jeu.readLVLPerso(1).equals("0")) {
             slot1.setBounds(Fenetre.adapterResolutionEnX(340), Fenetre.adapterResolutionEnY(240), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(280));
@@ -170,7 +175,7 @@ public class FenetreCharger extends JPanel {
             if (!jeu.readLVLPerso(3).equals("0")) {
                 g.drawImage(Entite.decoupage(ImageIO.read(new File("images/Save/texture_hero3.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(1310), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
             }
-            g.drawImage(getToolkit().getImage("images/feuPorte.png"), Fenetre.adapterResolutionEnX(-194 + 500 * Fenetre.numeroPorte), Fenetre.adapterResolutionEnY(200), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
+            g.drawImage(imagePorte, Fenetre.adapterResolutionEnX(-194 + 500 * Fenetre.numeroPorte), Fenetre.adapterResolutionEnY(200), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
         } catch (IOException e) {
             e.printStackTrace();
         }

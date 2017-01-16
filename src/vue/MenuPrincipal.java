@@ -17,10 +17,14 @@ public class MenuPrincipal extends JPanel {
 
     public JButton nouvellePartie, chargerPartie, options, credits, quitter;
 
+    private Image imageMenuPrincipal;
+
     public MenuPrincipal() {
 
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
+
+        imageMenuPrincipal = getToolkit().getImage("images/testMenu.png");
 
         nouvellePartie = new JButton("");
         nouvellePartie.setActionCommand("Nouvelle Partie");
@@ -51,6 +55,8 @@ public class MenuPrincipal extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        g.drawImage(imageMenuPrincipal, 0, 0, getWidth(), getHeight(), this);
+
         nouvellePartie.setBounds(Fenetre.adapterResolutionEnX(1248), Fenetre.adapterResolutionEnY(420), Fenetre.adapterResolutionEnX(400), Fenetre.adapterResolutionEnY(54));
         nouvellePartie.setBackground(new Color(0, 0, 0, 0));
         nouvellePartie.setFocusable(false);
@@ -80,8 +86,5 @@ public class MenuPrincipal extends JPanel {
         quitter.setFocusable(false);
         quitter.setCursor(new Cursor(Cursor.HAND_CURSOR));
         quitter.setBorder(null);
-
-        Image img = getToolkit().getImage("images/testMenu.png");
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 }

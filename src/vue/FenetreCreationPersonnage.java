@@ -52,12 +52,23 @@ public class FenetreCreationPersonnage extends JPanel {
     public int choixCouleurPilosite;
     public int choixPilosite;
 
+    private Image imageFenetreCreationPersonnePourHomme, imageFenetreCreationPersonnePourFemme;
+
     public FenetreCreationPersonnage(Jeu jeu) {
 
         this.jeu = jeu;
 
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
+
+        imageFenetreCreationPersonnePourHomme = getToolkit().getImage("images/menuCreationPersonnageHomme.png");
+        imageFenetreCreationPersonnePourFemme = getToolkit().getImage("images/menuCreationPersonnageFemme.png");
+
+        spriteCheveux = new BufferedImage[2][NB_CHEVEUX][NB_COULEUR]; // [0 = femme, 1 homme][type][couleur]
+        spriteYeux = new BufferedImage[NB_YEUX][NB_COULEUR]; // [type][couleur]
+        spritePeau = new BufferedImage[2][NB_PEAUX]; // [0 = femme, 1 homme][couleur]
+        spritePilosite = new BufferedImage[NB_PILOSITE][NB_COULEUR]; // [type][couleur]
+        initialiseCaracteristiquePhysique();
 
         jouer = new JButton("");
         jouer.setActionCommand("Jouer");
@@ -123,11 +134,6 @@ public class FenetreCreationPersonnage extends JPanel {
             add(yeuxCouleur[i]);
             add(pilositeCouleur[i]);
         }
-
-        spriteCheveux = new BufferedImage[2][NB_CHEVEUX][NB_COULEUR]; // [0 = femme, 1 homme][type][couleur]
-        spriteYeux = new BufferedImage[NB_YEUX][NB_COULEUR]; // [type][couleur]
-        spritePeau = new BufferedImage[2][NB_PEAUX]; // [0 = femme, 1 homme][couleur]
-        spritePilosite = new BufferedImage[NB_PILOSITE][NB_COULEUR]; // [type][couleur]
 
         choixSexe = 0;
         choixCouleurCheveux = 0;
@@ -260,6 +266,11 @@ public class FenetreCreationPersonnage extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        if (choixSexe == 0)
+            g.drawImage(imageFenetreCreationPersonnePourHomme, 0, 0, getWidth(), getHeight(), this);
+        else
+            g.drawImage(imageFenetreCreationPersonnePourFemme, 0, 0, getWidth(), getHeight(), this);
 
         jouer.setBounds(Fenetre.adapterResolutionEnX(1600), Fenetre.adapterResolutionEnY(985), Fenetre.adapterResolutionEnX(256), Fenetre.adapterResolutionEnY(41));
         jouer.setBackground(new Color(0, 0, 0, 0));
@@ -405,13 +416,6 @@ public class FenetreCreationPersonnage extends JPanel {
                 pilositeCouleur[i].setEnabled(false);
             }
         }
-
-        Image img = null;
-        if (choixSexe == 0)
-            img = getToolkit().getImage("images/menuCreationPersonnageHomme.png");
-        else
-            img = getToolkit().getImage("images/menuCreationPersonnageFemme.png");
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
 
         if (choixSexe == 0)
             g.drawImage(spritePilosite[choixPilosite][choixCouleurPilosite], Fenetre.adapterResolutionEnX(1465), Fenetre.adapterResolutionEnY(606), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(200), this);

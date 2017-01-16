@@ -18,11 +18,15 @@ public class MenuEnJeu extends JPanel {
     private Jeu jeu;
     public JButton retourJeu, inventaire, fichePersonnage, option, retourMenuPrincipal, retourBureau;
 
+    private Image imageMenuEnJeu;
+
     public MenuEnJeu(Jeu jeu) {
         this.jeu = jeu;
 
         this.setLayout(null);
         setPreferredSize(new Dimension(X / 2, Y / 2));
+
+        imageMenuEnJeu = getToolkit().getImage("images/menuPause.png");
 
         retourJeu = new JButton("");
         retourJeu.setActionCommand("Retour");
@@ -56,6 +60,8 @@ public class MenuEnJeu extends JPanel {
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        g.drawImage(imageMenuEnJeu, 0, 0, getWidth(), getHeight(), this);
 
         retourJeu.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(92), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
         retourJeu.setBackground(new Color(0, 0, 0, 0));
@@ -92,8 +98,5 @@ public class MenuEnJeu extends JPanel {
         retourBureau.setFocusable(false);
         retourBureau.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retourBureau.setBorder(null);
-
-        Image img = getToolkit().getImage("images/menuPause.png");
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
 }

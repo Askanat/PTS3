@@ -22,7 +22,6 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
         switch (e.getActionCommand()) {
             case "Nouvelle Partie":
                 if (jeu.getNbPartieLibre() >= 1) {
-                    fenetre.panelFenetreCreationPersonnage.initialiseCaracteristiquePhysique();
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                     changerVue();
                 } else {
@@ -41,7 +40,6 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
                     fenetre.setContentPane(fenetre.panelFenetreCharger);
                     changerVue();
                 } else {
-                    fenetre.panelFenetreCreationPersonnage.initialiseCaracteristiquePhysique();
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                     changerVue();
                 }

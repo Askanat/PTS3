@@ -29,12 +29,17 @@ public class FenetreDepart extends JPanel {
 
     public JButton menu;
 
+    private Image imageFenetreDepart, imageIconeSave;
+
     public FenetreDepart(Jeu jeu) {
 
         this.jeu = jeu;
 
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
+
+        imageFenetreDepart = getToolkit().getImage("images/fondJeux.png");
+        imageIconeSave = getToolkit().getImage("images/iconeSave.png");
 
         hero = new Entite(jeu);
 
@@ -50,7 +55,7 @@ public class FenetreDepart extends JPanel {
     public void bouttonMenu() {
         menu = new JButton("");
         menu.setActionCommand("Menu");
-        Image img = getToolkit().getImage("images/iconeMenu.png").getScaledInstance(Fenetre.adapterResolutionEnX(40),Fenetre.adapterResolutionEnY(40), java.awt.Image.SCALE_SMOOTH);
+        Image img = getToolkit().getImage("images/iconeMenu.png").getScaledInstance(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40), java.awt.Image.SCALE_SMOOTH);
         menu.setIcon(new ImageIcon(img));
         add(menu);
         menu.addActionListener(control);
@@ -73,8 +78,7 @@ public class FenetreDepart extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Image img = getToolkit().getImage("images/fondJeux.png");
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(imageFenetreDepart, 0, 0, getWidth(), getHeight(), this);
 
         menu.setBounds(Fenetre.adapterResolutionEnX(1860), Fenetre.adapterResolutionEnY(10), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40));
         menu.setBackground(new Color(0, 0, 0, 0));
@@ -90,9 +94,8 @@ public class FenetreDepart extends JPanel {
             e.paintComponent(g);
 
         hero.paintComponent(g);
-        img = null;
+
         if (jeu.getSave())
-            img = getToolkit().getImage("images/iconeSave.png");
-        g.drawImage(img, Fenetre.adapterResolutionEnX(5), Fenetre.adapterResolutionEnY(5), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
+            g.drawImage(imageIconeSave, Fenetre.adapterResolutionEnX(5), Fenetre.adapterResolutionEnY(5), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
     }
 }
