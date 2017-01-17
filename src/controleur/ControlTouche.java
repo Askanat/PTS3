@@ -45,6 +45,10 @@ public class ControlTouche {
         return touches;
     }
 
+    public String getNomTouche(int codeAction) {
+        return KeyEvent.getKeyText(touches[codeAction]);
+    }
+
     /*
      * setActionTouche : Change la touche associée à une action
      *
