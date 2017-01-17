@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
 
 public class ControlClavier extends Control implements KeyListener {
 
-    private final int TOUCHE_CLAVIER[] = ControlTouche.getJavaTouches();
+    private ControlTouche controlTouche;
     public static boolean toucheEnfoncer[];
     public static boolean toucheRelacher[];
 
@@ -21,8 +21,9 @@ public class ControlClavier extends Control implements KeyListener {
         super(jeu, fenetre);
         fenetre.setControlClavier(this);
 
-        toucheEnfoncer = new boolean[ControlTouche.getNbTouches()];
-        toucheRelacher = new boolean[ControlTouche.getNbTouches()];
+        controlTouche = new ControlTouche();
+        toucheEnfoncer = new boolean[controlTouche.getNbActions()];
+        toucheRelacher = new boolean[controlTouche.getNbActions()];
 
         for (int i = 0; i < toucheEnfoncer.length; i++)
             toucheEnfoncer[i] = false;
@@ -39,7 +40,7 @@ public class ControlClavier extends Control implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
         int i = 0;
-        for (int key : TOUCHE_CLAVIER) {
+        for (int key : controlTouche.getTouches()) {
             if (e.getKeyCode() == key)
                 toucheEnfoncer[i] = true;
             i++;
@@ -52,14 +53,14 @@ public class ControlClavier extends Control implements KeyListener {
     public void keyReleased(KeyEvent e) {
 
         int i = 0;
-        for (int key : TOUCHE_CLAVIER) {
+        for (int key : controlTouche.getTouches()) {
             if (e.getKeyCode() == key)
                 toucheEnfoncer[i] = false;
             i++;
         }
 
         i = 0;
-        for (int key : TOUCHE_CLAVIER) {
+        for (int key : controlTouche.getTouches()) {
             if (e.getKeyCode() == key)
                 toucheRelacher[i] = true;
             i++;

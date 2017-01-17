@@ -6,38 +6,53 @@ import java.lang.reflect.Field;
 /**
  * Created by raphael on 11/8/16.
  *
- * Ce fichier contient la liste des touches utilisées dans le jeu.
- *
- * Si vous voulez ajouter une touche mettez la à la suite avec comme valeur la touche précédente + 1.
- * N'oubliez pas de mettre ensuite à jour la méthode getJavaTouches(). Faites attention à bien respecter l'ordre.
- *
- * C'est plus pratique que de se reférer à un numéro dans ControlTimer.
+ * Le fichier contient la liste des actions possible en cours de jeu. Il associe à chaque action une touche.
+ * Lors de l'ajout d'une action : ne pas oublier de mettre à jour le constructeur afin d'y associer une touche par défaut.
  */
 
 public class ControlTouche {
-    public static final int
-    ECHAP = 0,
-    GAUCHE = 1,
-    HAUT = 2,
-    DROITE = 3,
-    BAS = 4,
-    A = 5;
+    // Liste des actions possibles en cours de jeu
 
-    public static int getNbTouches() {
+    public static final int
+    ACTION_MENU = 0,
+    ACTION_GAUCHE = 1,
+    ACTION_DROITE = 2,
+    ACTION_SAUT = 3,
+    ACTION_ATTAQUE = 4;
+    private int[] touches;
+    private int nbActions;
+
+    public ControlTouche() {
         Field[] fields = ControlTouche.class.getDeclaredFields();
-        return fields.length;
+
+        nbActions = fields.length - 2;
+        touches = new int[nbActions];
+
+        // Touches par défaut
+
+        touches[ACTION_MENU] = KeyEvent.VK_ESCAPE;
+        touches[ACTION_GAUCHE] = KeyEvent.VK_LEFT;
+        touches[ACTION_DROITE] = KeyEvent.VK_RIGHT;
+        touches[ACTION_SAUT] = KeyEvent.VK_UP;
+        touches[ACTION_ATTAQUE] = KeyEvent.VK_A;
     }
 
-    public static int[] getJavaTouches()
-    {
-        int touches[] = {
-                KeyEvent.VK_ESCAPE,
-                KeyEvent.VK_LEFT,
-                KeyEvent.VK_UP,
-                KeyEvent.VK_RIGHT,
-                KeyEvent.VK_DOWN,
-                KeyEvent.VK_A
-        };
+    public int getNbActions() {
+        return nbActions;
+    }
+
+    public int[] getTouches() {
         return touches;
+    }
+
+    /*
+     * setActionTouche : Change la touche associée à une action
+     *
+     * @codeAction : une des constantes définie dans ControlTouche
+     * @touche : une touche définie dans la classe KeyEvent
+     */
+
+    public void setActionTouche(int codeAction, int touche) {
+        touches[codeAction] = touche;
     }
 }

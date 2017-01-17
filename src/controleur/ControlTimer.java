@@ -25,7 +25,7 @@ public class ControlTimer extends Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (Control.enPartie) {
-            if (ControlClavier.toucheRelacher[ControlTouche.ECHAP]) {
+            if (ControlClavier.toucheRelacher[ControlTouche.ACTION_MENU]) {
                 jeu.inversePause();
 
                 if (jeu.getPause()) {
@@ -48,7 +48,7 @@ public class ControlTimer extends Control implements ActionListener {
                     fenetre.setContentPane(fenetre.panelFenetreDepart);
                     changerVue();
                 }
-                ControlClavier.toucheRelacher[ControlTouche.ECHAP] = false;
+                ControlClavier.toucheRelacher[ControlTouche.ACTION_MENU] = false;
             }
 
             if (!jeu.getPause()) {
@@ -65,19 +65,19 @@ public class ControlTimer extends Control implements ActionListener {
                 }
 
 
-                if (ControlClavier.toucheEnfoncer[ControlTouche.GAUCHE]) {
+                if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_GAUCHE]) {
                     jeu.getHero().deplacerAGauche();
                 }
 
-                if (ControlClavier.toucheEnfoncer[ControlTouche.HAUT]) {
+                if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_SAUT]) {
                     jeu.getHero().sauter();
                 }
 
-                if (ControlClavier.toucheEnfoncer[ControlTouche.DROITE]) {
+                if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_DROITE]) {
                     jeu.getHero().deplacerADroite();
                 }
 
-                if (ControlClavier.toucheRelacher[ControlTouche.A]) {
+                if (ControlClavier.toucheRelacher[ControlTouche.ACTION_ATTAQUE]) {
                     if (!jeu.getHero().getAttaquer()) {
                         jeu.getHero().setAttaquer(true);
 
@@ -87,7 +87,7 @@ public class ControlTimer extends Control implements ActionListener {
                             jeu.getHero().attaquer(jeu.getMonstre(i));
                         }
 
-                        ControlClavier.toucheRelacher[ControlTouche.A] = false;
+                        ControlClavier.toucheRelacher[ControlTouche.ACTION_ATTAQUE] = false;
                     }
                 }
 
