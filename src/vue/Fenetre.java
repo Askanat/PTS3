@@ -37,15 +37,15 @@ public class Fenetre extends JFrame {
     private static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     public static final double DEFAUT_X = 1920;
     public static final double DEFAUT_Y = 1080;
-    public static final int X = (int) tailleEcran.getWidth();
-    public static final int Y = (int) tailleEcran.getHeight();
+    public static final int X = 720/*(int) tailleEcran.getWidth()*/;
+    public static final int Y = 405/*(int) tailleEcran.getHeight()*/;
 
     public Fenetre(Jeu jeu) {
 
         this.jeu = jeu;
 
         init();
-        setUndecorated(true);
+        //setUndecorated(true);
         setContentPane(panelMenuPrincipal);
         pack();
         setTitle("Jeu");
@@ -59,7 +59,6 @@ public class Fenetre extends JFrame {
 
     public void init() {
         panelFenetreCharger = new FenetreCharger(jeu);
-        panelFenetreOptions = new FenetreOptions(jeu);
         panelFenetreCredits = new FenetreCredits();
         panelFenetreDonjon = new FenetreDonjon(jeu);
         panelFenetreNouvellePartie = new FenetreNouvellePartie(jeu);
@@ -88,6 +87,10 @@ public class Fenetre extends JFrame {
         panelScrollFenetreDepart = new JPanel(null);
         panelScrollFenetreDepart.setPreferredSize(new Dimension(X, Y));
         panelScrollFenetreDepart.add(scrollPane);
+    }
+
+    public void initFenetreOptions(ControlTouche controlTouche) {
+        panelFenetreOptions = new FenetreOptions(jeu, controlTouche);
     }
 
     public static int adapterResolutionEnX(int valeur) {

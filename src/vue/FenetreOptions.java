@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.ControlFenetreOptions;
+import controleur.ControlTouche;
 import model.Jeu;
 
 import javax.swing.*;
@@ -16,44 +17,51 @@ import static vue.Fenetre.Y;
 public class FenetreOptions extends JPanel {
 
     Jeu jeu;
+    ControlTouche controlTouche;
     public JButton retour, hitBox;
-    public JTextField avancer, sauter, attaquer, reculer;
+    public JButton[] controlButton;
 
     private Image imageFenetreOption;
-    private Font f;
+    private Font f, fControlTouche;
 
-    public FenetreOptions(Jeu jeu) {
+    public FenetreOptions(Jeu jeu, ControlTouche controlTouche) {
+        this.controlTouche = controlTouche;
         this.jeu = jeu;
         this.setLayout(null);
         setPreferredSize(new Dimension(X, Y));
 
         imageFenetreOption = getToolkit().getImage("images/menuOptionsTest.png");
         f = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
+        fControlTouche = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(35));
 
         retour = new JButton("");
         retour.setActionCommand("Retour");
         hitBox = new JButton("Hitbox");
         hitBox.setActionCommand("Hitbox");
-        avancer = new JTextField("");
-        avancer.setActionCommand("Avancer");
-        sauter = new JTextField("");
-        sauter.setActionCommand("Sauter");
-        attaquer = new JTextField("");
-        attaquer.setActionCommand("Attaquer");
-        reculer = new JTextField("");
-        reculer.setActionCommand("Reculer");
+
+        controlButton = new JButton[controlTouche.getNbActions() - 1];
+        String[] repAction = new String[]{"Avancer", "Sauter", "Attaquer", "Reculer"};
+
+        for(int i = 0; i < controlButton.length; i++) {
+            controlButton[i] = new JButton(controlTouche.getNomTouche(i + 1));
+            controlButton[i].setActionCommand(repAction[i]);
+        }
 
         add(retour);
         add(hitBox);
-        add(avancer);
-        add(sauter);
-        add(attaquer);
-        add(reculer);
+
+        for(JButton b: controlButton)
+            add(b);
     }
 
     public void setControl(ControlFenetreOptions controlFenetreOptions) {
         retour.addActionListener(controlFenetreOptions);
         hitBox.addActionListener(controlFenetreOptions);
+
+        for(JButton b: controlButton) {
+            b.addActionListener(controlFenetreOptions);
+            b.addKeyListener(controlFenetreOptions);
+        }
     }
 
     protected void paintComponent(Graphics g) {
@@ -66,7 +74,7 @@ public class FenetreOptions extends JPanel {
         retour.setFocusable(false);
         retour.setBorder(null);
 
-        hitBox.setBounds(Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
+        hitBox.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
         hitBox.setBackground(new Color(0, 0, 0, 0));
         hitBox.setFont(f);
         if (!jeu.getHitBox())
@@ -77,9 +85,15 @@ public class FenetreOptions extends JPanel {
         hitBox.setFocusable(false);
         hitBox.setBorder(null);
 
-        avancer.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(92), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
-        sauter.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(160), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(54));
-        attaquer.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(227), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
-        reculer.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(293), Fenetre.adapterResolutionEnX(379), Fenetre.adapterResolutionEnY(55));
+        int x = 500, y = 355;
+
+        for(JButton b: controlButton) {
+            b.setBounds(Fenetre.adapterResolutionEnX(x), Fenetre.adapterResolutionEnY(y), Fenetre.adapterResolutionEnX(379), Fenetre.adapterResolutionEnY(55));
+            b.setBackground(new Color(0, 0, 0, 0));
+            b.setFont(fControlTouche);
+            b.setBorder(null);
+
+            y += 70;
+        }
     }
 }

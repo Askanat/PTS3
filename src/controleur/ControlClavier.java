@@ -32,6 +32,10 @@ public class ControlClavier extends Control implements KeyListener {
             toucheRelacher[i] = false;
     }
 
+    public ControlTouche getControlTouche() {
+        return  controlTouche;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
     }

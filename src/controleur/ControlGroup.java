@@ -20,7 +20,6 @@ public class ControlGroup {
         ControlFenetreNouvellePartie controlFenetreNouvellePartie = new ControlFenetreNouvellePartie(jeu, fenetre);
         ControlFenetreCreationPersonnage controlFenetreCreationPersonnage = new ControlFenetreCreationPersonnage(jeu, fenetre);
         ControlFenetreCharger controlFenetreCharger = new ControlFenetreCharger(jeu, fenetre);
-        ControlFenetreOptions controlFenetreOptions = new ControlFenetreOptions(jeu, fenetre);
         ControlFenetreCredits controlFenetreCredits = new ControlFenetreCredits(jeu, fenetre);
         ControlFenetreInventaire controlFenetreInventaire = new ControlFenetreInventaire(jeu, fenetre);
         ControlFenetreFichePerso controlFenetreFichePerso = new ControlFenetreFichePerso(jeu, fenetre);
@@ -32,5 +31,8 @@ public class ControlGroup {
 
         ControlClavier controlClavier = new ControlClavier(jeu, fenetre);
         ControlTimer controlTimer = new ControlTimer(jeu, fenetre);
+
+        fenetre.initFenetreOptions(controlClavier.getControlTouche());
+        ControlFenetreOptions controlFenetreOptions = new ControlFenetreOptions(jeu, fenetre, controlClavier);
     }
 }
