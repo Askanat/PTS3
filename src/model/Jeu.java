@@ -3,11 +3,11 @@ package model;
 import controleur.Control;
 import vue.Fenetre;
 
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static vue.Fenetre.X;
-import static vue.Fenetre.Y;
+import static vue.Fenetre.*;
 
 /**
  * Created by bastien on 28/09/16.
@@ -20,6 +20,7 @@ public class Jeu {
     private int temps;
 
     private Niveau niveau;
+    public static final Dimension ZONE_SAFE = new Dimension((int) (X * 2.0), (int) (Y * 1.5));
     private Hero hero;
     private ArrayList<Monstre> tableauMonstre;
     private BDD bdd;
@@ -64,7 +65,7 @@ public class Jeu {
         hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)), Integer.parseInt(donneesHero.get(3)),
                 Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)), Double.parseDouble(donneesHero.get(6)),
                 Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)), Double.parseDouble(donneesHero.get(9)),
-                Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (X / 2.0), (int) (Y / 2.0));
+                Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0));
     }
 
     public void updateMonstre(int i) {
