@@ -85,10 +85,10 @@ public class FenetreOptions extends JPanel {
         hitBox.setFocusable(false);
         hitBox.setBorder(null);
 
-        int x = 500, y = 355;
+        int x = 600, y = 355;
 
         for(JButton b: controlButton) {
-            b.setBounds(Fenetre.adapterResolutionEnX(x), Fenetre.adapterResolutionEnY(y), Fenetre.adapterResolutionEnX(379), Fenetre.adapterResolutionEnY(55));
+            b.setBounds(Fenetre.adapterResolutionEnX(x), Fenetre.adapterResolutionEnY(y), Fenetre.adapterResolutionEnX(270), Fenetre.adapterResolutionEnY(55));
             b.setBackground(new Color(0, 0, 0, 0));
             b.setFont(fControlTouche);
             b.setBorder(null);
