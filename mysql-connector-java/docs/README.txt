@@ -3419,7 +3419,7 @@ VendorError: 0
    Applets can only make network connections back to the machine
    that runs the web server that served the .class files for the
    applet. This means that MySQL must run on the same machine
-   (or you must have some sort of port re-direction) for this to
+   (or you must have some sort of port re-directionOrientation) for this to
    work. This also means that you will not be able to test
    applets from your local file system, you must always deploy
    them to a web server.

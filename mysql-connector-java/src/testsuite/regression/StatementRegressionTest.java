@@ -1943,7 +1943,7 @@ public class StatementRegressionTest extends BaseTestCase {
 	}
 
 	/**
-	 * Tests fix for BUG#5874, timezone correction goes in wrong 'direction'
+	 * Tests fix for BUG#5874, timezone correction goes in wrong 'directionOrientation'
 	 * when useTimezone=true and server timezone differs from client timezone.
 	 * 
 	 * @throws Exception

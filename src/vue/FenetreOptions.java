@@ -78,23 +78,8 @@ public class FenetreOptions extends JPanel {
         hitBox.setBorder(null);
 
         avancer.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(92), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
-        avancer.setBackground(new Color(0, 0, 0, 0));
-        avancer.setFocusable(false);
-        avancer.setBorder(null);
-
         sauter.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(160), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(54));
-        sauter.setBackground(new Color(0, 0, 0, 0));
-        sauter.setFocusable(false);
-        sauter.setBorder(null);
-
         attaquer.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(227), Fenetre.adapterResolutionEnX(378), Fenetre.adapterResolutionEnY(55));
-        attaquer.setBackground(new Color(0, 0, 0, 0));
-        attaquer.setFocusable(false);
-        attaquer.setBorder(null);
-
         reculer.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(293), Fenetre.adapterResolutionEnX(379), Fenetre.adapterResolutionEnY(55));
-        reculer.setBackground(new Color(0, 0, 0, 0));
-        reculer.setFocusable(false);
-        reculer.setBorder(null);
     }
 }

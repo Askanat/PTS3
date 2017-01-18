@@ -178,7 +178,7 @@ public class ResultSet implements java.sql.ResultSet {
 
 	private Calendar fastDateCal = null;
 
-	/** The direction to fetch rows (always FETCH_FORWARD) */
+	/** The directionOrientation to fetch rows (always FETCH_FORWARD) */
 	protected int fetchDirection = FETCH_FORWARD;
 
 	/** The number of rows to fetch in one go... */
@@ -2472,9 +2472,9 @@ public class ResultSet implements java.sql.ResultSet {
 	}
 
 	/**
-	 * JDBC 2.0 Returns the fetch direction for this result set.
+	 * JDBC 2.0 Returns the fetch directionOrientation for this result set.
 	 * 
-	 * @return the fetch direction for this result set.
+	 * @return the fetch directionOrientation for this result set.
 	 * 
 	 * @exception SQLException
 	 *                if a database-access error occurs
@@ -7885,19 +7885,19 @@ public class ResultSet implements java.sql.ResultSet {
 	}
 
 	/**
-	 * JDBC 2.0 Give a hint as to the direction in which the rows in this result
+	 * JDBC 2.0 Give a hint as to the directionOrientation in which the rows in this result
 	 * set will be processed. The initial value is determined by the statement
-	 * that produced the result set. The fetch direction may be changed at any
+	 * that produced the result set. The fetch directionOrientation may be changed at any
 	 * time.
 	 * 
 	 * @param direction
-	 *            the direction to fetch rows in.
+	 *            the directionOrientation to fetch rows in.
 	 * 
 	 * @exception SQLException
 	 *                if a database-access error occurs, or the result set type
-	 *                is TYPE_FORWARD_ONLY and direction is not FETCH_FORWARD.
+	 *                is TYPE_FORWARD_ONLY and directionOrientation is not FETCH_FORWARD.
 	 *                MM.MySQL actually ignores this, because it has the whole
-	 *                result set anyway, so the direction is immaterial.
+	 *                result set anyway, so the directionOrientation is immaterial.
 	 */
 	public void setFetchDirection(int direction) throws SQLException {
 		if ((direction != FETCH_FORWARD) && (direction != FETCH_REVERSE)

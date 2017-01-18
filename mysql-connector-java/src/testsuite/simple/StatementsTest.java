@@ -220,12 +220,12 @@ public class StatementsTest extends BaseTestCase {
 			accessorStmt.setFetchDirection(java.sql.ResultSet.FETCH_FORWARD);
 
 			int fetchDirection = accessorStmt.getFetchDirection();
-			assertTrue("Set fetch direction != get fetch direction",
+			assertTrue("Set fetch directionOrientation != get fetch directionOrientation",
 					fetchDirection == java.sql.ResultSet.FETCH_FORWARD);
 
 			try {
 				accessorStmt.setFetchDirection(Integer.MAX_VALUE);
-				fail("Should not be able to set fetch direction to invalid value");
+				fail("Should not be able to set fetch directionOrientation to invalid value");
 			} catch (SQLException sqlEx) {
 				;
 			}

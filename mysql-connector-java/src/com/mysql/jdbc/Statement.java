@@ -1566,9 +1566,9 @@ public class Statement implements java.sql.Statement {
 	}
 
 	/**
-	 * JDBC 2.0 Determine the fetch direction.
+	 * JDBC 2.0 Determine the fetch directionOrientation.
 	 * 
-	 * @return the default fetch direction
+	 * @return the default fetch directionOrientation
 	 * 
 	 * @exception SQLException
 	 *                if a database-access error occurs
@@ -2123,15 +2123,15 @@ public class Statement implements java.sql.Statement {
 	}
 
 	/**
-	 * JDBC 2.0 Give a hint as to the direction in which the rows in a result
+	 * JDBC 2.0 Give a hint as to the directionOrientation in which the rows in a result
 	 * set will be processed. The hint applies only to result sets created using
 	 * this Statement object. The default value is ResultSet.FETCH_FORWARD.
 	 * 
 	 * @param direction
-	 *            the initial direction for processing rows
+	 *            the initial directionOrientation for processing rows
 	 * 
 	 * @exception SQLException
-	 *                if a database-access error occurs or direction is not one
+	 *                if a database-access error occurs or directionOrientation is not one
 	 *                of ResultSet.FETCH_FORWARD, ResultSet.FETCH_REVERSE, or
 	 *                ResultSet.FETCH_UNKNOWN
 	 */
