@@ -23,32 +23,32 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
         switch (e.getActionCommand()) {
             case "Retour":
                 jeu.setPause(false);
-                fenetre.vueJeu();
-                //fenetre.getContentPane().removeAll();
+                fenetre.layeredPane.removeAll();
                 fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
                 changerVue();
                 break;
             case "Inventaire":
                 Control.enPartie = false;
+                fenetre.layeredPane.removeAll();
                 fenetre.setContentPane(fenetre.panelFenetreInventaire);
                 changerVue();
                 break;
             case "Fiche Personnage":
                 Control.enPartie = false;
+                fenetre.layeredPane.removeAll();
                 fenetre.panelFenetreFichePerso.init();
                 fenetre.setContentPane(fenetre.panelFenetreFichePerso);
                 changerVue();
                 break;
             case "Option":
                 Control.enPartie = false;
+                fenetre.layeredPane.removeAll();
                 fenetre.setContentPane(fenetre.panelFenetreOptions);
                 changerVue();
                 break;
             case "Retour au Menu Principal":
                 jeu.setTemps(0);
-                fenetre.getContentPane().removeAll();
-                fenetre.panelFenetreDepart.bouttonMenu();
-                fenetre.setContentPane(fenetre.panelFenetreDepart);
+                fenetre.layeredPane.removeAll();
 
                 jeu.sauvegardeHero();
                 // supprime les monstre

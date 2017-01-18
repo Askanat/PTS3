@@ -41,10 +41,6 @@ public class FenetreDepart extends JPanel {
 
         monstre = new ArrayList<Entite>(); // a enlever d'ici
 
-        bouttonMenu();
-    }
-
-    public void bouttonMenu() {
         menu = new JButton("");
         menu.setActionCommand("Menu");
         Image img = getToolkit().getImage("images/iconeMenu.png").getScaledInstance(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40), java.awt.Image.SCALE_SMOOTH);

@@ -101,8 +101,9 @@ public class ControlFenetreFichePerso extends Control implements ActionListener 
 
             case "Retour":
                 Control.enPartie = true;
-                fenetre.setContentPane(fenetre.panelMenuEnJeu);
+                fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
                 changerVue();
+                fenetre.vueMenuEnJeu();
                 break;
         }
     }

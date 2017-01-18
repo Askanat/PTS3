@@ -34,8 +34,6 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
                     spawnHero(idHero);
                     Control.enPartie = true;
                     fenetre.panelFenetreCreationPersonnage.initCreationPerso();
-                    fenetre.vueJeu();
-                    //fenetre.getContentPane().removeAll();
                     fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
                     changerVue();
                 }

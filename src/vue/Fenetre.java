@@ -32,6 +32,7 @@ public class Fenetre extends JFrame {
 
     public JScrollPane scrollPane;
     public JPanel panelScrollFenetreDepart;
+    public JLayeredPane layeredPane;
 
     private static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     public static final double DEFAUT_X = 1920;
@@ -70,6 +71,13 @@ public class Fenetre extends JFrame {
 
         panelFenetreDepart = new FenetreDepart(jeu);
         vueJeu();
+    }
+
+    public void vueMenuEnJeu() {
+        layeredPane = getLayeredPane();
+        JPanel top = panelMenuEnJeu;
+        top.setBounds((int) (X / 4.0), (int) (Y / 4.0), (int) (X / 2.0), (int) (Y / 2.0));
+        layeredPane.add(top, new Integer(1));
     }
 
     public void vueJeu() {

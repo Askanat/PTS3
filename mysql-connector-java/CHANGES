@@ -1543,7 +1543,7 @@ nn-nn-07 - Version 3.1.15
       prepareStatement() when the statement wasn't a server-side
       prepared statement.
 
-    - Choose correct 'direction' to apply time adjustments when both
+    - Choose correct 'directionOrientation' to apply time adjustments when both
       client and server are in GMT timezone when using
       ResultSet.get(..., cal) and PreparedStatement.set(...., cal).
 
@@ -2023,7 +2023,7 @@ nn-nn-07 - Version 3.1.15
 
 06-22-05 - Version 3.0.17-ga
     
-    - Fixed BUG#5874, Timestamp/Time conversion goes in the wrong 'direction' 
+    - Fixed BUG#5874, Timestamp/Time conversion goes in the wrong 'directionOrientation'
       when useTimeZone='true' and server timezone differs from client timezone.
 	
 	- Fixed BUG#7081, DatabaseMetaData.getIndexInfo() ignoring 'unique' 

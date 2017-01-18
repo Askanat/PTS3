@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyVetoException;
 
 import static vue.Fenetre.X;
 import static vue.Fenetre.Y;
@@ -33,11 +32,9 @@ public class ControlTimer extends Control implements ActionListener {
                 jeu.inversePause();
 
                 if (jeu.getPause()) {
-                    fenetre.setContentPane(fenetre.panelMenuEnJeu);
-                    changerVue();
-                    //fenetre.getContentPane().validate();
+                    fenetre.vueMenuEnJeu();
                 } else {
-                    //fenetre.getContentPane().removeAll();
+                    fenetre.layeredPane.removeAll();
                     fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
                     changerVue();
                 }
