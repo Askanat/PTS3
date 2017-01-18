@@ -37,23 +37,9 @@ public class ControlFenetreOptions extends Control implements ActionListener {
                     fenetre.setContentPane(fenetre.panelMenuPrincipal);
                     changerVue();
                 } else {
-                    //Permet de réafficher le menu en jeu et superposer les vues
-                    fenetre.setContentPane(fenetre.panelFenetreDepart);
                     Control.enPartie = true;
+                    fenetre.setContentPane(fenetre.panelMenuEnJeu);
                     changerVue();
-                    fenetre.getContentPane().setLayout(new GridBagLayout());
-                    fenetre.getContentPane().isOpaque();
-                    GridBagConstraints gbc = new GridBagConstraints();
-                    gbc.weightx = 1;
-                    gbc.weighty = 1;
-
-                    gbc.gridx = 0;
-                    gbc.gridwidth = 2;
-                    gbc.gridheight = 2;
-                    gbc.gridy = 0;
-
-                    fenetre.getContentPane().add(fenetre.panelMenuEnJeu, gbc);
-                    fenetre.getContentPane().validate();
                 }
                 break;
         }

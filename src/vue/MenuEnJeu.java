@@ -25,7 +25,7 @@ public class MenuEnJeu extends JPanel {
 
         this.setLayout(null);
         setPreferredSize(new Dimension(X / 2, Y / 2));
-
+        setOpaque(false);
         imageMenuEnJeu = getToolkit().getImage("images/menuPause.png");
 
         retourJeu = new JButton("");

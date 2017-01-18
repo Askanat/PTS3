@@ -23,9 +23,9 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
         switch (e.getActionCommand()) {
             case "Retour":
                 jeu.setPause(false);
-                fenetre.getContentPane().removeAll();
-                fenetre.panelFenetreDepart.bouttonMenu();
-                fenetre.setContentPane(fenetre.panelFenetreDepart);
+                fenetre.vueJeu();
+                //fenetre.getContentPane().removeAll();
+                fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
                 changerVue();
                 break;
             case "Inventaire":

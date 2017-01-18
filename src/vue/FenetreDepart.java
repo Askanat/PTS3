@@ -20,11 +20,7 @@ public class FenetreDepart extends JPanel {
     private Jeu jeu;
     private ActionListener control;
 
-    private final int NOMBRE_DE_EQUIPEMENT = 0;
-    private final int NOMBRE_DE_PNG = 0;
-
     public Entite hero; // le héro
-    public Entite[] png; // tous les png présents sur la carte de départ
     public ArrayList<Entite> monstre; // a déplacer
 
     public JButton menu;
@@ -35,17 +31,13 @@ public class FenetreDepart extends JPanel {
 
         this.jeu = jeu;
 
-        this.setLayout(null);
-        setPreferredSize(new Dimension(X, Y));
-
+        setLayout(null);
+        setPreferredSize(new Dimension(X * 2, (int) (Y * 1.5)));
         imageFenetreDepart = getToolkit().getImage("images/fondJeux.png");
         imageIconeSave = getToolkit().getImage("images/iconeSave.png");
 
         hero = new Entite(jeu);
 
-        png = new Entite[NOMBRE_DE_PNG];
-        for (int i = 0; i < png.length; i++)
-            png[i] = new Entite(jeu);
 
         monstre = new ArrayList<Entite>(); // a enlever d'ici
 
@@ -80,22 +72,18 @@ public class FenetreDepart extends JPanel {
 
         g.drawImage(imageFenetreDepart, 0, 0, getWidth(), getHeight(), this);
 
-        menu.setBounds(Fenetre.adapterResolutionEnX(1860), Fenetre.adapterResolutionEnY(10), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40));
+        menu.setBounds((int) (jeu.getHero().getPositionX() - X / 2.0 + Fenetre.adapterResolutionEnX(1860)), (int) (jeu.getHero().getPositionY() - Y / 2.0 + Fenetre.adapterResolutionEnY(10)), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40));
         menu.setBackground(new Color(0, 0, 0, 0));
         menu.setFocusable(false);
         menu.setCursor(new Cursor(Cursor.HAND_CURSOR));
         menu.setBorder(null);
 
-        // a déplacer
         for (Entite e : monstre)
-            e.paintComponent(g);
-
-        for (Entite e : png)
             e.paintComponent(g);
 
         hero.paintComponent(g);
 
         if (jeu.getSave())
-            g.drawImage(imageIconeSave, Fenetre.adapterResolutionEnX(5), Fenetre.adapterResolutionEnY(5), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
+            g.drawImage(imageIconeSave, (int) (jeu.getHero().getPositionX() - X / 2.0 + Fenetre.adapterResolutionEnX(5)), (int) (jeu.getHero().getPositionY() - Y / 2.0 + Fenetre.adapterResolutionEnY(5)), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
     }
 }

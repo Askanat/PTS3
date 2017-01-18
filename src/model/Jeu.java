@@ -6,6 +6,9 @@ import vue.Fenetre;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import static vue.Fenetre.X;
+import static vue.Fenetre.Y;
+
 /**
  * Created by bastien on 28/09/16.
  */
@@ -37,8 +40,9 @@ public class Jeu {
     }
 
     public void sauvegardeHero() {
-        bdd.updateHero(hero.getIdHero(),hero.sauvegardeDonneesHeros());
+        bdd.updateHero(hero.getIdHero(), hero.sauvegardeDonneesHeros());
     }
+
     public void supprimerPartie(int idPartie) {
         bdd.resetPartie(idPartie);
     }
@@ -60,7 +64,7 @@ public class Jeu {
         hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)), Integer.parseInt(donneesHero.get(3)),
                 Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)), Double.parseDouble(donneesHero.get(6)),
                 Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)), Double.parseDouble(donneesHero.get(9)),
-                 Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), 0, 0);
+                Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (X / 2.0), (int) (Y / 2.0));
     }
 
     public void updateMonstre(int i) {
@@ -73,6 +77,7 @@ public class Jeu {
     public void supprimeMonstre(int i) {
         tableauMonstre.remove(i);
     }
+
     public void supprimeMonstre() {
         tableauMonstre.clear();
     }
@@ -109,7 +114,7 @@ public class Jeu {
         if (Control.enPartie) setPause(!getPause());
     }
 
-    public void setTemps (int temps){
+    public void setTemps(int temps) {
         this.temps = temps;
     }
 
@@ -167,7 +172,7 @@ public class Jeu {
         this.hitBox = hitBox;
     }
 
-    public boolean getHitBox(){
+    public boolean getHitBox() {
         return hitBox;
     }
 
@@ -175,7 +180,7 @@ public class Jeu {
         this.save = save;
     }
 
-    public boolean getSave(){
+    public boolean getSave() {
         return save;
     }
 

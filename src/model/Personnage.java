@@ -6,6 +6,7 @@ import java.awt.*;
 
 import static java.lang.Math.abs;
 import static model.Jeu.GRAVITE;
+import static vue.Fenetre.X;
 
 
 /**
@@ -188,7 +189,8 @@ public abstract class Personnage {
     public void deplacerAGauche() {
         setDeplacement(true);
         setDirectionOrientation(Direction.GAUCHE);
-        setVecteurDeplacementEnX(-1);
+        if (positionX > (int) (X / 2.0))
+            setVecteurDeplacementEnX(-1);
     }
 
     public void deplacer() {

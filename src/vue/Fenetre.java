@@ -6,6 +6,9 @@ import model.Jeu;
 import javax.swing.*;
 import java.awt.*;
 
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
+
 /**
  * Created by bastien on 28/09/16.
  */
@@ -19,13 +22,16 @@ public class Fenetre extends JFrame {
     public FenetreCharger panelFenetreCharger;
     public FenetreOptions panelFenetreOptions;
     public FenetreCredits panelFenetreCredits;
-    public FenetreDepart panelFenetreDepart;
     public FenetreDonjon panelFenetreDonjon;
     public FenetreNouvellePartie panelFenetreNouvellePartie;
     public FenetreInventaire panelFenetreInventaire;
     public MenuEnJeu panelMenuEnJeu;
     public FenetreCreationPersonnage panelFenetreCreationPersonnage;
     public FenetreFichePerso panelFenetreFichePerso;
+    public FenetreDepart panelFenetreDepart;
+
+    public JScrollPane scrollPane;
+    public JPanel panelScrollFenetreDepart;
 
     private static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     public static final double DEFAUT_X = 1920;
@@ -54,7 +60,6 @@ public class Fenetre extends JFrame {
         panelFenetreCharger = new FenetreCharger(jeu);
         panelFenetreOptions = new FenetreOptions(jeu);
         panelFenetreCredits = new FenetreCredits();
-        panelFenetreDepart = new FenetreDepart(jeu);
         panelFenetreDonjon = new FenetreDonjon(jeu);
         panelFenetreNouvellePartie = new FenetreNouvellePartie(jeu);
         panelMenuPrincipal = new MenuPrincipal();
@@ -62,6 +67,19 @@ public class Fenetre extends JFrame {
         panelMenuEnJeu = new MenuEnJeu(jeu);
         panelFenetreCreationPersonnage = new FenetreCreationPersonnage(jeu);
         panelFenetreFichePerso = new FenetreFichePerso(jeu);
+
+        panelFenetreDepart = new FenetreDepart(jeu);
+        vueJeu();
+    }
+
+    public void vueJeu() {
+        scrollPane = new JScrollPane(panelFenetreDepart);
+        scrollPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setBounds(0, 0, X, Y);
+        panelScrollFenetreDepart = new JPanel(null);
+        panelScrollFenetreDepart.setPreferredSize(new Dimension(X, Y));
+        panelScrollFenetreDepart.add(scrollPane);
     }
 
     public static int adapterResolutionEnX(int valeur) {

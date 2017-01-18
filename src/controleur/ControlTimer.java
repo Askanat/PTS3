@@ -7,6 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
+
+import static vue.Fenetre.X;
+import static vue.Fenetre.Y;
 
 /**
  * Created by bastien on 30/09/16.
@@ -29,23 +33,12 @@ public class ControlTimer extends Control implements ActionListener {
                 jeu.inversePause();
 
                 if (jeu.getPause()) {
-                    fenetre.getContentPane().setLayout(new GridBagLayout());
-                    fenetre.getContentPane().isOpaque();
-                    GridBagConstraints gbc = new GridBagConstraints();
-                    gbc.weightx = 1;
-                    gbc.weighty = 1;
-
-                    gbc.gridx = 0;
-                    gbc.gridwidth = 2;
-                    gbc.gridheight = 2;
-                    gbc.gridy = 0;
-
-                    fenetre.getContentPane().add(fenetre.panelMenuEnJeu, gbc);
-                    fenetre.getContentPane().validate();
+                    fenetre.setContentPane(fenetre.panelMenuEnJeu);
+                    changerVue();
+                    //fenetre.getContentPane().validate();
                 } else {
-                    fenetre.getContentPane().removeAll();
-                    fenetre.panelFenetreDepart.bouttonMenu();
-                    fenetre.setContentPane(fenetre.panelFenetreDepart);
+                    //fenetre.getContentPane().removeAll();
+                    fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
                     changerVue();
                 }
                 ControlClavier.toucheRelacher[ControlTouche.ACTION_MENU] = false;
@@ -114,13 +107,15 @@ public class ControlTimer extends Control implements ActionListener {
                 //Sauvegarde quand gain Niveau
                 int niveau = jeu.getHero().getNiveau();
                 jeu.getHero().upNiveau();
-                if (niveau < jeu.getHero().getNiveau()) { // à mettre dans une fonction jeu qui fait la sauvegarde si le héro up de niveau
+                if (niveau < jeu.getHero().getNiveau()) {
                     jeu.sauvegardeHero();
                 }
             }
             //jeu.getHero().afficherEtat();
-            // jeu.getHero().setVie(jeu.getHero().getVie() - 1); // enleve vie du hero
+            // permet le défilement par rapport à la position du héro et centré sur le héro
+            fenetre.scrollPane.getViewport().setViewPosition(new Point((int) (jeu.getHero().getPositionX() - X / 2.0), (int) (jeu.getHero().getPositionY() - Y / 2.0)));
         }
+
 
         fenetre.repaint();
     }
