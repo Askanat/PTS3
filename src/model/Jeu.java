@@ -20,7 +20,7 @@ public class Jeu {
     private int temps;
 
     private Niveau niveau;
-    public static final Dimension ZONE_SAFE = new Dimension((int) (X * 2.0), (int) (Y * 2.0));
+    public static final Dimension ZONE_SAFE = new Dimension((int) (X * 2.0), (int) (Y * 1.5));
     private Hero hero;
     private ArrayList<Monstre> tableauMonstre;
     private BDD bdd;
