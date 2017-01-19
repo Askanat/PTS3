@@ -6,8 +6,6 @@ import java.awt.*;
 
 import static java.lang.Math.abs;
 import static model.Jeu.GRAVITE;
-import static model.Jeu.ZONE_SAFE;
-import static vue.Fenetre.X;
 
 
 /**
@@ -180,8 +178,7 @@ public abstract class Personnage {
     public void deplacerADroite() {
         setDeplacement(true);
         setDirectionOrientation(Direction.DROITE);
-        if (positionX < ZONE_SAFE.width - (int) (X / 2.0))
-            setVecteurDeplacementEnX(1);
+        setVecteurDeplacementEnX(1);
     }
 
     public void sauter() {
@@ -191,19 +188,15 @@ public abstract class Personnage {
     public void deplacerAGauche() {
         setDeplacement(true);
         setDirectionOrientation(Direction.GAUCHE);
-        if (positionX > (int) (X / 2.0))
-            setVecteurDeplacementEnX(-1);
+        setVecteurDeplacementEnX(-1);
     }
 
     public void deplacer() {
-
-
         setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
         setPositionY(getPositionY() + getVitesseDeDeplacementEnY());
         setVecteurDeplacementEnX(0);
 
         setCollision();
-        System.out.println(getNom() + " *** " + getPositionY() + " *** " + getCollision());
         if (!getCollision())
             setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
         else if (getCollision()) {
