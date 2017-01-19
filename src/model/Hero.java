@@ -58,12 +58,6 @@ public class Hero extends Personnage {
                 constitution + ", pointIntelligence:" + intelligence + ", pointForce:" + force + ", pointResistance:" + resistance);
     }
 
-    public void deplacerADroite() {
-        setDeplacement(true);
-        setDirectionOrientation(Direction.DROITE);
-        setVecteurDeplacementEnX(1);
-    }
-
     public void afficherEtat() {
         System.out.println(
 

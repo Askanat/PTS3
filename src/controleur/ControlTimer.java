@@ -8,8 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static vue.Fenetre.X;
-import static vue.Fenetre.Y;
+import static vue.Fenetre.*;
 
 /**
  * Created by bastien on 30/09/16.
@@ -33,6 +32,7 @@ public class ControlTimer extends Control implements ActionListener {
 
                 if (jeu.getPause()) {
                     fenetre.vueMenuEnJeu();
+
                 } else {
                     fenetre.layeredPane.removeAll();
                     fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
@@ -85,6 +85,7 @@ public class ControlTimer extends Control implements ActionListener {
                 fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement();
                 jeu.getHero().deplacer();
 
+
                 // dessine les monstres et les fait intéragir
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
                     jeu.getMonstre(i).update(jeu.getHero());
@@ -101,6 +102,7 @@ public class ControlTimer extends Control implements ActionListener {
                     jeu.updateMonstre(i); // supprime les montres si ils sont morts
                 }
 
+
                 //Sauvegarde quand gain Niveau
                 int niveau = jeu.getHero().getNiveau();
                 jeu.getHero().upNiveau();
@@ -110,9 +112,8 @@ public class ControlTimer extends Control implements ActionListener {
             }
             //jeu.getHero().afficherEtat();
             // permet le défilement par rapport à la position du héro et centré sur le héro
-            fenetre.scrollPane.getViewport().setViewPosition(new Point((int) (jeu.getHero().getPositionX() - X / 2.0), (int) (jeu.getHero().getPositionY() - Y / 2.0)));
+            scrollPane.getViewport().setViewPosition(new Point((int) (jeu.getHero().getPositionX() - X / 2.0), (int) (jeu.getHero().getPositionY() - Y / 2.0)));
         }
-
 
         fenetre.repaint();
     }

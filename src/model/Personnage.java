@@ -6,6 +6,7 @@ import java.awt.*;
 
 import static java.lang.Math.abs;
 import static model.Jeu.GRAVITE;
+import static model.Jeu.ZONE_SAFE;
 import static vue.Fenetre.X;
 
 
@@ -179,7 +180,8 @@ public abstract class Personnage {
     public void deplacerADroite() {
         setDeplacement(true);
         setDirectionOrientation(Direction.DROITE);
-        setVecteurDeplacementEnX(1);
+        if (positionX < ZONE_SAFE.width - (int) (X / 2.0))
+            setVecteurDeplacementEnX(1);
     }
 
     public void sauter() {
@@ -194,16 +196,18 @@ public abstract class Personnage {
     }
 
     public void deplacer() {
+
+
         setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
         setPositionY(getPositionY() + getVitesseDeDeplacementEnY());
         setVecteurDeplacementEnX(0);
 
         setCollision();
-
+        System.out.println(getNom() + " *** " + getPositionY() + " *** " + getCollision());
         if (!getCollision())
             setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
         else if (getCollision()) {
-            setPositionY(Fenetre.adapterResolutionEnY(945) - hauteurBas);
+            setPositionY(Fenetre.adapterResolutionEnY((int) (945 * 1.5)) - hauteurBas);
             setVitesseDeDeplacementEnY(0);
         }
 
@@ -231,7 +235,7 @@ public abstract class Personnage {
     }
 
     public void setCollision() {
-        this.collision = getPositionY() >= Fenetre.adapterResolutionEnY(945) - hauteurBas; // sol de la fenetre - la hauteur du personnage - la hauteur de parterre
+        this.collision = getPositionY() >= Fenetre.adapterResolutionEnY((int) (945 * 1.5)) - hauteurBas; // sol de la fenetre - la hauteur du personnage - la hauteur de parterre
     }
 
     public boolean getCollision() {

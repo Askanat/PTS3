@@ -8,8 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import static vue.Fenetre.X;
-import static vue.Fenetre.Y;
+import static vue.Fenetre.*;
 
 /**
  * Created by bastien on 29/09/16.
@@ -68,7 +67,7 @@ public class FenetreDepart extends JPanel {
 
         g.drawImage(imageFenetreDepart, 0, 0, getWidth(), getHeight(), this);
 
-        menu.setBounds((int) (jeu.getHero().getPositionX() - X / 2.0 + Fenetre.adapterResolutionEnX(1860)), (int) (jeu.getHero().getPositionY() - Y / 2.0 + Fenetre.adapterResolutionEnY(10)), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40));
+        menu.setBounds((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(1860)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(10)), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40));
         menu.setBackground(new Color(0, 0, 0, 0));
         menu.setFocusable(false);
         menu.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -80,6 +79,6 @@ public class FenetreDepart extends JPanel {
         hero.paintComponent(g);
 
         if (jeu.getSave())
-            g.drawImage(imageIconeSave, (int) (jeu.getHero().getPositionX() - X / 2.0 + Fenetre.adapterResolutionEnX(5)), (int) (jeu.getHero().getPositionY() - Y / 2.0 + Fenetre.adapterResolutionEnY(5)), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
+            g.drawImage(imageIconeSave, (int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(5)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(5)), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
     }
 }
