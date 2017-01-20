@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import static vue.Fenetre.decoupage;
 import static vue.Fenetre.scrollPane;
 
 
@@ -57,21 +58,6 @@ public class Entite extends JPanel {
         }
 
         spriteActuel = tableauSprite[2];
-    }
-
-    public static BufferedImage[] decoupage(BufferedImage origin, int divisionHorizontale, int divisionVerticale) {
-
-        BufferedImage tab[] = new BufferedImage[divisionHorizontale * divisionVerticale];
-        int tailleBaseHeight = origin.getHeight() / divisionVerticale;
-        int tailleBaseWidth = origin.getWidth() / divisionHorizontale;
-        int k = 0;
-        for (int i = 0; i < divisionVerticale; i++) {
-            for (int j = 0; j < divisionHorizontale; j++) {
-                tab[k] = origin.getSubimage(j * tailleBaseWidth, i * tailleBaseHeight, tailleBaseWidth, tailleBaseHeight);
-                k++;
-            }
-        }
-        return tab;
     }
 
     public void selectionnerMorceauSpriteDeplacement() {

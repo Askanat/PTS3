@@ -4,6 +4,9 @@ import controleur.Control;
 import vue.Fenetre;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -20,7 +23,6 @@ public class Jeu {
     private int temps;
 
     private Niveau niveau;
-    public static final Dimension ZONE_SAFE = new Dimension((int) (X * 2.0), (int) (Y * 1.5));
     private Hero hero;
     private ArrayList<Monstre> tableauMonstre;
     private BDD bdd;
@@ -30,6 +32,7 @@ public class Jeu {
 
     private int nbPartieLibre;
     private boolean pause;
+
 
     public Jeu() throws SQLException {
 
@@ -184,5 +187,4 @@ public class Jeu {
     public boolean getSave() {
         return save;
     }
-
 }

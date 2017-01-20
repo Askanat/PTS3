@@ -3,8 +3,12 @@ package vue;
 import controleur.*;
 import model.Jeu;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER;
@@ -34,6 +38,9 @@ public class Fenetre extends JFrame {
     public JPanel panelScrollFenetreDepart;
     public JLayeredPane layeredPane;
 
+    public static BufferedImage[] tableauTuile;
+    public static final int DECOUPE_TUILE_EN_X = 7, DECOUPE_TUILE_EN_Y = 3;
+
     private static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     public static final double DEFAUT_X = 1920;
     public static final double DEFAUT_Y = 1080;
@@ -57,7 +64,27 @@ public class Fenetre extends JFrame {
         numeroPorte = -1;
     }
 
+    public static BufferedImage[] decoupage(BufferedImage origin, int divisionHorizontale, int divisionVerticale) {
+
+        BufferedImage tab[] = new BufferedImage[divisionHorizontale * divisionVerticale];
+        int tailleBaseHeight = origin.getHeight() / divisionVerticale;
+        int tailleBaseWidth = origin.getWidth() / divisionHorizontale;
+        int k = 0;
+        for (int i = 0; i < divisionVerticale; i++) {
+            for (int j = 0; j < divisionHorizontale; j++) {
+                tab[k] = origin.getSubimage(j * tailleBaseWidth, i * tailleBaseHeight, tailleBaseWidth, tailleBaseHeight);
+                k++;
+            }
+        }
+        return tab;
+    }
+
     public void init() {
+        try {
+            tableauTuile = decoupage(ImageIO.read(new File("tuile/tuile.png")), DECOUPE_TUILE_EN_X, DECOUPE_TUILE_EN_Y);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         panelFenetreCharger = new FenetreCharger(jeu);
         panelFenetreCredits = new FenetreCredits();
         panelFenetreDonjon = new FenetreDonjon(jeu);

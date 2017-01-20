@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import static vue.Fenetre.X;
 import static vue.Fenetre.Y;
+import static vue.Fenetre.decoupage;
 
 
 /**
@@ -169,9 +170,9 @@ public class FenetreNouvellePartie extends JPanel {
         niveauSlot3.setBorder(null);
 
         try {
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/Save/texture_hero1.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(310), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/Save/texture_hero2.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
-            g.drawImage(Entite.decoupage(ImageIO.read(new File("images/Save/texture_hero3.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(1310), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
+            g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero1.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(310), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
+            g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero2.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
+            g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero3.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(1310), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
             g.drawImage(imagePorte, Fenetre.adapterResolutionEnX(-194 + 500 * Fenetre.numeroPorte), Fenetre.adapterResolutionEnY(200), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
         } catch (IOException e) {
             e.printStackTrace();

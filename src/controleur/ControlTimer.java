@@ -8,8 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static model.Jeu.ZONE_SAFE;
 import static vue.Fenetre.*;
+import static vue.FenetreDepart.ZONE_SAFE;
 
 /**
  * Created by bastien on 30/09/16.

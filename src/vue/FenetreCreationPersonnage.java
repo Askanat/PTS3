@@ -11,9 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static vue.Entite.createComposite;
-import static vue.Entite.decoupage;
-import static vue.Fenetre.X;
-import static vue.Fenetre.Y;
+import static vue.Fenetre.*;
 
 /**
  * Created by bastien on 21/11/16.
