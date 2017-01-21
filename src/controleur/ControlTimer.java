@@ -110,12 +110,6 @@ public class ControlTimer extends Control implements ActionListener {
                 if (niveau < jeu.getHero().getNiveau()) {
                     jeu.sauvegardeHero();
                 }
-
-                // permet le défilement par rapport à la position du héro et centré sur le héro tout en évitant de scroll quand on ne peut pas (sortir de la zone-safe par exemple)
-                if (jeu.getHero().getPositionY() > (int) (Y / 2.0) && jeu.getHero().getPositionY() < ZONE_SAFE.height - (int) (Y / 2.0))
-                    scrollPane.getViewport().setViewPosition(new Point((int) scrollPane.getViewport().getViewPosition().getX(), (int) (jeu.getHero().getPositionY() - Y / 2.0)));
-                if (jeu.getHero().getPositionX() > (int) (X / 2.0) && jeu.getHero().getPositionX() < ZONE_SAFE.width - (int) (X / 2.0))
-                    scrollPane.getViewport().setViewPosition(new Point((int) (jeu.getHero().getPositionX() - X / 2.0), (int) scrollPane.getViewport().getViewPosition().getY()));
             }
             //jeu.getHero().afficherEtat();
         }

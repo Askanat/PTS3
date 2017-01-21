@@ -127,19 +127,18 @@ public class FenetreDepart extends JPanel {
             for (int j = 0; j < tailleMapX; j++)
                 g.drawImage(tuileImage[i][j], TAILLE_TUILE * j, TAILLE_TUILE * i, TAILLE_TUILE, TAILLE_TUILE, this);
 
-
         menu.setBounds((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(1860)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(10)), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40));
         menu.setBackground(new Color(0, 0, 0, 0));
         menu.setFocusable(false);
         menu.setCursor(new Cursor(Cursor.HAND_CURSOR));
         menu.setBorder(null);
 
+        if (jeu.getSave())
+            g.drawImage(imageIconeSave, (int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(5)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(5)), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
+
         for (Entite e : monstre)
             e.paintComponent(g);
 
         hero.paintComponent(g);
-
-        if (jeu.getSave())
-            g.drawImage(imageIconeSave, (int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(5)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(5)), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
     }
 }
