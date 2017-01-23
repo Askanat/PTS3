@@ -23,6 +23,7 @@ CREATE TABLE spell (
   effet_id int,
   porteSpell int,
   coutManaSpell int,
+  rechargeSpell int,
   textureSpell varchar(25),
 
   PRIMARY KEY(idSpell),
@@ -30,10 +31,10 @@ CREATE TABLE spell (
   CONSTRAINT fk_effet_id_spell FOREIGN KEY (effet_id) REFERENCES effet(idEffet)
 );
 
-INSERT INTO spell VALUES (default, "Boule de feu", 10, 1,10, 10,"images/Sorts/boule_de_feu.png");
-INSERT INTO spell VALUES (default, "La boule magique", 20, 4,10, 20, "images/Sorts/boule_magique.png");
-INSERT INTO spell VALUES (default, "Eclaire de givre", 50, 3,10, 30,"images/Sorts/eclaire_de_givre.png");
-INSERT INTO spell VALUES (default, "Soin mineur", 10, 2,10, 10,"images/Sorts/soin_mineur.png");
+INSERT INTO spell VALUES (default, "Boule de feu", 10, 1,10, 10, 3, "images/Sorts/boule_de_feu.png");
+INSERT INTO spell VALUES (default, "La boule magique", 20, 4,10, 20, 3,  "images/Sorts/boule_magique.png");
+INSERT INTO spell VALUES (default, "Eclaire de givre", 50, 3,10, 30, 3, "images/Sorts/eclaire_de_givre.png");
+INSERT INTO spell VALUES (default, "Soin mineur", 10, 2,10, 10, 3, "images/Sorts/soin_mineur.png");
 
 CREATE TABLE personnage (
   idPerso int AUTO_INCREMENT NOT NULL,
