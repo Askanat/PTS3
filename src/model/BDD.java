@@ -241,4 +241,19 @@ public class BDD {
             System.out.println("Probleme create partie : " + e);
         }
     }
+
+    //Requete qui recup tous les spell
+    public ArrayList<Spell> chargerSpell() {
+        ResultSet spell;
+        ArrayList<Spell> result = new ArrayList<>();
+        try {
+            spell = instruction.executeQuery("SELECT * from spell;");
+            while (spell.next()) {
+                result.add(new Spell(spell.getInt("degatSpell"), spell.getInt("effet_id"), spell.getInt("porteSpell"), spell.getInt("coutManaSpell"), spell.getString("libelleSpell"), spell.getString("textureSpell")));
+            }
+        } catch (Exception e) {
+            System.out.println("Donnees charger spell : " + e);
+        }
+        return result;
+    }
 }

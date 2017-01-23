@@ -3,14 +3,11 @@ package model;
 import controleur.Control;
 import vue.Fenetre;
 
-import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static vue.Fenetre.*;
+import static vue.Fenetre.DEFAUT_X;
+import static vue.Fenetre.DEFAUT_Y;
 
 /**
  * Created by bastien on 28/09/16.
@@ -186,5 +183,9 @@ public class Jeu {
 
     public boolean getSave() {
         return save;
+    }
+
+    public ArrayList<Spell> getAllSpell() {
+        return bdd.chargerSpell();
     }
 }
