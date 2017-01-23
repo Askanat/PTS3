@@ -74,7 +74,7 @@ public class FenetreOptions extends JPanel {
         retour.setFocusable(false);
         retour.setBorder(null);
 
-        hitBox.setBounds(Fenetre.adapterResolutionEnX(289), Fenetre.adapterResolutionEnY(980), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
+        hitBox.setBounds(Fenetre.adapterResolutionEnX(1285), Fenetre.adapterResolutionEnY(300), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
         hitBox.setBackground(new Color(0, 0, 0, 0));
         hitBox.setFont(f);
         if (!jeu.getHitBox())
