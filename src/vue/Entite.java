@@ -18,6 +18,7 @@ import static vue.FenetreDepart.ZONE_SAFE;
  */
 
 public class Entite extends JPanel {
+
     Jeu jeu;
     public Personnage personnage;
     public static final int TAILLE_SPRITE_HAUTEUR = Fenetre.adapterResolutionEnY(300);

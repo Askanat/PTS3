@@ -14,6 +14,7 @@ CREATE TABLE spell (
 INSERT INTO spell VALUES (default, "Boule de feu", 10, "brule", "images/Sorts/boule_de_feu.png");
 INSERT INTO spell VALUES (default, "La boule magique", 20, "aucun", "images/Sorts/boule_magique.png");
 INSERT INTO spell VALUES (default, "Eclaire de givre", 50, "givre", "images/Sorts/eclaire_de_givre.png");
+INSERT INTO spell VALUES (default, "Soin mineur", 10, "soin", "images/Sorts/soin_mineur.png");
 
 CREATE TABLE personnage (
   idPerso int AUTO_INCREMENT NOT NULL,
