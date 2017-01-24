@@ -44,6 +44,7 @@ public class Jeu {
 
         allSpell = bdd.chargerSpell();
         allEffet = bdd.chargerEffet();
+
     }
 
     public void sauvegardeHero() {
