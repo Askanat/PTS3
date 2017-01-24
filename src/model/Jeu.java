@@ -19,6 +19,9 @@ public class Jeu {
 
     private int temps;
 
+    private ArrayList<Spell> allSpell;
+    private ArrayList<Effet> allEffet;
+
     private Niveau niveau;
     private Hero hero;
     private ArrayList<Monstre> tableauMonstre;
@@ -38,6 +41,9 @@ public class Jeu {
         pause = false;
 
         bdd = new BDD();
+
+        allSpell = bdd.chargerSpell();
+        allEffet = bdd.chargerEffet();
     }
 
     public void sauvegardeHero() {
@@ -185,7 +191,19 @@ public class Jeu {
         return save;
     }
 
+    public void setAllSpell() {
+        allSpell = bdd.chargerSpell();
+    }
+
+    public void setAllEffet() {
+        allEffet = bdd.chargerEffet();
+    }
+
+    public ArrayList<Effet> getAllEffet() {
+        return allEffet;
+    }
+
     public ArrayList<Spell> getAllSpell() {
-        return bdd.chargerSpell();
+        return allSpell;
     }
 }

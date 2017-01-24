@@ -249,11 +249,28 @@ public class BDD {
         try {
             spell = instruction.executeQuery("SELECT * from spell;");
             while (spell.next()) {
-                result.add(new Spell(spell.getInt("degatSpell"), spell.getInt("effet_id"), spell.getInt("porteSpell"), spell.getInt("coutManaSpell"), spell.getString("libelleSpell"), spell.getString("textureSpell")));
+                result.add(new Spell(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell")));
             }
         } catch (Exception e) {
             System.out.println("Donnees charger spell : " + e);
         }
+        return result;
+    }
+
+    //Requete qui recup tout les effets
+    public ArrayList<Effet> chargerEffet() {
+        ResultSet effet;
+        ArrayList<Effet> result = new ArrayList<>();
+
+        try {
+            effet = instruction.executeQuery("SELECT * FROM effet;");
+            while (effet.next()) {
+                result.add(new Effet(Integer.parseInt(effet.getString("idEffet")), effet.getString("libelleEffet"), Integer.parseInt(effet.getString("duree")), Integer.parseInt(effet.getString("degatParSec")), effet.getString("textureEffet")));
+            }
+        } catch(Exception e) {
+            System.out.println("Donnees charger effet : " + e);
+        }
+
         return result;
     }
 }

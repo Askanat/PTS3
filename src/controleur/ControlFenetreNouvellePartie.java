@@ -43,6 +43,7 @@ public class ControlFenetreNouvellePartie extends Control implements ActionListe
 
                     jeu.setNbPartieLibre(jeu.getBDDNbPartieLibre());
 
+
                     fenetre.setContentPane(fenetre.panelFenetreCreationPersonnage);
                     changerVue();
                 } catch (Exception e1) {
