@@ -80,14 +80,16 @@ public class FenetreJeu extends JPanel {
 
         ZONE = new Dimension(TAILLE_TUILE * tailleMapX, TAILLE_TUILE * tailleMapY);
         this.setPreferredSize(ZONE);
-        scrollPane.revalidate();
 
-        if (jeu.getHero().getDirectionOrientation() == Direction.GAUCHE)
-            jeu.getHero().setPositionX(ZONE.width);
-        else
+        jeu.getHero().setPositionY(-Fenetre.adapterResolutionEnY(200) + ZONE.height - jeu.getHero().getHauteurBas());
+        if (jeu.getHero().getDirectionOrientation() == Direction.DROITE) {
             jeu.getHero().setPositionX(0);
-
-        scrollPane.getViewport().setViewPosition(new Point((int) (jeu.getHero().getPositionX() - X / 2.0), (int) scrollPane.getViewport().getViewPosition().getY()));
+            scrollPane.getViewport().setViewPosition(new Point(jeu.getHero().getPositionX(), (int) scrollPane.getViewport().getViewPosition().getY()));
+        } else { // putin de gros bug ici je ne sais pas pourquoi !!! si je ne met pas 2 fois setViewPosition il me met à la positon x = 293 pour une résolution de 960*540
+            jeu.getHero().setPositionX(ZONE.width);
+            scrollPane.getViewport().setViewPosition(new Point(jeu.getHero().getPositionX() - X, (int) scrollPane.getViewport().getViewPosition().getY()));
+            scrollPane.getViewport().setViewPosition(new Point(jeu.getHero().getPositionX() - X, (int) scrollPane.getViewport().getViewPosition().getY()));
+        }
     }
 
     public void readMap(String chemin) {

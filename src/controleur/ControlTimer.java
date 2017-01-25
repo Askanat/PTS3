@@ -1,12 +1,15 @@
 package controleur;
 
+import model.Direction;
 import model.Jeu;
 import vue.Fenetre;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static vue.Fenetre.X;
 import static vue.Fenetre.scrollPane;
 import static vue.FenetreJeu.ZONE;
 
@@ -113,10 +116,11 @@ public class ControlTimer extends Control implements ActionListener {
                 // changement de zone : zone-safe <-> zone-donjon
                 if (jeu.getHero().getPositionX() > ZONE.width) {
                     fenetre.panelFenetreJeu.changerMap("map/mapFenetreDonjon.txt");
-                } else if (jeu.getHero().getPositionX() < 0) {
+                    jeu.setZoneSafe(false);
+                } else if (jeu.getHero().getPositionX() < 0 && !jeu.getZoneSafe()) {
                     fenetre.panelFenetreJeu.changerMap("map/mapFenetreDepart.txt");
+                    jeu.setZoneSafe(true);
                 }
-
             }
             //jeu.getHero().afficherEtat();
         }
