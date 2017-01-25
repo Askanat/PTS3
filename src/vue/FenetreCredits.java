@@ -21,14 +21,14 @@ public class FenetreCredits extends JPanel {
     public FenetreCredits() {
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(X, Y));
+        this.setPreferredSize(new Dimension(X, Y));
 
         imageFenetreCredits = getToolkit().getImage("images/Credits.png");
 
         retour = new JButton("");
         retour.setActionCommand("Retour");
 
-        add(retour);
+        this.add(retour);
     }
 
     public void setControl(ControlFenetreCredits controlFenetreCredits) {

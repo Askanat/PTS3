@@ -9,9 +9,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-import static vue.Fenetre.X;
-import static vue.Fenetre.Y;
-import static vue.Fenetre.decoupage;
+import static vue.Fenetre.*;
 
 
 /**
@@ -32,7 +30,7 @@ public class FenetreNouvellePartie extends JPanel {
         this.jeu = jeu;
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(X, Y));
+        this.setPreferredSize(new Dimension(X, Y));
 
         imageFenetreNouvellePartie = getToolkit().getImage("images/menuNouvellePartie.png");
         imagePorte = getToolkit().getImage("images/feuPorte.png");
@@ -55,17 +53,17 @@ public class FenetreNouvellePartie extends JPanel {
         niveauSlot2 = new JLabel("Niveau " + jeu.readLVLPerso(2), JLabel.CENTER);
         niveauSlot3 = new JLabel("Niveau " + jeu.readLVLPerso(3), JLabel.CENTER);
 
-        add(slot1);
-        add(slot2);
-        add(slot3);
-        add(continuer);
-        add(retour);
-        add(nomSlot1);
-        add(nomSlot2);
-        add(nomSlot3);
-        add(niveauSlot1);
-        add(niveauSlot2);
-        add(niveauSlot3);
+        this.add(slot1);
+        this.add(slot2);
+        this.add(slot3);
+        this.add(continuer);
+        this.add(retour);
+        this.add(nomSlot1);
+        this.add(nomSlot2);
+        this.add(nomSlot3);
+        this.add(niveauSlot1);
+        this.add(niveauSlot2);
+        this.add(niveauSlot3);
     }
 
     public void init() {

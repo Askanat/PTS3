@@ -62,7 +62,7 @@ public class ControlFenetreOptions extends Control implements ActionListener, Ke
                     changerVue();
                 } else {
                     Control.enPartie = true;
-                    fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
+                    fenetre.setContentPane(fenetre.panelScrollFenetreJeu);
                     changerVue();
                     fenetre.vueMenuEnJeu();
                 }

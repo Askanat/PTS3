@@ -27,8 +27,9 @@ public class FenetreOptions extends JPanel {
     public FenetreOptions(Jeu jeu, ControlTouche controlTouche) {
         this.controlTouche = controlTouche;
         this.jeu = jeu;
+
         this.setLayout(null);
-        setPreferredSize(new Dimension(X, Y));
+        this.setPreferredSize(new Dimension(X, Y));
 
         imageFenetreOption = getToolkit().getImage("images/menuOptionsTest.png");
         f = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
@@ -47,11 +48,11 @@ public class FenetreOptions extends JPanel {
             controlButton[i].setActionCommand(repAction[i]);
         }
 
-        add(retour);
-        add(hitBox);
+        this.add(retour);
+        this.add(hitBox);
 
         for(JButton b: controlButton)
-            add(b);
+            this.add(b);
     }
 
     public void setControl(ControlFenetreOptions controlFenetreOptions) {

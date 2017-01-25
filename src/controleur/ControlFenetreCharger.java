@@ -41,7 +41,7 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                     spawnHero(choixHero);
                     choixHero = 0;
                     Control.enPartie = true;
-                    fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
+                    fenetre.setContentPane(fenetre.panelScrollFenetreJeu);
                     changerVue();
                 } catch (Exception e1) {
                     fenetre.panelFenetreCharger.setPaneSelectionnePersonnage();

@@ -22,7 +22,7 @@ public class MenuPrincipal extends JPanel {
     public MenuPrincipal() {
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(X, Y));
+        this.setPreferredSize(new Dimension(X, Y));
 
         imageMenuPrincipal = getToolkit().getImage("images/testMenu.png");
 
@@ -37,11 +37,11 @@ public class MenuPrincipal extends JPanel {
         quitter = new JButton("");
         quitter.setActionCommand("Quitter");
 
-        add(nouvellePartie);
-        add(chargerPartie);
-        add(options);
-        add(credits);
-        add(quitter);
+        this.add(nouvellePartie);
+        this.add(chargerPartie);
+        this.add(options);
+        this.add(credits);
+        this.add(quitter);
     }
 
     public void setControl(ControlMenuPrincipal controlMenuPrincipal) {

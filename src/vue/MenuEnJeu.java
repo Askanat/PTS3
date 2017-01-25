@@ -24,8 +24,8 @@ public class MenuEnJeu extends JPanel {
         this.jeu = jeu;
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(X / 2, Y / 2));
-        setOpaque(false);
+        this.setPreferredSize(new Dimension(X / 2, Y / 2));
+        this.setOpaque(false);
         imageMenuEnJeu = getToolkit().getImage("images/menuPause.png");
 
         retourJeu = new JButton("");
@@ -41,12 +41,12 @@ public class MenuEnJeu extends JPanel {
         retourBureau = new JButton("");
         retourBureau.setActionCommand("Retour Au Bureau");
 
-        add(retourJeu);
-        add(inventaire);
-        add(fichePersonnage);
-        add(option);
-        add(retourMenuPrincipal);
-        add(retourBureau);
+        this.add(retourJeu);
+        this.add(inventaire);
+        this.add(fichePersonnage);
+        this.add(option);
+        this.add(retourMenuPrincipal);
+        this.add(retourBureau);
     }
 
     public void setControl(ControlMenuEnJeu controlMenuEnJeu) {

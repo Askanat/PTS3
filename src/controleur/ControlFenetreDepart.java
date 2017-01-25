@@ -26,7 +26,7 @@ public class ControlFenetreDepart extends Control implements ActionListener {
                     fenetre.vueMenuEnJeu();
                 } else {
                     fenetre.layeredPane.removeAll();
-                    fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
+                    fenetre.setContentPane(fenetre.panelScrollFenetreJeu);
                     changerVue();
                 }
                 break;

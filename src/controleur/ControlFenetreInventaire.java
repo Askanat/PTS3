@@ -3,7 +3,6 @@ package controleur;
 import model.Jeu;
 import vue.Fenetre;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -66,7 +65,7 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
 
             case "Retour":
                 Control.enPartie = true;
-                fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
+                fenetre.setContentPane(fenetre.panelScrollFenetreJeu);
                 changerVue();
                 fenetre.vueMenuEnJeu();
                 break;

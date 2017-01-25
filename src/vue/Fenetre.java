@@ -26,16 +26,15 @@ public class Fenetre extends JFrame {
     public FenetreCharger panelFenetreCharger;
     public FenetreOptions panelFenetreOptions;
     public FenetreCredits panelFenetreCredits;
-    public FenetreDonjon panelFenetreDonjon;
     public FenetreNouvellePartie panelFenetreNouvellePartie;
     public FenetreInventaire panelFenetreInventaire;
     public MenuEnJeu panelMenuEnJeu;
     public FenetreCreationPersonnage panelFenetreCreationPersonnage;
     public FenetreFichePerso panelFenetreFichePerso;
-    public FenetreDepart panelFenetreDepart;
+    public FenetreJeu panelFenetreJeu;
 
     public static JScrollPane scrollPane;
-    public JPanel panelScrollFenetreDepart;
+    public JPanel panelScrollFenetreJeu;
     public JLayeredPane layeredPane;
 
     public static BufferedImage[] tableauTuile;
@@ -44,8 +43,8 @@ public class Fenetre extends JFrame {
     private static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     public static final double DEFAUT_X = 1920;
     public static final double DEFAUT_Y = 1080;
-    public static final int X = (int) tailleEcran.getWidth();
-    public static final int Y = (int) tailleEcran.getHeight();
+    public static final int X = 960;//(int) tailleEcran.getWidth();
+    public static final int Y = 540;//(int) tailleEcran.getHeight();
 
     public Fenetre(Jeu jeu) {
 
@@ -53,13 +52,13 @@ public class Fenetre extends JFrame {
 
         init();
         //setUndecorated(true);
-        setContentPane(panelMenuPrincipal);
-        pack();
-        setTitle("Jeu");
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setVisible(true);
+        this.setContentPane(panelMenuPrincipal);
+        this.pack();
+        this.setTitle("Jeu");
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
 
         numeroPorte = -1;
     }
@@ -87,7 +86,6 @@ public class Fenetre extends JFrame {
         }
         panelFenetreCharger = new FenetreCharger(jeu);
         panelFenetreCredits = new FenetreCredits();
-        panelFenetreDonjon = new FenetreDonjon(jeu);
         panelFenetreNouvellePartie = new FenetreNouvellePartie(jeu);
         panelMenuPrincipal = new MenuPrincipal();
         panelFenetreInventaire = new FenetreInventaire();
@@ -95,7 +93,7 @@ public class Fenetre extends JFrame {
         panelFenetreCreationPersonnage = new FenetreCreationPersonnage(jeu);
         panelFenetreFichePerso = new FenetreFichePerso(jeu);
 
-        panelFenetreDepart = new FenetreDepart(jeu);
+        panelFenetreJeu = new FenetreJeu(jeu);
         vueJeu();
     }
 
@@ -107,13 +105,11 @@ public class Fenetre extends JFrame {
     }
 
     public void vueJeu() {
-        scrollPane = new JScrollPane(panelFenetreDepart);
-        scrollPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_NEVER);
+        scrollPane = new JScrollPane(panelFenetreJeu, VERTICAL_SCROLLBAR_NEVER, HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBounds(0, 0, X, Y);
-        panelScrollFenetreDepart = new JPanel(null);
-        panelScrollFenetreDepart.setPreferredSize(new Dimension(X, Y));
-        panelScrollFenetreDepart.add(scrollPane);
+        panelScrollFenetreJeu = new JPanel(null);
+        panelScrollFenetreJeu.setPreferredSize(new Dimension(X, Y));
+        panelScrollFenetreJeu.add(scrollPane);
     }
 
     public void initFenetreOptions(ControlTouche controlTouche) {
@@ -149,11 +145,7 @@ public class Fenetre extends JFrame {
     }
 
     public void setControlFenetreDepart(ControlFenetreDepart controlFenetreDepart) {
-        panelFenetreDepart.setControl(controlFenetreDepart);
-    }
-
-    public void setControlFenetreDonjon(ControlFenetreDonjon controlFenetreDonjon) {
-        panelFenetreDonjon.setControl(controlFenetreDonjon);
+        panelFenetreJeu.setControl(controlFenetreDepart);
     }
 
     public void setControlFenetreInventaire(ControlFenetreInventaire controlFenetreInventaire) {

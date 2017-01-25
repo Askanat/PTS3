@@ -6,7 +6,7 @@ import java.awt.*;
 
 import static java.lang.Math.abs;
 import static model.Jeu.GRAVITE;
-import static vue.FenetreDepart.ZONE_SAFE;
+import static vue.FenetreJeu.ZONE;
 
 
 /**
@@ -201,7 +201,7 @@ public abstract class Personnage {
         if (!getCollision())
             setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
         else if (getCollision()) {
-            setPositionY(-Fenetre.adapterResolutionEnY(200) + ZONE_SAFE.height - hauteurBas);
+            setPositionY(-Fenetre.adapterResolutionEnY(200) + ZONE.height - hauteurBas);
             setVitesseDeDeplacementEnY(0);
         }
 
@@ -229,7 +229,7 @@ public abstract class Personnage {
     }
 
     public void setCollision() {
-        this.collision = getPositionY() >= -Fenetre.adapterResolutionEnY(200) + ZONE_SAFE.height - hauteurBas;
+        this.collision = getPositionY() >= -Fenetre.adapterResolutionEnY(200) + ZONE.height - hauteurBas;
     }
 
     public boolean getCollision() {

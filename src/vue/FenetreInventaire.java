@@ -22,7 +22,7 @@ public class FenetreInventaire extends JPanel {
     public FenetreInventaire() {
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(X, Y));
+        this.setPreferredSize(new Dimension(X, Y));
 
         imageFenetreInventaire = getToolkit().getImage("images/menuInventaire.png");
 
@@ -32,7 +32,7 @@ public class FenetreInventaire extends JPanel {
         retour = new JButton();
         retour.setActionCommand("Retour");
 
-        add(retour);
+        this.add(retour);
     }
 
     public void boutonInventaire() {
@@ -41,7 +41,7 @@ public class FenetreInventaire extends JPanel {
         for (int i = 0; i < 30; i++) {
             inventaire[i] = new JButton();
             inventaire[i].setActionCommand("Inventaire" + i);
-            add(inventaire[i]);
+            this.add(inventaire[i]);
         }
     }
 
@@ -49,35 +49,35 @@ public class FenetreInventaire extends JPanel {
 
         casque = new JButton();
         casque.setActionCommand("Casque");
-        add(casque);
+        this.add(casque);
 
         plastron = new JButton();
         plastron.setActionCommand("Plastron");
-        add(plastron);
+        this.add(plastron);
 
         gant = new JButton();
         gant.setActionCommand("Gant");
-        add(gant);
+        this.add(gant);
 
         bague = new JButton();
         bague.setActionCommand("Bague");
-        add(bague);
+        this.add(bague);
 
         pantalon = new JButton();
         pantalon.setActionCommand("Pantalon");
-        add(pantalon);
+        this.add(pantalon);
 
         botte = new JButton();
         botte.setActionCommand("Botte");
-        add(botte);
+        this.add(botte);
 
         bouclier = new JButton();
         bouclier.setActionCommand("Bouclier");
-        add(bouclier);
+        this.add(bouclier);
 
         arme = new JButton();
         arme.setActionCommand("Arme");
-        add(arme);
+        this.add(arme);
     }
 
     public void setControl(ControlFenetreInventaire controlFenetreInventaire) {

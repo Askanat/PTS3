@@ -57,7 +57,7 @@ public class FenetreCreationPersonnage extends JPanel {
         this.jeu = jeu;
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(X, Y));
+        this.setPreferredSize(new Dimension(X, Y));
 
         imageFenetreCreationPersonnePourHomme = getToolkit().getImage("images/menuCreationPersonnageHomme.png");
         imageFenetreCreationPersonnePourFemme = getToolkit().getImage("images/menuCreationPersonnageFemme.png");
@@ -113,24 +113,24 @@ public class FenetreCreationPersonnage extends JPanel {
             pilositeCouleur[i].setActionCommand("pilositeCouleur" + i);
         }
 
-        add(jouer);
-        add(lNomHero);
-        add(tfNomHero);
-        add(retour);
-        add(cheveuxGauche);
-        add(cheveuxDroite);
-        add(yeuxDroite);
-        add(yeuxGauche);
-        add(sexeFemme);
-        add(sexeHomme);
-        add(peauGauche);
-        add(peauDroite);
-        add(pilositeGauche);
-        add(pilositeDroite);
+        this.add(jouer);
+        this.add(lNomHero);
+        this.add(tfNomHero);
+        this.add(retour);
+        this.add(cheveuxGauche);
+        this.add(cheveuxDroite);
+        this.add(yeuxDroite);
+        this.add(yeuxGauche);
+        this.add(sexeFemme);
+        this.add(sexeHomme);
+        this.add(peauGauche);
+        this.add(peauDroite);
+        this.add(pilositeGauche);
+        this.add(pilositeDroite);
         for (int i = 0; i < NB_COULEUR; i++) {
-            add(cheveuxCouleur[i]);
-            add(yeuxCouleur[i]);
-            add(pilositeCouleur[i]);
+            this.add(cheveuxCouleur[i]);
+            this.add(yeuxCouleur[i]);
+            this.add(pilositeCouleur[i]);
         }
 
         choixSexe = 0;

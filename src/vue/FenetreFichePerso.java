@@ -26,7 +26,7 @@ public class FenetreFichePerso extends JPanel {
         this.jeu = jeu;
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(X, Y));
+        this.setPreferredSize(new Dimension(X, Y));
 
         imageFenetreFichePerso = getToolkit().getImage("images/fichePerso.png");
         fontCompetence = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
@@ -74,30 +74,30 @@ public class FenetreFichePerso extends JPanel {
         exp = new JLabel("", JLabel.CENTER);
 
         //Ajout JButton
-        add(retour);
-        add(plusForce);
-        add(moinsForce);
-        add(plusInt);
-        add(moinsInt);
-        add(plusConst);
-        add(moinsConst);
-        add(plusResist);
-        add(moinsResist);
-        add(valider);
+        this.add(retour);
+        this.add(plusForce);
+        this.add(moinsForce);
+        this.add(plusInt);
+        this.add(moinsInt);
+        this.add(plusConst);
+        this.add(moinsConst);
+        this.add(plusResist);
+        this.add(moinsResist);
+        this.add(valider);
 
         //Ajout JLabel
-        add(valForce);
-        add(valInt);
-        add(valConst);
-        add(valResist);
-        add(valider);
-        add(niveau);
-        add(pointCaracteristique);
-        add(pointCompetence);
-        add(nomHero);
-        add(vie);
-        add(mana);
-        add(exp);
+        this.add(valForce);
+        this.add(valInt);
+        this.add(valConst);
+        this.add(valResist);
+        this.add(valider);
+        this.add(niveau);
+        this.add(pointCaracteristique);
+        this.add(pointCompetence);
+        this.add(nomHero);
+        this.add(vie);
+        this.add(mana);
+        this.add(exp);
     }
 
     public void setControl(ControlFenetreFichePerso controlFenetreFichePerso) {

@@ -32,13 +32,14 @@ public class Jeu {
 
     private int nbPartieLibre;
     private boolean pause;
-
+    private boolean zoneSafe;
 
     public Jeu() throws SQLException {
 
         tableauMonstre = new ArrayList<>();
         temps = 0;
         pause = false;
+        zoneSafe = true;
 
         bdd = new BDD();
 
@@ -62,6 +63,18 @@ public class Jeu {
 
     public final boolean getPause() {
         return pause;
+    }
+
+    public void inversePause() {
+        if (Control.enPartie) setPause(!getPause());
+    }
+
+    public void setZoneSafe(boolean zoneSafe) {
+        this.zoneSafe = zoneSafe;
+    }
+
+    public boolean getZoneSafe() {
+        return zoneSafe;
     }
 
     public void setHero(int id) {
@@ -116,10 +129,6 @@ public class Jeu {
 
     public int getSizeTabMonstre() {
         return tableauMonstre.size();
-    }
-
-    public void inversePause() {
-        if (Control.enPartie) setPause(!getPause());
     }
 
     public void setTemps(int temps) {

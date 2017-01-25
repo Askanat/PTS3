@@ -9,9 +9,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-import static vue.Fenetre.X;
-import static vue.Fenetre.Y;
-import static vue.Fenetre.decoupage;
+import static vue.Fenetre.*;
 
 /**
  * Created by bastien on 29/09/16.
@@ -31,7 +29,7 @@ public class FenetreCharger extends JPanel {
         this.jeu = jeu;
 
         this.setLayout(null);
-        setPreferredSize(new Dimension(X, Y));
+        this.setPreferredSize(new Dimension(X, Y));
 
         imagePorte = getToolkit().getImage("images/feuPorte.png");
         imageFenetreCharger = getToolkit().getImage("images/chargerPartie.png");
@@ -55,17 +53,17 @@ public class FenetreCharger extends JPanel {
         niveauSlot3 = new JLabel("Niveau " + jeu.readLVLPerso(3), JLabel.CENTER);
 
 
-        add(slot1);
-        add(slot2);
-        add(slot3);
-        add(jouer);
-        add(retour);
-        add(nomSlot1);
-        add(nomSlot2);
-        add(nomSlot3);
-        add(niveauSlot1);
-        add(niveauSlot2);
-        add(niveauSlot3);
+        this.add(slot1);
+        this.add(slot2);
+        this.add(slot3);
+        this.add(jouer);
+        this.add(retour);
+        this.add(nomSlot1);
+        this.add(nomSlot2);
+        this.add(nomSlot3);
+        this.add(niveauSlot1);
+        this.add(niveauSlot2);
+        this.add(niveauSlot3);
     }
 
     public void setControl(ControlFenetreCharger controlFenetreCharger) {

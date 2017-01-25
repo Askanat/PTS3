@@ -4,12 +4,11 @@ import model.Jeu;
 import vue.Fenetre;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static vue.Fenetre.*;
-import static vue.FenetreDepart.ZONE_SAFE;
+import static vue.Fenetre.scrollPane;
+import static vue.FenetreJeu.ZONE;
 
 /**
  * Created by bastien on 30/09/16.
@@ -36,7 +35,7 @@ public class ControlTimer extends Control implements ActionListener {
 
                 } else {
                     fenetre.layeredPane.removeAll();
-                    fenetre.setContentPane(fenetre.panelScrollFenetreDepart);
+                    fenetre.setContentPane(fenetre.panelScrollFenetreJeu);
                     changerVue();
                 }
                 ControlClavier.toucheRelacher[ControlTouche.ACTION_MENU] = false;
@@ -83,17 +82,17 @@ public class ControlTimer extends Control implements ActionListener {
                 }
 
                 // dessine le héro et le fait se déplacer
-                fenetre.panelFenetreDepart.hero.selectionnerMorceauSpriteDeplacement();
+                fenetre.panelFenetreJeu.hero.selectionnerMorceauSpriteDeplacement();
                 jeu.getHero().deplacer();
 
 
                 // dessine les monstres et les fait intéragir
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
                     jeu.getMonstre(i).update(jeu.getHero());
-                    fenetre.panelFenetreDepart.monstre.get(i).selectionnerMorceauSpriteDeplacement();
+                    fenetre.panelFenetreJeu.monstre.get(i).selectionnerMorceauSpriteDeplacement();
                     if (!jeu.getMonstre(i).estVivant()) {
                         jeu.getHero().recevoirExperience(jeu.getMonstre(i));
-                        fenetre.panelFenetreDepart.monstre.remove(i);
+                        fenetre.panelFenetreJeu.monstre.remove(i);
                     }
                     jeu.getMonstre(i).upgrade();
 
@@ -110,10 +109,17 @@ public class ControlTimer extends Control implements ActionListener {
                 if (niveau < jeu.getHero().getNiveau()) {
                     jeu.sauvegardeHero();
                 }
+
+                // changement de zone : zone-safe <-> zone-donjon
+                if (jeu.getHero().getPositionX() > ZONE.width) {
+                    fenetre.panelFenetreJeu.changerMap("map/mapFenetreDonjon.txt");
+                } else if (jeu.getHero().getPositionX() < 0) {
+                    fenetre.panelFenetreJeu.changerMap("map/mapFenetreDepart.txt");
+                }
+
             }
             //jeu.getHero().afficherEtat();
         }
-
         fenetre.repaint();
     }
 }

@@ -1,6 +1,7 @@
 package vue;
 
 import controleur.ControlFenetreDepart;
+import model.Direction;
 import model.Jeu;
 
 import javax.swing.*;
@@ -12,14 +13,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import static vue.Fenetre.scrollPane;
-import static vue.Fenetre.tableauTuile;
+import static vue.Fenetre.*;
 
 /**
  * Created by bastien on 29/09/16.
  */
 
-public class FenetreDepart extends JPanel {
+public class FenetreJeu extends JPanel {
 
     private Jeu jeu;
     private ActionListener control;
@@ -28,39 +28,38 @@ public class FenetreDepart extends JPanel {
     public ArrayList<Entite> monstre;
 
     public JButton menu;
-
     private Image imageIconeSave;
 
     private int tailleMapX, tailleMapY;
     private final int TAILLE_TUILE = Fenetre.adapterResolutionEnX(50);
     private int tuileInt[][];
     public BufferedImage tuileImage[][];
-    public static Dimension ZONE_SAFE;
+    public static Dimension ZONE;
 
 
-    public FenetreDepart(Jeu jeu) {
+    public FenetreJeu(Jeu jeu) {
 
         this.jeu = jeu;
 
-        setLayout(null);
+        this.setLayout(null);
 
-        readMapFenetreDepart();
+        readMap("map/mapFenetreDepart.txt");
         tuileImage = new BufferedImage[tailleMapY][tailleMapX];
         chargerMap();
 
-        ZONE_SAFE = new Dimension(TAILLE_TUILE * tailleMapX, TAILLE_TUILE * tailleMapY);
-        setPreferredSize(ZONE_SAFE);
-
-        imageIconeSave = getToolkit().getImage("images/iconeSave.png");
+        ZONE = new Dimension(TAILLE_TUILE * tailleMapX, TAILLE_TUILE * tailleMapY);
+        this.setPreferredSize(ZONE);
 
         hero = new Entite(jeu);
         monstre = new ArrayList<Entite>();
+
+        imageIconeSave = getToolkit().getImage("images/iconeSave.png");
 
         menu = new JButton("");
         menu.setActionCommand("Menu");
         Image img = getToolkit().getImage("images/iconeMenu.png").getScaledInstance(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40), java.awt.Image.SCALE_SMOOTH);
         menu.setIcon(new ImageIcon(img));
-        add(menu);
+        this.add(menu);
         menu.addActionListener(control);
     }
 
@@ -68,16 +67,33 @@ public class FenetreDepart extends JPanel {
         hero.creationEntite(jeu.getHero());
     }
 
-    public void dessineMonstre(int id) {
+    public void dessineMonstre() {
         monstre.add(new Entite(jeu));
         monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(jeu.getSizeTabMonstre() - 1));
     }
 
-    public void readMapFenetreDepart() {
+
+    public void changerMap(String chemin) {
+        readMap(chemin);
+        tuileImage = new BufferedImage[tailleMapY][tailleMapX];
+        chargerMap();
+
+        ZONE = new Dimension(TAILLE_TUILE * tailleMapX, TAILLE_TUILE * tailleMapY);
+        this.setPreferredSize(ZONE);
+        scrollPane.revalidate();
+
+        if (jeu.getHero().getDirectionOrientation() == Direction.GAUCHE)
+            jeu.getHero().setPositionX(ZONE.width);
+        else
+            jeu.getHero().setPositionX(0);
+
+        scrollPane.getViewport().setViewPosition(new Point((int) (jeu.getHero().getPositionX() - X / 2.0), (int) scrollPane.getViewport().getViewPosition().getY()));
+    }
+
+    public void readMap(String chemin) {
         ArrayList<String> listS = new ArrayList<>();
         int indice = 0;
 
-        String chemin = "map/mapFenetreDepart.txt";
         File fichier = new File(chemin);
         try {
             FileReader reader = new FileReader(fichier);
