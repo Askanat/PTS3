@@ -25,14 +25,14 @@ package model;
  *    collision = oui; interraction = oui; destructible = non; degats = non
  */
 
-
 public class Block {
 	public static final int
 	TORCHE = -75,
 	VITRE = -74,
+	COFFRE_OUVERT = -73,
 	MUR_FOND = 0,
 
-	COFFRE = -49,
+	COFFRE_FERME = -49,
 	PORTE_HAUT_GAUCHE = -48,
 	PORTE_HAUT_DROITE = -47,
 	PORTE_MILIEU_GAUCHE = -46,
