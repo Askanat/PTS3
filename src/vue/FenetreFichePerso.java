@@ -17,6 +17,7 @@ public class FenetreFichePerso extends JPanel {
     private Jeu jeu;
 
     public JButton retour, plusForce, moinsForce, plusInt, moinsInt, plusConst, moinsConst, plusResist, moinsResist, valider;
+    public JButton[] competence;
     public JLabel valForce, valInt, valConst, valResist, niveau, pointCaracteristique, pointCompetence, nomHero, vie, mana, exp;
 
     private Image imageFenetreFichePerso;
@@ -28,12 +29,14 @@ public class FenetreFichePerso extends JPanel {
         this.setLayout(null);
         this.setPreferredSize(new Dimension(X, Y));
 
+        boutonCompetence();
+
         imageFenetreFichePerso = getToolkit().getImage("images/fichePerso.png");
         fontCompetence = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
         fontBarre = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
         fontNomLVL = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(32));
 
-        //JButton
+        //JButton Caractéristique
         retour = new JButton();
         retour.setActionCommand("Retour");
 
@@ -98,6 +101,16 @@ public class FenetreFichePerso extends JPanel {
         this.add(vie);
         this.add(mana);
         this.add(exp);
+    }
+
+    public void boutonCompetence() {
+        competence = new JButton[8];
+
+        for (int i = 0; i < 8; i++) {
+            competence[i] = new JButton("pouet");
+            competence[i].setActionCommand("Competence" + i);
+            this.add(competence[i]);
+        }
     }
 
     public void setControl(ControlFenetreFichePerso controlFenetreFichePerso) {
@@ -221,6 +234,20 @@ public class FenetreFichePerso extends JPanel {
         niveau.setForeground(Color.WHITE);
         niveau.setFont(fontNomLVL);
         niveau.setBorder(null);
+
+        //Placement des Buttons de Caractéristique
+        int k = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 2; j++) {
+                competence[k].setBounds(Fenetre.adapterResolutionEnX(1225 + (131 * i)), Fenetre.adapterResolutionEnY(645 + (130 * j)), Fenetre.adapterResolutionEnX(115), Fenetre.adapterResolutionEnX(115));
+                competence[k].setBackground(new Color(0, 0, 0, 0));
+                competence[k].setFocusable(false);
+                competence[k].setCursor(new Cursor(Cursor.HAND_CURSOR));
+                competence[k].setBorder(null);
+
+                k += 1;
+            }
+        }
 
         //Texte Barre
         vie.setBounds(Fenetre.adapterResolutionEnX(126), Fenetre.adapterResolutionEnY(280), Fenetre.adapterResolutionEnX(932), Fenetre.adapterResolutionEnY(32));
