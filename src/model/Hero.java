@@ -18,7 +18,7 @@ public class Hero extends Personnage implements Serializable {
 
     ArrayList<Spell> heroSpell;
 
-    private Jeu jeu;
+    private BDD bdd;
 
     private final int COEF_VIE = 5;
     private final int COEF_MANA = 5;
@@ -48,8 +48,6 @@ public class Hero extends Personnage implements Serializable {
         armureMax = (int) (resistance * COEF_ARMURE);
         armure = armureMax;
 
-        heroSpell = jeu.getAllSpell();
-
         this.experience = experience;
         this.experienceMax = experienceMax;
 
@@ -59,6 +57,10 @@ public class Hero extends Personnage implements Serializable {
         this.or = or;
 
         directionOrientation = Direction.DROITE;
+
+        bdd = new BDD();
+
+        heroSpell = bdd.chargerSpell();
 
         /*System.out.println("nom:" + nom + ", niveau:" + niveau + ", pointCaracteristique:" + pointCaracteristique + ", pointCompetence:" + pointCompetence +
                 ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +

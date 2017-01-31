@@ -62,7 +62,7 @@ public class Jeu {
     }
 
     public void sauvegardeHero() {
-        if(!bdd.isBDD()) {
+        if(bdd.isBDD()) {
             bdd.updateHero(hero.getIdHero(), hero.sauvegardeDonneesHeros());
         } else {
             try {
@@ -101,7 +101,7 @@ public class Jeu {
     public void setHero(int id) {
         ArrayList<String> donneesHero;
 
-       if(!bdd.isBDD()) {
+       if(bdd.isBDD()) {
            donneesHero = bdd.readHero(id);
            hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)), Integer.parseInt(donneesHero.get(3)),
                    Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)), Double.parseDouble(donneesHero.get(6)),

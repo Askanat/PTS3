@@ -20,6 +20,7 @@ public class BDD {
             connexion = DriverManager.getConnection("jdbc:mysql://localhost/projet", "DUTinfo", "0000");
             instruction = connexion.createStatement();
             bddIsOk = true;
+            //System.out.println("Hello bdd" + bddIsOk);
         } catch (Exception e) {
             System.out.println("Echec pilote : " + e);
         }
@@ -248,11 +249,21 @@ public class BDD {
     //Requete qui recup tous les spell
     public ArrayList<Spell> chargerSpell() {
         ResultSet spell;
+        boolean bool = false;
         ArrayList<Spell> result = new ArrayList<>();
         try {
             spell = instruction.executeQuery("SELECT * from spell;");
             while (spell.next()) {
-                result.add(new Spell(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), Boolean.parseBoolean(spell.getString("unlockSpell"))));
+                System.out.println(spell.getString("unlockSpell"));
+                if(spell.getString("unlockSpell").equals("0")) {
+                    bool = false;
+                } else {
+                    bool = true;
+                }
+
+                System.out.println(bool);
+
+                result.add(new Spell(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), bool));
             }
         } catch (Exception e) {
             System.out.println("Donnees charger spell : " + e);
