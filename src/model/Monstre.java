@@ -17,7 +17,6 @@ public class Monstre extends Personnage {
     private int distanceVisibilite;
 
     private Spell spell;
-    private Jeu jeu;
 
     private int temps, TEMPS;
     private boolean mouvementAleatoire, mouvementAleatoireDirection;
@@ -25,7 +24,7 @@ public class Monstre extends Personnage {
     private Rectangle hitBoxVue;
 
     public Monstre(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, double coeffArmure, double coeffVie, double coeffMana, double coeffDegat,
-                   String texture, int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, int distanceVisibilite) {
+                   String texture, int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, int distanceVisibilite, Spell spell) {
 
         super(nom, niveau, largeurDevant, largeurDerriere, hauteurHaut, hauteurBas, texture, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY, 0, 0, 0);
 
@@ -47,6 +46,8 @@ public class Monstre extends Personnage {
         this.coeffArmure = coeffArmure;
 
         this.distanceVisibilite = Fenetre.adapterResolutionEnX(distanceVisibilite);
+
+        this.spell = spell;
 
         directionOrientation = Direction.GAUCHE;
 
@@ -60,46 +61,7 @@ public class Monstre extends Personnage {
         hitBoxVue = new Rectangle();
         System.out.println("nom:" + nom + ", niveau:" + niveau + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
                 degatMax + ", armureMax:" + armureMax + ", xpdonne: " + donneExperience());
-    }
-
-    public Monstre(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, double coeffArmure, double coeffVie, double coeffMana, double coeffDegat,
-                   String texture, int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, int distanceVisibilit, int idSPell) {
-
-        super(nom, niveau, largeurDevant, largeurDerriere, hauteurHaut, hauteurBas, texture, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY, 0, 0, 0);
-
-        vieMax = (int) (coeffVie * niveau);
-        vie = vieMax;
-
-        manaMax = (int) (coeffMana * niveau);
-        mana = manaMax;
-
-        degatMax = (int) (coeffDegat * niveau);
-        degats = degatMax;
-
-        armureMax = (int) (coeffArmure * niveau);
-        armure = armureMax;
-
-        spell = jeu.getSpell(idSPell);
-
-        this.coeffVie = coeffVie;
-        this.coeffMana = coeffMana;
-        this.coeffDegat = coeffDegat;
-        this.coeffArmure = coeffArmure;
-
-        this.distanceVisibilite = Fenetre.adapterResolutionEnX(distanceVisibilite);
-
-        directionOrientation = Direction.GAUCHE;
-
-        temps = 0;
-        TEMPS = (int) (100 + (Math.random() * (300 - 100)));
-        nbDeDeplacement = 0;
-        NB_DE_DEPLACEMENT = (int) (3 + (Math.random() * (7 - 3)));
-        mouvementAleatoire = false;
-        mouvementAleatoireDirection = false;
-
-        hitBoxVue = new Rectangle();
-        System.out.println("nom:" + nom + ", niveau:" + niveau + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
-                degatMax + ", armureMax:" + armureMax + ", xpdonne: " + donneExperience() + ", spell : " + spell.toString());
+        System.out.println(spell.toString());
     }
 
     public int donneExperience() {
