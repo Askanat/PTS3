@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 public class Niveau {
 
     private int tableau[][];
@@ -22,14 +24,13 @@ public class Niveau {
         taille_x = _taille_x;
         nb_niveaux = _nb_niveaux;
 
-		if(nb_niveaux % 2 != 0) {
-			if(_entree == Direction.DROITE)
-				entree = Direction.GAUCHE;
-			else
-				entree = Direction.DROITE;
-		}
-		else
-			entree = _entree;
+        if (nb_niveaux % 2 != 0) {
+            if (_entree == Direction.DROITE)
+                entree = Direction.GAUCHE;
+            else
+                entree = Direction.DROITE;
+        } else
+            entree = _entree;
 
         gen();
     }
@@ -76,50 +77,48 @@ public class Niveau {
         return espace + ESPACE_NIVEAU;
     }
 
-	private void ajoutPorteSortie(Direction sortie) {
-		int y = getEspaceAvantNiveau(0) - 1;
+    private void ajoutPorteSortie(Direction sortie) {
+        int y = getEspaceAvantNiveau(0) - 1;
 
-		if(sortie == Direction.GAUCHE) {
-			tableau[y + 1][taille_x - 5] = Block.MUR;
-			tableau[y + 1][taille_x - 4] = Block.MUR;
-			tableau[y + 1][taille_x - 3] = Block.MUR;
-			tableau[y + 1][taille_x - 2] = Block.MUR;
-			tableau[y][taille_x - 4] = Block.PORTE_BAS_GAUCHE;
-			tableau[y - 1][taille_x - 4] = Block.PORTE_MILIEU_GAUCHE;
-			tableau[y - 2][taille_x - 4] = Block.PORTE_HAUT_GAUCHE;
-			tableau[y][taille_x - 3] = Block.PORTE_BAS_DROITE;
-			tableau[y - 1][taille_x - 3] = Block.PORTE_MILIEU_DROITE;
-			tableau[y - 2][taille_x - 3] = Block.PORTE_HAUT_DROITE;
-		}
-		else {
-			tableau[y + 1][1] = Block.MUR;
-			tableau[y + 1][2] = Block.MUR;
-			tableau[y + 1][3] = Block.MUR;
-			tableau[y + 1][4] = Block.MUR;
-			tableau[y][3] = Block.PORTE_BAS_GAUCHE;
-			tableau[y - 1][3] = Block.PORTE_MILIEU_GAUCHE;
-			tableau[y - 2][3] = Block.PORTE_HAUT_GAUCHE;
-			tableau[y][2] = Block.PORTE_BAS_DROITE;
-			tableau[y - 1][2] = Block.PORTE_MILIEU_DROITE;
-			tableau[y - 2][2] = Block.PORTE_HAUT_DROITE;
-		}
-	}
+        if (sortie == Direction.GAUCHE) {
+            tableau[y + 1][taille_x - 5] = Block.MUR;
+            tableau[y + 1][taille_x - 4] = Block.MUR;
+            tableau[y + 1][taille_x - 3] = Block.MUR;
+            tableau[y + 1][taille_x - 2] = Block.MUR;
+            tableau[y][taille_x - 4] = Block.PORTE_BAS_GAUCHE;
+            tableau[y - 1][taille_x - 4] = Block.PORTE_MILIEU_GAUCHE;
+            tableau[y - 2][taille_x - 4] = Block.PORTE_HAUT_GAUCHE;
+            tableau[y][taille_x - 3] = Block.PORTE_BAS_DROITE;
+            tableau[y - 1][taille_x - 3] = Block.PORTE_MILIEU_DROITE;
+            tableau[y - 2][taille_x - 3] = Block.PORTE_HAUT_DROITE;
+        } else {
+            tableau[y + 1][1] = Block.MUR;
+            tableau[y + 1][2] = Block.MUR;
+            tableau[y + 1][3] = Block.MUR;
+            tableau[y + 1][4] = Block.MUR;
+            tableau[y][3] = Block.PORTE_BAS_GAUCHE;
+            tableau[y - 1][3] = Block.PORTE_MILIEU_GAUCHE;
+            tableau[y - 2][3] = Block.PORTE_HAUT_GAUCHE;
+            tableau[y][2] = Block.PORTE_BAS_DROITE;
+            tableau[y - 1][2] = Block.PORTE_MILIEU_DROITE;
+            tableau[y - 2][2] = Block.PORTE_HAUT_DROITE;
+        }
+    }
 
     private void remplirPlateformeFondSup(int plateforme) {
         Random rand = new Random();
         int y = getEspaceAvantNiveau(plateforme) - 2;
         int r;
 
-        for(int i = 1; i < taille_x - 1; i++) {
-            if(i % 15 == 0)
+        for (int i = 1; i < taille_x - 1; i++) {
+            if (i % 15 == 0)
                 tableau[y][i] = Block.TORCHE;
-            else if (tableau[y][i] == Block.MUR_FOND)
-			{
+            else if (tableau[y][i] == Block.MUR_FOND) {
                 r = rand.nextInt(10);
 
-	            if(r == 0)
-    	            tableau[y][i] = Block.VITRE;
-			}
+                if (r == 0)
+                    tableau[y][i] = Block.VITRE;
+            }
         }
     }
 
@@ -138,7 +137,7 @@ public class Niveau {
                 // Si c'est la toute première ligne du block
 
                 if (posLigne == 0) {
-                    if (videCompteur > 0)   
+                    if (videCompteur > 0)
                         faireVide = rand.nextInt(2) + 1;
                     else
                         faireVide = rand.nextInt(3) + 1;
@@ -206,17 +205,16 @@ public class Niveau {
 
     private void remplirNiveau(int niveau, Direction dir) {
         int i, j, k, debut = 1, fin = taille_x - 1, debutEscalier, finEscalier;
-		int espaceBase, espace, tailleVide = TAILLE_VIDE_MAX;
-		int epaisseurN = epaisseur[niveau];
+        int espaceBase, espace, tailleVide = TAILLE_VIDE_MAX;
+        int epaisseurN = epaisseur[niveau];
 
-		if(dir == Direction.GAUCHE) {
-			debut = ESPACE_NIVEAU + 1;
-			fin = taille_x - 1;
-		}
-		else {
-			debut = 1;
-			fin = taille_x - ESPACE_NIVEAU - 1;
-		}
+        if (dir == Direction.GAUCHE) {
+            debut = ESPACE_NIVEAU + 1;
+            fin = taille_x - 1;
+        } else {
+            debut = 1;
+            fin = taille_x - ESPACE_NIVEAU - 1;
+        }
 
         for (i = 0; i < epaisseurN; i++) {
             espaceBase = getEspaceAvantNiveau(niveau);
@@ -224,8 +222,8 @@ public class Niveau {
 
             // Si ce n'est pas le premier niveau
 
-            if(niveau < nb_niveaux - 1) {
-            	if (i == epaisseurN - 1)
+            if (niveau < nb_niveaux - 1) {
+                if (i == epaisseurN - 1)
                     tailleVide = TAILLE_VIDE_FOND_MAX;
                 else
                     tailleVide = TAILLE_VIDE_MAX;
@@ -234,30 +232,28 @@ public class Niveau {
 
                 // Construction de l'escalier
 
-                if(i == epaisseurN - 1) {
-            	    debutEscalier = espaceBase + epaisseurN - 1;
-                	finEscalier = espaceBase + epaisseurN + ESPACE_NIVEAU - 3;
+                if (i == epaisseurN - 1) {
+                    debutEscalier = espaceBase + epaisseurN - 1;
+                    finEscalier = espaceBase + epaisseurN + ESPACE_NIVEAU - 3;
 
-                	if(dir == Direction.GAUCHE) {
-                		k = ESPACE_NIVEAU;
+                    if (dir == Direction.GAUCHE) {
+                        k = ESPACE_NIVEAU;
 
-	                	for(j = debutEscalier; j < finEscalier; j++) {
-	                		tableau[j][k] = Block.MUR;
-	                		k--;
-	                	}
-                	}
-                	else {
-                		k = taille_x - ESPACE_NIVEAU - 1;
+                        for (j = debutEscalier; j < finEscalier; j++) {
+                            tableau[j][k] = Block.MUR;
+                            k--;
+                        }
+                    } else {
+                        k = taille_x - ESPACE_NIVEAU - 1;
 
-	                	for(j = debutEscalier; j < finEscalier; j++) {
-	                		tableau[j][k] = Block.MUR;
-	                		k++;
-	                	}
-                	}
-            	}
-            }
-            else {
-            	if (i == epaisseurN - 1)
+                        for (j = debutEscalier; j < finEscalier; j++) {
+                            tableau[j][k] = Block.MUR;
+                            k++;
+                        }
+                    }
+                }
+            } else {
+                if (i == epaisseurN - 1)
                     tailleVide = TAILLE_VIDE_FOND_MAX;
 
                 remplirLigne(1, taille_x - 1, i, epaisseurN, espace, tailleVide);
@@ -270,28 +266,28 @@ public class Niveau {
     public void gen() {
         Random rand = new Random();
         int i;
-		Direction dir = entree;
+        Direction dir = entree;
 
-		epaisseur = new int[nb_niveaux];
+        epaisseur = new int[nb_niveaux];
         genTailleY();
         tableau = new int[taille_y][taille_x];
         genCadre();
 
         for (i = 0; i < nb_niveaux; i++) {
-			if(dir == Direction.GAUCHE)
-				dir = Direction.DROITE;
-			else
-				dir = Direction.GAUCHE;
+            if (dir == Direction.GAUCHE)
+                dir = Direction.DROITE;
+            else
+                dir = Direction.GAUCHE;
 
             remplirNiveau(i, dir);
             remplirPlateformeFondSup(i);
         }
 
-        if(i % 2 == 0) {
-			if(dir == Direction.GAUCHE)
-				dir = Direction.DROITE;
-			else
-				dir = Direction.GAUCHE;
+        if (i % 2 == 0) {
+            if (dir == Direction.GAUCHE)
+                dir = Direction.DROITE;
+            else
+                dir = Direction.GAUCHE;
         }
 
         ajoutPorteSortie(dir);
