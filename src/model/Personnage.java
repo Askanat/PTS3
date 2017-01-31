@@ -3,6 +3,7 @@ package model;
 import vue.Fenetre;
 
 import java.awt.*;
+import java.io.Serializable;
 
 import static java.lang.Math.abs;
 import static model.Jeu.GRAVITE;
@@ -13,7 +14,7 @@ import static vue.FenetreJeu.ZONE;
  * Created by bastien on 29/09/16.
  */
 
-public abstract class Personnage {
+public abstract class Personnage implements Serializable {
 
     protected String nom;
     protected int niveau;

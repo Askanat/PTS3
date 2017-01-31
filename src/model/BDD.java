@@ -1,6 +1,7 @@
 package model;
 
 
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -8,6 +9,7 @@ public class BDD {
 
     private Connection connexion;
     private Statement instruction;
+    private boolean bddIsOk = false;
 
     public BDD() {
 
@@ -17,6 +19,7 @@ public class BDD {
             Class.forName(pilote);
             connexion = DriverManager.getConnection("jdbc:mysql://localhost/projet", "DUTinfo", "0000");
             instruction = connexion.createStatement();
+            bddIsOk = true;
         } catch (Exception e) {
             System.out.println("Echec pilote : " + e);
         }
@@ -249,7 +252,7 @@ public class BDD {
         try {
             spell = instruction.executeQuery("SELECT * from spell;");
             while (spell.next()) {
-                result.add(new Spell(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell")));
+                result.add(new Spell(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), Boolean.parseBoolean(spell.getString("unlockSpell"))));
             }
         } catch (Exception e) {
             System.out.println("Donnees charger spell : " + e);
@@ -273,4 +276,23 @@ public class BDD {
 
         return result;
     }
+
+    public void sauvegardeFlux(int idHero, Hero hero) throws IOException{
+        System.out.print("Sauvegarde : ");hero.afficherEtat();
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Save/Save"+idHero+".txt"));
+        oos.writeObject(hero);
+        oos.close();
+    }
+
+    public Hero chargementFlux(int idHero) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Save/Save"+idHero+".txt"));
+        Hero loadHero = new Hero((Hero) ois.readObject());
+        System.out.print("Chargement : "); loadHero.afficherEtat();
+        return loadHero;
+    }
+    
+    public boolean isBDD() {
+        return bddIsOk;
+    }
+
 }

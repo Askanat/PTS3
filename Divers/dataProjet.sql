@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS lache, spellEquipe, itemEquipe, possede, item, typeItem, monstre, personnage, spell, effet;
+DROP TABLE IF EXISTS lache, spellEquipe, itemEquipe, possede, item, typeItem, monstre, personnage, spell, effet, touches;
 
 
 CREATE TABLE effet (
@@ -11,10 +11,11 @@ CREATE TABLE effet (
   PRIMARY KEY(idEffet)
 );
 
-INSERT INTO effet VALUES (default, "Brule", 10, 2, "machin");
-INSERT INTO effet VALUES (default, "soin", 10, 2, "machin");
-INSERT INTO effet VALUES (default, "givre", 10, 2, "machin");
+INSERT INTO effet VALUES (default, "brule", 10, 2, "machin");
+INSERT INTO effet VALUES (default, "soin", 10, 4, "machin");
+INSERT INTO effet VALUES (default, "givre", 10, 0, "machin");
 INSERT INTO effet VALUES (default, "rien", 0, 0, "machin");
+INSERT INTO effet VALUES (DEFAULT, "etourdis", 2, 0, "machin");
 
 CREATE TABLE spell (
   idSpell int AUTO_INCREMENT NOT NULL,
@@ -25,16 +26,21 @@ CREATE TABLE spell (
   coutManaSpell int,
   rechargeSpell int,
   textureSpell varchar(25),
+  unlockSpell boolean,
 
   PRIMARY KEY(idSpell),
 
   CONSTRAINT fk_effet_id_spell FOREIGN KEY (effet_id) REFERENCES effet(idEffet)
 );
 
-INSERT INTO spell VALUES (default, "Boule de feu", 10, 1,10, 10, 3, "images/Sorts/boule_de_feu.png");
-INSERT INTO spell VALUES (default, "La boule magique", 20, 4,10, 20, 3,  "images/Sorts/boule_magique.png");
-INSERT INTO spell VALUES (default, "Eclaire de givre", 50, 3,10, 30, 3, "images/Sorts/eclaire_de_givre.png");
-INSERT INTO spell VALUES (default, "Soin mineur", 10, 2,10, 10, 3, "images/Sorts/soin_mineur.png");
+INSERT INTO spell VALUES (default, "Boule de feu", 10, 1,10, 10, 3, "images/Sorts/boule_de_feu.png", false);
+INSERT INTO spell VALUES (default, "La boule magique", 20, 4, 10, 20, 3,  "images/Sorts/boule_magique.png", false);
+INSERT INTO spell VALUES (default, "Eclaire de givre", 10, 3, 10, 10, 3, "images/Sorts/eclaire_de_givre.png", false);
+INSERT INTO spell VALUES (default, "Soin mineur", 0, 4, 10, 10, 3, "images/Sorts/soin_mineur.png", false);
+INSERT INTO spell VALUES (default, "Soin majeur", 20, 2, 0, 20, 5, "images/Sorts/soin_majeur.png", false);
+INSERT INTO spell VALUES (default, "Eclair", 20, 5, 10, 20, 5,  "images/Sorts/eclair.png", false);
+INSERT INTO spell VALUES (default, "Tempete de feu", 50, 1, 20, 50, 60, "images/Sorts/tempete_de_feu.png", false);
+INSERT INTO spell VALUES (default, "Explosion pyrotechnique", 1000, 1, 100, 0, 1, "images/Sorts/explosion_pyrotechnique.png", false);
 
 CREATE TABLE personnage (
   idPerso int AUTO_INCREMENT NOT NULL,
@@ -174,6 +180,20 @@ CREATE TABLE lache (
 
 INSERT INTO lache VALUES (1, 1);
 INSERT INTO lache VALUES (2, 2);
+
+CREATE TABLE touches (
+  idTouche int AUTO_INCREMENT NOT NULL,
+  libelleTouche varchar(25),
+  bind varchar(25),
+
+  PRIMARY KEY (idTouche)
+);
+
+INSERT INTO touches VALUES (default, "Droite", "VK_RIGHT");
+INSERT INTO touches VALUES (default, "Gauche", "VK_LEFT");
+INSERT INTO touches VALUES (default, "Menu", "VK_ESCAPE");
+INSERT INTO touches VALUES (default, "Saut", "VK_UP");
+INSERT INTO touches VALUES (default, "Attaque", "VK_A");
 
 
 

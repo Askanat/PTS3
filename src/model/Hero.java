@@ -1,17 +1,24 @@
 package model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 import static java.lang.Math.pow;
 
 /**
  * Created by bastien on 29/09/16.
  */
 
-public class Hero extends Personnage {
+public class Hero extends Personnage implements Serializable {
 
     private double experience, experienceMax;
     private int or;
     private int pointCaracteristique, pointCompetence;
     private double force, intelligence, constitution, resistance, limiteForce = 0, limiteIntelligence = 0, limiteConstitution = 0, limiteResistance = 0;
+
+    ArrayList<Spell> heroSpell;
+
+    private Jeu jeu;
 
     private final int COEF_VIE = 5;
     private final int COEF_MANA = 5;
@@ -41,6 +48,8 @@ public class Hero extends Personnage {
         armureMax = (int) (resistance * COEF_ARMURE);
         armure = armureMax;
 
+        heroSpell = jeu.getAllSpell();
+
         this.experience = experience;
         this.experienceMax = experienceMax;
 
@@ -51,11 +60,40 @@ public class Hero extends Personnage {
 
         directionOrientation = Direction.DROITE;
 
-        System.out.println("nom:" + nom + ", niveau:" + niveau + ", pointCaracteristique:" + pointCaracteristique + ", pointCompetence:" + pointCompetence +
+        /*System.out.println("nom:" + nom + ", niveau:" + niveau + ", pointCaracteristique:" + pointCaracteristique + ", pointCompetence:" + pointCompetence +
                 ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
                 degatMax + ", armureMax:" + armureMax + ", experience:" + experience + ", experienceMax:" + experienceMax +
                 ", or:" + or + ", pointConstitution:" +
-                constitution + ", pointIntelligence:" + intelligence + ", pointForce:" + force + ", pointResistance:" + resistance);
+                constitution + ", pointIntelligence:" + intelligence + ", pointForce:" + force + ", pointResistance:" + resistance);*/
+    }
+
+    public Hero(Hero h) {
+
+        super(h.nom, h.niveau, 52, 52, 81, 98, h.texture, h.positionX, h.positionY, 30, 60, 68, 8, 30);
+
+        this.force = h.force;
+        this.constitution = h.constitution;
+        this.intelligence = h.intelligence;
+        this.resistance = h.resistance;
+
+        vieMax = (int) (constitution * COEF_VIE + VIE_DE_BASE);
+        vie = vieMax;
+        manaMax = (int) (intelligence * COEF_MANA + MANA_DE_BASE);
+        mana = manaMax;
+        degatMax = (int) (force * COEF_DEGATS + DEGATS_DE_BASE);
+        degats = degatMax;
+        armureMax = (int) (resistance * COEF_ARMURE);
+        armure = armureMax;
+
+        this.experience = h.experience;
+        this.experienceMax = h.experienceMax;
+
+        this.pointCaracteristique = h.pointCaracteristique;
+        this.pointCompetence = h.pointCompetence;
+
+        this.or = h.or;
+
+        directionOrientation = Direction.DROITE;
     }
 
     public void afficherEtat() {
@@ -116,6 +154,7 @@ public class Hero extends Personnage {
         degats = degatMax;
         armureMax = (int) (resistance * COEF_ARMURE);
         armure = armureMax;
+        getIdHero();
     }
 
     //Modification Caractéristiques
@@ -251,4 +290,7 @@ public class Hero extends Personnage {
         return limiteConstitution;
     }
 
+    public int getNieau() {
+        return this.niveau;
+    }
 }

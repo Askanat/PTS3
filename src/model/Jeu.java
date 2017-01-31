@@ -3,6 +3,7 @@ package model;
 import controleur.Control;
 import vue.Fenetre;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -36,12 +37,24 @@ public class Jeu {
 
     public Jeu() throws SQLException {
 
+        bdd = new BDD();
+
+        /*Hero hero1 = new Hero("Hero1", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero1.png", 0, 0);
+        Hero hero2 = new Hero("Hero2", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero2.png", 0, 0);
+        Hero hero3 = new Hero("Hero3", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero3.png", 0, 0);
+
+        try {
+            bdd.sauvegardeFlux(1, hero1);
+            bdd.sauvegardeFlux(2, hero2);
+            bdd.sauvegardeFlux(3, hero3);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
         tableauMonstre = new ArrayList<>();
         temps = 0;
         pause = false;
         zoneSafe = true;
-
-        bdd = new BDD();
 
         allSpell = bdd.chargerSpell();
         allEffet = bdd.chargerEffet();
@@ -49,7 +62,15 @@ public class Jeu {
     }
 
     public void sauvegardeHero() {
-        bdd.updateHero(hero.getIdHero(), hero.sauvegardeDonneesHeros());
+        if(!bdd.isBDD()) {
+            bdd.updateHero(hero.getIdHero(), hero.sauvegardeDonneesHeros());
+        } else {
+            try {
+                bdd.sauvegardeFlux(hero.getIdHero(), hero);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void supprimerPartie(int idPartie) {
@@ -80,12 +101,19 @@ public class Jeu {
     public void setHero(int id) {
         ArrayList<String> donneesHero;
 
-        donneesHero = bdd.readHero(id);
-
-        hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)), Integer.parseInt(donneesHero.get(3)),
-                Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)), Double.parseDouble(donneesHero.get(6)),
-                Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)), Double.parseDouble(donneesHero.get(9)),
-                Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0));
+       if(!bdd.isBDD()) {
+           donneesHero = bdd.readHero(id);
+           hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)), Integer.parseInt(donneesHero.get(3)),
+                   Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)), Double.parseDouble(donneesHero.get(6)),
+                   Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)), Double.parseDouble(donneesHero.get(9)),
+                   Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0));
+       } else {
+           try {
+               hero = bdd.chargementFlux(id);
+           } catch (Exception e) {
+               System.out.println("Chargement hero impossible : " + e);
+           }
+       }
     }
 
     public void updateMonstre(int i) {
@@ -178,7 +206,11 @@ public class Jeu {
     }
 
     public String readLVLPerso(int id) {
-        return bdd.readNiveauPerso(id);
+        if(bdd.isBDD()) {
+            return bdd.readNiveauPerso(id);
+        } else {
+            return ""+hero.getNieau();
+        }
     }
 
     public String readNomPerso(int id) {
@@ -215,5 +247,9 @@ public class Jeu {
 
     public ArrayList<Spell> getAllSpell() {
         return allSpell;
+    }
+
+    public Spell getSpell(int idSpell) {
+        return allSpell.get(idSpell);
     }
 }
