@@ -34,7 +34,14 @@ public class Niveau {
 
         gen();
     }
-
+    
+    private void remplirTabVide() {
+        for(int i = 0; i < taille_y; i++) {
+            for(int j = 0; j < taille_x; j++)
+                tableau[i][j] = Block.MUR_FOND;
+        }
+    }
+    
     // Construction du cadre limitant le niveau
 
     private void genCadre() {
@@ -271,6 +278,7 @@ public class Niveau {
         epaisseur = new int[nb_niveaux];
         genTailleY();
         tableau = new int[taille_y][taille_x];
+        remplirTabVide();
         genCadre();
 
         for (i = 0; i < nb_niveaux; i++) {
