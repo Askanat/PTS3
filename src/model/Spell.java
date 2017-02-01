@@ -12,7 +12,7 @@ public class Spell {
     private int vitesseDeplacement;
     private int positionX, positionY;
 
-    public Spell(int idSpell, int degatSpell, int effet_id, int porteSpell, int coutManaSpell, String libelleSpell, String textureSpell, int vitesseDeplacement, boolean unlock) {
+    public Spell(int idSpell, int degatSpell, int effet_id, int porteSpell, int coutManaSpell, String libelleSpell, String textureSpell, boolean unlock, int vitesseDeplacement) {
         this.idSpell = idSpell;
         this.degatSpell = degatSpell;
         this.effet_id = effet_id;

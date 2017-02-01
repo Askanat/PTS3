@@ -15,7 +15,7 @@ INSERT INTO effet VALUES (default, "brule", 10, 2, "machin");
 INSERT INTO effet VALUES (default, "soin", 10, 4, "machin");
 INSERT INTO effet VALUES (default, "givre", 10, 0, "machin");
 INSERT INTO effet VALUES (default, "rien", 0, 0, "machin");
-INSERT INTO effet VALUES (DEFAULT, "etourdis", 2, 0, "machin");
+INSERT INTO effet VALUES (default, "etourdis", 2, 0, "machin");
 
 CREATE TABLE spell (
   idSpell int AUTO_INCREMENT NOT NULL,
@@ -124,15 +124,15 @@ CREATE TABLE item (
   CONSTRAINT fk_typeItem FOREIGN KEY (item_type) REFERENCES typeItem(typeItem)
 );
 
-INSERT INTO item VALUES (default, "Casque en fer", default, 1.2, default, default, default, default, "images/Equipements/Casques/casque_en_fer.png", 2);
-INSERT INTO item VALUES (default, "Epaulieres en fer", default, 1.2, default, default, default, default, "images/Equipements/Epaulieres/epaulieres_en_fer.png", 3);
-INSERT INTO item VALUES (default, "Plastron en fer", default, 1.6, default, default, default, default, "images/Equipements/Plastrons/plastron_en_fer.png", 1);
-INSERT INTO item VALUES (default, "Pantalon en fer", default, 1.4, default, default, default, default, "images/Equipements/Pantalons/pantalon_en_fer.png", 6);
-INSERT INTO item VALUES (default, "Bottes en fer", default, 1.2, default, default, default, default, "images/Equipements/Bottes/bottes_en_fer.png", 4);
-INSERT INTO item VALUES (default, "Gants en fer", default, 1.2, default, default, default, default, "images/Equipements/Gants/gants_en_fer.png", 5);
-INSERT INTO item VALUES (default, "Pierre enchantee", default, default, 1.1, 1.1, 1.1, default, "images/Equipements/Bijous/pierre_enchantee.png", 7);
-INSERT INTO item VALUES (default, "Epee en fer", default, default, default, default, default, 1.1, "images/Equipements/Armes/epee_en_fer.png", 8);
-INSERT INTO item VALUES (default, "Epee noir", default, default, default, default, default, 1.2, "images/Equipements/Armes/epee_noir.png", 8);
+INSERT INTO item VALUES (default, "Casque en fer", 0, 1.2, 0, 0, 0, 0, "images/Equipements/Casques/casque_en_fer.png", 2);
+INSERT INTO item VALUES (default, "Epaulieres en fer", 0, 1.2, 0, 0, 0, 0, "images/Equipements/Epaulieres/epaulieres_en_fer.png", 3);
+INSERT INTO item VALUES (default, "Plastron en fer", 0, 1.6, 0, 0, 0, 0, "images/Equipements/Plastrons/plastron_en_fer.png", 1);
+INSERT INTO item VALUES (default, "Pantalon en fer", 0, 1.4, 0, 0, 0, 0, "images/Equipements/Pantalons/pantalon_en_fer.png", 6);
+INSERT INTO item VALUES (default, "Bottes en fer", 0, 1.2, 0, 0, 0, 0, "images/Equipements/Bottes/bottes_en_fer.png", 4);
+INSERT INTO item VALUES (default, "Gants en fer", 0, 1.2, 0, 0, 0, 0, "images/Equipements/Gants/gants_en_fer.png", 5);
+INSERT INTO item VALUES (default, "Pierre enchantee", 0, 0, 1.1, 1.1, 1.1, 0, "images/Equipements/Bijous/pierre_enchantee.png", 7);
+INSERT INTO item VALUES (default, "Epee en fer", 0, 0, 0, 0, 0, 1.1, "images/Equipements/Armes/epee_en_fer.png", 8);
+INSERT INTO item VALUES (default, "Epee noir", 0, 0, 0, 0, 0, 1.2, "images/Equipements/Armes/epee_noir.png", 8);
 
 
 CREATE TABLE possede (

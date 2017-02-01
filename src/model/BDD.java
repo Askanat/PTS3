@@ -263,7 +263,7 @@ public class BDD {
 
                 System.out.println(bool);
 
-                result.add(new Spell(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), bool));
+                result.add(new Spell(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), bool, Integer.parseInt(spell.getString("vitesseDeDeplacement"))));
             }
         } catch (Exception e) {
             System.out.println("Donnees charger spell : " + e);
