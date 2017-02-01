@@ -9,7 +9,10 @@ public class Spell {
     private String libelleSpell, textureSpell;
     private boolean unlock;
 
-    public Spell(int idSpell, int degatSpell,int effet_id, int porteSpell, int coutManaSpell, String libelleSpell, String textureSpell, boolean unlock) {
+    private int vitesseDeplacement;
+    private int positionX, positionY;
+
+    public Spell(int idSpell, int degatSpell, int effet_id, int porteSpell, int coutManaSpell, String libelleSpell, String textureSpell, int vitesseDeplacement, boolean unlock) {
         this.idSpell = idSpell;
         this.degatSpell = degatSpell;
         this.effet_id = effet_id;
@@ -18,6 +21,7 @@ public class Spell {
         this.libelleSpell = libelleSpell;
         this.textureSpell = textureSpell;
         this.unlock = unlock;
+        this.vitesseDeplacement = vitesseDeplacement;
     }
 
     public int getIdSpell() {
@@ -52,8 +56,28 @@ public class Spell {
         unlock = true;
     }
 
+    public void setPositionX(int positionX) {
+        this.positionX = positionX;
+    }
+
+    public int getPositionX() {
+        return positionX;
+    }
+
+    public void setPositionY(int positionY) {
+        this.positionY = positionY;
+    }
+
+    public int getPositionY() {
+        return positionY;
+    }
+
+    public int getVitesseDeplacement() {
+        return vitesseDeplacement;
+    }
+
     public String toString() {
-        return "SPELL : idSpell : " + idSpell +  " degatSpell : " + degatSpell + " effet_id : " + effet_id + " porteSpell : " + porteSpell + " coutManaSpell : " + coutManaSpell + " libelleSpell : " + libelleSpell + " textureSpell : " + textureSpell;
+        return "SPELL : idSpell : " + idSpell + " degatSpell : " + degatSpell + " effet_id : " + effet_id + " porteSpell : " + porteSpell + " coutManaSpell : " + coutManaSpell + " libelleSpell : " + libelleSpell + " textureSpell : " + textureSpell;
     }
 }
 

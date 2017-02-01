@@ -41,10 +41,10 @@ INSERT INTO spell VALUES (default, "Soin majeur", 20, 2, 0, 20, 5, "images/Sorts
 INSERT INTO spell VALUES (default, "Eclair", 20, 5, 10, 20, 5,  "images/Sorts/eclair.png", false);
 INSERT INTO spell VALUES (default, "Tempete de feu", 50, 1, 20, 50, 60, "images/Sorts/tempete_de_feu.png", false);
 INSERT INTO spell VALUES (default, "Explosion pyrotechnique", 1000, 1, 100, 0, 1, "images/Sorts/explosion_pyrotechnique.png", false);
-INSERT INTO spell VALUES (default, "Boule de mana", 5, null, 100, 20, 1, "images/Sorts/boule_Mana.png", false);
-INSERT INTO spell VALUES (default, "Boule de vie", 5, null, 100, 20, 1, "images/Sorts/boule_Vie.png", false);
-INSERT INTO spell VALUES (default, "Boule d'armure", 5, null, 100, 20, 1, "images/Sorts/boule_Armure.png", false);
-INSERT INTO spell VALUES (default, "Boule de degat", 5, null, 100, 20, 1, "images/Sorts/boule_Degat.png", false);
+INSERT INTO spell VALUES (default, "Boule de mana", 5, 4, 50, 20, 1, "images/Sorts/boule_Mana.png", false);
+INSERT INTO spell VALUES (default, "Boule de vie", 5, 4, 50, 20, 1, "images/Sorts/boule_Vie.png", false);
+INSERT INTO spell VALUES (default, "Boule d'armure", 5, 4, 50, 20, 1, "images/Sorts/boule_Armure.png", false);
+INSERT INTO spell VALUES (default, "Boule de degat", 5, 4, 50, 20, 1, "images/Sorts/boule_Degat.png", false);
 
 CREATE TABLE personnage (
   idPerso int AUTO_INCREMENT NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE monstre (
 INSERT INTO monstre VALUES (default, "goutteMana", 53, 64, 73, 42, 20, 20, 2, 3.5, 10, 5.5, 150, "images/Monstres/texture_goutteMana.png", 9);
 INSERT INTO monstre VALUES (default, "goutteVie", 53, 64, 73, 42, 25, 25, 5.5, 10, 3.5, 2, 200, "images/Monstres/texture_goutteVie.png", 10);
 INSERT INTO monstre VALUES (default, "goutteArmure", 53, 64, 73, 42, 10, 10, 10, 5.5, 3.5, 2, 100, "images/Monstres/texture_goutteArmure.png", 11);
-INSERT INTO monstre VALUES (default, "goutteDegats", 53, 64, 73, 42, 15, 15, 2, 3.5, 5.5, 10, 80, "images/Monstres/texture_goutteDegat.png", 12);
+INSERT INTO monstre VALUES (default, "goutteDegats", 53, 64, 73, 42, 15, 15, 2, 3.5, 5.5, 10, 100, "images/Monstres/texture_goutteDegat.png", 12);
 
 CREATE TABLE typeItem (
   typeItem int AUTO_INCREMENT NOT NULL,
