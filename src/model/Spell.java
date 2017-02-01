@@ -11,6 +11,7 @@ public class Spell {
 
     private int vitesseDeplacement;
     private int positionX, positionY;
+    private Direction directionOrientation;
 
     public Spell(int idSpell, int degatSpell, int effet_id, int porteSpell, int coutManaSpell, String libelleSpell, String textureSpell, int vitesseDeplacement, boolean unlock) {
         this.idSpell = idSpell;
@@ -56,6 +57,10 @@ public class Spell {
         unlock = true;
     }
 
+    public int getVitesseDeplacement() {
+        return vitesseDeplacement;
+    }
+
     public void setPositionX(int positionX) {
         this.positionX = positionX;
     }
@@ -72,8 +77,8 @@ public class Spell {
         return positionY;
     }
 
-    public int getVitesseDeplacement() {
-        return vitesseDeplacement;
+    public void setDirectionOrientation(Direction directionOrientation) {
+        this.directionOrientation = directionOrientation;
     }
 
     public String toString() {
