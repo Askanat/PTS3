@@ -306,4 +306,20 @@ public class BDD {
         return bddIsOk;
     }
 
+    //Récupération des données d'un équipement
+    public ArrayList<Equipement> chargerEquipement() {
+        ResultSet item;
+        ArrayList<Equipement> result = new ArrayList<>();
+
+        try {
+            item = instruction.executeQuery("SELECT * FROM item;");
+            while (item.next()) {
+                result.add(new Equipement(item.getString("libelleItem"), Float.parseFloat(item.getString("armureItem")), Float.parseFloat(item.getString("constiItem")), Float.parseFloat(item.getString("intelItem")), Float.parseFloat(item.getString("forceItem")), Float.parseFloat(item.getString("resiItem")), Float.parseFloat(item.getString("degat")), item.getString("textureItem"), Integer.parseInt(item.getString("item_type"))));
+            }
+        } catch (Exception e) {
+            System.out.println("Chargement item : " + e);
+        }
+        return result;
+    }
+
 }
