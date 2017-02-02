@@ -30,7 +30,7 @@ public class Block {
 	TORCHE = -75,
 	VITRE = -74,
 	COFFRE_OUVERT = -73,
-	MUR_FOND = 0,
+	MUR_FOND = -72,
 
 	COFFRE_FERME = -49,
 	PORTE_HAUT_GAUCHE = -48,
@@ -39,6 +39,8 @@ public class Block {
 	PORTE_MILIEU_DROITE = -45,
 	PORTE_BAS_GAUCHE = -44,
 	PORTE_BAS_DROITE = -43,
+	ECHELLE_GAUCHE = -42,
+	ECHELLE_DROITE = -41,
 
 	VASE = -24,
 
