@@ -39,7 +39,7 @@ public class Niveau {
     private void remplirTabVide() {
         for(int i = 0; i < taille_y; i++) {
             for(int j = 0; j < taille_x; j++)
-                tableau[i][j] = /*Block.MUR_FOND*/0;
+                tableau[i][j] = Block.MUR_FOND;
         }
     }
 
