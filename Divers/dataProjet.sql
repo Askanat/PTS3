@@ -42,6 +42,7 @@ INSERT INTO spell VALUES (default, "Soin majeur", 20, 2, 0, 20, 5, "images/Sorts
 INSERT INTO spell VALUES (default, "Eclair", 20, 5, 10, 20, 5,  "images/Sorts/eclair.png", false, 0);
 INSERT INTO spell VALUES (default, "Tempete de feu", 50, 1, 20, 50, 60, "images/Sorts/tempete_de_feu.png", false, 0);
 INSERT INTO spell VALUES (default, "Explosion pyrotechnique", 1000, 1, 100, 0, 1, "images/Sorts/explosion_pyrotechnique.png", false, 50);
+INSERT INTO spell VALUES (default, "Goutte boule", 5, 4, 50, 20, 1, "images/Sorts/goutte_Boule.png", false);
 
 CREATE TABLE personnage (
   idPerso int AUTO_INCREMENT NOT NULL,
@@ -87,9 +88,10 @@ CREATE TABLE monstre (
   CONSTRAINT fk_spell_id_monstre FOREIGN KEY (spell_id) REFERENCES spell(idSpell)
 );
 
-INSERT INTO monstre VALUES (default, "Monstre1", 53, 64, 73, 42, 10, 20, 3.5, 5, 3.2, 4, 150, "images/Monstres/texture_monstre1.png", default);
-INSERT INTO monstre VALUES (default, "Monstre2", 53, 64, 73, 42, 20, 40, 2, 10, 4.8, 5.7, 100, "images/Monstres/texture_monstre2.png", default);
-INSERT INTO monstre VALUES (default, "Monstre3", 53, 64, 73, 42, 40, 60, 1.7, 15, 0, 8, 70, "images/Monstres/texture_monstre3.png", default);
+INSERT INTO monstre VALUES (default, "goutteMana", 53, 64, 73, 42, 20, 20, 2, 3.5, 10, 5.5, 150, "images/Monstres/texture_goutteMana.png", 9);
+INSERT INTO monstre VALUES (default, "goutteVie", 53, 64, 73, 42, 25, 25, 5.5, 10, 3.5, 2, 200, "images/Monstres/texture_goutteVie.png", 9);
+INSERT INTO monstre VALUES (default, "goutteArmure", 53, 64, 73, 42, 10, 10, 10, 5.5, 3.5, 2, 100, "images/Monstres/texture_goutteArmure.png", 9);
+INSERT INTO monstre VALUES (default, "goutteDegats", 53, 64, 73, 42, 15, 15, 2, 3.5, 5.5, 10, 100, "images/Monstres/texture_goutteDegat.png", 9);
 
 CREATE TABLE typeItem (
   typeItem int AUTO_INCREMENT NOT NULL,
