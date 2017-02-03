@@ -148,7 +148,7 @@ public class Jeu {
                 Integer.parseInt(donneesMonstre.get(3)), Integer.parseInt(donneesMonstre.get(4)), Double.parseDouble(donneesMonstre.get(5)),
                 Double.parseDouble(donneesMonstre.get(6)), Double.parseDouble(donneesMonstre.get(7)), Double.parseDouble(donneesMonstre.get(8)),
                 donneesMonstre.get(12), positionX, positionY, Integer.parseInt(donneesMonstre.get(9)), Integer.parseInt(donneesMonstre.get(10)), Integer.parseInt(donneesMonstre.get(11)),
-                getSpell(Integer.parseInt(donneesMonstre.get(13)))));
+                getSpell(Integer.parseInt(donneesMonstre.get(13))-1)));
     }
 
     public Monstre getMonstre(int i) {
