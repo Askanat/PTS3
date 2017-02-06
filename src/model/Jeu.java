@@ -252,4 +252,21 @@ public class Jeu {
     public Sort getSpell(int idSpell) {
         return allSort.get(idSpell);
     }
+
+    public void achatItem (int id){
+        int orHero = getHero().getOr();
+        int prix = 0; //il faut créé un appel de prix dans la class BDD
+        if (orHero >= prix){
+            getHero().setOr(getHero().getOr()-prix);
+            //addInventaire(id);
+        }
+    }
+
+    public void vendreItem(int id){
+        int orHero = getHero().getOr();
+        int prix = 0; //il faut créé un appel de prix dans la class BDD
+
+        getHero().setOr(getHero().getOr()+prix);
+        //removeInventaire(id);
+    }
 }

@@ -304,4 +304,11 @@ public class Hero extends Personnage implements Serializable {
         );
         return r;
     }
+    public void setOr (int or){
+        this.or = or;
+    }
+
+    public int getOr() {
+        return or;
+    }
 }
