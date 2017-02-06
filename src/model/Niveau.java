@@ -3,7 +3,7 @@ package model;
 import java.util.Random;
 
 public class Niveau {
-    private int tableau[][];
+        private int tableau[][];
     private int nb_plateformes;
     private int taille_x;
     private int taille_y;
@@ -130,6 +130,69 @@ public class Niveau {
         }
     }
 
+    // Remplis une ligne y avec Block.MUR
+
+    private void remplirLigneMur(int debut, int fin, int y) {
+        for(int i = debut; i < fin; i++)
+            tableau[y][i] = Block.MUR;
+    }
+
+    // Ajoute des trous à une ligne donnée
+
+    private void remplirLigneVide(int debut, int fin, int posLigne, int epaisseur, int y, int videMax) {
+        int i, faireVide = 0, videCompteur = 0;
+        Random rand = new Random();
+
+        if(debut == 1)
+            debut = 2;
+        if(fin == taille_x - 1)
+            fin = taille_x - 2;
+
+        for(i = debut; i < fin; i++) {
+            /* Si c'est la première ligne du haut de la plateforme.
+             * Sinon si c'est une des lignes de dessous et que la case dessus à gauche,
+             * la case dessus à droite et la case dessus est vide.
+             * Sinon faireVide = 0.
+             *
+             * Si on entre dans un des deux premiers if :
+             * 
+             * Si on a déjà commencé à faire des trous, c'est que videCompteur > 0,
+             * alors on a un peu plus de chance de continuer d'en faire.
+             * On réduit l'écart lorsqu'il faut tirer un nombre aléatoire pour savoir
+             * s'il faut continuer à faire des trous.
+             *
+             * Sinon, on tire un nombre pour savoir si l'on commence à faire des trous
+             */
+
+            if(posLigne == 0) {
+                if(videCompteur > 0)
+                    faireVide = rand.nextInt(2) + 1;
+                else
+                    faireVide = rand.nextInt(5) + 1;
+            }
+            else if(tableau[y - 1][i - 1] == 0 && tableau[y - 1][i + 1] == 0 && tableau[y - 1][i] == 0) {
+                if(videCompteur > 0)
+                    faireVide = rand.nextInt(2) + 1;
+                else
+                    faireVide = rand.nextInt(4) + 1;
+            }
+            else
+                faireVide = 0;
+
+            /*
+             * On fait du vide si faireVide == 1 et que le nombre maximum de 
+             * cases vide d'affilé n'a pas été dépassé
+             */
+            
+            if(faireVide == 1 && videCompteur < videMax) {
+                tableau[y][i] = Block.MUR_FOND;
+                videCompteur++;
+            }
+            else
+                videCompteur = 0;
+        }
+    }
+
     /*
      * posLigne = 0 => debut
      * posLigne = epaisseur - 1 => fin
@@ -137,80 +200,8 @@ public class Niveau {
      */
 
     private void remplirLigne(int debut, int fin, int posLigne, int epaisseur, int y, int videMax) {
-        int i, faireVide, videCompteur = 0;
-        Random rand = new Random();
-
-        // S'il s'agit d'une des premières lignes
-
-        if (debut == 1 && fin == taille_x - 1) {
-            for (i = debut; i < fin; i++) {
-                // Si c'est la toute première ligne de la plateforme
-
-                if (posLigne == 0) {
-                    if (videCompteur > 0)
-                        faireVide = rand.nextInt(4) + 1;
-                    else
-                        faireVide = rand.nextInt(3) + 1;
-
-                    if (i > 2 && i < taille_x - 2 && faireVide == 1 &&
-                            videCompteur < videMax) {
-                        videCompteur++;
-                    } else {
-                        tableau[y][i] = Block.MUR;
-                        videCompteur = 0;
-                    }
-                } else {
-                    // Optimisation possible
-
-                    tableau[y][i] = Block.MUR;
-
-                    if (tableau[y - 1][i] == 0 &&
-                            tableau[y - 1][i - 1] == 0 &&
-                            tableau[y - 1][i + 1] == 0) {
-                        faireVide = rand.nextInt(4) + 1;
-
-                        if (faireVide > 1)
-                            tableau[y][i] = Block.MUR_FOND;
-                    }
-                }
-            }
-        } else {
-            for (i = debut; i < fin; i++) {
-                if (posLigne == 0) {
-                    if (videCompteur > 0)
-                        faireVide = rand.nextInt(4) + 1;
-                    else
-                        faireVide = rand.nextInt(3) + 1;
-
-                    if (((debut > 1 && i < taille_x - 4) ||
-                            (debut == 1 && i > 2)) &&
-                            (faireVide == 1 && videCompteur < videMax)) {
-                        videCompteur++;
-                    } else {
-                        tableau[y][i] = Block.MUR;
-                        videCompteur = 0;
-                    }
-                } else {
-                    faireVide = rand.nextInt(4) + 1;
-
-                    if (posLigne == epaisseur - 1) {
-                        if (videCompteur < videMax)
-                            videCompteur++;
-                        else
-                            videCompteur = 0;
-                    }
-
-                    if (!(((debut > 1 && i < taille_x - 5) ||
-                            (debut == 1 && i > 3)) &&
-                            tableau[y - 1][i] == 0 &&
-                            tableau[y - 1][i - 1] == 0 &&
-                            tableau[y - 1][i + 1] == 0 &&
-                            faireVide > 1)) {
-                        tableau[y][i] = Block.MUR;
-                    }
-                }
-            }
-        }
+        remplirLigneMur(debut, fin, y);
+        remplirLigneVide(debut, fin, posLigne, epaisseur, y, videMax);
     }
 
     // Construit un escalier afin d'accéder à une plateforme
