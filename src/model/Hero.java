@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public class Hero extends Personnage implements Serializable {
     private int pointCaracteristique, pointCompetence;
     private double force, intelligence, constitution, resistance, limiteForce = 0, limiteIntelligence = 0, limiteConstitution = 0, limiteResistance = 0;
 
-    ArrayList<Spell> heroSpell;
+    ArrayList<Sort> heroSort;
 
     private BDD bdd;
 
@@ -56,11 +57,9 @@ public class Hero extends Personnage implements Serializable {
 
         this.or = or;
 
-        directionOrientation = Direction.DROITE;
-
         bdd = new BDD();
 
-        heroSpell = bdd.chargerSpell();
+        heroSort = bdd.chargerSpell();
 
         /*System.out.println("nom:" + nom + ", niveau:" + niveau + ", pointCaracteristique:" + pointCaracteristique + ", pointCompetence:" + pointCompetence +
                 ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
@@ -294,5 +293,15 @@ public class Hero extends Personnage implements Serializable {
 
     public int getNieau() {
         return this.niveau;
+    }
+
+    public Rectangle getHitBoxAttaque() {
+        Rectangle r = new Rectangle(
+                positionX + (getDirectionOrientation() == Direction.GAUCHE ? -(distanceDeAttaqueDeOrigineAX + porteeDeAttaque) : distanceDeAttaqueDeOrigineAX),
+                positionY - distanceDeAttaqueDeOrigineAY,
+                porteeDeAttaque,
+                porteeDeAttaque
+        );
+        return r;
     }
 }

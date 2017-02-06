@@ -1,16 +1,12 @@
 package controleur;
 
-import model.Direction;
 import model.Jeu;
 import vue.Fenetre;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static vue.Fenetre.X;
-import static vue.Fenetre.scrollPane;
 import static vue.FenetreJeu.ZONE;
 
 /**
@@ -50,6 +46,7 @@ public class ControlTimer extends Control implements ActionListener {
                     spawnMonstre(1, 900, 0); // a enlever d'ici
                     spawnMonstre(2, 1400, 0); // a enlever d'ici
                     spawnMonstre(3, 1900, 0); // a enlever d'ici
+                    spawnMonstre(4, 2400, 0); // a enlever d'ici
                     jeu.sauvegardeHero();
                     jeu.setSave(true);
                 }
@@ -79,10 +76,54 @@ public class ControlTimer extends Control implements ActionListener {
                         for (i = 0; i < nbMonstre; i++) {
                             jeu.getHero().attaquer(jeu.getMonstre(i));
                         }
-
-                        ControlClavier.toucheRelacher[ControlTouche.ACTION_ATTAQUE] = false;
                     }
+                    ControlClavier.toucheRelacher[ControlTouche.ACTION_ATTAQUE] = false;
                 }
+
+                if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_SORT1]) {
+                    System.out.println("touche f1 enfoncer");
+                }
+                if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT1]) {
+                    System.out.println("touche f1 relacher");
+                    ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT1] = false;
+                }
+
+
+                if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT2]) {
+
+                    ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT2] = false;
+                }
+
+                if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT3]) {
+
+                    ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT3] = false;
+                }
+
+                if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT4]) {
+
+                    ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT4] = false;
+                }
+
+                if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT5]) {
+
+                    ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT5] = false;
+                }
+
+                if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT6]) {
+
+                    ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT6] = false;
+                }
+
+                if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT7]) {
+
+                    ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT7] = false;
+                }
+
+                if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT8]) {
+
+                    ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT8] = false;
+                }
+
 
                 // dessine le héro et le fait se déplacer
                 fenetre.panelFenetreJeu.hero.selectionnerMorceauSpriteDeplacement();

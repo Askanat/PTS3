@@ -18,7 +18,15 @@ public class ControlTouche {
     ACTION_GAUCHE = 1,
     ACTION_DROITE = 2,
     ACTION_SAUT = 3,
-    ACTION_ATTAQUE = 4;
+    ACTION_ATTAQUE = 4,
+    ACTION_SORT1 = 5,
+    ACTION_SORT2 = 6,
+    ACTION_SORT3 = 7,
+    ACTION_SORT4 = 8,
+    ACTION_SORT5 = 9,
+    ACTION_SORT6 = 10,
+    ACTION_SORT7 = 11,
+    ACTION_SORT8 = 12;
     private int[] touches;
     private int nbActions;
 
@@ -35,6 +43,14 @@ public class ControlTouche {
         touches[ACTION_DROITE] = KeyEvent.VK_RIGHT;
         touches[ACTION_SAUT] = KeyEvent.VK_UP;
         touches[ACTION_ATTAQUE] = KeyEvent.VK_A;
+        touches[ACTION_SORT1] = KeyEvent.VK_F1;
+        touches[ACTION_SORT2] = KeyEvent.VK_F2;
+        touches[ACTION_SORT3] = KeyEvent.VK_F3;
+        touches[ACTION_SORT4] = KeyEvent.VK_F4;
+        touches[ACTION_SORT5] = KeyEvent.VK_F5;
+        touches[ACTION_SORT6] = KeyEvent.VK_F6;
+        touches[ACTION_SORT7] = KeyEvent.VK_F7;
+        touches[ACTION_SORT8] = KeyEvent.VK_F8;
     }
 
     public int getNbActions() {

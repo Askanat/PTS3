@@ -41,7 +41,7 @@ public class FenetreOptions extends JPanel {
         hitBox.setActionCommand("Hitbox");
 
         controlButton = new JButton[controlTouche.getNbActions() - 1];
-        String[] repAction = new String[]{"Avancer", "Sauter", "Attaquer", "Reculer"};
+        String[] repAction = new String[]{"Avancer", "Sauter", "Attaquer", "Reculer", "Sort1", "Sort2", "Sort3", "Sort4", "Sort5", "Sort6", "Sort7", "Sort8"};
 
         for(int i = 0; i < controlButton.length; i++) {
             controlButton[i] = new JButton(controlTouche.getNomTouche(i + 1));

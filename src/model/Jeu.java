@@ -20,7 +20,7 @@ public class Jeu {
 
     private int temps;
 
-    private ArrayList<Spell> allSpell;
+    private ArrayList<Sort> allSort;
     private ArrayList<Effet> allEffet;
 
     private Niveau niveau;
@@ -56,9 +56,8 @@ public class Jeu {
         pause = false;
         zoneSafe = true;
 
-        allSpell = bdd.chargerSpell();
+        allSort = bdd.chargerSpell();
         allEffet = bdd.chargerEffet();
-
     }
 
     public void sauvegardeHero() {
@@ -235,7 +234,7 @@ public class Jeu {
     }
 
     public void setAllSpell() {
-        allSpell = bdd.chargerSpell();
+        allSort = bdd.chargerSpell();
     }
 
     public void setAllEffet() {
@@ -246,11 +245,11 @@ public class Jeu {
         return allEffet;
     }
 
-    public ArrayList<Spell> getAllSpell() {
-        return allSpell;
+    public ArrayList<Sort> getAllSort() {
+        return allSort;
     }
 
-    public Spell getSpell(int idSpell) {
-        return allSpell.get(idSpell);
+    public Sort getSpell(int idSpell) {
+        return allSort.get(idSpell);
     }
 }

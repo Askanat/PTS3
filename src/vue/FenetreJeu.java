@@ -24,8 +24,11 @@ public class FenetreJeu extends JPanel {
     private Jeu jeu;
     private ActionListener control;
 
-    public Entite hero;
-    public ArrayList<Entite> monstre;
+    public EntiteVue hero;
+    public ArrayList<EntiteVue> monstre;
+
+    public ArrayList<EntiteVue> sortMonstre;
+    public ArrayList<EntiteVue> sortHero;
 
     public JButton menu;
     private Image imageIconeSave;
@@ -50,8 +53,8 @@ public class FenetreJeu extends JPanel {
         ZONE = new Dimension(TAILLE_TUILE * tailleMapX, TAILLE_TUILE * tailleMapY);
         this.setPreferredSize(ZONE);
 
-        hero = new Entite(jeu);
-        monstre = new ArrayList<Entite>();
+        hero = new EntiteVue(jeu);
+        monstre = new ArrayList<EntiteVue>();
 
         imageIconeSave = getToolkit().getImage("images/iconeSave.png");
 
@@ -68,7 +71,7 @@ public class FenetreJeu extends JPanel {
     }
 
     public void dessineMonstre() {
-        monstre.add(new Entite(jeu));
+        monstre.add(new EntiteVue(jeu));
         monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(jeu.getSizeTabMonstre() - 1));
     }
 
@@ -85,7 +88,7 @@ public class FenetreJeu extends JPanel {
         if (jeu.getHero().getDirectionOrientation() == Direction.DROITE) {
             jeu.getHero().setPositionX(0);
             scrollPane.getViewport().setViewPosition(new Point(jeu.getHero().getPositionX(), (int) scrollPane.getViewport().getViewPosition().getY()));
-        } else { // putin de gros bug ici je ne sais pas pourquoi !!! si je ne met pas 2 fois setViewPosition il me met à la positon x = 293 pour une résolution de 960*540
+        } else { // putin de gros bug ici je ne sais pas pourquoi !!! si je ne mets pas 2 fois setViewPosition il me met à la positon x = 293 pour une résolution de 960*540
             jeu.getHero().setPositionX(ZONE.width);
             scrollPane.getViewport().setViewPosition(new Point(jeu.getHero().getPositionX() - X, (int) scrollPane.getViewport().getViewPosition().getY()));
             scrollPane.getViewport().setViewPosition(new Point(jeu.getHero().getPositionX() - X, (int) scrollPane.getViewport().getViewPosition().getY()));
@@ -154,7 +157,7 @@ public class FenetreJeu extends JPanel {
         if (jeu.getSave())
             g.drawImage(imageIconeSave, (int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(5)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(5)), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
 
-        for (Entite e : monstre)
+        for (EntiteVue e : monstre)
             e.paintComponent(g);
 
         hero.paintComponent(g);

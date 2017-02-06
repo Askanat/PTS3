@@ -166,15 +166,15 @@ public class FenetreCharger extends JPanel {
 
         try {
             if (!jeu.readLVLPerso(1).equals("0")) {
-                g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero1.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(310), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
+                g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero1.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(310), Fenetre.adapterResolutionEnY(262), EntiteVue.TAILLE_SPRITE_LARGEUR, EntiteVue.TAILLE_SPRITE_HAUTEUR, this);
             }
             if (!jeu.readLVLPerso(2).equals("0")) {
-                g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero2.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
+                g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero2.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(262), EntiteVue.TAILLE_SPRITE_LARGEUR, EntiteVue.TAILLE_SPRITE_HAUTEUR, this);
             }
             if (!jeu.readLVLPerso(3).equals("0")) {
-                g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero3.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(1310), Fenetre.adapterResolutionEnY(262), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
+                g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero3.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(1310), Fenetre.adapterResolutionEnY(262), EntiteVue.TAILLE_SPRITE_LARGEUR, EntiteVue.TAILLE_SPRITE_HAUTEUR, this);
             }
-            g.drawImage(imagePorte, Fenetre.adapterResolutionEnX(-194 + 500 * Fenetre.numeroPorte), Fenetre.adapterResolutionEnY(200), Entite.TAILLE_SPRITE_LARGEUR, Entite.TAILLE_SPRITE_HAUTEUR, this);
+            g.drawImage(imagePorte, Fenetre.adapterResolutionEnX(-194 + 500 * Fenetre.numeroPorte), Fenetre.adapterResolutionEnY(200), EntiteVue.TAILLE_SPRITE_LARGEUR, EntiteVue.TAILLE_SPRITE_HAUTEUR, this);
         } catch (IOException e) {
             e.printStackTrace();
         }

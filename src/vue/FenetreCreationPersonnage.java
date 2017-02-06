@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static vue.Entite.createComposite;
+import static vue.EntiteVue.createComposite;
 import static vue.Fenetre.*;
 
 /**

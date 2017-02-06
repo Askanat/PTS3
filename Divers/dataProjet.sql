@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS lache, spellEquipe, itemEquipe, possede, item, typeItem, monstre, personnage, spell, effet, touches;
+DROP TABLE IF EXISTS lache, spellEquipe, itemEquipe, possede, item, typeItem, monstre, personnage, sort, effet, touches;
 
 
 CREATE TABLE effet (
@@ -17,7 +17,7 @@ INSERT INTO effet VALUES (default, "givre", 10, 0, "machin");
 INSERT INTO effet VALUES (default, "rien", 0, 0, "machin");
 INSERT INTO effet VALUES (default, "etourdis", 2, 0, "machin");
 
-CREATE TABLE spell (
+CREATE TABLE sort (
   idSpell int AUTO_INCREMENT NOT NULL,
   libelleSpell varchar(25),
   degatSpell int,
@@ -34,15 +34,15 @@ CREATE TABLE spell (
   CONSTRAINT fk_effet_id_spell FOREIGN KEY (effet_id) REFERENCES effet(idEffet)
 );
 
-INSERT INTO spell VALUES (default, "Boule de feu", 10, 1,10, 10, 3, "images/Sorts/boule_de_feu.png", false, 10);
-INSERT INTO spell VALUES (default, "La boule magique", 20, 4, 10, 20, 3,  "images/Sorts/boule_magique.png", false, 10);
-INSERT INTO spell VALUES (default, "Eclaire de givre", 10, 3, 10, 10, 3, "images/Sorts/eclaire_de_givre.png", false, 10);
-INSERT INTO spell VALUES (default, "Soin mineur", 0, 4, 10, 10, 3, "images/Sorts/soin_mineur.png", false, 0);
-INSERT INTO spell VALUES (default, "Soin majeur", 20, 2, 0, 20, 5, "images/Sorts/soin_majeur.png", false, 0);
-INSERT INTO spell VALUES (default, "Eclair", 20, 5, 10, 20, 5,  "images/Sorts/eclair.png", false, 0);
-INSERT INTO spell VALUES (default, "Tempete de feu", 50, 1, 20, 50, 60, "images/Sorts/tempete_de_feu.png", false, 0);
-INSERT INTO spell VALUES (default, "Explosion pyrotechnique", 1000, 1, 100, 0, 1, "images/Sorts/explosion_pyrotechnique.png", false, 50);
-INSERT INTO spell VALUES (default, "Goutte boule", 5, 4, 50, 20, 1, "images/Sorts/goutte_Boule.png", false, 10);
+INSERT INTO sort VALUES (default, "Boule de feu", 10, 1,10, 10, 3, "images/Sorts/boule_de_feu.png", false, 10);
+INSERT INTO sort VALUES (default, "La boule magique", 20, 4, 10, 20, 3,  "images/Sorts/boule_magique.png", false, 10);
+INSERT INTO sort VALUES (default, "Eclaire de givre", 10, 3, 10, 10, 3, "images/Sorts/eclaire_de_givre.png", false, 10);
+INSERT INTO sort VALUES (default, "Soin mineur", 0, 4, 10, 10, 3, "images/Sorts/soin_mineur.png", false, 0);
+INSERT INTO sort VALUES (default, "Soin majeur", 20, 2, 0, 20, 5, "images/Sorts/soin_majeur.png", false, 0);
+INSERT INTO sort VALUES (default, "Eclair", 20, 5, 10, 20, 5,  "images/Sorts/eclair.png", false, 0);
+INSERT INTO sort VALUES (default, "Tempete de feu", 50, 1, 20, 50, 60, "images/Sorts/tempete_de_feu.png", false, 0);
+INSERT INTO sort VALUES (default, "Explosion pyrotechnique", 1000, 1, 100, 0, 1, "images/Sorts/explosion_pyrotechnique.png", false, 50);
+INSERT INTO sort VALUES (default, "Goutte boule", 5, 4, 50, 20, 1, "images/Sorts/goutte_Boule.png", false, 10);
 
 CREATE TABLE personnage (
   idPerso int AUTO_INCREMENT NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE monstre (
 
   PRIMARY KEY(idMonstre),
 
-  CONSTRAINT fk_spell_id_monstre FOREIGN KEY (spell_id) REFERENCES spell(idSpell)
+  CONSTRAINT fk_spell_id_monstre FOREIGN KEY (spell_id) REFERENCES sort(idSpell)
 );
 
 INSERT INTO monstre VALUES (default, "goutteMana", 53, 64, 73, 42, 20, 20, 2, 3.5, 10, 5.5, 150, "images/Monstres/texture_goutteMana.png", 9);
@@ -165,7 +165,7 @@ CREATE TABLE spellEquipe (
   PRIMARY KEY(idPersoEquip, idSpellEquip),
 
   CONSTRAINT fk_idPersoSpellEquip FOREIGN KEY (idPersoEquip) REFERENCES personnage(idPerso),
-  CONSTRAINT fk_idSpellEquip FOREIGN KEY (idSpellEquip) REFERENCES spell(idSpell)
+  CONSTRAINT fk_idSpellEquip FOREIGN KEY (idSpellEquip) REFERENCES sort(idSpell)
 );
 
 INSERT INTO spellEquipe VALUES (1,1);
