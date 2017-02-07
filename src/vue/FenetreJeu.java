@@ -1,6 +1,6 @@
 package vue;
 
-import controleur.ControlFenetreDepart;
+import controleur.ControlFenetreJeu;
 import model.Direction;
 import model.Jeu;
 
@@ -155,9 +155,9 @@ public class FenetreJeu extends JPanel {
                     tuileImage[i][j] = tableauTuile[tuileInt[i][j]];
     }
 
-    public void setControl(ControlFenetreDepart controlFenetreDepart) {
-        menu.addActionListener(controlFenetreDepart);
-        control = controlFenetreDepart;
+    public void setControl(ControlFenetreJeu controlFenetreJeu) {
+        menu.addActionListener(controlFenetreJeu);
+        control = controlFenetreJeu;
     }
 
     protected void paintComponent(Graphics g) {

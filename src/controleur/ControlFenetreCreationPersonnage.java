@@ -91,6 +91,7 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
                     fenetre.panelFenetreCreationPersonnage.choixPilosite = 0;
                 break;
         }
+
         for (int i = 0; i < NB_COULEUR; i++) {
             if (Objects.equals(e.getActionCommand(), "cheveuxCouleur" + i))
                 fenetre.panelFenetreCreationPersonnage.choixCouleurCheveux = i;

@@ -10,11 +10,11 @@ import java.awt.event.ActionListener;
  * Created by bastien on 29/09/16.
  */
 
-public class ControlFenetreDepart extends Control implements ActionListener {
+public class ControlFenetreJeu extends Control implements ActionListener {
 
-    public ControlFenetreDepart(Jeu jeu, Fenetre fenetre) {
+    public ControlFenetreJeu(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
-        fenetre.setControlFenetreDepart(this);
+        fenetre.setControlFenetreJeu(this);
     }
 
     public void actionPerformed(ActionEvent e) {

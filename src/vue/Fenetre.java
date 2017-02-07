@@ -144,8 +144,8 @@ public class Fenetre extends JFrame {
         panelFenetreCredits.setControl(controlFenetreCredits);
     }
 
-    public void setControlFenetreDepart(ControlFenetreDepart controlFenetreDepart) {
-        panelFenetreJeu.setControl(controlFenetreDepart);
+    public void setControlFenetreJeu(ControlFenetreJeu controlFenetreJeu) {
+        panelFenetreJeu.setControl(controlFenetreJeu);
     }
 
     public void setControlFenetreInventaire(ControlFenetreInventaire controlFenetreInventaire) {
