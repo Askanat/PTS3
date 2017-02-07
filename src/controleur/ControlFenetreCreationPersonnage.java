@@ -31,7 +31,7 @@ public class ControlFenetreCreationPersonnage extends Control implements ActionL
                         idHero = jeu.getidPartieLibre();
                     fenetre.panelFenetreCreationPersonnage.sauvegardeSprite(idHero);
                     jeu.createHeroBDD(nomPerso, idHero);
-                    spawnHero(idHero);
+                    jeu.setHero(idHero);
                     Control.enPartie = true;
                     fenetre.panelFenetreCreationPersonnage.initCreationPerso();
                     fenetre.setContentPane(fenetre.panelScrollFenetreJeu);

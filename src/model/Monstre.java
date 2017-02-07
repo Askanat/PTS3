@@ -151,7 +151,7 @@ public class Monstre extends Personnage {
         return hitBoxVue;
     }
 
-    public Rectangle getHitBoxAttaque() {
+    public Rectangle getHitBoxZoneAttaque() {
         hitBoxVue = new Rectangle(
                 getPositionX() - (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()) - sort.getPorteSpell(),
                 getPositionY() - getHauteurHaut() - getDistanceVisibilite(),

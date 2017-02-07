@@ -43,16 +43,18 @@ public class ControlTimer extends Control implements ActionListener {
             if (!jeu.getPause()) {
                 jeu.incrementeTemps();
                 if (jeu.getTemps() % 300 == 0) {
-                    spawnMonstre(1, 900, 0); // a enlever d'ici
-                    spawnMonstre(2, 1400, 0); // a enlever d'ici
-                    spawnMonstre(3, 1900, 0); // a enlever d'ici
-                    spawnMonstre(4, 2400, 0); // a enlever d'ici
+                    jeu.setMonstre(1, 900, 0); // a enlever d'ici
+                    jeu.setMonstre(2, 1400, 0); // a enlever d'ici
+                    jeu.setMonstre(3, 1900, 0); // a enlever d'ici
+                    jeu.setMonstre(4, 2400, 0); // a enlever d'ici
                     jeu.sauvegardeHero();
                     jeu.setSave(true);
                 }
                 if (jeu.getTemps() % 310 == 0) {
                     jeu.setSave(false);
                 }
+
+                fenetre.panelFenetreJeu.updateEntite();
 
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_GAUCHE]) {
@@ -143,7 +145,7 @@ public class ControlTimer extends Control implements ActionListener {
                     // jeu.getMonstre(i).afficherEtat();
 
 
-                    jeu.updateMonstre(i); // supprime les montres si ils sont morts
+                    jeu.updateEntite();
                 }
 
 

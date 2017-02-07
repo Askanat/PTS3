@@ -66,15 +66,21 @@ public class FenetreJeu extends JPanel {
         menu.addActionListener(control);
     }
 
-    public void dessineHero() {
-        hero.creationEntite(jeu.getHero());
-    }
+    public void updateEntite() {
 
-    public void dessineMonstre() {
-        monstre.add(new EntiteVue(jeu));
-        monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(jeu.getSizeTabMonstre() - 1));
-    }
+        // création du héro graphiquement
+        if (jeu.getHero() != null && hero.entite == null)
+            hero.creationEntite(jeu.getHero());
 
+        // création des monstres graphiquement
+        System.out.println("tabVue"+(monstre.size()));
+        System.out.println("tabJeu"+jeu.getSizeTabMonstre());
+        for (int i = monstre.size(); i<jeu.getSizeTabMonstre(); i++) {
+            monstre.add(new EntiteVue(jeu));
+            monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(monstre.size() - 1));
+        }
+
+    }
 
     public void changerMap(String chemin) {
         readMap(chemin);

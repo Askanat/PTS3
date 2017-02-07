@@ -20,13 +20,15 @@ public class Jeu {
 
     private int temps;
 
-    private ArrayList<Sort> allSpell;
-    private ArrayList<Effet> allEffet;
-    private ArrayList<Equipement> allItem;
-
-    private Niveau niveau;
     private Hero hero;
     private ArrayList<Monstre> tableauMonstre;
+    private ArrayList<Sort> allSort;
+    private ArrayList<Effet> allEffet;
+
+    private ArrayList<Integer> indiceSuppressionMonstre;
+    private boolean suppressionHero;
+
+    private Niveau niveau;
     private BDD bdd;
 
     private boolean hitBox;
@@ -57,10 +59,8 @@ public class Jeu {
         pause = false;
         zoneSafe = true;
 
-        allSpell = bdd.chargerSpell();
+        allSort = bdd.chargerSpell();
         allEffet = bdd.chargerEffet();
-        allItem = bdd.chargerEquipement();
-
     }
 
     public void sauvegardeHero() {
@@ -118,7 +118,7 @@ public class Jeu {
        }
     }
 
-    public void updateMonstre(int i) {
+    public void updateEntite() {
         if (!tableauMonstre.get(i).estVivant()) {
             getHero().recevoirExperience(getMonstre(i));
             supprimeMonstre(i);
@@ -237,7 +237,7 @@ public class Jeu {
     }
 
     public void setAllSpell() {
-        allSpell = bdd.chargerSpell();
+        allSort = bdd.chargerSpell();
     }
 
     public void setAllEffet() {
@@ -248,19 +248,28 @@ public class Jeu {
         return allEffet;
     }
 
-    public ArrayList<Sort> getAllSpell() {
-        return allSpell;
+    public ArrayList<Sort> getAllSort() {
+        return allSort;
     }
 
     public Sort getSpell(int idSpell) {
-        return allSpell.get(idSpell);
+        return allSort.get(idSpell);
     }
 
-    public ArrayList<Equipement> getAllItem() {
-        return allItem;
+    public void achatItem (int id){
+        int orHero = getHero().getOr();
+        int prix = 0; //il faut créé un appel de prix dans la class BDD
+        if (orHero >= prix){
+            getHero().setOr(getHero().getOr()-prix);
+            //addInventaire(id);
+        }
     }
 
-    public Equipement getItem(int idItem) {
-        return allItem.get(idItem);
+    public void vendreItem(int id){
+        int orHero = getHero().getOr();
+        int prix = 0; //il faut créé un appel de prix dans la class BDD
+
+        getHero().setOr(getHero().getOr()+prix);
+        //removeInventaire(id);
     }
 }

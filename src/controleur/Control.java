@@ -26,20 +26,4 @@ public class Control {
         fenetre.setLocationRelativeTo(null);
         fenetre.requestFocus();
     }
-
-    protected void spawnHero(int i) {
-        jeu.setHero(i);
-        fenetre.panelFenetreJeu.dessineHero();
-
-        // a enlever
-        spawnMonstre(1, 900, 0);
-        spawnMonstre(2, 1400, 0);
-        spawnMonstre(3, 1900, 0);
-        spawnMonstre(4, 2400, 0);
-    }
-
-    protected void spawnMonstre(int i, int positionX, int positionY) {
-        jeu.setMonstre(i, positionX, positionY);
-        fenetre.panelFenetreJeu.dessineMonstre();
-    }
 }

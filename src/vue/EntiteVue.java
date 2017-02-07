@@ -163,8 +163,11 @@ public class EntiteVue extends JPanel {
         if (jeu.getHitBox()) {
             g.setColor(Color.RED);
             // zone de vue monstre
-            if (entite instanceof Monstre)
+            if (entite instanceof Monstre) {
                 g.drawRect(((Monstre) entite).getHitBoxVue().x, ((Monstre) entite).getHitBoxVue().y, ((Monstre) entite).getHitBoxVue().width, ((Monstre) entite).getHitBoxVue().height);
+                // zone de détection pour l'attaque
+                g.drawRect(((Monstre) entite).getHitBoxZoneAttaque().x, ((Monstre) entite).getHitBoxZoneAttaque().y, ((Monstre) entite).getHitBoxZoneAttaque().width, ((Monstre) entite).getHitBoxZoneAttaque().height);
+            }
 
             // zone du corps du sprite
             g.drawRect(entite.getHitBoxCorps().x, entite.getHitBoxCorps().y, entite.getHitBoxCorps().width, entite.getHitBoxCorps().height);
