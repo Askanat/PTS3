@@ -95,7 +95,7 @@ public class FenetreInventaire extends JPanel {
 
         //Inventaire
         for (int i = 0; i < 30; i++) {
-            inventaire[0].addActionListener(controlFenetreInventaire);
+            inventaire[i].addActionListener(controlFenetreInventaire);
         }
     }
 

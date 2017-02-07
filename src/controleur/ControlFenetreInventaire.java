@@ -26,8 +26,7 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                 nombre+=e.getActionCommand().charAt(i);
             }
 
-            int i = Integer.valueOf(nombre);
-            System.out.println(i);
+            System.out.println("Bouton : " + Integer.parseInt(nombre));
         }
 
         switch (e.getActionCommand()) {

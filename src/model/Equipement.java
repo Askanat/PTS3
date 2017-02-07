@@ -12,10 +12,6 @@ public class Equipement {
     int typeItem;
     String texture;
 
-    public Equipement() {
-
-    }
-
     public Equipement(String nom, float armure, float pointConstitution, float pointIntelligence, float pointForce, float pointResistance, float degat, String texture, int typeItem) {
         this.pointConstitution = pointConstitution;
         this.pointForce = pointForce;

@@ -20,7 +20,7 @@ public class Jeu {
 
     private int temps;
 
-    private ArrayList<Spell> allSpell;
+    private ArrayList<Sort> allSpell;
     private ArrayList<Effet> allEffet;
     private ArrayList<Equipement> allItem;
 
@@ -248,11 +248,11 @@ public class Jeu {
         return allEffet;
     }
 
-    public ArrayList<Spell> getAllSpell() {
+    public ArrayList<Sort> getAllSpell() {
         return allSpell;
     }
 
-    public Spell getSpell(int idSpell) {
+    public Sort getSpell(int idSpell) {
         return allSpell.get(idSpell);
     }
 

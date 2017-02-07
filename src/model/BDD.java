@@ -247,10 +247,10 @@ public class BDD {
     }
 
     //Requete qui recup tous les spell
-    public ArrayList<Spell> chargerSpell() {
+    public ArrayList<Sort> chargerSpell() {
         ResultSet spell;
         boolean bool = false;
-        ArrayList<Spell> result = new ArrayList<>();
+        ArrayList<Sort> result = new ArrayList<>();
         try {
             spell = instruction.executeQuery("SELECT * from spell;");
             while (spell.next()) {
@@ -259,7 +259,7 @@ public class BDD {
                 } else {
                     bool = true;
                 }
-                result.add(new Spell(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), bool, Integer.parseInt(spell.getString("vitesseDeDeplacement"))));
+                result.add(new Sort(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), bool, Integer.parseInt(spell.getString("vitesseDeDeplacement"))));
             }
         } catch (Exception e) {
             System.out.println("Donnees charger spell : " + e);
