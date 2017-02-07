@@ -73,13 +73,26 @@ public class FenetreJeu extends JPanel {
             hero.creationEntite(jeu.getHero());
 
         // création des monstres graphiquement
-        System.out.println("tabVue"+(monstre.size()));
-        System.out.println("tabJeu"+jeu.getSizeTabMonstre());
-        for (int i = monstre.size(); i<jeu.getSizeTabMonstre(); i++) {
+        for (int i = monstre.size(); i < jeu.getSizeTabMonstre(); i++) {
             monstre.add(new EntiteVue(jeu));
             monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(monstre.size() - 1));
         }
 
+        // suppression monstre graphiquement
+        for (int i = jeu.getIndiceSuppressionMonstre().size(); i>0; i--) {
+            int valeur =  jeu.getIndiceSuppressionMonstre().get(i-1);
+            monstre.remove(valeur);
+            jeu.removeIndiceSuppressionMonstre(i-1);
+        }
+
+        // changement de zone : zone-safe <-> zone-donjon
+        if (jeu.getHero().getPositionX() > ZONE.width) {
+            changerMap("map/mapFenetreDonjon.txt");
+            jeu.setZoneSafe(false);
+        } else if (jeu.getHero().getPositionX() < 0 && !jeu.getZoneSafe()) {
+            changerMap("map/mapFenetreDepart.txt");
+            jeu.setZoneSafe(true);
+        }
     }
 
     public void changerMap(String chemin) {

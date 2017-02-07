@@ -59,12 +59,15 @@ public class Jeu {
         pause = false;
         zoneSafe = true;
 
-        allSort = bdd.chargerSpell();
+        allSort = bdd.chargerSort();
         allEffet = bdd.chargerEffet();
+
+        suppressionHero = false;
+        indiceSuppressionMonstre = new ArrayList<Integer>();
     }
 
     public void sauvegardeHero() {
-        if(bdd.isBDD()) {
+        if (bdd.isBDD()) {
             bdd.updateHero(hero.getIdHero(), hero.sauvegardeDonneesHeros());
         } else {
             try {
@@ -103,25 +106,34 @@ public class Jeu {
     public void setHero(int id) {
         ArrayList<String> donneesHero;
 
-       if(bdd.isBDD()) {
-           donneesHero = bdd.readHero(id);
-           hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)), Integer.parseInt(donneesHero.get(3)),
-                   Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)), Double.parseDouble(donneesHero.get(6)),
-                   Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)), Double.parseDouble(donneesHero.get(9)),
-                   Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0));
-       } else {
-           try {
-               hero = bdd.chargementFlux(id);
-           } catch (Exception e) {
-               System.out.println("Chargement hero impossible : " + e);
-           }
-       }
+        if (bdd.isBDD()) {
+            donneesHero = bdd.readHero(id);
+            hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)), Integer.parseInt(donneesHero.get(3)),
+                    Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)), Double.parseDouble(donneesHero.get(6)),
+                    Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)), Double.parseDouble(donneesHero.get(9)),
+                    Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0));
+        } else {
+            try {
+                hero = bdd.chargementFlux(id);
+            } catch (Exception e) {
+                System.out.println("Chargement hero impossible : " + e);
+            }
+        }
     }
 
     public void updateEntite() {
-        if (!tableauMonstre.get(i).estVivant()) {
-            getHero().recevoirExperience(getMonstre(i));
-            supprimeMonstre(i);
+
+        // supprime monstre
+        for (int i = indiceSuppressionMonstre.size(); i>0; i--) {
+            getHero().recevoirExperience(getMonstre(i-1));
+            supprimeMonstre(i-1);
+        }
+
+        // met à jour le niveau et sauvegarde si gain de niveau
+        int niveau = getHero().getNiveau();
+        getHero().upNiveau();
+        if (niveau < getHero().getNiveau()) {
+            sauvegardeHero();
         }
     }
 
@@ -150,7 +162,7 @@ public class Jeu {
                 Integer.parseInt(donneesMonstre.get(3)), Integer.parseInt(donneesMonstre.get(4)), Double.parseDouble(donneesMonstre.get(5)),
                 Double.parseDouble(donneesMonstre.get(6)), Double.parseDouble(donneesMonstre.get(7)), Double.parseDouble(donneesMonstre.get(8)),
                 donneesMonstre.get(12), positionX, positionY, Integer.parseInt(donneesMonstre.get(9)), Integer.parseInt(donneesMonstre.get(10)), Integer.parseInt(donneesMonstre.get(11)),
-                getSpell(Integer.parseInt(donneesMonstre.get(13))-1)));
+                getSort(Integer.parseInt(donneesMonstre.get(13)) - 1)));
     }
 
     public Monstre getMonstre(int i) {
@@ -209,10 +221,10 @@ public class Jeu {
     }
 
     public String readLVLPerso(int id) {
-        if(bdd.isBDD()) {
+        if (bdd.isBDD()) {
             return bdd.readNiveauPerso(id);
         } else {
-            return ""+hero.getNieau();
+            return "" + hero.getNieau();
         }
     }
 
@@ -236,8 +248,8 @@ public class Jeu {
         return save;
     }
 
-    public void setAllSpell() {
-        allSort = bdd.chargerSpell();
+    public void setAllSort() {
+        allSort = bdd.chargerSort();
     }
 
     public void setAllEffet() {
@@ -252,24 +264,44 @@ public class Jeu {
         return allSort;
     }
 
-    public Sort getSpell(int idSpell) {
-        return allSort.get(idSpell);
+    public Sort getSort(int idSort) {
+        return allSort.get(idSort);
     }
 
-    public void achatItem (int id){
+    public void addIndiceSuppressionMonstre(int indice) {
+        indiceSuppressionMonstre.add(indice);
+    }
+
+    public void removeIndiceSuppressionMonstre(int indice) {
+        indiceSuppressionMonstre.remove(indice);
+    }
+
+    public ArrayList<Integer> getIndiceSuppressionMonstre() {
+        return indiceSuppressionMonstre;
+    }
+
+    public void setSuppressionHero(boolean suppressionHero) {
+        this.suppressionHero = suppressionHero;
+    }
+
+    public boolean getSuppressionHero() {
+        return suppressionHero;
+    }
+
+    public void achatItem(int id) {
         int orHero = getHero().getOr();
         int prix = 0; //il faut créé un appel de prix dans la class BDD
-        if (orHero >= prix){
-            getHero().setOr(getHero().getOr()-prix);
+        if (orHero >= prix) {
+            getHero().setOr(getHero().getOr() - prix);
             //addInventaire(id);
         }
     }
 
-    public void vendreItem(int id){
+    public void vendreItem(int id) {
         int orHero = getHero().getOr();
         int prix = 0; //il faut créé un appel de prix dans la class BDD
 
-        getHero().setOr(getHero().getOr()+prix);
+        getHero().setOr(getHero().getOr() + prix);
         //removeInventaire(id);
     }
 }

@@ -247,7 +247,7 @@ public class BDD {
     }
 
     //Requete qui recup tous les spell
-    public ArrayList<Sort> chargerSpell() {
+    public ArrayList<Sort> chargerSort() {
         ResultSet spell;
         boolean bool = false;
         ArrayList<Sort> result = new ArrayList<>();

@@ -59,7 +59,7 @@ public class Hero extends Personnage implements Serializable {
 
         bdd = new BDD();
 
-        heroSort = bdd.chargerSpell();
+        heroSort = bdd.chargerSort();
 
         /*System.out.println("nom:" + nom + ", niveau:" + niveau + ", pointCaracteristique:" + pointCaracteristique + ", pointCompetence:" + pointCompetence +
                 ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +

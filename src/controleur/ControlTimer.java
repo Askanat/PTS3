@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static vue.FenetreJeu.ZONE;
-
 /**
  * Created by bastien on 30/09/16.
  */
@@ -43,10 +41,6 @@ public class ControlTimer extends Control implements ActionListener {
             if (!jeu.getPause()) {
                 jeu.incrementeTemps();
                 if (jeu.getTemps() % 300 == 0) {
-                    jeu.setMonstre(1, 900, 0); // a enlever d'ici
-                    jeu.setMonstre(2, 1400, 0); // a enlever d'ici
-                    jeu.setMonstre(3, 1900, 0); // a enlever d'ici
-                    jeu.setMonstre(4, 2400, 0); // a enlever d'ici
                     jeu.sauvegardeHero();
                     jeu.setSave(true);
                 }
@@ -54,15 +48,18 @@ public class ControlTimer extends Control implements ActionListener {
                     jeu.setSave(false);
                 }
 
-                fenetre.panelFenetreJeu.updateEntite();
-
-
                 if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_GAUCHE]) {
                     jeu.getHero().deplacerAGauche();
                 }
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_SAUT]) {
                     jeu.getHero().sauter();
+
+                    jeu.setMonstre(1, 900, 0); // a enlever d'ici
+                    jeu.setMonstre(2, 1400, 0); // a enlever d'ici
+                    jeu.setMonstre(3, 1900, 0); // a enlever d'ici
+                    jeu.setMonstre(4, 2400, 0); // a enlever d'ici
+                    fenetre.panelFenetreJeu.updateEntite();
                 }
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_DROITE]) {
@@ -131,41 +128,19 @@ public class ControlTimer extends Control implements ActionListener {
                 fenetre.panelFenetreJeu.hero.selectionnerMorceauSpriteDeplacement();
                 jeu.getHero().deplacer();
 
-
                 // dessine les monstres et les fait intéragir
                 for (int i = 0; i < jeu.getSizeTabMonstre(); i++) {
                     jeu.getMonstre(i).update(jeu.getHero());
                     fenetre.panelFenetreJeu.monstre.get(i).selectionnerMorceauSpriteDeplacement();
-                    if (!jeu.getMonstre(i).estVivant()) {
-                        jeu.getHero().recevoirExperience(jeu.getMonstre(i));
-                        fenetre.panelFenetreJeu.monstre.remove(i);
-                    }
+                    if (!jeu.getMonstre(i).estVivant())
+                        jeu.addIndiceSuppressionMonstre(i);
+
                     jeu.getMonstre(i).upgrade();
-
-                    // jeu.getMonstre(i).afficherEtat();
-
-
-                    jeu.updateEntite();
                 }
 
-
-                //Sauvegarde quand gain Niveau
-                int niveau = jeu.getHero().getNiveau();
-                jeu.getHero().upNiveau();
-                if (niveau < jeu.getHero().getNiveau()) {
-                    jeu.sauvegardeHero();
-                }
-
-                // changement de zone : zone-safe <-> zone-donjon
-                if (jeu.getHero().getPositionX() > ZONE.width) {
-                    fenetre.panelFenetreJeu.changerMap("map/mapFenetreDonjon.txt");
-                    jeu.setZoneSafe(false);
-                } else if (jeu.getHero().getPositionX() < 0 && !jeu.getZoneSafe()) {
-                    fenetre.panelFenetreJeu.changerMap("map/mapFenetreDepart.txt");
-                    jeu.setZoneSafe(true);
-                }
+                jeu.updateEntite();
+                fenetre.panelFenetreJeu.updateEntite();
             }
-            //jeu.getHero().afficherEtat();
         }
         fenetre.repaint();
     }

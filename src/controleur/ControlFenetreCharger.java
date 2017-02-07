@@ -39,6 +39,7 @@ public class ControlFenetreCharger extends Control implements ActionListener {
                 Fenetre.numeroPorte = -1;
                 try {
                     jeu.setHero(choixHero);
+                    fenetre.panelFenetreJeu.updateEntite();
                     choixHero = 0;
                     Control.enPartie = true;
                     fenetre.setContentPane(fenetre.panelScrollFenetreJeu);
