@@ -246,27 +246,23 @@ public class BDD {
         }
     }
 
-    //Requete qui recup tous les sort
-    public ArrayList<Sort> chargerSpell() {
+    //Requete qui recup tous les spell
+    public ArrayList<Spell> chargerSpell() {
         ResultSet spell;
         boolean bool = false;
-        ArrayList<Sort> result = new ArrayList<>();
+        ArrayList<Spell> result = new ArrayList<>();
         try {
             spell = instruction.executeQuery("SELECT * from spell;");
             while (spell.next()) {
-                System.out.println(spell.getString("unlockSpell"));
                 if(spell.getString("unlockSpell").equals("0")) {
                     bool = false;
                 } else {
                     bool = true;
                 }
-
-                System.out.println(bool);
-
-                result.add(new Sort(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), bool, Integer.parseInt(spell.getString("vitesseDeDeplacement"))));
+                result.add(new Spell(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), bool, Integer.parseInt(spell.getString("vitesseDeDeplacement"))));
             }
         } catch (Exception e) {
-            System.out.println("Donnees charger sort : " + e);
+            System.out.println("Donnees charger spell : " + e);
         }
         return result;
     }
@@ -314,7 +310,7 @@ public class BDD {
         try {
             item = instruction.executeQuery("SELECT * FROM item;");
             while (item.next()) {
-                result.add(new Equipement(item.getString("libelleItem"), Float.parseFloat(item.getString("armureItem")), Float.parseFloat(item.getString("constiItem")), Float.parseFloat(item.getString("intelItem")), Float.parseFloat(item.getString("forceItem")), Float.parseFloat(item.getString("resiItem")), Float.parseFloat(item.getString("degat")), item.getString("textureItem"), Integer.parseInt(item.getString("item_type"))));
+                result.add(new Equipement(item.getString("libelleItem"), Float.parseFloat(item.getString("armureItem")), Float.parseFloat(item.getString("constiItem")), Float.parseFloat(item.getString("intelItem")), Float.parseFloat(item.getString("forceItem")), Float.parseFloat(item.getString("resiItem")), Float.parseFloat(item.getString("degatItem")), item.getString("textureItem"), Integer.parseInt(item.getString("item_type"))));
             }
         } catch (Exception e) {
             System.out.println("Chargement item : " + e);

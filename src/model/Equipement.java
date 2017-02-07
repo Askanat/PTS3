@@ -27,4 +27,40 @@ public class Equipement {
         this.degat = degat;
         this.texture = texture;
     }
+
+    public float getArmure() {
+        return armure;
+    }
+
+    public float getPointConstitution() {
+        return pointConstitution;
+    }
+
+    public float getDegat() {
+        return degat;
+    }
+
+    public float getPointForce() {
+        return pointForce;
+    }
+
+    public float getPointIntelligence() {
+        return pointIntelligence;
+    }
+
+    public float getPointResistance() {
+        return pointResistance;
+    }
+
+    public int getTypeItem() {
+        return typeItem;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getTexture() {
+        return texture;
+    }
 }

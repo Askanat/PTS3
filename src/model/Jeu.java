@@ -20,8 +20,9 @@ public class Jeu {
 
     private int temps;
 
-    private ArrayList<Sort> allSort;
+    private ArrayList<Spell> allSpell;
     private ArrayList<Effet> allEffet;
+    private ArrayList<Equipement> allItem;
 
     private Niveau niveau;
     private Hero hero;
@@ -56,8 +57,10 @@ public class Jeu {
         pause = false;
         zoneSafe = true;
 
-        allSort = bdd.chargerSpell();
+        allSpell = bdd.chargerSpell();
         allEffet = bdd.chargerEffet();
+        allItem = bdd.chargerEquipement();
+
     }
 
     public void sauvegardeHero() {
@@ -234,7 +237,7 @@ public class Jeu {
     }
 
     public void setAllSpell() {
-        allSort = bdd.chargerSpell();
+        allSpell = bdd.chargerSpell();
     }
 
     public void setAllEffet() {
@@ -245,28 +248,19 @@ public class Jeu {
         return allEffet;
     }
 
-    public ArrayList<Sort> getAllSort() {
-        return allSort;
+    public ArrayList<Spell> getAllSpell() {
+        return allSpell;
     }
 
-    public Sort getSpell(int idSpell) {
-        return allSort.get(idSpell);
+    public Spell getSpell(int idSpell) {
+        return allSpell.get(idSpell);
     }
 
-    public void achatItem (int id){
-        int orHero = getHero().getOr();
-        int prix = 0; //il faut créé un appel de prix dans la class BDD
-        if (orHero >= prix){
-            getHero().setOr(getHero().getOr()-prix);
-            //addInventaire(id);
-        }
+    public ArrayList<Equipement> getAllItem() {
+        return allItem;
     }
 
-    public void vendreItem(int id){
-        int orHero = getHero().getOr();
-        int prix = 0; //il faut créé un appel de prix dans la class BDD
-
-        getHero().setOr(getHero().getOr()+prix);
-        //removeInventaire(id);
+    public Equipement getItem(int idItem) {
+        return allItem.get(idItem);
     }
 }
