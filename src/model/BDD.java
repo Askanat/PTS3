@@ -310,12 +310,97 @@ public class BDD {
         try {
             item = instruction.executeQuery("SELECT * FROM item;");
             while (item.next()) {
-                result.add(new Equipement(item.getString("libelleItem"), Float.parseFloat(item.getString("armureItem")), Float.parseFloat(item.getString("constiItem")), Float.parseFloat(item.getString("intelItem")), Float.parseFloat(item.getString("forceItem")), Float.parseFloat(item.getString("resiItem")), Float.parseFloat(item.getString("degatItem")), item.getString("textureItem"), Integer.parseInt(item.getString("item_type"))));
+                result.add(new Equipement(Integer.parseInt(item.getString("idItem")), item.getString("libelleItem"), Float.parseFloat(item.getString("armureItem")), Float.parseFloat(item.getString("constiItem")), Float.parseFloat(item.getString("intelItem")), Float.parseFloat(item.getString("forceItem")), Float.parseFloat(item.getString("resiItem")), Float.parseFloat(item.getString("degatItem")), item.getString("textureItem"), Integer.parseInt(item.getString("item_type"))));
             }
         } catch (Exception e) {
             System.out.println("Chargement item : " + e);
         }
         return result;
+    }
+
+    //Drop d'équipement
+    public Equipement dropEquipement(int idRand) {
+        ResultSet item;
+        Equipement result = null;
+        System.out.println("rand : " + idRand);
+
+        try {
+            item = instruction.executeQuery("SELECT * FROM item WHERE idItem ="+idRand+";");
+            while(item.next())
+                result = new Equipement(Integer.parseInt(item.getString("idItem")), item.getString("libelleItem"), Float.parseFloat(item.getString("armureItem")), Float.parseFloat(item.getString("constiItem")), Float.parseFloat(item.getString("intelItem")), Float.parseFloat(item.getString("forceItem")), Float.parseFloat(item.getString("resiItem")), Float.parseFloat(item.getString("degatItem")), item.getString("textureItem"), Integer.parseInt(item.getString("item_type")));
+        } catch(Exception e) {
+            System.out.println("Drop item : " + e);
+        }
+
+        return result;
+    }
+
+    public int nbItem() {
+        ResultSet nbItem;
+        int result = 0;
+
+        try {
+            nbItem = instruction.executeQuery("SELECT count(*) as count FROM item;");
+            while(nbItem.next())
+                result = Integer.parseInt(nbItem.getString("count"));
+        } catch (Exception e) {
+            System.out.println("Count item : " + e);
+        }
+
+        return result;
+    }
+
+    public int placeInventaire() {
+        ResultSet place;
+        int result = 0;
+
+        try {
+            place = instruction.executeQuery("SELECT count(*) AS count FROM possede;");
+            while (place.next())
+                result = Integer.parseInt(place.getString("count"));
+        } catch(Exception e) {
+            System.out.println("Place inventaire : " + e);
+        }
+
+        return result;
+    }
+
+    public String getTextureEquipement(int idItem) {
+        ResultSet place;
+        String result = "Rien";
+
+        try {
+            place = instruction.executeQuery("SELECT textureItem  FROM item where idItem ="+idItem+";");
+            while (place.next())
+                result = place.getString("TextureItem");
+        } catch(Exception e) {
+            System.out.println("Texture equipement : " + e);
+        }
+
+        return result;
+    }
+
+    public int getPrixItem(int idItem) {
+        ResultSet place;
+        int result = 0;
+
+        try {
+            place = instruction.executeQuery("SELECT prixItem  FROM item where idItem ="+idItem+";");
+            while (place.next())
+                result = Integer.parseInt(place.getString("prixItem"));
+        } catch(Exception e) {
+            System.out.println("Prix equipement : " + e);
+        }
+
+        return result;
+    }
+
+    public void possede(int idHero, int idItem) {
+        try {
+            instruction.executeUpdate("INSERT INTO possede VALUES("+idHero+","+idItem+");");
+        } catch (Exception e) {
+            System.out.println("Possede problem : " + e);
+        }
     }
 
 }

@@ -9,10 +9,10 @@ public class Equipement {
     private String nom;
     private float armure;
     private float pointConstitution, pointIntelligence, pointForce, pointResistance, degat;
-    int typeItem;
+    int typeItem, idItem;
     String texture;
 
-    public Equipement(String nom, float armure, float pointConstitution, float pointIntelligence, float pointForce, float pointResistance, float degat, String texture, int typeItem) {
+    public Equipement(int idItem, String nom, float armure, float pointConstitution, float pointIntelligence, float pointForce, float pointResistance, float degat, String texture, int typeItem) {
         this.pointConstitution = pointConstitution;
         this.pointForce = pointForce;
         this.pointIntelligence = pointIntelligence;
@@ -22,6 +22,7 @@ public class Equipement {
         this.typeItem = typeItem;
         this.degat = degat;
         this.texture = texture;
+        this.idItem =  idItem;
     }
 
     public float getArmure() {
@@ -58,5 +59,9 @@ public class Equipement {
 
     public String getTexture() {
         return texture;
+    }
+
+    public int getIdItem() {
+        return idItem;
     }
 }

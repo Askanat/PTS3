@@ -17,10 +17,10 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
     }
 
     public void actionPerformed(ActionEvent e) {
+        String nombre="";
 
         //Système de récupération des boutons d'inventaires différents
         if(e.getActionCommand().contains("Inventaire")){
-            String nombre="";
 
             for (int i=10;i < e.getActionCommand().length();i++){
                 nombre+=e.getActionCommand().charAt(i);

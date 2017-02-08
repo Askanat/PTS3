@@ -18,6 +18,8 @@ public class Monstre extends Personnage {
 
     private Sort sort;
 
+    BDD bdd;
+
     private int tempsAttaque;
     private int tempsDeplacement, TEMPS_DEPLACEMENT;
     private boolean mouvementAleatoire, mouvementAleatoireDirection;
@@ -59,6 +61,8 @@ public class Monstre extends Personnage {
         NB_DE_DEPLACEMENT = (int) (3 + (Math.random() * (7 - 3)));
         mouvementAleatoire = false;
         mouvementAleatoireDirection = false;
+
+        bdd = new BDD();
 
         hitBoxVue = new Rectangle();
         System.out.println("nom:" + nom + ", niveau:" + niveau + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
@@ -160,5 +164,9 @@ public class Monstre extends Personnage {
         );
 
         return hitBoxVue;
+    }
+
+    public Equipement dropItem() {
+        return bdd.dropEquipement((int)(Math.random()*(bdd.nbItem()-1)+1));
     }
 }

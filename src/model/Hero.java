@@ -18,6 +18,7 @@ public class Hero extends Personnage implements Serializable {
     private double force, intelligence, constitution, resistance, limiteForce = 0, limiteIntelligence = 0, limiteConstitution = 0, limiteResistance = 0;
 
     ArrayList<Sort> heroSort;
+    ArrayList<Equipement> inventaire;
 
     private BDD bdd;
 
@@ -60,6 +61,7 @@ public class Hero extends Personnage implements Serializable {
         bdd = new BDD();
 
         heroSort = bdd.chargerSort();
+        inventaire = new ArrayList<>();
 
         /*System.out.println("nom:" + nom + ", niveau:" + niveau + ", pointCaracteristique:" + pointCaracteristique + ", pointCompetence:" + pointCompetence +
                 ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
@@ -310,5 +312,10 @@ public class Hero extends Personnage implements Serializable {
 
     public int getOr() {
         return or;
+    }
+
+    public void addItemInInventaire(Equipement equipement) {
+        this.inventaire.add(equipement);
+        bdd.possede(getIdHero(), equipement.getIdItem());
     }
 }
