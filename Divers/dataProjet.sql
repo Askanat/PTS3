@@ -46,7 +46,7 @@ INSERT INTO spell VALUES (default, "Soin majeur", 0, 0, 0, 0, 20, 2, 0, 20, 5, "
 INSERT INTO spell VALUES (default, "Eclair", 0, 0, 0, 0, 20, 5, 10, 20, 5,  "images/Sorts/eclair.png", false, 0);
 INSERT INTO spell VALUES (default, "Tempete de feu", 0, 0, 0, 0, 50, 1, 20, 50, 60, "images/Sorts/tempete_de_feu.png", false, 0);
 INSERT INTO spell VALUES (default, "Explosion pyrotechnique", 0, 0, 0, 0, 1000, 1, 100, 0, 1, "images/Sorts/explosion_pyrotechnique.png", false, 50);
-INSERT INTO spell VALUES (default, "Goutte boule", 19, 19, 17, 17, 5, 4, 50, 20, 1, "images/Sorts/goutte_Boule.png", false, 20);
+INSERT INTO spell VALUES (default, "Goutte boule", 19, 19, 17, 17, 5, 4, 50, 20, 1, "images/Sorts/goutte_Boule.png", false, 35);
 
 CREATE TABLE personnage (
   idPerso int AUTO_INCREMENT NOT NULL,

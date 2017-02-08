@@ -68,7 +68,7 @@ public class Monstre extends Personnage {
     }
 
     public Sort appelleSort() {
-        Sort sortUtilise = new Sort(sort);
+        Sort sortUtilise = (Sort) sort.clone();
         sortUtilise.setPositionX(getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() : getLargeurDerriere()));
         sortUtilise.setPositionY(getPositionY() - hauteurBas);
         sortUtilise.setDeplacement(true);
@@ -81,7 +81,7 @@ public class Monstre extends Personnage {
         if (collision(getHitBoxAttaque(), cible.getHitBoxCorps())) { // attaque de près
             tempsAttaque++;
 
-            if (tempsAttaque % 20 == 0) {
+            if (tempsAttaque % 25 == 0) {
                 setAttaquer(true);
                 cible.recevoirDegats(getDegats());
             }
@@ -89,7 +89,7 @@ public class Monstre extends Personnage {
         } else if (collision(getHitBoxZoneAttaque(), cible.getHitBoxCorps())) { // attaque de loin (avec sort)
             tempsAttaque++;
 
-            if (tempsAttaque % 20 == 0) {
+            if (tempsAttaque % 25 == 0) {
                 setAttaquer(true);
                 jeu.setSortMonstre(appelleSort());
             }

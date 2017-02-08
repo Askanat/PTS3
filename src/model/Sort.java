@@ -8,7 +8,7 @@ import static vue.FenetreJeu.ZONE;
 /**
  * Created by leo on 23/01/17.
  */
-public class Sort extends Entite {
+public class Sort extends Entite implements Cloneable {
 
     private int degatSpell, effet_id, porteSpell, coutManaSpell, idSpell;
     private boolean unlock;
@@ -23,14 +23,15 @@ public class Sort extends Entite {
         this.unlock = unlock;
     }
 
-    public Sort(Sort s) {
-        super(s.nom, s.largeurDevant, s.largeurDerriere, s.hauteurHaut, s.hauteurBas, s.texture, 0, 0, s.vitesseDeDeplacementEnX, 0);
-        this.idSpell = s.idSpell;
-        this.degatSpell = s.degatSpell;
-        this.effet_id = s.effet_id;
-        this.porteSpell = s.porteSpell;
-        this.coutManaSpell = s.coutManaSpell;
-        this.unlock = s.unlock;
+    public Object clone() {
+        Sort sort = null;
+        try {
+            sort = (Sort) super.clone();
+        } catch(CloneNotSupportedException cnse) {
+            cnse.printStackTrace(System.err);
+        }
+
+        return sort;
     }
 
     public void deplacer() {
