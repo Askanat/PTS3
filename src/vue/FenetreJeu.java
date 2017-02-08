@@ -55,6 +55,8 @@ public class FenetreJeu extends JPanel {
 
         hero = new EntiteVue(jeu);
         monstre = new ArrayList<EntiteVue>();
+        sortMonstre = new ArrayList<EntiteVue>();
+        sortHero = new ArrayList<EntiteVue>();
 
         imageIconeSave = getToolkit().getImage("images/iconeSave.png");
 
@@ -78,11 +80,17 @@ public class FenetreJeu extends JPanel {
             monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(monstre.size() - 1));
         }
 
+        //création des sorts des monstres graphiquement
+        for (int i = sortMonstre.size(); i < jeu.getSizeSortMonstre(); i++) {
+            sortMonstre.add(new EntiteVue(jeu));
+            sortMonstre.get(sortMonstre.size() - 1).creationEntite(jeu.getSortMonstre(sortMonstre.size() - 1));
+        }
+
         // suppression monstre graphiquement
-        for (int i = jeu.getIndiceSuppressionMonstre().size(); i>0; i--) {
-            int valeur =  jeu.getIndiceSuppressionMonstre().get(i-1);
+        for (int i = jeu.getIndiceSuppressionMonstre().size(); i > 0; i--) {
+            int valeur = jeu.getIndiceSuppressionMonstre().get(i - 1);
             monstre.remove(valeur);
-            jeu.removeIndiceSuppressionMonstre(i-1);
+            jeu.removeIndiceSuppressionMonstre(i - 1);
         }
 
         // changement de zone : zone-safe <-> zone-donjon
@@ -180,5 +188,8 @@ public class FenetreJeu extends JPanel {
             e.paintComponent(g);
 
         hero.paintComponent(g);
+
+        for (EntiteVue e : sortMonstre)
+            e.paintComponent(g);
     }
 }

@@ -78,7 +78,7 @@ public class EntiteVue extends JPanel {
         }
 
         // selectionne le saut
-        if (!entite.getCollision()) {
+        if (!entite.getCollision() && entite instanceof Personnage) {
             if (!entite.getAttaquer()) { // saut sans attaque
                 if (entite.getDirectionOrientation() == Direction.DROITE)
                     spriteActuel = tableauSprite[2];
@@ -101,7 +101,7 @@ public class EntiteVue extends JPanel {
             }
 
             // selectionne le déplacement de droite et de gauche
-        } else if (entite.getCollision()) {
+        } else if (entite.getCollision() || entite instanceof Sort) {
             if (!entite.getAttaquer() && entite.getDeplacement()) { // deplacement sans attaque
                 if (entite.getDirectionOrientation() == Direction.DROITE)
                     spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 7 : 6 + alternerSpriteDeplacement];
@@ -172,8 +172,9 @@ public class EntiteVue extends JPanel {
             // zone du corps du sprite
             g.drawRect(entite.getHitBoxCorps().x, entite.getHitBoxCorps().y, entite.getHitBoxCorps().width, entite.getHitBoxCorps().height);
 
-            // zone de l'attaque
-            g.drawRect(((Personnage) entite).getHitBoxAttaque().x, ((Personnage) entite).getHitBoxAttaque().y, ((Personnage) entite).getHitBoxAttaque().width, ((Personnage) entite).getHitBoxAttaque().height);
+            if (entite instanceof Personnage)
+                // zone de l'attaque
+                g.drawRect(((Personnage) entite).getHitBoxAttaque().x, ((Personnage) entite).getHitBoxAttaque().y, ((Personnage) entite).getHitBoxAttaque().width, ((Personnage) entite).getHitBoxAttaque().height);
         }
 
         // barre de vie pour les monstres 

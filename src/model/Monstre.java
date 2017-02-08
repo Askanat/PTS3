@@ -25,9 +25,9 @@ public class Monstre extends Personnage {
     private Rectangle hitBoxVue;
 
     public Monstre(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, double coeffArmure, double coeffVie, double coeffMana, double coeffDegat,
-                   String texture, int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, int distanceVisibilite, Sort sort) {
+                   String texture, int positionX, int positionY, int vitesseDeDeplacementEnPixelX, int vitesseDeDeplacementEnPixelY, int distanceVisibilite, Sort sort, Jeu jeu) {
 
-        super(nom, niveau, largeurDevant, largeurDerriere, hauteurHaut, hauteurBas, texture, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY, 0, 0, 0);
+        super(nom, niveau, largeurDevant, largeurDerriere, hauteurHaut, hauteurBas, texture, positionX, positionY, vitesseDeDeplacementEnPixelX, vitesseDeDeplacementEnPixelY, 0, 0, 0, jeu);
 
         vieMax = (int) (coeffVie * niveau);
         vie = vieMax;
@@ -61,25 +61,40 @@ public class Monstre extends Personnage {
         mouvementAleatoireDirection = false;
 
         hitBoxVue = new Rectangle();
-        System.out.println("nom:" + nom + ", niveau:" + niveau + ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
-                degatMax + ", armureMax:" + armureMax + ", xpdonne: " + donneExperience());
-        System.out.println(sort.toString());
     }
 
     public int donneExperience() {
         return (int) (niveau * (coeffArmure + coeffDegat + coeffMana + coeffVie));
     }
 
-    public void appelleSort() {
-        sortUtilise = sort;
-        sortUtilise.setPositionX(getPositionX());
-        sortUtilise.setPositionY(getPositionY());
+    public Sort appelleSort() {
+        Sort sortUtilise = new Sort(sort);
+        sortUtilise.setPositionX(getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() : getLargeurDerriere()));
+        sortUtilise.setPositionY(getPositionY() - hauteurBas);
+        sortUtilise.setDeplacement(true);
         sortUtilise.setDirectionOrientation(getDirectionOrientation());
+        sortUtilise.setVecteurDeplacementEnX((getDirectionOrientation() == Direction.GAUCHE ? -1 : 1));
+        return sortUtilise;
     }
 
     public void attaquer(Personnage cible) {
-        if (collision(getHitBoxAttaque(), cible.getHitBoxCorps())) {
-            cible.recevoirDegats(getDegats());
+        if (collision(getHitBoxAttaque(), cible.getHitBoxCorps())) { // attaque de près
+            tempsAttaque++;
+
+            if (tempsAttaque % 20 == 0) {
+                setAttaquer(true);
+                cible.recevoirDegats(getDegats());
+            }
+
+        } else if (collision(getHitBoxZoneAttaque(), cible.getHitBoxCorps())) { // attaque de loin (avec sort)
+            tempsAttaque++;
+
+            if (tempsAttaque % 20 == 0) {
+                setAttaquer(true);
+                jeu.setSortMonstre(appelleSort());
+            }
+        } else {
+            tempsAttaque = 0;
         }
     }
 
@@ -117,18 +132,9 @@ public class Monstre extends Personnage {
             }
         }
 
+
         // si le héro est dans le champs d'attaque du monstre
-        if (collision(getHitBoxAttaque(), hero.getHitBoxCorps())) {
-            tempsAttaque++;
-
-            if (tempsAttaque % 20 == 0) {
-                setAttaquer(true);
-
-                attaquer(hero);
-            }
-        } else {
-            tempsAttaque = 0;
-        }
+        attaquer(hero);
     }
 
     public void upgrade() {

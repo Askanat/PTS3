@@ -254,7 +254,7 @@ public class BDD {
         try {
             spell = instruction.executeQuery("SELECT * from spell;");
             while (spell.next()) {
-                if(spell.getString("unlockSpell").equals("0")) {
+                if (spell.getString("unlockSpell").equals("0")) {
                     bool = false;
                 } else {
                     bool = true;
@@ -277,27 +277,27 @@ public class BDD {
             while (effet.next()) {
                 result.add(new Effet(Integer.parseInt(effet.getString("idEffet")), effet.getString("libelleEffet"), Integer.parseInt(effet.getString("duree")), Integer.parseInt(effet.getString("degatParSec")), effet.getString("textureEffet")));
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Donnees charger effet : " + e);
         }
 
         return result;
     }
 
-    public void sauvegardeFlux(int idHero, Hero hero) throws IOException{
-        System.out.print("Sauvegarde : ");hero.afficherEtat();
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Save/Save"+idHero+".txt"));
+    public void sauvegardeFlux(int idHero, Hero hero) throws IOException {
+        System.out.print("Sauvegarde : " + hero.toString());
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Save/Save" + idHero + ".txt"));
         oos.writeObject(hero);
         oos.close();
     }
 
     public Hero chargementFlux(int idHero) throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Save/Save"+idHero+".txt"));
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Save/Save" + idHero + ".txt"));
         Hero loadHero = new Hero((Hero) ois.readObject());
-        System.out.print("Chargement : "); loadHero.afficherEtat();
+        System.out.print("Chargement : " + loadHero.toString());
         return loadHero;
     }
-    
+
     public boolean isBDD() {
         return bddIsOk;
     }

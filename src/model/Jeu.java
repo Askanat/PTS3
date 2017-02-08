@@ -18,15 +18,20 @@ public class Jeu {
 
     public static final int GRAVITE = Fenetre.adapterResolutionEnY(8);
 
+    // à enlever
+    private ArrayList<Sort> allSort;
+    private ArrayList<Effet> allEffet;
+
+
     private int temps;
 
     private Hero hero;
     private ArrayList<Monstre> tableauMonstre;
-    private ArrayList<Sort> allSort;
-    private ArrayList<Effet> allEffet;
+    private ArrayList<Sort> tableauSortHero;
+    private ArrayList<Sort> tableauSortMonstre;
 
-    private ArrayList<Integer> indiceSuppressionMonstre;
     private boolean suppressionHero;
+    private ArrayList<Integer> indiceSuppressionMonstre;
 
     private Niveau niveau;
     private BDD bdd;
@@ -54,16 +59,20 @@ public class Jeu {
             e.printStackTrace();
         }*/
 
+        hero = null;
         tableauMonstre = new ArrayList<>();
+        tableauSortHero = new ArrayList<Sort>();
+        tableauSortMonstre = new ArrayList<Sort>();
+
+        suppressionHero = false;
+        indiceSuppressionMonstre = new ArrayList<Integer>();
+
         temps = 0;
         pause = false;
         zoneSafe = true;
 
         allSort = bdd.chargerSort();
         allEffet = bdd.chargerEffet();
-
-        suppressionHero = false;
-        indiceSuppressionMonstre = new ArrayList<Integer>();
     }
 
     public void sauvegardeHero() {
@@ -111,7 +120,7 @@ public class Jeu {
             hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)), Integer.parseInt(donneesHero.get(3)),
                     Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)), Double.parseDouble(donneesHero.get(6)),
                     Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)), Double.parseDouble(donneesHero.get(9)),
-                    Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0));
+                    Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0), this);
         } else {
             try {
                 hero = bdd.chargementFlux(id);
@@ -124,9 +133,9 @@ public class Jeu {
     public void updateEntite() {
 
         // supprime monstre
-        for (int i = indiceSuppressionMonstre.size(); i>0; i--) {
-            getHero().recevoirExperience(getMonstre(i-1));
-            supprimeMonstre(i-1);
+        for (int i = indiceSuppressionMonstre.size(); i > 0; i--) {
+            getHero().recevoirExperience(getMonstre(i - 1));
+            supprimeMonstre(i - 1);
         }
 
         // met à jour le niveau et sauvegarde si gain de niveau
@@ -162,7 +171,7 @@ public class Jeu {
                 Integer.parseInt(donneesMonstre.get(3)), Integer.parseInt(donneesMonstre.get(4)), Double.parseDouble(donneesMonstre.get(5)),
                 Double.parseDouble(donneesMonstre.get(6)), Double.parseDouble(donneesMonstre.get(7)), Double.parseDouble(donneesMonstre.get(8)),
                 donneesMonstre.get(12), positionX, positionY, Integer.parseInt(donneesMonstre.get(9)), Integer.parseInt(donneesMonstre.get(10)), Integer.parseInt(donneesMonstre.get(11)),
-                getSort(Integer.parseInt(donneesMonstre.get(13)) - 1)));
+                getSort(Integer.parseInt(donneesMonstre.get(13)) - 1), this));
     }
 
     public Monstre getMonstre(int i) {
@@ -286,6 +295,19 @@ public class Jeu {
 
     public boolean getSuppressionHero() {
         return suppressionHero;
+    }
+
+    public void setSortMonstre(Sort sort) {
+        tableauSortMonstre.add(sort);
+    }
+
+    public int getSizeSortMonstre() {
+        return tableauSortMonstre.size();
+    }
+
+    public Sort getSortMonstre(int i) {
+
+        return tableauSortMonstre.get(i);
     }
 
     public void achatItem(int id) {
