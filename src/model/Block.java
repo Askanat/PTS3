@@ -1,5 +1,7 @@
 package model;
 
+import java.lang.reflect.Field;
+
 /*
  * Les blocks constituant un niveau
  *
@@ -49,4 +51,9 @@ public class Block {
 	CAISSE = 26,
 
 	PICS = 51;
+	
+	public static int getNbBlocks() {
+		Field[] fields = Block.class.getDeclaredFields();
+		return fields.length;
+	}
 }
