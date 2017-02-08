@@ -3,20 +3,23 @@ package model;
 import java.util.Random;
 
 public class Niveau {
-        private int tableau[][];
+    private int tableau[][];
     private int nb_plateformes;
     private int taille_x;
     private int taille_y;
     private int[] epaisseur;
     private Direction entree;
+    private Random rand = new Random();
 
-    private static final int ESPACE_PLATEFORME = 6;
+    private static final int TAILLE_SEGMENT = 20;
+    private static final int ESPACE_PLATEFORME = 9;
     private static final int TAILLE_VIDE_MAX = 8;
     private static final int TAILLE_VIDE_FOND_MAX = 2;
     private static final int EPAISSEUR_PLATEFORME_MIN = 1;
     private static final int EPAISSEUR_PLATEFORME_MAX = 2;
     private static final int NB_PICS_MIN = 1;
     private static final int NB_PICS_MAX = 4;
+    private static final int ESPACE_MIN_ENTRE_PICS = 3;
 
     public Niveau(int _taille_x, int _nb_plateformes, Direction _entree) {
         // Ligne du haut et ligne du bas
@@ -64,7 +67,6 @@ public class Niveau {
     // Calcule l'epaisseur de toutes les lignes et calcule taille_y
 
     private void genTailleY() {
-        Random rand = new Random();
         int i;
 
         for (i = 0; i < nb_plateformes; i++)
@@ -114,7 +116,6 @@ public class Niveau {
     }
 
     private void remplirPlateformeFondSup(int plateforme) {
-        Random rand = new Random();
         int y = getEspaceAvantPlateforme(plateforme) - 2;
         int r;
 
@@ -137,11 +138,37 @@ public class Niveau {
             tableau[y][i] = Block.MUR;
     }
 
+    // Ajoute des pics à une ligne donnée
+    
+    private void ajoutPicsLigne(int debut, int fin, int y) {
+        int i, ajoutPic = 0, videCompteur = 0, espaceAvantPic = 5000, nbPicsAffile = 0;
+
+        for(i = debut; i < fin; i++) {
+            if(ajoutPic > 0)
+                ajoutPic = rand.nextInt(2) + 1;
+            else
+                ajoutPic = rand.nextInt(5) + 1;
+
+            if(ajoutPic == 1 && espaceAvantPic >= ESPACE_MIN_ENTRE_PICS) {
+                tableau[y][i] = Block.PICS;
+
+                if(tableau[y][i - 1] == Block.PICS)
+                    nbPicsAffile++;
+
+                if(nbPicsAffile > NB_PICS_MAX - 2)
+                    espaceAvantPic = 0;
+            }
+            else if(tableau[y][i - 1] == Block.PICS)
+                espaceAvantPic = 0;
+            else
+                espaceAvantPic++;
+        }
+    }
+    
     // Ajoute des trous à une ligne donnée
 
     private void remplirLigneVide(int debut, int fin, int posLigne, int epaisseur, int y, int videMax) {
         int i, faireVide = 0, videCompteur = 0;
-        Random rand = new Random();
 
         if(debut == 1)
             debut = 2;
@@ -183,7 +210,7 @@ public class Niveau {
              * On fait du vide si faireVide == 1 et que le nombre maximum de 
              * cases vide d'affilé n'a pas été dépassé
              */
-            
+
             if(faireVide == 1 && videCompteur < videMax) {
                 tableau[y][i] = Block.MUR_FOND;
                 videCompteur++;
@@ -200,8 +227,29 @@ public class Niveau {
      */
 
     private void remplirLigne(int debut, int fin, int posLigne, int epaisseur, int y, int videMax) {
+        final int VIDE = 0, PICS = 1;
+        final int NB_CASES = (fin - debut);
+        int curSegment = 0, debutSegment = debut, finSegment = TAILLE_SEGMENT;
+
         remplirLigneMur(debut, fin, y);
-        remplirLigneVide(debut, fin, posLigne, epaisseur, y, videMax);
+
+        for(int i = 0; i < NB_CASES; i++) {
+            if(i % TAILLE_SEGMENT == 0) {
+                int type = rand.nextInt(PICS + 1);
+
+                if(type == VIDE)
+                    remplirLigneVide(debutSegment, finSegment, posLigne, epaisseur, y, videMax);
+                else if(type == PICS && posLigne == 0 && debutSegment > debut && finSegment < fin)
+                    ajoutPicsLigne(debutSegment, finSegment, y);
+
+                debutSegment = finSegment;
+                
+                if((finSegment = debutSegment + TAILLE_SEGMENT) > fin)
+                    finSegment = fin;
+
+                curSegment++;
+            }
+        }
     }
 
     // Construit un escalier afin d'accéder à une plateforme
@@ -291,7 +339,6 @@ public class Niveau {
     // Generation du niveau
 
     public void gen() {
-        Random rand = new Random();
         int i;
         Direction dir = entree;
 
