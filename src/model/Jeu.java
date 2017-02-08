@@ -175,7 +175,6 @@ public class Jeu {
     }
 
     public Monstre getMonstre(int i) {
-
         return tableauMonstre.get(i);
     }
 

@@ -13,8 +13,8 @@ public class Sort extends Entite {
     private int degatSpell, effet_id, porteSpell, coutManaSpell, idSpell;
     private boolean unlock;
 
-    public Sort(int idSpell, int degatSpell, int effet_id, int porteSpell, int coutManaSpell, String libelleSpell, String textureSpell, boolean unlock, int vitesseDeplacement) {
-        super(libelleSpell, 10, 10, 10, 10, textureSpell, 0, 0, vitesseDeplacement, 0);
+    public Sort(int idSpell, int degatSpell, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, int effet_id, int porteSpell, int coutManaSpell, String libelleSpell, String textureSpell, boolean unlock, int vitesseDeplacement) {
+        super(libelleSpell, largeurDevant, largeurDerriere, hauteurHaut, hauteurBas, textureSpell, 0, 0, vitesseDeplacement, 0);
         this.idSpell = idSpell;
         this.degatSpell = degatSpell;
         this.effet_id = effet_id;
@@ -24,7 +24,7 @@ public class Sort extends Entite {
     }
 
     public Sort(Sort s) {
-        super(s.nom, 10, 10, 10, 10, s.texture, 0, 0, s.vitesseDeDeplacementEnX, 0);
+        super(s.nom, s.largeurDevant, s.largeurDerriere, s.hauteurHaut, s.hauteurBas, s.texture, 0, 0, s.vitesseDeDeplacementEnX, 0);
         this.idSpell = s.idSpell;
         this.degatSpell = s.degatSpell;
         this.effet_id = s.effet_id;
