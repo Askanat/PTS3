@@ -127,37 +127,7 @@ public class Entite {
         this.directionOrientation = directionOrientation;
     }
 
-    public void deplacerADroite() {
-        setDeplacement(true);
-        setDirectionOrientation(Direction.DROITE);
-        setVecteurDeplacementEnX(1);
-    }
-
-    public void sauter() {
-        if (getCollision()) setVitesseDeDeplacementEnY(0 - vitesseDeSaut);
-    }
-
-    public void deplacerAGauche() {
-        setDeplacement(true);
-        setDirectionOrientation(Direction.GAUCHE);
-        setVecteurDeplacementEnX(-1);
-    }
-
-    public void deplacer() {
-        setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
-        setPositionY(getPositionY() + getVitesseDeDeplacementEnY());
-        setVecteurDeplacementEnX(0);
-
-        setCollision();
-        if (!getCollision())
-            setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
-        else if (getCollision()) {
-            setPositionY(-Fenetre.adapterResolutionEnY(200) + ZONE.height - hauteurBas);
-            setVitesseDeDeplacementEnY(0);
-        }
-
-        setDeplacement(false);
-    }
+    public void deplacer() {}
 
     public void setVecteurDeplacementEnX(int x) {
         vecteurDeplacementEnX = x;
@@ -195,5 +165,13 @@ public class Entite {
                 getHauteurHaut() + getHauteurBas()
         );
         return hitBoxCorps;
+    }
+
+    public String toString() {
+        return ", nom : " + nom + ", texture : " + texture + ", positionX : " + positionX + ", positionY : " + positionY +
+                ", vecteurDeplacementEnX : " + vecteurDeplacementEnX + ", vecteurDeplacementEnY : " + vecteurDeplacementEnY +
+                ", vitesseDeDeplacementEnX : " + vitesseDeDeplacementEnX + ", vitesseDeDeplacementEnY : " + vitesseDeDeplacementEnY +
+                ", vitesseDeSaut : " + vitesseDeSaut + ", largeurDevant : " + largeurDevant + ", largeurDerriere : " + largeurDerriere +
+                ", hauteurHaut : " + hauteurHaut + ", hauteurBas : " + hauteurBas + ", directionOrientation : " + directionOrientation;
     }
 }

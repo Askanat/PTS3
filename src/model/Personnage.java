@@ -5,6 +5,9 @@ import vue.Fenetre;
 import java.awt.*;
 import java.io.Serializable;
 
+import static model.Jeu.GRAVITE;
+import static vue.FenetreJeu.ZONE;
+
 
 /**
  * Created by bastien on 29/09/16.
@@ -22,19 +25,56 @@ public abstract class Personnage extends Entite implements Serializable {
     protected int distanceDeAttaqueDeOrigineAX;
     protected int distanceDeAttaqueDeOrigineAY;
 
-    protected Sort sortUtilise;
+    protected Jeu jeu;
 
 
     public Personnage(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, String texture,
                       int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut, int porteeDeAttaque,
-                      int distanceDeAttaqueDeOrigineAX, int distanceDeAttaqueDeOrigineAY) {
+                      int distanceDeAttaqueDeOrigineAX, int distanceDeAttaqueDeOrigineAY, Jeu jeu) {
         super(nom, largeurDevant, largeurDerriere, hauteurHaut, hauteurBas, texture, positionX, positionY, vitesseDeDeplacementEnX, vitesseDeSaut);
+
+        this.jeu = jeu;
 
         this.niveau = niveau;
 
         this.porteeDeAttaque = Fenetre.adapterResolutionEnX(porteeDeAttaque);
         this.distanceDeAttaqueDeOrigineAX = Fenetre.adapterResolutionEnX(distanceDeAttaqueDeOrigineAX);
         this.distanceDeAttaqueDeOrigineAY = Fenetre.adapterResolutionEnY(distanceDeAttaqueDeOrigineAY);
+    }
+
+    public void deplacerADroite() {
+        setDeplacement(true);
+        setDirectionOrientation(Direction.DROITE);
+        setVecteurDeplacementEnX(1);
+    }
+
+    public void sauter() {
+        if (getCollision()) setVitesseDeDeplacementEnY(0 - vitesseDeSaut);
+    }
+
+    public void deplacerAGauche() {
+        setDeplacement(true);
+        setDirectionOrientation(Direction.GAUCHE);
+        setVecteurDeplacementEnX(-1);
+    }
+
+    public void deplacer() {
+        setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
+        setVecteurDeplacementEnX(0);
+
+        if (vitesseDeSaut != 0) {
+            setPositionY(getPositionY() + getVitesseDeDeplacementEnY());
+
+            setCollision();
+            if (!getCollision())
+                setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
+            else if (getCollision()) {
+                setPositionY(-Fenetre.adapterResolutionEnY(200) + ZONE.height - hauteurBas);
+                setVitesseDeDeplacementEnY(0);
+            }
+        }
+
+        setDeplacement(false);
     }
 
     public void recevoirDegats(int degats) {
@@ -106,16 +146,11 @@ public abstract class Personnage extends Entite implements Serializable {
         return degats;
     }
 
-    public void afficherEtat() {
-        System.out.println(
-
-                "nom : " + nom +
-                        ", vie : " + vie +
-                        ", vieMax : " + vieMax +
-                        ", degats : " + degats +
-                        ", positionX : " + positionX +
-                        ", positionY : " + positionY
-        );
+    public String toString() {
+        return super.toString() + ", niveau : " + niveau + ", vie : " + vie + ", vieMax : " + vieMax + ", mana : " + mana + ", manaMax : " + manaMax +
+                ", degats : " + degats + ", degatMax : " + degatMax + ", armure : " + armure + ", armureMax : " + armureMax +
+                ", porteeDeAttaque : " + porteeDeAttaque + ", distanceDeAttaqueDeOrigineAX : " + distanceDeAttaqueDeOrigineAX +
+                ", distanceDeAttaqueDeOrigineAY : " + distanceDeAttaqueDeOrigineAY;
     }
 
     public Rectangle getHitBoxAttaque() {
