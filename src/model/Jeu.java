@@ -134,8 +134,8 @@ public class Jeu {
 
         // supprime monstre
         for (int i = indiceSuppressionMonstre.size(); i > 0; i--) {
-            getHero().recevoirExperience(getMonstre(i - 1));
-            supprimeMonstre(i - 1);
+            getHero().recevoirExperience(getMonstre(indiceSuppressionMonstre.get(i - 1)));
+            supprimeMonstre(indiceSuppressionMonstre.get(i - 1));
         }
 
         // met à jour le niveau et sauvegarde si gain de niveau

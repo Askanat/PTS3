@@ -133,7 +133,6 @@ public class ControlTimer extends Control implements ActionListener {
                     fenetre.panelFenetreJeu.monstre.get(i).selectionnerMorceauSpriteDeplacement();
                     if (!jeu.getMonstre(i).estVivant())
                         jeu.addIndiceSuppressionMonstre(i);
-
                     jeu.getMonstre(i).upgrade();
                 }
 
