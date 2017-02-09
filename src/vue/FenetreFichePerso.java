@@ -107,7 +107,7 @@ public class FenetreFichePerso extends JPanel {
         competence = new JButton[8];
 
         for (int i = 0; i < 8; i++) {
-            competence[i] = new JButton("pouet");
+            competence[i] = new JButton();
             competence[i].setActionCommand("Competence" + i);
             this.add(competence[i]);
         }
