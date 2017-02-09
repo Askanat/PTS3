@@ -323,8 +323,6 @@ public class BDD {
     public Equipement dropEquipement(int idRand) {
         ResultSet item;
         Equipement result = null;
-        System.out.println("rand : " + idRand);
-
         try {
             item = instruction.executeQuery("SELECT * FROM item WHERE idItem ="+idRand+";");
             while(item.next())
