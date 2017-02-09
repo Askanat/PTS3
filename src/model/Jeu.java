@@ -32,6 +32,8 @@ public class Jeu {
 
     private boolean suppressionHero;
     private ArrayList<Integer> indiceSuppressionMonstre;
+    private ArrayList<Integer> indiceSuppressionSortMonstre;
+
 
     private Niveau niveau;
     private BDD bdd;
@@ -66,6 +68,7 @@ public class Jeu {
 
         suppressionHero = false;
         indiceSuppressionMonstre = new ArrayList<Integer>();
+        indiceSuppressionSortMonstre = new ArrayList<Integer>();
 
         temps = 0;
         pause = false;
@@ -132,11 +135,15 @@ public class Jeu {
 
     public void updateEntite() {
 
-        // supprime monstre
+        // supprime les monstres
         for (int i = indiceSuppressionMonstre.size(); i > 0; i--) {
             getHero().recevoirExperience(getMonstre(indiceSuppressionMonstre.get(i - 1)));
             supprimeMonstre(indiceSuppressionMonstre.get(i - 1));
         }
+
+        // supprime les sorts
+        for (int i = indiceSuppressionSortMonstre.size(); i > 0; i--)
+            supprimeSortMonstre(indiceSuppressionSortMonstre.get(i - 1));
 
         // met à jour le niveau et sauvegarde si gain de niveau
         int niveau = getHero().getNiveau();
@@ -156,6 +163,10 @@ public class Jeu {
 
     public void supprimeHero() {
         hero = null;
+    }
+
+    public void supprimeSortMonstre(int i) {
+        tableauSortMonstre.remove(i);
     }
 
     public Hero getHero() {
@@ -286,6 +297,18 @@ public class Jeu {
 
     public ArrayList<Integer> getIndiceSuppressionMonstre() {
         return indiceSuppressionMonstre;
+    }
+
+    public void addIndiceSuppressionSortMonstre(int indice) {
+        indiceSuppressionSortMonstre.add(indice);
+    }
+
+    public void removeIndiceSuppressionSortMonstre(int indice) {
+        indiceSuppressionSortMonstre.remove(indice);
+    }
+
+    public ArrayList<Integer> getIndiceSuppressionSortMonstre() {
+        return indiceSuppressionSortMonstre;
     }
 
     public void setSuppressionHero(boolean suppressionHero) {

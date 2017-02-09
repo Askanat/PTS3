@@ -68,12 +68,16 @@ public class Monstre extends Personnage {
     }
 
     public Sort appelleSort() {
-        Sort sortUtilise = (Sort) sort.clone();
+        Sort sortUtilise = null;
+        sortUtilise = (Sort) sort.clone();
+        setMana(getMana() - sort.getCoutManaSpell());
+        sortUtilise.setDegatSpell(sort.getDegatSpell() + getDegats());
         sortUtilise.setPositionX(getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() : getLargeurDerriere()));
         sortUtilise.setPositionY(getPositionY() - hauteurBas);
         sortUtilise.setDeplacement(true);
         sortUtilise.setDirectionOrientation(getDirectionOrientation());
         sortUtilise.setVecteurDeplacementEnX((getDirectionOrientation() == Direction.GAUCHE ? -1 : 1));
+
         return sortUtilise;
     }
 
@@ -89,7 +93,7 @@ public class Monstre extends Personnage {
         } else if (collision(getHitBoxZoneAttaque(), cible.getHitBoxCorps())) { // attaque de loin (avec sort)
             tempsAttaque++;
 
-            if (tempsAttaque % 25 == 0) {
+            if (tempsAttaque % sort.getTempsDeRechargement() == 0 && getMana() >= sort.getCoutManaSpell()) {
                 setAttaquer(true);
                 jeu.setSortMonstre(appelleSort());
             }
@@ -98,7 +102,9 @@ public class Monstre extends Personnage {
         }
     }
 
-    public void update(Hero hero) {
+    public boolean update(Hero hero) {
+        boolean destruction = false;
+
         // Si le hero est dans le champs de vision du monstre
         if (collision(getHitBoxVue(), hero.getHitBoxCorps())) {
             // déplacement
@@ -135,6 +141,12 @@ public class Monstre extends Personnage {
 
         // si le héro est dans le champs d'attaque du monstre
         attaquer(hero);
+
+        // test si il est mort
+        if (!estVivant())
+            destruction = true;
+
+        return destruction;
     }
 
     public void upgrade() {
