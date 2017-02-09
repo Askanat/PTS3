@@ -395,7 +395,7 @@ public class BDD {
 
     public void possede(int idHero, int idItem) {
         try {
-            instruction.executeUpdate("INSERT INTO possede VALUES("+idHero+","+idItem+");");
+            instruction.executeUpdate("INSERT INTO possede VALUES(default,"+idHero+","+idItem+");");
         } catch (Exception e) {
             System.out.println("Possede problem : " + e);
         }

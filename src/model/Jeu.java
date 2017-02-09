@@ -145,6 +145,13 @@ public class Jeu {
         for (int i = indiceSuppressionMonstre.size(); i > 0; i--) {
             getHero().recevoirExperience(getMonstre(indiceSuppressionMonstre.get(i - 1)));
             supprimeMonstre(indiceSuppressionMonstre.get(i - 1));
+            if(bdd.placeInventaire() < 30) {
+                hero.addItemInInventaire(bdd.dropEquipement((int)(Math.random()*(bdd.nbItem()-1)+1)));
+                System.out.println((bdd.placeInventaire()-1));
+                System.out.println("Tu as récuperé : " + hero.inventaire.get(bdd.placeInventaire()-1).getNom());
+            } else {
+                System.out.println("Tu es plein !!");
+            }
         }
 
         // supprime les sorts
@@ -161,13 +168,6 @@ public class Jeu {
 
     public void supprimeMonstre(int i) {
         tableauMonstre.remove(i);
-        if(bdd.placeInventaire() < 30) {
-            hero.addItemInInventaire(bdd.dropEquipement((int)(Math.random()*(bdd.nbItem()-1)+1)));
-            System.out.println((bdd.placeInventaire()-1));
-            System.out.println("Tu as récuperé : " + hero.inventaire.get(bdd.placeInventaire()-1).getNom());
-        } else {
-            System.out.println("Tu es plein !!");
-        }
     }
 
     public void supprimeMonstre() {

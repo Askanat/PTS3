@@ -144,10 +144,11 @@ INSERT INTO item VALUES (default, "Epee noir", 0, 0, 0, 0, 0, 1.2, 0,"images/Equ
 
 
 CREATE TABLE possede (
+  idPossede int AUTO_INCREMENT NOT NULL,
   idPersoPossede int,
   idItemPossede int,
 
-  PRIMARY KEY(idPersoPossede,idItemPossede),
+  PRIMARY KEY(idPossede),
 
   CONSTRAINT fk_idItemPossede_perso FOREIGN KEY (idItemPossede) REFERENCES item(idItem),
   CONSTRAINT fk_idPersoPossede_item FOREIGN KEY (idPersoPossede) REFERENCES personnage(idPerso)
