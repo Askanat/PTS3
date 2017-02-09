@@ -345,7 +345,6 @@ public class BDD {
         } catch (Exception e) {
             System.out.println("Count item : " + e);
         }
-
         return result;
     }
 
@@ -402,4 +401,23 @@ public class BDD {
         }
     }
 
+    public int[][] getPossede() {
+        ResultSet possede;
+        int[][] result = new int[placeInventaire()][2];
+        int i=0,j=0;
+
+        try {
+            possede = instruction.executeQuery("SELECT * FROM possede");
+            while(possede.next()) {
+                System.out.println("IdPerso(i) : " +  Integer.parseInt(possede.getString("idPersoPossede")) + ", IdItem(j) : " + Integer.parseInt(possede.getString("idItemPossede")) );
+                result[i][j]= Integer.parseInt(possede.getString("idPersoPossede"));
+                result[i][j+1] = Integer.parseInt(possede.getString("idItemPossede"));
+                i++;
+            }
+        } catch(Exception e) {
+            System.out.println("Recup possede : " + e);
+        }
+
+        return result;
+    }
 }

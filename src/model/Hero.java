@@ -63,6 +63,8 @@ public class Hero extends Personnage implements Serializable {
         heroSort = bdd.chargerSort();
 
         inventaire = new ArrayList<>();
+
+        loadInventaire();
     }
 
     public Hero(Hero h) {
@@ -300,5 +302,15 @@ public class Hero extends Personnage implements Serializable {
     public void addItemInInventaire(Equipement equipement) {
         this.inventaire.add(equipement);
         bdd.possede(getIdHero(), equipement.getIdItem());
+    }
+
+    public void loadInventaire() {
+        int[][] loadInventaire = bdd.getPossede();
+
+        for(int i = 0;i<bdd.placeInventaire();i++) {
+            if(getIdHero() == loadInventaire[i][0]) {
+                inventaire.add(bdd.dropEquipement(loadInventaire[i][1]));
+            }
+        }
     }
 }
