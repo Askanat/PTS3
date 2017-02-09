@@ -8,29 +8,35 @@ import static vue.FenetreJeu.ZONE;
 /**
  * Created by leo on 23/01/17.
  */
-public class Sort extends Entite {
+public class Sort extends Entite implements Cloneable {
 
-    private int degatSpell, effet_id, porteSpell, coutManaSpell, idSpell;
+    private int degatSpell, effet_id, porteSpell, coutManaSpell, idSpell, tempsDeRechargement;
     private boolean unlock;
 
-    public Sort(int idSpell, int degatSpell, int effet_id, int porteSpell, int coutManaSpell, String libelleSpell, String textureSpell, boolean unlock, int vitesseDeplacement) {
-        super(libelleSpell, 10, 10, 10, 10, textureSpell, 0, 0, vitesseDeplacement, 0);
+    private int tempsDeApparition;
+
+    public Sort(int idSpell, int degatSpell, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, int effet_id, int porteSpell, int coutManaSpell, String libelleSpell, String textureSpell, boolean unlock, int vitesseDeplacement, int tempsDeRechargement) {
+        super(libelleSpell, largeurDevant, largeurDerriere, hauteurHaut, hauteurBas, textureSpell, 0, 0, vitesseDeplacement, 0);
         this.idSpell = idSpell;
         this.degatSpell = degatSpell;
         this.effet_id = effet_id;
         this.porteSpell = porteSpell;
         this.coutManaSpell = coutManaSpell;
         this.unlock = unlock;
+        this.tempsDeRechargement = tempsDeRechargement;
+
+        tempsDeApparition = 0;
     }
 
-    public Sort(Sort s) {
-        super(s.nom, 10, 10, 10, 10, s.texture, 0, 0, s.vitesseDeDeplacementEnX, 0);
-        this.idSpell = s.idSpell;
-        this.degatSpell = s.degatSpell;
-        this.effet_id = s.effet_id;
-        this.porteSpell = s.porteSpell;
-        this.coutManaSpell = s.coutManaSpell;
-        this.unlock = s.unlock;
+    public Object clone() {
+        Sort sort = null;
+        try {
+            sort = (Sort) super.clone();
+        } catch (CloneNotSupportedException cnse) {
+            cnse.printStackTrace(System.err);
+        }
+
+        return sort;
     }
 
     public void deplacer() {
@@ -49,12 +55,33 @@ public class Sort extends Entite {
         }
     }
 
+    public boolean update(Hero hero) {
+        boolean destruction = false;
+        tempsDeApparition++;
+
+        deplacer();
+
+        if (collision(getHitBoxCorps(), hero.getHitBoxCorps()) && tempsDeApparition >= 2) {
+            hero.recevoirDegats(getDegatSpell());
+            destruction = true;
+        }
+
+        if (tempsDeApparition >= 50)
+            destruction = true;
+
+        return destruction;
+    }
+
     public int getIdSpell() {
         return idSpell;
     }
 
     public int getCoutManaSpell() {
         return coutManaSpell;
+    }
+
+    public void setDegatSpell(int degatSpell) {
+        this.degatSpell = degatSpell;
     }
 
     public int getDegatSpell() {
@@ -71,6 +98,10 @@ public class Sort extends Entite {
 
     public void unlockSpell() {
         unlock = true;
+    }
+
+    public int getTempsDeRechargement() {
+        return tempsDeRechargement;
     }
 
     public String toString() {

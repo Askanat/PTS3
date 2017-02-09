@@ -140,6 +140,8 @@ public class Hero extends Personnage implements Serializable {
         if (checkNiveauSup()) {
             setNiveau(getNiveau() + 1);
             setExperience(getExperience() - getExperienceMax());
+            setVie(getVieMax());
+            setMana(getManaMax());
             update_ExperienceMax();
             gainPointCaracteristique();
             setPointCompetence();

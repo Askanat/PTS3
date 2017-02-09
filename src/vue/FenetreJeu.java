@@ -93,6 +93,13 @@ public class FenetreJeu extends JPanel {
             jeu.removeIndiceSuppressionMonstre(i - 1);
         }
 
+        // suppression sort graphiquement
+        for (int i = jeu.getIndiceSuppressionSortMonstre().size(); i > 0; i--) {
+            int valeur = jeu.getIndiceSuppressionSortMonstre().get(i - 1);
+            sortMonstre.remove(valeur);
+            jeu.removeIndiceSuppressionSortMonstre(i - 1);
+        }
+
         // changement de zone : zone-safe <-> zone-donjon
         if (jeu.getHero().getPositionX() > ZONE.width) {
             changerMap("map/mapFenetreDonjon.txt");
