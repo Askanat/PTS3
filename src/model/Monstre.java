@@ -104,6 +104,16 @@ public class Monstre extends Personnage {
 
     public boolean update(Hero hero) {
         boolean destruction = false;
+        temps++;
+
+        // regénère mana et régénère vie
+        if (temps % tempsRegeneration == 0) {
+            regenerationMana();
+            regenerationVie();
+        }
+
+        // si le héro est dans le champs d'attaque du monstre
+        attaquer(hero);
 
         // Si le hero est dans le champs de vision du monstre
         if (collision(getHitBoxVue(), hero.getHitBoxCorps())) {
@@ -138,9 +148,6 @@ public class Monstre extends Personnage {
             }
         }
 
-
-        // si le héro est dans le champs d'attaque du monstre
-        attaquer(hero);
 
         // test si il est mort
         if (!estVivant())

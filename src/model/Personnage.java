@@ -25,6 +25,8 @@ public abstract class Personnage extends Entite implements Serializable {
     protected int distanceDeAttaqueDeOrigineAX;
     protected int distanceDeAttaqueDeOrigineAY;
 
+    protected int tempsRegeneration = 10, temps;
+
     protected Jeu jeu;
 
 
@@ -75,6 +77,29 @@ public abstract class Personnage extends Entite implements Serializable {
         }
 
         setDeplacement(false);
+    }
+
+    public void update() {
+        // regénère mana et régénère vie
+        regenerationMana();
+        regenerationVie();
+
+        // déplacement du héro
+        deplacer();
+    }
+
+    public void regenerationMana() {
+        setVie(getVie() + (int) (getVieMax() * 0.1));
+
+        if (getVie() > getVieMax())
+            setVie(getVieMax());
+    }
+
+    public void regenerationVie() {
+        setMana(getMana() + (int) (getManaMax() * 0.1));
+
+        if (getMana() > getManaMax())
+            setMana(getManaMax());
     }
 
     public void recevoirDegats(int degats) {
