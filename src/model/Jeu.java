@@ -21,6 +21,7 @@ public class Jeu {
     // à enlever
     private ArrayList<Sort> allSort;
     private ArrayList<Effet> allEffet;
+    private ArrayList<Equipement> allItem;
 
 
     private int temps;
@@ -76,6 +77,11 @@ public class Jeu {
 
         allSort = bdd.chargerSort();
         allEffet = bdd.chargerEffet();
+
+        allItem = bdd.chargerEquipement();
+
+        suppressionHero = false;
+        indiceSuppressionMonstre = new ArrayList<Integer>();
     }
 
     public void sauvegardeHero() {
@@ -155,6 +161,13 @@ public class Jeu {
 
     public void supprimeMonstre(int i) {
         tableauMonstre.remove(i);
+        if(bdd.placeInventaire() < 30) {
+            hero.addItemInInventaire(bdd.dropEquipement((int)(Math.random()*(bdd.nbItem()-1)+1)));
+            System.out.println((bdd.placeInventaire()-1));
+            System.out.println("Tu as récuperé : " + hero.inventaire.get(bdd.placeInventaire()-1).getNom());
+        } else {
+            System.out.println("Tu es plein !!");
+        }
     }
 
     public void supprimeMonstre() {
@@ -347,5 +360,9 @@ public class Jeu {
 
         getHero().setOr(getHero().getOr() + prix);
         //removeInventaire(id);
+    }
+
+    public Equipement getOneItem(int idItem) {
+        return allItem.get(idItem);
     }
 }
