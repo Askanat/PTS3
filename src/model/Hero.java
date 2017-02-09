@@ -132,6 +132,19 @@ public class Hero extends Personnage implements Serializable {
         }
     }
 
+    public void update() {
+        temps++;
+
+        // regénère mana et régénère vie
+        if (temps % tempsRegeneration == 0) {
+            regenerationMana();
+            regenerationVie();
+        }
+
+        // déplacement du héro
+        deplacer();
+    }
+
     // update les caracteristiques
     public void updateCaracteristique() {
         vieMax = (int) (constitution * COEF_VIE + VIE_DE_BASE);
@@ -291,7 +304,8 @@ public class Hero extends Personnage implements Serializable {
         );
         return r;
     }
-    public void setOr (int or){
+
+    public void setOr(int or) {
         this.or = or;
     }
 

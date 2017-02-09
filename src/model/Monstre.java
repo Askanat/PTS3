@@ -75,7 +75,7 @@ public class Monstre extends Personnage {
         Sort sortUtilise = null;
         sortUtilise = (Sort) sort.clone();
         setMana(getMana() - sort.getCoutManaSpell());
-        sortUtilise.setDegatSpell(sort.getDegatSpell() + getDegats());
+        sortUtilise.setDegatSpell(sort.getDegatSpell() + (int) (getDegats() * 0.5));
         sortUtilise.setPositionX(getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() : getLargeurDerriere()));
         sortUtilise.setPositionY(getPositionY() - hauteurBas);
         sortUtilise.setDeplacement(true);
@@ -192,6 +192,6 @@ public class Monstre extends Personnage {
     }
 
     public Equipement dropItem() {
-        return bdd.dropEquipement((int)(Math.random()*(bdd.nbItem()-1)+1));
+        return bdd.dropEquipement((int) (Math.random() * (bdd.nbItem() - 1) + 1));
     }
 }

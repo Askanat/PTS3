@@ -79,38 +79,29 @@ public abstract class Personnage extends Entite implements Serializable {
         setDeplacement(false);
     }
 
-    public void update() {
-        // regénère mana et régénère vie
-        regenerationMana();
-        regenerationVie();
-
-        // déplacement du héro
-        deplacer();
-    }
-
     public void regenerationMana() {
-        setVie(getVie() + (int) (getVieMax() * 0.1));
+        setVie(getVie() + ((int) (getVieMax() * 0.01) > 1 ? ((int) (getVieMax() * 0.01)) : 1));
 
         if (getVie() > getVieMax())
             setVie(getVieMax());
     }
 
     public void regenerationVie() {
-        setMana(getMana() + (int) (getManaMax() * 0.1));
+        setMana(getMana() + ((int) (getManaMax() * 0.02) > 1 ? ((int) (getManaMax() * 0.02)) : 1));
 
         if (getMana() > getManaMax())
             setMana(getManaMax());
     }
 
     public void recevoirDegats(int degats) {
+        System.out.println(getNom() + " LVL :" + getNiveau() + " armure : " + getArmure() + ", perd " + degats + " - " + (int) (getArmure() * 0.2) + " point de vie.");
 
-        if (degats < 0) degats = 0;
-
-        System.out.println(getNom() + " perd " + degats + " point de vie.");
-
+        degats = degats - (int) (getArmure() * 0.2);
+        if (degats < 0)
+            degats = 0;
         setVie(getVie() - degats);
-
-        if (getVie() < 0) setVie(0);
+        if (getVie() < 0)
+            setVie(0);
     }
 
     public void attaquer(Personnage cible) {
@@ -157,6 +148,14 @@ public abstract class Personnage extends Entite implements Serializable {
 
     public void setVieMax(int vieMax) {
         this.vieMax = vieMax;
+    }
+
+    public void setArmure(int armure) {
+        this.armure = armure;
+    }
+
+    public int getArmure() {
+        return armure;
     }
 
     public final int getVieMax() {
