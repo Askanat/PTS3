@@ -125,7 +125,7 @@ public class ControlTimer extends Control implements ActionListener {
 
                 // dessine le héro et le fait se déplacer
                 fenetre.panelFenetreJeu.hero.selectionnerMorceauSpriteDeplacement();
-                jeu.getHero().deplacer();
+                jeu.getHero().update();
 
                 // dessine les monstres et les fait intéragir
                 for (int i = 0; i < fenetre.panelFenetreJeu.monstre.size(); i++) {

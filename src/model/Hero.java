@@ -18,7 +18,6 @@ public class Hero extends Personnage implements Serializable {
     private double force, intelligence, constitution, resistance, limiteForce = 0, limiteIntelligence = 0, limiteConstitution = 0, limiteResistance = 0;
 
     ArrayList<Sort> heroSort;
-    ArrayList<Equipement> inventaire;
 
     private BDD bdd;
 
@@ -32,9 +31,9 @@ public class Hero extends Personnage implements Serializable {
     private final int DEGATS_DE_BASE = 5;
 
     public Hero(String nom, int niveau, int pointCompetence, int pointCaracteristique, double experience, double experienceMax, double forcePerso, double intelPerso,
-                double constiPerso, double resiPerso, int or, String texture, int positionX, int positionY) {
+                double constiPerso, double resiPerso, int or, String texture, int positionX, int positionY, Jeu jeu) {
 
-        super(nom, niveau, 52, 52, 81, 98, texture, positionX, positionY, 30, 60, 68, 8, 30);
+        super(nom, niveau, 52, 52, 81, 98, texture, positionX, positionY, 30, 60, 68, 8, 30, jeu);
 
         this.force = forcePerso;
         this.constitution = constiPerso;
@@ -61,18 +60,11 @@ public class Hero extends Personnage implements Serializable {
         bdd = new BDD();
 
         heroSort = bdd.chargerSort();
-        inventaire = new ArrayList<>();
-
-        /*System.out.println("nom:" + nom + ", niveau:" + niveau + ", pointCaracteristique:" + pointCaracteristique + ", pointCompetence:" + pointCompetence +
-                ", vieMax:" + vieMax + ", manaMax:" + manaMax + ", degatMax:" +
-                degatMax + ", armureMax:" + armureMax + ", experience:" + experience + ", experienceMax:" + experienceMax +
-                ", or:" + or + ", pointConstitution:" +
-                constitution + ", pointIntelligence:" + intelligence + ", pointForce:" + force + ", pointResistance:" + resistance);*/
     }
 
     public Hero(Hero h) {
 
-        super(h.nom, h.niveau, 52, 52, 81, 98, h.texture, h.positionX, h.positionY, 30, 60, 68, 8, 30);
+        super(h.nom, h.niveau, 52, 52, 81, 98, h.texture, h.positionX, h.positionY, 30, 60, 68, 8, 30, h.jeu);
 
         this.force = h.force;
         this.constitution = h.constitution;
@@ -97,20 +89,6 @@ public class Hero extends Personnage implements Serializable {
         this.or = h.or;
 
         directionOrientation = Direction.DROITE;
-    }
-
-    public void afficherEtat() {
-        System.out.println(
-
-                "nom : " + nom +
-                        ", vie : " + vie +
-                        ", vieMax : " + vieMax +
-                        ", degats : " + degats +
-                        ", positionX : " + positionX +
-                        ", positionY : " + positionY +
-                        ", experience: " + experience +
-                        ", experienceMax :" + experienceMax
-        );
     }
 
     //fonction qui renvoie un tableau de string contenant les informations à sauvegarder dans la bdd
@@ -314,10 +292,5 @@ public class Hero extends Personnage implements Serializable {
 
     public int getOr() {
         return or;
-    }
-
-    public void addItemInInventaire(Equipement equipement) {
-        this.inventaire.add(equipement);
-        bdd.possede(getIdHero(), equipement.getIdItem());
     }
 }
