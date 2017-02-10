@@ -19,19 +19,27 @@ import static vue.FenetreJeu.ZONE;
 
 public class EntiteVue extends JPanel {
 
-    Jeu jeu;
-    public Entite entite;
-    public Sort sort;
-
     public static final int TAILLE_SPRITE_HAUTEUR = Fenetre.adapterResolutionEnY(300);
     public static final int TAILLE_SPRITE_LARGEUR = Fenetre.adapterResolutionEnX(300);
+
+    private Jeu jeu;
+    public Entite entite;
+
     private BufferedImage[] tableauSprite;
     public Image spriteActuel;
-    private int alternerSpriteDeplacement, alternerSpriteAttaque;
+
+    private int alternerSpriteDeplacement;
+    private int alternerSpriteAttaque;
 
     public EntiteVue(Jeu jeu) {
         this.jeu = jeu;
+        entite = null;
+
+        tableauSprite = null;
+        spriteActuel = null;
+
         alternerSpriteDeplacement = 0;
+        alternerSpriteAttaque = 0;
     }
 
     public static BufferedImage createComposite(BufferedImage image1, BufferedImage image2, float alpha) {
