@@ -41,6 +41,10 @@ public class ControlTimer extends Control implements ActionListener {
             if (!jeu.getPause()) {
                 jeu.incrementeTemps();
                 if (jeu.getTemps() % 300 == 0) {
+                    jeu.setMonstre(1, 900, 0); // a enlever d'ici
+                    jeu.setMonstre(2, 1400, 0); // a enlever d'ici
+                    jeu.setMonstre(3, 1900, 0); // a enlever d'ici
+                    jeu.setMonstre(4, 2400, 0); // a enlever d'ici
                     jeu.sauvegardeHero();
                     jeu.setSave(true);
                 }
@@ -54,11 +58,6 @@ public class ControlTimer extends Control implements ActionListener {
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_SAUT]) {
                     jeu.getHero().sauter();
-
-                    jeu.setMonstre(1, 900, 0); // a enlever d'ici
-                    jeu.setMonstre(2, 1400, 0); // a enlever d'ici
-                    jeu.setMonstre(3, 1900, 0); // a enlever d'ici
-                    jeu.setMonstre(4, 2400, 0); // a enlever d'ici
                 }
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_DROITE]) {
