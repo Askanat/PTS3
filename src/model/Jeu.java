@@ -20,7 +20,6 @@ public class Jeu {
 
     // à enlever
     private ArrayList<Sort> allSort;
-    private ArrayList<Effet> allEffet;
     private ArrayList<Equipement> allItem;
 
 
@@ -78,7 +77,6 @@ public class Jeu {
         zoneSafe = true;
 
         allSort = bdd.chargerSort();
-        allEffet = bdd.chargerEffet();
         allItem = bdd.chargerEquipement();
     }
 
@@ -292,14 +290,6 @@ public class Jeu {
 
     public void setAllSort() {
         allSort = bdd.chargerSort();
-    }
-
-    public void setAllEffet() {
-        allEffet = bdd.chargerEffet();
-    }
-
-    public ArrayList<Effet> getAllEffet() {
-        return allEffet;
     }
 
     public ArrayList<Sort> getAllSort() {

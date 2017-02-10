@@ -12,24 +12,21 @@ import static vue.FenetreJeu.ZONE;
  */
 public class Sort extends Entite implements Cloneable {
 
-    private int degatSpell, effet_id, porteSpell, coutManaSpell, idSpell, tempsDeRechargement;
-    private boolean unlock;
+    private int degatSpell, porteSpell, coutManaSpell, idSpell, tempsDeRechargement;
 
     private int tempsDeApparition;
 
-    public Sort(int idSpell, int degatSpell, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, int effet_id, int porteSpell, int coutManaSpell, String libelleSpell, String textureSpell, boolean unlock, int vitesseDeplacement, int tempsDeRechargement) {
+    public Sort(int idSpell, int degatSpell, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, int porteSpell, int coutManaSpell, String libelleSpell, String textureSpell, int vitesseDeplacement, int tempsDeRechargement) {
         super(libelleSpell, largeurDevant, largeurDerriere, hauteurHaut, hauteurBas, textureSpell, 0, 0, vitesseDeplacement, 0);
         this.idSpell = idSpell;
         this.degatSpell = degatSpell;
-        this.effet_id = effet_id;
         this.porteSpell = porteSpell;
         this.coutManaSpell = coutManaSpell;
-        this.unlock = unlock;
         this.tempsDeRechargement = tempsDeRechargement;
 
         tempsDeApparition = 0;
 
-        texture = "images/Sorts/goutte_Boule.png";
+        texture = "images/Sorts/goutte_Boule.png"; // à enlever
     }
 
     public Object clone() {
@@ -95,10 +92,6 @@ public class Sort extends Entite implements Cloneable {
         return destruction;
     }
 
-    public int getIdSpell() {
-        return idSpell;
-    }
-
     public int getCoutManaSpell() {
         return coutManaSpell;
     }
@@ -111,16 +104,8 @@ public class Sort extends Entite implements Cloneable {
         return degatSpell;
     }
 
-    public int getEffet_id() {
-        return effet_id;
-    }
-
     public int getPorteSpell() {
         return porteSpell;
-    }
-
-    public void unlockSpell() {
-        unlock = true;
     }
 
     public int getTempsDeRechargement() {
@@ -128,7 +113,7 @@ public class Sort extends Entite implements Cloneable {
     }
 
     public String toString() {
-        return super.toString() + ", SPELL : id : " + idSpell + ", degatSpell : " + degatSpell + ", effet_id : " + effet_id +
+        return super.toString() + ", SPELL : id : " + idSpell + ", degatSpell : " + degatSpell +
                 ", porteSpell : " + porteSpell + ", coutManaSpell : " + coutManaSpell;
     }
 }

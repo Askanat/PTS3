@@ -249,39 +249,15 @@ public class BDD {
     //Requete qui recup tous les spell
     public ArrayList<Sort> chargerSort() {
         ResultSet spell;
-        boolean bool = false;
         ArrayList<Sort> result = new ArrayList<>();
         try {
             spell = instruction.executeQuery("SELECT * from spell;");
             while (spell.next()) {
-                if (spell.getString("unlockSpell").equals("0")) {
-                    bool = false;
-                } else {
-                    bool = true;
-                }
-
-                result.add(new Sort(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("largeurDevant")), Integer.parseInt(spell.getString("largeurDerriere")), Integer.parseInt(spell.getString("hauteurHaut")), Integer.parseInt(spell.getString("hauteurBas")), Integer.parseInt(spell.getString("effet_id")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), bool, Integer.parseInt(spell.getString("vitesseDeDeplacement")), Integer.parseInt(spell.getString("rechargeSpell"))));
+                result.add(new Sort(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("largeurDevant")), Integer.parseInt(spell.getString("largeurDerriere")), Integer.parseInt(spell.getString("hauteurHaut")), Integer.parseInt(spell.getString("hauteurBas")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), Integer.parseInt(spell.getString("vitesseDeDeplacement")), Integer.parseInt(spell.getString("rechargeSpell"))));
             }
         } catch (Exception e) {
             System.out.println("Donnees charger spell : " + e);
         }
-        return result;
-    }
-
-    //Requete qui recup tout les effets
-    public ArrayList<Effet> chargerEffet() {
-        ResultSet effet;
-        ArrayList<Effet> result = new ArrayList<>();
-
-        try {
-            effet = instruction.executeQuery("SELECT * FROM effet;");
-            while (effet.next()) {
-                result.add(new Effet(Integer.parseInt(effet.getString("idEffet")), effet.getString("libelleEffet"), Integer.parseInt(effet.getString("duree")), Integer.parseInt(effet.getString("degatParSec")), effet.getString("textureEffet")));
-            }
-        } catch (Exception e) {
-            System.out.println("Donnees charger effet : " + e);
-        }
-
         return result;
     }
 
@@ -324,10 +300,10 @@ public class BDD {
         ResultSet item;
         Equipement result = null;
         try {
-            item = instruction.executeQuery("SELECT * FROM item WHERE idItem ="+idRand+";");
-            while(item.next())
+            item = instruction.executeQuery("SELECT * FROM item WHERE idItem =" + idRand + ";");
+            while (item.next())
                 result = new Equipement(Integer.parseInt(item.getString("idItem")), item.getString("libelleItem"), Float.parseFloat(item.getString("armureItem")), Float.parseFloat(item.getString("constiItem")), Float.parseFloat(item.getString("intelItem")), Float.parseFloat(item.getString("forceItem")), Float.parseFloat(item.getString("resiItem")), Float.parseFloat(item.getString("degatItem")), item.getString("textureItem"), Integer.parseInt(item.getString("item_type")));
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Drop item : " + e);
         }
 
@@ -340,7 +316,7 @@ public class BDD {
 
         try {
             nbItem = instruction.executeQuery("SELECT count(*) as count FROM item;");
-            while(nbItem.next())
+            while (nbItem.next())
                 result = Integer.parseInt(nbItem.getString("count"));
         } catch (Exception e) {
             System.out.println("Count item : " + e);
@@ -356,7 +332,7 @@ public class BDD {
             place = instruction.executeQuery("SELECT count(*) AS count FROM possede;");
             while (place.next())
                 result = Integer.parseInt(place.getString("count"));
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Place inventaire : " + e);
         }
 
@@ -368,10 +344,10 @@ public class BDD {
         String result = "Rien";
 
         try {
-            place = instruction.executeQuery("SELECT textureItem  FROM item where idItem ="+idItem+";");
+            place = instruction.executeQuery("SELECT textureItem  FROM item where idItem =" + idItem + ";");
             while (place.next())
                 result = place.getString("TextureItem");
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Texture equipement : " + e);
         }
 
@@ -383,10 +359,10 @@ public class BDD {
         int result = 0;
 
         try {
-            place = instruction.executeQuery("SELECT prixItem  FROM item where idItem ="+idItem+";");
+            place = instruction.executeQuery("SELECT prixItem  FROM item where idItem =" + idItem + ";");
             while (place.next())
                 result = Integer.parseInt(place.getString("prixItem"));
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Prix equipement : " + e);
         }
 
@@ -395,7 +371,7 @@ public class BDD {
 
     public void possede(int idHero, int idItem) {
         try {
-            instruction.executeUpdate("INSERT INTO possede VALUES(default,"+idHero+","+idItem+");");
+            instruction.executeUpdate("INSERT INTO possede VALUES(default," + idHero + "," + idItem + ");");
         } catch (Exception e) {
             System.out.println("Possede problem : " + e);
         }
@@ -404,17 +380,17 @@ public class BDD {
     public int[][] getPossede() {
         ResultSet possede;
         int[][] result = new int[placeInventaire()][2];
-        int i=0,j=0;
+        int i = 0, j = 0;
 
         try {
             possede = instruction.executeQuery("SELECT * FROM possede");
-            while(possede.next()) {
-                System.out.println("IdPerso(i) : " +  Integer.parseInt(possede.getString("idPersoPossede")) + ", IdItem(j) : " + Integer.parseInt(possede.getString("idItemPossede")) );
-                result[i][j]= Integer.parseInt(possede.getString("idPersoPossede"));
-                result[i][j+1] = Integer.parseInt(possede.getString("idItemPossede"));
+            while (possede.next()) {
+                System.out.println("IdPerso(i) : " + Integer.parseInt(possede.getString("idPersoPossede")) + ", IdItem(j) : " + Integer.parseInt(possede.getString("idItemPossede")));
+                result[i][j] = Integer.parseInt(possede.getString("idPersoPossede"));
+                result[i][j + 1] = Integer.parseInt(possede.getString("idItemPossede"));
                 i++;
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Recup possede : " + e);
         }
 
