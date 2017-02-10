@@ -14,17 +14,16 @@ import static vue.Fenetre.Y;
 
 public class MenuEnJeu extends JPanel {
 
-    private Jeu jeu;
-    public JButton retourJeu, inventaire, fichePersonnage, option, retourMenuPrincipal, retourBureau;
-
     private Image imageMenuEnJeu;
 
-    public MenuEnJeu(Jeu jeu) {
-        this.jeu = jeu;
+    public JButton retourJeu, inventaire, fichePersonnage, option, retourMenuPrincipal, retourBureau;
+
+    public MenuEnJeu() {
 
         this.setLayout(null);
         this.setPreferredSize(new Dimension(X / 2, Y / 2));
         this.setOpaque(false);
+
         imageMenuEnJeu = getToolkit().getImage("images/menuPause.png");
 
         retourJeu = new JButton("");

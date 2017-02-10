@@ -1,4 +1,5 @@
 package vue;
+
 import controleur.ControlMenuPrincipal;
 
 import javax.swing.*;
@@ -13,9 +14,9 @@ import static vue.Fenetre.Y;
 
 public class MenuPrincipal extends JPanel {
 
-    public JButton nouvellePartie, chargerPartie, options, credits, quitter;
-
     private Image imageMenuPrincipal;
+
+    public JButton nouvellePartie, chargerPartie, options, credits, quitter;
 
     public MenuPrincipal() {
 

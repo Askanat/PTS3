@@ -51,6 +51,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 fenetre.layeredPane.removeAll();
 
                 jeu.sauvegardeHero();
+
                 // supprime les monstre
                 fenetre.panelFenetreJeu.monstre.clear();
                 jeu.getTableauMonstre().clear();

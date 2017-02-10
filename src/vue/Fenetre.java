@@ -92,7 +92,7 @@ public class Fenetre extends JFrame {
         panelFenetreInventaire = new FenetreInventaire();
         panelFenetreFichePerso = new FenetreFichePerso(jeu);
         panelFenetreJeu = new FenetreJeu(jeu);
-        panelMenuEnJeu = new MenuEnJeu(jeu);
+        panelMenuEnJeu = new MenuEnJeu();
 
         vueJeu();
     }
