@@ -71,20 +71,6 @@ public class Monstre extends Personnage {
         return (int) (niveau * (coeffArmure + coeffDegat + coeffMana + coeffVie));
     }
 
-    public Sort appelleSort() {
-        Sort sortUtilise = null;
-        sortUtilise = (Sort) sort.clone();
-        setMana(getMana() - sort.getCoutManaSpell());
-        sortUtilise.setDegatSpell(sort.getDegatSpell() + (int) (getDegats() * 0.5));
-        sortUtilise.setPositionX(getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() : getLargeurDerriere()));
-        sortUtilise.setPositionY(getPositionY() - hauteurBas);
-        sortUtilise.setDeplacement(true);
-        sortUtilise.setDirectionOrientation(getDirectionOrientation());
-        sortUtilise.setVecteurDeplacementEnX((getDirectionOrientation() == Direction.GAUCHE ? -1 : 1));
-
-        return sortUtilise;
-    }
-
     public void attaquer(Personnage cible) {
         if (collision(getHitBoxAttaque(), cible.getHitBoxCorps())) { // attaque de près
             tempsAttaque++;
@@ -99,7 +85,7 @@ public class Monstre extends Personnage {
 
             if (tempsAttaque % sort.getTempsDeRechargement() == 0 && getMana() >= sort.getCoutManaSpell()) {
                 setAttaquer(true);
-                jeu.setSortMonstre(appelleSort());
+                jeu.setSortMonstre(appelleSort(sort));
             }
         } else {
             tempsAttaque = 0;

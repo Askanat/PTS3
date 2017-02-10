@@ -2,6 +2,8 @@ package model;
 
 import vue.Fenetre;
 
+import java.util.ArrayList;
+
 import static model.Jeu.GRAVITE;
 import static vue.FenetreJeu.ZONE;
 
@@ -26,6 +28,8 @@ public class Sort extends Entite implements Cloneable {
         this.tempsDeRechargement = tempsDeRechargement;
 
         tempsDeApparition = 0;
+
+        texture = "images/Sorts/goutte_Boule.png";
     }
 
     public Object clone() {
@@ -55,15 +59,34 @@ public class Sort extends Entite implements Cloneable {
         }
     }
 
-    public boolean update(Hero hero) {
+    public boolean update(Personnage cible) {
         boolean destruction = false;
         tempsDeApparition++;
 
         deplacer();
 
-        if (collision(getHitBoxCorps(), hero.getHitBoxCorps()) && tempsDeApparition >= 2) {
-            hero.recevoirDegats(getDegatSpell());
+        if (collision(getHitBoxCorps(), cible.getHitBoxCorps()) && tempsDeApparition >= 2) {
+            cible.recevoirDegats(getDegatSpell());
             destruction = true;
+        }
+
+        if (tempsDeApparition >= 50)
+            destruction = true;
+
+        return destruction;
+    }
+
+    public boolean update(ArrayList<Monstre> cible) {
+        boolean destruction = false;
+        tempsDeApparition++;
+
+        deplacer();
+
+        for (Monstre m : cible) {
+            if (collision(getHitBoxCorps(), m.getHitBoxCorps()) && tempsDeApparition >= 2) {
+                m.recevoirDegats(getDegatSpell());
+                destruction = true;
+            }
         }
 
         if (tempsDeApparition >= 50)

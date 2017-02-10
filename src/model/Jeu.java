@@ -34,6 +34,7 @@ public class Jeu {
     private boolean suppressionHero;
     private ArrayList<Integer> indiceSuppressionMonstre;
     private ArrayList<Integer> indiceSuppressionSortMonstre;
+    private ArrayList<Integer> indiceSuppressionSortHero;
 
 
     private Niveau niveau;
@@ -64,12 +65,13 @@ public class Jeu {
 
         hero = null;
         tableauMonstre = new ArrayList<>();
-        tableauSortHero = new ArrayList<Sort>();
         tableauSortMonstre = new ArrayList<Sort>();
+        tableauSortHero = new ArrayList<Sort>();
 
         suppressionHero = false;
         indiceSuppressionMonstre = new ArrayList<Integer>();
         indiceSuppressionSortMonstre = new ArrayList<Integer>();
+        indiceSuppressionSortHero = new ArrayList<Integer>();
 
         temps = 0;
         pause = false;
@@ -77,11 +79,7 @@ public class Jeu {
 
         allSort = bdd.chargerSort();
         allEffet = bdd.chargerEffet();
-
         allItem = bdd.chargerEquipement();
-
-        suppressionHero = false;
-        indiceSuppressionMonstre = new ArrayList<Integer>();
     }
 
     public void sauvegardeHero() {
@@ -145,18 +143,22 @@ public class Jeu {
         for (int i = indiceSuppressionMonstre.size(); i > 0; i--) {
             getHero().recevoirExperience(getMonstre(indiceSuppressionMonstre.get(i - 1)));
             supprimeMonstre(indiceSuppressionMonstre.get(i - 1));
-            if(bdd.placeInventaire() < 30) {
-                hero.addItemInInventaire(bdd.dropEquipement((int)(Math.random()*(bdd.nbItem()-1)+1)));
-                System.out.println((bdd.placeInventaire()-1));
-                System.out.println("Tu as récuperé : " + hero.inventaire.get(bdd.placeInventaire()-1).getNom());
+            if (bdd.placeInventaire() < 30) {
+                hero.addItemInInventaire(bdd.dropEquipement((int) (Math.random() * (bdd.nbItem() - 1) + 1)));
+                System.out.println((bdd.placeInventaire() - 1));
+                System.out.println("Tu as récuperé : " + hero.inventaire.get(bdd.placeInventaire() - 1).getNom());
             } else {
                 System.out.println("Tu es plein !!");
             }
         }
 
-        // supprime les sorts
+        // supprime les sorts des mosntres
         for (int i = indiceSuppressionSortMonstre.size(); i > 0; i--)
             supprimeSortMonstre(indiceSuppressionSortMonstre.get(i - 1));
+
+        // supprime les sorts du hero
+        for (int i = indiceSuppressionSortHero.size(); i > 0; i--)
+            supprimeSortHero(indiceSuppressionSortHero.get(i - 1));
 
         // met à jour le niveau et sauvegarde si gain de niveau
         int niveau = getHero().getNiveau();
@@ -182,6 +184,10 @@ public class Jeu {
         tableauSortMonstre.remove(i);
     }
 
+    public void supprimeSortHero(int i) {
+        tableauSortHero.remove(i);
+    }
+
     public Hero getHero() {
         return hero;
     }
@@ -200,6 +206,10 @@ public class Jeu {
 
     public Monstre getMonstre(int i) {
         return tableauMonstre.get(i);
+    }
+
+    public ArrayList<Monstre> getAllMonstre() {
+        return tableauMonstre;
     }
 
     public int getSizeTabMonstre() {
@@ -324,6 +334,18 @@ public class Jeu {
         return indiceSuppressionSortMonstre;
     }
 
+    public void addIndiceSuppressionSortHero(int indice) {
+        indiceSuppressionSortHero.add(indice);
+    }
+
+    public void removeIndiceSuppressionSortHero(int indice) {
+        indiceSuppressionSortHero.remove(indice);
+    }
+
+    public ArrayList<Integer> getIndiceSuppressionSortHero() {
+        return indiceSuppressionSortHero;
+    }
+
     public void setSuppressionHero(boolean suppressionHero) {
         this.suppressionHero = suppressionHero;
     }
@@ -343,6 +365,19 @@ public class Jeu {
     public Sort getSortMonstre(int i) {
 
         return tableauSortMonstre.get(i);
+    }
+
+    public void setSortHero(Sort sort) {
+        tableauSortHero.add(sort);
+    }
+
+    public int getSizeSortHero() {
+        return tableauSortHero.size();
+    }
+
+    public Sort getSortHero(int i) {
+
+        return tableauSortHero.get(i);
     }
 
     public void achatItem(int id) {

@@ -94,14 +94,26 @@ public abstract class Personnage extends Entite implements Serializable {
     }
 
     public void recevoirDegats(int degats) {
-        System.out.println(getNom() + " LVL :" + getNiveau() + " armure : " + getArmure() + ", perd " + degats + " - " + (int) (getArmure() * 0.2) + " point de vie.");
-
         degats = degats - (int) (getArmure() * 0.2);
         if (degats < 0)
             degats = 0;
         setVie(getVie() - degats);
         if (getVie() < 0)
             setVie(0);
+    }
+
+    public Sort appelleSort(Sort sort) {
+        Sort sortUtilise = null;
+        sortUtilise = (Sort) sort.clone();
+        setMana(getMana() - sort.getCoutManaSpell());
+        sortUtilise.setDegatSpell(sort.getDegatSpell() + (int) (getDegats() * 0.5));
+        sortUtilise.setPositionX(getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() : getLargeurDerriere()));
+        sortUtilise.setPositionY(getPositionY());
+        sortUtilise.setDeplacement(true);
+        sortUtilise.setDirectionOrientation(getDirectionOrientation());
+        sortUtilise.setVecteurDeplacementEnX((getDirectionOrientation() == Direction.GAUCHE ? -1 : 1));
+
+        return sortUtilise;
     }
 
     public void attaquer(Personnage cible) {
