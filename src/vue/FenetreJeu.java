@@ -1,4 +1,5 @@
 package vue;
+
 import controleur.ControlFenetreJeu;
 import model.Direction;
 import model.Jeu;
@@ -52,7 +53,7 @@ public class FenetreJeu extends JPanel {
 
 
         monstre = new ArrayList<>();
-        hero = new EntiteVue(jeu);
+        hero = null;
         sortMonstre = new ArrayList<>();
         sortHero = new ArrayList<>();
 
@@ -67,8 +68,10 @@ public class FenetreJeu extends JPanel {
     public void updateEntite() {
 
         // création du héro graphiquement
-        if (jeu.getHero() != null && hero.entite == null)
+        if (jeu.getHero() != null && hero == null) {
+            hero = new EntiteVue(jeu);
             hero.creationEntite(jeu.getHero());
+        }
 
         // création des monstres graphiquement
         for (int i = monstre.size(); i < jeu.getTableauMonstre().size(); i++) {
