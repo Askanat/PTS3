@@ -18,7 +18,21 @@ import static vue.Fenetre.*;
  */
 public class FenetreCreationPersonnage extends JPanel {
 
-    private Jeu jeu;
+    // nombre de texture différente
+    public static final int NB_YEUX = 1;
+    public static final int NB_PEAUX = 5;
+    public static final int NB_CHEVEUX = 2;
+    public static final int NB_PILOSITE = 3;
+    public static final int NB_COULEUR = 8;
+
+    private Image imageFenetreCreationPersonnePourHomme, imageFenetreCreationPersonnePourFemme;
+
+    // tableau qui stock les images pour la création du personnage
+    private BufferedImage[][][] spriteCheveux;
+    private BufferedImage[][] spritePeau;
+    private BufferedImage[][] spriteYeux;
+    private BufferedImage[][] spritePilosite;
+
     public JButton jouer, retour;
     public JButton cheveuxGauche, cheveuxDroite, yeuxGauche, yeuxDroite, sexeFemme, sexeHomme, peauGauche, peauDroite, pilositeGauche, pilositeDroite;
     public JButton cheveuxCouleur[];
@@ -27,34 +41,14 @@ public class FenetreCreationPersonnage extends JPanel {
     public JLabel lNomHero;
     public JTextField tfNomHero;
 
-    // nombre de texture différente
-    public static final int NB_YEUX = 1;
-    public static final int NB_PEAUX = 5;
-    public static final int NB_CHEVEUX = 2;
-    public static final int NB_PILOSITE = 3;
-    public static final int NB_COULEUR = 8;
-
-    // tableau qui stock les images pour la création du personnage
-    private BufferedImage[][][] spriteCheveux;
-    private BufferedImage[][] spritePeau;
-    private BufferedImage[][] spriteYeux;
-    private BufferedImage[][] spritePilosite;
-
     // variable pour le choix des caractéristiques physique
     public int choixSexe;
-    public int choixCouleurCheveux;
-    public int choixCheveux;
+    public int choixCouleurCheveux, choixCheveux;
     public int choixPeau;
-    public int choixCouleurYeux;
-    public int choixYeux;
-    public int choixCouleurPilosite;
-    public int choixPilosite;
-
-    private Image imageFenetreCreationPersonnePourHomme, imageFenetreCreationPersonnePourFemme;
+    public int choixCouleurYeux, choixYeux;
+    public int choixCouleurPilosite, choixPilosite;
 
     public FenetreCreationPersonnage(Jeu jeu) {
-
-        this.jeu = jeu;
 
         this.setLayout(null);
         this.setPreferredSize(new Dimension(X, Y));
@@ -63,20 +57,29 @@ public class FenetreCreationPersonnage extends JPanel {
         imageFenetreCreationPersonnePourFemme = getToolkit().getImage("images/menuCreationPersonnageFemme.png");
 
         spriteCheveux = new BufferedImage[2][NB_CHEVEUX][NB_COULEUR]; // [0 = femme, 1 homme][type][couleur]
-        spriteYeux = new BufferedImage[NB_YEUX][NB_COULEUR]; // [type][couleur]
         spritePeau = new BufferedImage[2][NB_PEAUX]; // [0 = femme, 1 homme][couleur]
+        spriteYeux = new BufferedImage[NB_YEUX][NB_COULEUR]; // [type][couleur]
         spritePilosite = new BufferedImage[NB_PILOSITE][NB_COULEUR]; // [type][couleur]
+
         initialiseCaracteristiquePhysique();
+
+        choixSexe = 0;
+        choixCouleurCheveux = 0;
+        choixCheveux = 0;
+        choixPeau = 0;
+        choixCouleurYeux = 0;
+        choixYeux = 0;
+        choixCouleurPilosite = 0;
+        choixPilosite = 0;
 
         jouer = new JButton("");
         jouer.setActionCommand("Jouer");
+        retour = new JButton("");
+        retour.setActionCommand("Retour");
 
         lNomHero = new JLabel("");
         tfNomHero = new JTextField("");
         tfNomHero.setColumns(10);
-
-        retour = new JButton("");
-        retour.setActionCommand("Retour");
 
         // boutton pour chosir les caractéristique
         cheveuxGauche = new JButton("");
@@ -132,15 +135,6 @@ public class FenetreCreationPersonnage extends JPanel {
             this.add(yeuxCouleur[i]);
             this.add(pilositeCouleur[i]);
         }
-
-        choixSexe = 0;
-        choixCouleurCheveux = 0;
-        choixCheveux = 0;
-        choixPeau = 0;
-        choixCouleurYeux = 0;
-        choixYeux = 0;
-        choixCouleurPilosite = 0;
-        choixPilosite = 0;
     }
 
     public void initialiseCaracteristiquePhysique() {
@@ -211,7 +205,7 @@ public class FenetreCreationPersonnage extends JPanel {
     }
 
     public void sauvegardeSprite(int idHero) {
-        String strSexe = "";
+        String strSexe;
         if (choixSexe == 1)
             strSexe = "Femme";
         else
@@ -276,6 +270,12 @@ public class FenetreCreationPersonnage extends JPanel {
         jouer.setCursor(new Cursor(Cursor.HAND_CURSOR));
         jouer.setBorder(null);
 
+        retour.setBounds(Fenetre.adapterResolutionEnX(64), Fenetre.adapterResolutionEnY(985), Fenetre.adapterResolutionEnX(256), Fenetre.adapterResolutionEnY(41));
+        retour.setBackground(new Color(0, 0, 0, 0));
+        retour.setFocusable(false);
+        retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        retour.setBorder(null);
+
         lNomHero.setBounds(Fenetre.adapterResolutionEnX(940), Fenetre.adapterResolutionEnY(850), Fenetre.adapterResolutionEnX(230), Fenetre.adapterResolutionEnY(40));
         lNomHero.setBackground(new Color(0, 0, 0, 0));
         lNomHero.setFocusable(false);
@@ -283,13 +283,6 @@ public class FenetreCreationPersonnage extends JPanel {
         lNomHero.setBorder(null);
 
         tfNomHero.setBounds(Fenetre.adapterResolutionEnX(845), Fenetre.adapterResolutionEnY(890), Fenetre.adapterResolutionEnX(230), Fenetre.adapterResolutionEnY(40));
-
-        retour.setBounds(Fenetre.adapterResolutionEnX(64), Fenetre.adapterResolutionEnY(985), Fenetre.adapterResolutionEnX(256), Fenetre.adapterResolutionEnY(41));
-        retour.setBackground(new Color(0, 0, 0, 0));
-        retour.setFocusable(false);
-        retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        retour.setBorder(null);
-
 
         cheveuxGauche.setBounds(Fenetre.adapterResolutionEnX(187), Fenetre.adapterResolutionEnY(339), Fenetre.adapterResolutionEnX(65), Fenetre.adapterResolutionEnY(65));
         cheveuxGauche.setBackground(new Color(0, 0, 0, 0));
@@ -394,7 +387,6 @@ public class FenetreCreationPersonnage extends JPanel {
             }
         }
 
-
         if (choixSexe == 0) {
             pilositeGauche.setVisible(true);
             pilositeDroite.setVisible(true);
@@ -431,11 +423,6 @@ public class FenetreCreationPersonnage extends JPanel {
         g.drawImage(image, Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(440), Fenetre.adapterResolutionEnX(300), Fenetre.adapterResolutionEnY(300), this);
     }
 
-
-    public JTextField getTfNomHero() {
-        return tfNomHero;
-    }
-
     public void initCreationPerso() {
         tfNomHero.setText("");
         choixSexe = 0;
@@ -446,6 +433,10 @@ public class FenetreCreationPersonnage extends JPanel {
         choixYeux = 0;
         choixCouleurPilosite = 0;
         choixPilosite = 0;
+    }
+
+    public JTextField getTfNomHero() {
+        return tfNomHero;
     }
 
     public void nomVide() {
