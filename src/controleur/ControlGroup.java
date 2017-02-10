@@ -13,7 +13,7 @@ public class ControlGroup {
 
     public Fenetre fenetre;
 
-    public ControlGroup(Jeu jeu) throws IOException {
+    public ControlGroup(Jeu jeu) {
         fenetre = new Fenetre(jeu);
 
         ControlMenuPrincipal controlMenuPrincipal = new ControlMenuPrincipal(jeu, fenetre);

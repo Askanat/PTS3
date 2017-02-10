@@ -53,11 +53,11 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 jeu.sauvegardeHero();
                 // supprime les monstre
                 fenetre.panelFenetreJeu.monstre.clear();
-                jeu.supprimeMonstre();
+                jeu.getTableauMonstre().clear();
 
                 // supprime le héro
                 fenetre.panelFenetreJeu.hero.removeAll();
-                jeu.supprimeHero();
+                jeu.setHero(null);
 
                 Control.enPartie = false;
                 jeu.getEtat().setPause(false);

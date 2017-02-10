@@ -3,7 +3,6 @@ package model;
 import vue.Fenetre;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static vue.Fenetre.DEFAUT_X;
@@ -18,8 +17,8 @@ public class Jeu {
     public static final int GRAVITE = Fenetre.adapterResolutionEnY(8);
 
     private Niveau niveau;
-    private BDD bdd;
     private Etat etat;
+    private BDD bdd;
 
     private Hero hero;
     private ArrayList<Monstre> tableauMonstre;
@@ -32,8 +31,9 @@ public class Jeu {
     private ArrayList<Sort> allSort;
     private ArrayList<Equipement> allItem;
 
-    public Jeu() throws SQLException {
+    public Jeu() {
 
+        niveau = null;
         etat = new Etat();
         bdd = new BDD();
 
@@ -50,9 +50,9 @@ public class Jeu {
         }*/
 
         hero = null;
+        tableauSortHero = new ArrayList<Sort>();
         tableauMonstre = new ArrayList<>();
         tableauSortMonstre = new ArrayList<Sort>();
-        tableauSortHero = new ArrayList<Sort>();
 
         nbPartieLibre = 0;
 
@@ -60,6 +60,86 @@ public class Jeu {
         allSort = bdd.chargerSort();
         allItem = bdd.chargerEquipement();
     }
+
+
+    public void updateEntite() {
+
+        // supprime les monstres
+        for (int i = getEtat().getIndiceSuppressionMonstre().size(); i > 0; i--) {
+            getHero().recevoirExperience(getTableauMonstre().get(getEtat().getIndiceSuppressionMonstre().get(i - 1)));
+            getTableauMonstre().remove((int) getEtat().getIndiceSuppressionMonstre().get(i - 1));
+            if (bdd.placeInventaire() < 30) {
+                hero.addItemInInventaire(bdd.dropEquipement((int) (Math.random() * (bdd.nbItem() - 1) + 1)));
+                System.out.println((bdd.placeInventaire() - 1));
+                System.out.println("Tu as récuperé : " + hero.inventaire.get(bdd.placeInventaire() - 1).getNom());
+            } else {
+                System.out.println("Tu es plein !!");
+            }
+        }
+
+        // supprime les sorts des mosntres
+        for (int i = getEtat().getIndiceSuppressionSortMonstre().size(); i > 0; i--)
+            getTableauSortMonstre().remove((int) getEtat().getIndiceSuppressionSortMonstre().get(i - 1));
+
+        // supprime les sorts du hero
+        for (int i = getEtat().getIndiceSuppressionSortHero().size(); i > 0; i--)
+            getTableauSortHero().remove((int) getEtat().getIndiceSuppressionSortHero().get(i - 1));
+
+        // met à jour le niveau et sauvegarde si gain de niveau
+        int niveau = getHero().getNiveau();
+        getHero().upNiveau();
+        if (niveau < getHero().getNiveau()) {
+            sauvegardeHero();
+        }
+    }
+
+
+    public Etat getEtat() {
+        return etat;
+    }
+
+    public BDD getBdd() {
+        return bdd;
+    }
+
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public ArrayList<Sort> getTableauSortHero() {
+        return tableauSortHero;
+    }
+
+    public ArrayList<Monstre> getTableauMonstre() {
+        return tableauMonstre;
+    }
+
+    public ArrayList<Sort> getTableauSortMonstre() {
+        return tableauSortMonstre;
+    }
+
+
+    public void setNbPartieLibre(int nbPartieLibre) {
+        this.nbPartieLibre = nbPartieLibre;
+    }
+
+    public int getNbPartieLibre() {
+        return nbPartieLibre;
+    }
+
+
+
+
+
+
+
+
+
 
     public void sauvegardeHero() {
         if (bdd.isBDD()) {
@@ -95,60 +175,6 @@ public class Jeu {
         }
     }
 
-    public void updateEntite() {
-
-        // supprime les monstres
-        for (int i = getEtat().getIndiceSuppressionMonstre().size(); i > 0; i--) {
-            getHero().recevoirExperience(getMonstre(getEtat().getIndiceSuppressionMonstre().get(i - 1)));
-            supprimeMonstre(getEtat().getIndiceSuppressionMonstre().get(i - 1));
-            if (bdd.placeInventaire() < 30) {
-                hero.addItemInInventaire(bdd.dropEquipement((int) (Math.random() * (bdd.nbItem() - 1) + 1)));
-                System.out.println((bdd.placeInventaire() - 1));
-                System.out.println("Tu as récuperé : " + hero.inventaire.get(bdd.placeInventaire() - 1).getNom());
-            } else {
-                System.out.println("Tu es plein !!");
-            }
-        }
-
-        // supprime les sorts des mosntres
-        for (int i = getEtat().getIndiceSuppressionSortMonstre().size(); i > 0; i--)
-            supprimeSortMonstre(getEtat().getIndiceSuppressionSortMonstre().get(i - 1));
-
-        // supprime les sorts du hero
-        for (int i = getEtat().getIndiceSuppressionSortHero().size(); i > 0; i--)
-            supprimeSortHero(getEtat().getIndiceSuppressionSortHero().get(i - 1));
-
-        // met à jour le niveau et sauvegarde si gain de niveau
-        int niveau = getHero().getNiveau();
-        getHero().upNiveau();
-        if (niveau < getHero().getNiveau()) {
-            sauvegardeHero();
-        }
-    }
-
-    public void supprimeMonstre(int i) {
-        tableauMonstre.remove(i);
-    }
-
-    public void supprimeMonstre() {
-        tableauMonstre.clear();
-    }
-
-    public void supprimeHero() {
-        hero = null;
-    }
-
-    public void supprimeSortMonstre(int i) {
-        tableauSortMonstre.remove(i);
-    }
-
-    public void supprimeSortHero(int i) {
-        tableauSortHero.remove(i);
-    }
-
-    public Hero getHero() {
-        return hero;
-    }
 
     public void setMonstre(int id, int positionX, int positionY) {
         ArrayList<String> donneesMonstre;
@@ -160,18 +186,6 @@ public class Jeu {
                 Double.parseDouble(donneesMonstre.get(6)), Double.parseDouble(donneesMonstre.get(7)), Double.parseDouble(donneesMonstre.get(8)),
                 donneesMonstre.get(12), positionX, positionY, Integer.parseInt(donneesMonstre.get(9)), Integer.parseInt(donneesMonstre.get(10)), Integer.parseInt(donneesMonstre.get(11)),
                 getSort(Integer.parseInt(donneesMonstre.get(13)) - 1), this));
-    }
-
-    public Monstre getMonstre(int i) {
-        return tableauMonstre.get(i);
-    }
-
-    public ArrayList<Monstre> getAllMonstre() {
-        return tableauMonstre;
-    }
-
-    public int getSizeTabMonstre() {
-        return tableauMonstre.size();
     }
 
     public int getidPartieLibre() {
@@ -196,14 +210,6 @@ public class Jeu {
         return bdd.nbPartieLibre();
     }
 
-    public void setNbPartieLibre(int nbPartieLibre) {
-        this.nbPartieLibre = nbPartieLibre;
-    }
-
-    public int getNbPartieLibre() {
-        return nbPartieLibre;
-    }
-
     public void createHeroBDD(String nom, int id) {
         bdd.createPerso(nom, id);
     }
@@ -220,42 +226,8 @@ public class Jeu {
         return bdd.readNomPerso(id);
     }
 
-    public void setAllSort() {
-        allSort = bdd.chargerSort();
-    }
-
-    public ArrayList<Sort> getAllSort() {
-        return allSort;
-    }
-
     public Sort getSort(int idSort) {
         return allSort.get(idSort);
-    }
-
-    public void setSortMonstre(Sort sort) {
-        tableauSortMonstre.add(sort);
-    }
-
-    public int getSizeSortMonstre() {
-        return tableauSortMonstre.size();
-    }
-
-    public Sort getSortMonstre(int i) {
-
-        return tableauSortMonstre.get(i);
-    }
-
-    public void setSortHero(Sort sort) {
-        tableauSortHero.add(sort);
-    }
-
-    public int getSizeSortHero() {
-        return tableauSortHero.size();
-    }
-
-    public Sort getSortHero(int i) {
-
-        return tableauSortHero.get(i);
     }
 
     public void achatItem(int id) {
@@ -277,9 +249,5 @@ public class Jeu {
 
     public Equipement getOneItem(int idItem) {
         return allItem.get(idItem);
-    }
-
-    public Etat getEtat() {
-        return etat;
     }
 }

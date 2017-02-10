@@ -85,7 +85,7 @@ public class Monstre extends Personnage {
 
             if (tempsAttaque % sort.getTempsDeRechargement() == 0 && getMana() >= sort.getCoutManaSpell()) {
                 setAttaquer(true);
-                jeu.setSortMonstre(appelleSort(sort));
+                jeu.getTableauSortMonstre().add(appelleSort(sort));
             }
         } else {
             tempsAttaque = 0;

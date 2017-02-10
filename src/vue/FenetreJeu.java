@@ -75,21 +75,21 @@ public class FenetreJeu extends JPanel {
             hero.creationEntite(jeu.getHero());
 
         // création des monstres graphiquement
-        for (int i = monstre.size(); i < jeu.getSizeTabMonstre(); i++) {
+        for (int i = monstre.size(); i < jeu.getTableauMonstre().size(); i++) {
             monstre.add(new EntiteVue(jeu));
-            monstre.get(monstre.size() - 1).creationEntite(jeu.getMonstre(monstre.size() - 1));
+            monstre.get(monstre.size() - 1).creationEntite(jeu.getTableauMonstre().get(monstre.size() - 1));
         }
 
         //création des sorts des monstres graphiquement
-        for (int i = sortMonstre.size(); i < jeu.getSizeSortMonstre(); i++) {
+        for (int i = sortMonstre.size(); i < jeu.getTableauSortMonstre().size(); i++) {
             sortMonstre.add(new EntiteVue(jeu));
-            sortMonstre.get(sortMonstre.size() - 1).creationEntite(jeu.getSortMonstre(sortMonstre.size() - 1));
+            sortMonstre.get(sortMonstre.size() - 1).creationEntite(jeu.getTableauSortMonstre().get(sortMonstre.size() - 1));
         }
 
         //création des sorts du hero graphiquement
-        for (int i = sortHero.size(); i < jeu.getSizeSortHero(); i++) {
+        for (int i = sortHero.size(); i < jeu.getTableauSortHero().size(); i++) {
             sortHero.add(new EntiteVue(jeu));
-            sortHero.get(sortHero.size() - 1).creationEntite(jeu.getSortHero(sortHero.size() - 1));
+            sortHero.get(sortHero.size() - 1).creationEntite(jeu.getTableauSortHero().get(sortHero.size() - 1));
         }
 
         // suppression monstre graphiquement
