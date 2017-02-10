@@ -20,9 +20,9 @@ public class ControlFenetreJeu extends Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "Menu":
-                jeu.inversePause();
+                jeu.getEtat().inversePause();
 
-                if (jeu.getPause()) {
+                if (jeu.getEtat().getPause()) {
                     fenetre.vueMenuEnJeu();
                 } else {
                     fenetre.layeredPane.removeAll();

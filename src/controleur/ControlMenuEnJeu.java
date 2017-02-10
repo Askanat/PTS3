@@ -22,7 +22,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
 
         switch (e.getActionCommand()) {
             case "Retour":
-                jeu.setPause(false);
+                jeu.getEtat().setPause(false);
                 fenetre.layeredPane.removeAll();
                 fenetre.setContentPane(fenetre.panelScrollFenetreJeu);
                 changerVue();
@@ -47,7 +47,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 changerVue();
                 break;
             case "Retour au Menu Principal":
-                jeu.setTemps(0);
+                jeu.getEtat().setTemps(0);
                 fenetre.layeredPane.removeAll();
 
                 jeu.sauvegardeHero();
@@ -60,7 +60,7 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 jeu.supprimeHero();
 
                 Control.enPartie = false;
-                jeu.setPause(false);
+                jeu.getEtat().setPause(false);
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 changerVue();
                 break;

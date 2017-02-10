@@ -160,7 +160,7 @@ public class EntiteVue extends JPanel {
 
         g.drawImage(spriteActuel, (int) (entite.getPositionX() - TAILLE_SPRITE_LARGEUR / 2.0), (int) (entite.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), TAILLE_SPRITE_LARGEUR, TAILLE_SPRITE_HAUTEUR, this);
 
-        if (jeu.getHitBox()) {
+        if (jeu.getEtat().getHitBox()) {
             g.setColor(Color.RED);
             // zone de vue monstre
             if (entite instanceof Monstre) {

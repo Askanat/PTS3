@@ -25,9 +25,9 @@ public class ControlTimer extends Control implements ActionListener {
 
         if (Control.enPartie) {
             if (ControlClavier.toucheRelacher[ControlTouche.ACTION_MENU]) {
-                jeu.inversePause();
+                jeu.getEtat().inversePause();
 
-                if (jeu.getPause()) {
+                if (jeu.getEtat().getPause()) {
                     fenetre.vueMenuEnJeu();
 
                 } else {
@@ -38,18 +38,18 @@ public class ControlTimer extends Control implements ActionListener {
                 ControlClavier.toucheRelacher[ControlTouche.ACTION_MENU] = false;
             }
 
-            if (!jeu.getPause()) {
-                jeu.incrementeTemps();
-                if (jeu.getTemps() % 300 == 0) {
+            if (!jeu.getEtat().getPause()) {
+                jeu.getEtat().incrementeTemps();
+                if (jeu.getEtat().getTemps() % 300 == 0) {
                     jeu.setMonstre(1, 900, 0); // a enlever d'ici
                     jeu.setMonstre(2, 1400, 0); // a enlever d'ici
                     jeu.setMonstre(3, 1900, 0); // a enlever d'ici
                     jeu.setMonstre(4, 2400, 0); // a enlever d'ici
                     jeu.sauvegardeHero();
-                    jeu.setSave(true);
+                    jeu.getEtat().setSave(true);
                 }
-                if (jeu.getTemps() % 310 == 0) {
-                    jeu.setSave(false);
+                if (jeu.getEtat().getTemps() % 310 == 0) {
+                    jeu.getEtat().setSave(false);
                 }
 
                 if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_GAUCHE]) {
@@ -125,7 +125,7 @@ public class ControlTimer extends Control implements ActionListener {
                 // dessine les monstres et les fait intéragir
                 for (int i = 0; i < fenetre.panelFenetreJeu.monstre.size(); i++) {
                     if (jeu.getMonstre(i).update(jeu.getHero()))
-                        jeu.addIndiceSuppressionMonstre(i);
+                        jeu.getEtat().getIndiceSuppressionMonstre().add(i);
                     fenetre.panelFenetreJeu.monstre.get(i).selectionnerMorceauSpriteDeplacement();
                     jeu.getMonstre(i).upgrade();
                 }
@@ -134,14 +134,14 @@ public class ControlTimer extends Control implements ActionListener {
                 for (int i = 0; i < fenetre.panelFenetreJeu.sortMonstre.size(); i++) {
                     fenetre.panelFenetreJeu.sortMonstre.get(i).selectionnerMorceauSpriteDeplacement();
                     if (jeu.getSortMonstre(i).update(jeu.getHero()))
-                        jeu.addIndiceSuppressionSortMonstre(i);
+                        jeu.getEtat().getIndiceSuppressionSortMonstre().add(i);
                 }
 
                 // dessine les sorts du hero et les fait intéragir
                 for (int i = 0; i < fenetre.panelFenetreJeu.sortHero.size(); i++) {
                     fenetre.panelFenetreJeu.sortHero.get(i).selectionnerMorceauSpriteDeplacement();
                     if (jeu.getSortHero(i).update(jeu.getAllMonstre()))
-                        jeu.addIndiceSuppressionSortHero(i);
+                        jeu.getEtat().getIndiceSuppressionSortHero().add(i);
                 }
 
                 jeu.updateEntite();

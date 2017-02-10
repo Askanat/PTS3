@@ -138,7 +138,6 @@ public class Monstre extends Personnage {
             }
         }
 
-
         // test si il est mort
         if (!estVivant())
             destruction = true;

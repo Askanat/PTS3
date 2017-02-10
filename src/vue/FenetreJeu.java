@@ -93,33 +93,33 @@ public class FenetreJeu extends JPanel {
         }
 
         // suppression monstre graphiquement
-        for (int i = jeu.getIndiceSuppressionMonstre().size(); i > 0; i--) {
-            int valeur = jeu.getIndiceSuppressionMonstre().get(i - 1);
+        for (int i = jeu.getEtat().getIndiceSuppressionMonstre().size(); i > 0; i--) {
+            int valeur = jeu.getEtat().getIndiceSuppressionMonstre().get(i - 1);
             monstre.remove(valeur);
-            jeu.removeIndiceSuppressionMonstre(i - 1);
+            jeu.getEtat().getIndiceSuppressionMonstre().remove(i - 1);
         }
 
         // suppression sort Monstre graphiquement
-        for (int i = jeu.getIndiceSuppressionSortMonstre().size(); i > 0; i--) {
-            int valeur = jeu.getIndiceSuppressionSortMonstre().get(i - 1);
+        for (int i = jeu.getEtat().getIndiceSuppressionSortMonstre().size(); i > 0; i--) {
+            int valeur = jeu.getEtat().getIndiceSuppressionSortMonstre().get(i - 1);
             sortMonstre.remove(valeur);
-            jeu.removeIndiceSuppressionSortMonstre(i - 1);
+            jeu.getEtat().getIndiceSuppressionSortMonstre().remove(i - 1);
         }
 
         // suppression sort Hero graphiquement
-        for (int i = jeu.getIndiceSuppressionSortHero().size(); i > 0; i--) {
-            int valeur = jeu.getIndiceSuppressionSortHero().get(i - 1);
+        for (int i = jeu.getEtat().getIndiceSuppressionSortHero().size(); i > 0; i--) {
+            int valeur = jeu.getEtat().getIndiceSuppressionSortHero().get(i - 1);
             sortHero.remove(valeur);
-            jeu.removeIndiceSuppressionSortHero(i - 1);
+            jeu.getEtat().getIndiceSuppressionSortHero().remove(i - 1);
         }
 
         // changement de zone : zone-safe <-> zone-donjon
         if (jeu.getHero().getPositionX() > ZONE.width) {
             changerMap("map/mapFenetreDonjon.txt");
-            jeu.setZoneSafe(false);
-        } else if (jeu.getHero().getPositionX() < 0 && !jeu.getZoneSafe()) {
+            jeu.getEtat().setZoneSafe(false);
+        } else if (jeu.getHero().getPositionX() < 0 && !jeu.getEtat().getZoneSafe()) {
             changerMap("map/mapFenetreDepart.txt");
-            jeu.setZoneSafe(true);
+            jeu.getEtat().setZoneSafe(true);
         }
     }
 
@@ -201,7 +201,7 @@ public class FenetreJeu extends JPanel {
         menu.setCursor(new Cursor(Cursor.HAND_CURSOR));
         menu.setBorder(null);
 
-        if (jeu.getSave())
+        if (jeu.getEtat().getSave())
             g.drawImage(imageIconeSave, (int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(5)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(5)), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
 
         for (EntiteVue e : monstre)

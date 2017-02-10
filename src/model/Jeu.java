@@ -1,6 +1,5 @@
 package model;
 
-import controleur.Control;
 import vue.Fenetre;
 
 import java.io.IOException;
@@ -18,36 +17,24 @@ public class Jeu {
 
     public static final int GRAVITE = Fenetre.adapterResolutionEnY(8);
 
-    // à enlever
-    private ArrayList<Sort> allSort;
-    private ArrayList<Equipement> allItem;
-
-
-    private int temps;
+    private Niveau niveau;
+    private BDD bdd;
+    private Etat etat;
 
     private Hero hero;
     private ArrayList<Monstre> tableauMonstre;
     private ArrayList<Sort> tableauSortHero;
     private ArrayList<Sort> tableauSortMonstre;
 
-    private boolean suppressionHero;
-    private ArrayList<Integer> indiceSuppressionMonstre;
-    private ArrayList<Integer> indiceSuppressionSortMonstre;
-    private ArrayList<Integer> indiceSuppressionSortHero;
-
-
-    private Niveau niveau;
-    private BDD bdd;
-
-    private boolean hitBox;
-    private boolean save;
-
     private int nbPartieLibre;
-    private boolean pause;
-    private boolean zoneSafe;
+
+    // à enlever
+    private ArrayList<Sort> allSort;
+    private ArrayList<Equipement> allItem;
 
     public Jeu() throws SQLException {
 
+        etat = new Etat();
         bdd = new BDD();
 
         /*Hero hero1 = new Hero("Hero1", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero1.png", 0, 0);
@@ -67,15 +54,9 @@ public class Jeu {
         tableauSortMonstre = new ArrayList<Sort>();
         tableauSortHero = new ArrayList<Sort>();
 
-        suppressionHero = false;
-        indiceSuppressionMonstre = new ArrayList<Integer>();
-        indiceSuppressionSortMonstre = new ArrayList<Integer>();
-        indiceSuppressionSortHero = new ArrayList<Integer>();
+        nbPartieLibre = 0;
 
-        temps = 0;
-        pause = false;
-        zoneSafe = true;
-
+        // à enlever
         allSort = bdd.chargerSort();
         allItem = bdd.chargerEquipement();
     }
@@ -94,27 +75,6 @@ public class Jeu {
 
     public void supprimerPartie(int idPartie) {
         bdd.resetPartie(idPartie);
-    }
-
-
-    public void setPause(boolean pause) {
-        this.pause = pause;
-    }
-
-    public final boolean getPause() {
-        return pause;
-    }
-
-    public void inversePause() {
-        if (Control.enPartie) setPause(!getPause());
-    }
-
-    public void setZoneSafe(boolean zoneSafe) {
-        this.zoneSafe = zoneSafe;
-    }
-
-    public boolean getZoneSafe() {
-        return zoneSafe;
     }
 
     public void setHero(int id) {
@@ -138,9 +98,9 @@ public class Jeu {
     public void updateEntite() {
 
         // supprime les monstres
-        for (int i = indiceSuppressionMonstre.size(); i > 0; i--) {
-            getHero().recevoirExperience(getMonstre(indiceSuppressionMonstre.get(i - 1)));
-            supprimeMonstre(indiceSuppressionMonstre.get(i - 1));
+        for (int i = getEtat().getIndiceSuppressionMonstre().size(); i > 0; i--) {
+            getHero().recevoirExperience(getMonstre(getEtat().getIndiceSuppressionMonstre().get(i - 1)));
+            supprimeMonstre(getEtat().getIndiceSuppressionMonstre().get(i - 1));
             if (bdd.placeInventaire() < 30) {
                 hero.addItemInInventaire(bdd.dropEquipement((int) (Math.random() * (bdd.nbItem() - 1) + 1)));
                 System.out.println((bdd.placeInventaire() - 1));
@@ -151,12 +111,12 @@ public class Jeu {
         }
 
         // supprime les sorts des mosntres
-        for (int i = indiceSuppressionSortMonstre.size(); i > 0; i--)
-            supprimeSortMonstre(indiceSuppressionSortMonstre.get(i - 1));
+        for (int i = getEtat().getIndiceSuppressionSortMonstre().size(); i > 0; i--)
+            supprimeSortMonstre(getEtat().getIndiceSuppressionSortMonstre().get(i - 1));
 
         // supprime les sorts du hero
-        for (int i = indiceSuppressionSortHero.size(); i > 0; i--)
-            supprimeSortHero(indiceSuppressionSortHero.get(i - 1));
+        for (int i = getEtat().getIndiceSuppressionSortHero().size(); i > 0; i--)
+            supprimeSortHero(getEtat().getIndiceSuppressionSortHero().get(i - 1));
 
         // met à jour le niveau et sauvegarde si gain de niveau
         int niveau = getHero().getNiveau();
@@ -195,7 +155,7 @@ public class Jeu {
 
         donneesMonstre = bdd.readMonstre(id);
 
-        tableauMonstre.add(new Monstre(donneesMonstre.get(0), getHero().niveau, Integer.parseInt(donneesMonstre.get(1)), Integer.parseInt(donneesMonstre.get(2)),
+        tableauMonstre.add(new Monstre(donneesMonstre.get(0), getHero().getNiveau(), Integer.parseInt(donneesMonstre.get(1)), Integer.parseInt(donneesMonstre.get(2)),
                 Integer.parseInt(donneesMonstre.get(3)), Integer.parseInt(donneesMonstre.get(4)), Double.parseDouble(donneesMonstre.get(5)),
                 Double.parseDouble(donneesMonstre.get(6)), Double.parseDouble(donneesMonstre.get(7)), Double.parseDouble(donneesMonstre.get(8)),
                 donneesMonstre.get(12), positionX, positionY, Integer.parseInt(donneesMonstre.get(9)), Integer.parseInt(donneesMonstre.get(10)), Integer.parseInt(donneesMonstre.get(11)),
@@ -212,18 +172,6 @@ public class Jeu {
 
     public int getSizeTabMonstre() {
         return tableauMonstre.size();
-    }
-
-    public void setTemps(int temps) {
-        this.temps = temps;
-    }
-
-    public void incrementeTemps() {
-        temps++;
-    }
-
-    public int getTemps() {
-        return temps;
     }
 
     public int getidPartieLibre() {
@@ -272,22 +220,6 @@ public class Jeu {
         return bdd.readNomPerso(id);
     }
 
-    public void setHitBox(boolean hitBox) {
-        this.hitBox = hitBox;
-    }
-
-    public boolean getHitBox() {
-        return hitBox;
-    }
-
-    public void setSave(boolean save) {
-        this.save = save;
-    }
-
-    public boolean getSave() {
-        return save;
-    }
-
     public void setAllSort() {
         allSort = bdd.chargerSort();
     }
@@ -298,50 +230,6 @@ public class Jeu {
 
     public Sort getSort(int idSort) {
         return allSort.get(idSort);
-    }
-
-    public void addIndiceSuppressionMonstre(int indice) {
-        indiceSuppressionMonstre.add(indice);
-    }
-
-    public void removeIndiceSuppressionMonstre(int indice) {
-        indiceSuppressionMonstre.remove(indice);
-    }
-
-    public ArrayList<Integer> getIndiceSuppressionMonstre() {
-        return indiceSuppressionMonstre;
-    }
-
-    public void addIndiceSuppressionSortMonstre(int indice) {
-        indiceSuppressionSortMonstre.add(indice);
-    }
-
-    public void removeIndiceSuppressionSortMonstre(int indice) {
-        indiceSuppressionSortMonstre.remove(indice);
-    }
-
-    public ArrayList<Integer> getIndiceSuppressionSortMonstre() {
-        return indiceSuppressionSortMonstre;
-    }
-
-    public void addIndiceSuppressionSortHero(int indice) {
-        indiceSuppressionSortHero.add(indice);
-    }
-
-    public void removeIndiceSuppressionSortHero(int indice) {
-        indiceSuppressionSortHero.remove(indice);
-    }
-
-    public ArrayList<Integer> getIndiceSuppressionSortHero() {
-        return indiceSuppressionSortHero;
-    }
-
-    public void setSuppressionHero(boolean suppressionHero) {
-        this.suppressionHero = suppressionHero;
-    }
-
-    public boolean getSuppressionHero() {
-        return suppressionHero;
     }
 
     public void setSortMonstre(Sort sort) {
@@ -389,5 +277,9 @@ public class Jeu {
 
     public Equipement getOneItem(int idItem) {
         return allItem.get(idItem);
+    }
+
+    public Etat getEtat() {
+        return etat;
     }
 }
