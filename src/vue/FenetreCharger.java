@@ -17,7 +17,7 @@ import static vue.Fenetre.*;
 
 public class FenetreCharger extends JPanel {
 
-    public static final int NOMBRE_DE_SLOT = 3;
+    public static final int NOMBRE_DE_SLOT_FENETRE_CHARGER = 3;
 
     private Jeu jeu;
 
@@ -42,11 +42,11 @@ public class FenetreCharger extends JPanel {
         imageFenetreCharger = getToolkit().getImage("images/chargerPartie.png");
         taillePolice = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
 
-        tabSlot = new JButton[NOMBRE_DE_SLOT];
-        tabNomSlot = new JLabel[NOMBRE_DE_SLOT];
-        tabNiveauSlot = new JLabel[NOMBRE_DE_SLOT];
+        tabSlot = new JButton[NOMBRE_DE_SLOT_FENETRE_CHARGER];
+        tabNomSlot = new JLabel[NOMBRE_DE_SLOT_FENETRE_CHARGER];
+        tabNiveauSlot = new JLabel[NOMBRE_DE_SLOT_FENETRE_CHARGER];
 
-        for (int i = 0; i < NOMBRE_DE_SLOT; i++) {
+        for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_CHARGER; i++) {
             tabSlot[i] = new JButton("");
             tabSlot[i].setActionCommand("Slot de Sauvegarde n°" + (i + 1));
             tabNomSlot[i] = new JLabel(jeu.readNomPerso(i + 1), JLabel.CENTER);
@@ -58,7 +58,7 @@ public class FenetreCharger extends JPanel {
         retour = new JButton("");
         retour.setActionCommand("Retour");
 
-        for (int i = 0; i < NOMBRE_DE_SLOT; i++) {
+        for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_CHARGER; i++) {
             this.add(tabSlot[i]);
             this.add(tabNomSlot[i]);
             this.add(tabNiveauSlot[i]);
@@ -69,7 +69,7 @@ public class FenetreCharger extends JPanel {
     }
 
     public void setControl(ControlFenetreCharger controlFenetreCharger) {
-        for (int i = 0; i < NOMBRE_DE_SLOT; i++)
+        for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_CHARGER; i++)
             tabSlot[i].addActionListener(controlFenetreCharger);
 
         jouer.addActionListener(controlFenetreCharger);
@@ -81,7 +81,7 @@ public class FenetreCharger extends JPanel {
 
         g.drawImage(imageFenetreCharger, 0, 0, getWidth(), getHeight(), this);
 
-        for (int i = 0; i < NOMBRE_DE_SLOT; i++) {
+        for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_CHARGER; i++) {
             if (!jeu.readLVLPerso(i + 1).equals("0")) {
                 tabSlot[i].setBounds(Fenetre.adapterResolutionEnX(340 + i * 500), Fenetre.adapterResolutionEnY(240), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(280));
                 tabSlot[i].setBackground(new Color(0, 0, 0, 0));
@@ -120,7 +120,7 @@ public class FenetreCharger extends JPanel {
         retour.setBorder(null);
 
         try {
-            for (int i = 0; i < NOMBRE_DE_SLOT; i++) {
+            for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_CHARGER; i++) {
                 if (!jeu.readLVLPerso(i + 1).equals("0"))
                     g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero" + (i + 1) + ".png")), 3, 11)[1], Fenetre.adapterResolutionEnX(310 + i * 500), Fenetre.adapterResolutionEnY(262), EntiteVue.TAILLE_SPRITE_LARGEUR, EntiteVue.TAILLE_SPRITE_HAUTEUR, this);
             }
@@ -131,7 +131,7 @@ public class FenetreCharger extends JPanel {
     }
 
     public void init() {
-        for (int i = 0; i < NOMBRE_DE_SLOT; i++) {
+        for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_CHARGER; i++) {
             tabNomSlot[i].setText(jeu.readNomPerso(i + 1));
             tabNiveauSlot[i].setText("Niveau " + jeu.readLVLPerso(i + 1));
         }

@@ -14,9 +14,9 @@ import static vue.Fenetre.Y;
 
 public class FenetreCredits extends JPanel {
 
-    public JButton retour;
-
     private Image imageFenetreCredits;
+
+    public JButton retour;
 
     public FenetreCredits() {
 

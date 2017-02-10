@@ -12,7 +12,7 @@ import static vue.Fenetre.Y;
  * Created by MSI-FlorianV on 30/12/2016.
  */
 public class FenetreInventaire extends JPanel {
-
+    // pour bastien : à optimiser
     public JButton retour;
     public JButton[] inventaire;
     public JButton casque, plastron, gant, bague, pantalon, botte, bouclier, arme;

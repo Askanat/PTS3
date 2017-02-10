@@ -18,12 +18,18 @@ import static vue.Fenetre.*;
 
 public class FenetreNouvellePartie extends JPanel {
 
+    public static final int NOMBRE_DE_SLOT_FENETRE_NOUVELLE_PARTIE = 3;
+
     private Jeu jeu;
-    public JButton slot1, slot2, slot3, continuer, retour;
-    public JLabel nomSlot1, nomSlot2, nomSlot3, niveauSlot1, niveauSlot2, niveauSlot3;
 
     private Image imagePorte, imageFenetreNouvellePartie;
     private Font taillePolice;
+
+    public JButton tabSlot[];
+    public JLabel tabNomSlot[];
+    public JLabel tabNiveauSlot[];
+
+    public JButton continuer, retour;
 
     public FenetreNouvellePartie(Jeu jeu) {
 
@@ -32,53 +38,39 @@ public class FenetreNouvellePartie extends JPanel {
         this.setLayout(null);
         this.setPreferredSize(new Dimension(X, Y));
 
-        imageFenetreNouvellePartie = getToolkit().getImage("images/menuNouvellePartie.png");
         imagePorte = getToolkit().getImage("images/feuPorte.png");
+        imageFenetreNouvellePartie = getToolkit().getImage("images/menuNouvellePartie.png");
         taillePolice = new Font("Arial", Font.BOLD, Fenetre.adapterResolutionEnX(20));
 
-        slot1 = new JButton("");
-        slot1.setActionCommand("Slot n°1");
-        slot2 = new JButton("");
-        slot2.setActionCommand("Slot n°2");
-        slot3 = new JButton("");
-        slot3.setActionCommand("Slot n°3");
+        tabSlot = new JButton[NOMBRE_DE_SLOT_FENETRE_NOUVELLE_PARTIE];
+        tabNomSlot = new JLabel[NOMBRE_DE_SLOT_FENETRE_NOUVELLE_PARTIE];
+        tabNiveauSlot = new JLabel[NOMBRE_DE_SLOT_FENETRE_NOUVELLE_PARTIE];
+
+        for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_NOUVELLE_PARTIE; i++) {
+            tabSlot[i] = new JButton("");
+            tabSlot[i].setActionCommand("Slot n°" + (i + 1));
+            tabNomSlot[i] = new JLabel(jeu.readNomPerso(i + 1), JLabel.CENTER);
+            tabNiveauSlot[i] = new JLabel("Niveau " + jeu.readLVLPerso(i + 1), JLabel.CENTER);
+        }
+
         continuer = new JButton("");
         continuer.setActionCommand("Continuer");
         retour = new JButton("");
         retour.setActionCommand("Retour");
-        nomSlot1 = new JLabel(jeu.readNomPerso(1), JLabel.CENTER);
-        nomSlot2 = new JLabel(jeu.readNomPerso(2), JLabel.CENTER);
-        nomSlot3 = new JLabel(jeu.readNomPerso(3), JLabel.CENTER);
-        niveauSlot1 = new JLabel("Niveau " + jeu.readLVLPerso(1), JLabel.CENTER);
-        niveauSlot2 = new JLabel("Niveau " + jeu.readLVLPerso(2), JLabel.CENTER);
-        niveauSlot3 = new JLabel("Niveau " + jeu.readLVLPerso(3), JLabel.CENTER);
 
-        this.add(slot1);
-        this.add(slot2);
-        this.add(slot3);
+        for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_NOUVELLE_PARTIE; i++) {
+            this.add(tabSlot[i]);
+            this.add(tabNomSlot[i]);
+            this.add(tabNiveauSlot[i]);
+        }
+
         this.add(continuer);
         this.add(retour);
-        this.add(nomSlot1);
-        this.add(nomSlot2);
-        this.add(nomSlot3);
-        this.add(niveauSlot1);
-        this.add(niveauSlot2);
-        this.add(niveauSlot3);
-    }
-
-    public void init() {
-        nomSlot1.setText(jeu.readNomPerso(1));
-        niveauSlot1.setText("Niveau " + jeu.readLVLPerso(1));
-        nomSlot2.setText(jeu.readNomPerso(2));
-        niveauSlot2.setText("Niveau " + jeu.readLVLPerso(2));
-        nomSlot3.setText(jeu.readNomPerso(3));
-        niveauSlot3.setText("Niveau " + jeu.readLVLPerso(3));
     }
 
     public void setControl(ControlFenetreNouvellePartie controlFenetreNouvellePartie) {
-        slot1.addActionListener(controlFenetreNouvellePartie);
-        slot2.addActionListener(controlFenetreNouvellePartie);
-        slot3.addActionListener(controlFenetreNouvellePartie);
+        for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_NOUVELLE_PARTIE; i++)
+            tabSlot[i].addActionListener(controlFenetreNouvellePartie);
         continuer.addActionListener(controlFenetreNouvellePartie);
         retour.addActionListener(controlFenetreNouvellePartie);
     }
@@ -87,6 +79,30 @@ public class FenetreNouvellePartie extends JPanel {
         super.paintComponent(g);
 
         g.drawImage(imageFenetreNouvellePartie, 0, 0, getWidth(), getHeight(), this);
+
+        for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_NOUVELLE_PARTIE; i++) {
+            tabSlot[i].setBounds(Fenetre.adapterResolutionEnX(340 + i * 500), Fenetre.adapterResolutionEnY(240), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(280));
+            tabSlot[i].setBackground(new Color(0, 0, 0, 0));
+            tabSlot[i].setFocusable(false);
+            tabSlot[i].setCursor(new Cursor(Cursor.HAND_CURSOR));
+            tabSlot[i].setBorder(null);
+
+            tabNomSlot[i].setBounds(Fenetre.adapterResolutionEnX(360 + i * 500), Fenetre.adapterResolutionEnY(524), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
+            tabNomSlot[i].setForeground(Color.WHITE);
+            tabNomSlot[i].setBackground(new Color(0, 0, 0, 0));
+            tabNomSlot[i].setFont(taillePolice);
+            tabNomSlot[i].setFocusable(false);
+            tabNomSlot[i].setCursor(new Cursor(Cursor.HAND_CURSOR));
+            tabNomSlot[i].setBorder(null);
+
+            tabNiveauSlot[i].setBounds(Fenetre.adapterResolutionEnX(360 + i * 500), Fenetre.adapterResolutionEnY(561), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
+            tabNiveauSlot[i].setForeground(Color.WHITE);
+            tabNiveauSlot[i].setBackground(new Color(0, 0, 0, 0));
+            tabNiveauSlot[i].setFont(taillePolice);
+            tabNiveauSlot[i].setFocusable(false);
+            tabNiveauSlot[i].setCursor(new Cursor(Cursor.HAND_CURSOR));
+            tabNiveauSlot[i].setBorder(null);
+        }
 
         continuer.setBounds(Fenetre.adapterResolutionEnX(706), Fenetre.adapterResolutionEnY(790), Fenetre.adapterResolutionEnX(480), Fenetre.adapterResolutionEnY(90));
         continuer.setBackground(new Color(0, 0, 0, 0));
@@ -100,80 +116,20 @@ public class FenetreNouvellePartie extends JPanel {
         retour.setCursor(new Cursor(Cursor.HAND_CURSOR));
         retour.setBorder(null);
 
-
-        slot1.setBounds(Fenetre.adapterResolutionEnX(340), Fenetre.adapterResolutionEnY(240), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(280));
-        slot1.setBackground(new Color(0, 0, 0, 0));
-        slot1.setFocusable(false);
-        slot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        slot1.setBorder(null);
-
-        nomSlot1.setBounds(Fenetre.adapterResolutionEnX(360), Fenetre.adapterResolutionEnY(524), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
-        nomSlot1.setForeground(Color.WHITE);
-        nomSlot1.setBackground(new Color(0, 0, 0, 0));
-        nomSlot1.setFont(taillePolice);
-        nomSlot1.setFocusable(false);
-        nomSlot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        nomSlot1.setBorder(null);
-
-        niveauSlot1.setBounds(Fenetre.adapterResolutionEnX(360), Fenetre.adapterResolutionEnY(561), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
-        niveauSlot1.setForeground(Color.WHITE);
-        niveauSlot1.setBackground(new Color(0, 0, 0, 0));
-        niveauSlot1.setFont(taillePolice);
-        niveauSlot1.setFocusable(false);
-        niveauSlot1.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        niveauSlot1.setBorder(null);
-
-        slot2.setBounds(Fenetre.adapterResolutionEnX(840), Fenetre.adapterResolutionEnY(240), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(280));
-        slot2.setBackground(new Color(0, 0, 0, 0));
-        slot2.setFocusable(false);
-        slot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        slot2.setBorder(null);
-
-        nomSlot2.setBounds(Fenetre.adapterResolutionEnX(860), Fenetre.adapterResolutionEnY(524), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
-        nomSlot2.setForeground(Color.WHITE);
-        nomSlot2.setBackground(new Color(0, 0, 0, 0));
-        nomSlot2.setFont(taillePolice);
-        nomSlot2.setFocusable(false);
-        nomSlot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        nomSlot2.setBorder(null);
-
-        niveauSlot2.setBounds(Fenetre.adapterResolutionEnX(860), Fenetre.adapterResolutionEnY(561), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
-        niveauSlot2.setForeground(Color.WHITE);
-        niveauSlot2.setBackground(new Color(0, 0, 0, 0));
-        niveauSlot2.setFont(taillePolice);
-        niveauSlot2.setFocusable(false);
-        niveauSlot2.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        niveauSlot2.setBorder(null);
-
-        slot3.setBounds(Fenetre.adapterResolutionEnX(1338), Fenetre.adapterResolutionEnY(240), Fenetre.adapterResolutionEnX(240), Fenetre.adapterResolutionEnY(280));
-        slot3.setBackground(new Color(0, 0, 0, 0));
-        slot3.setFocusable(false);
-        slot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        slot3.setBorder(null);
-
-        nomSlot3.setBounds(Fenetre.adapterResolutionEnX(1360), Fenetre.adapterResolutionEnY(524), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
-        nomSlot3.setForeground(Color.WHITE);
-        nomSlot3.setBackground(new Color(0, 0, 0, 0));
-        nomSlot3.setFont(taillePolice);
-        nomSlot3.setFocusable(false);
-        nomSlot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        nomSlot3.setBorder(null);
-
-        niveauSlot3.setBounds(Fenetre.adapterResolutionEnX(1360), Fenetre.adapterResolutionEnY(561), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(20));
-        niveauSlot3.setForeground(Color.WHITE);
-        niveauSlot3.setBackground(new Color(0, 0, 0, 0));
-        niveauSlot3.setFont(taillePolice);
-        niveauSlot3.setFocusable(false);
-        niveauSlot3.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        niveauSlot3.setBorder(null);
-
         try {
-            g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero1.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(310), Fenetre.adapterResolutionEnY(262), EntiteVue.TAILLE_SPRITE_LARGEUR, EntiteVue.TAILLE_SPRITE_HAUTEUR, this);
-            g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero2.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(810), Fenetre.adapterResolutionEnY(262), EntiteVue.TAILLE_SPRITE_LARGEUR, EntiteVue.TAILLE_SPRITE_HAUTEUR, this);
-            g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero3.png")), 3, 11)[1], Fenetre.adapterResolutionEnX(1310), Fenetre.adapterResolutionEnY(262), EntiteVue.TAILLE_SPRITE_LARGEUR, EntiteVue.TAILLE_SPRITE_HAUTEUR, this);
+            for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_NOUVELLE_PARTIE; i++) {
+                g.drawImage(decoupage(ImageIO.read(new File("images/Save/texture_hero" + (i + 1) + ".png")), 3, 11)[1], Fenetre.adapterResolutionEnX(310 + i * 500), Fenetre.adapterResolutionEnY(262), EntiteVue.TAILLE_SPRITE_LARGEUR, EntiteVue.TAILLE_SPRITE_HAUTEUR, this);
+            }
             g.drawImage(imagePorte, Fenetre.adapterResolutionEnX(-194 + 500 * Fenetre.numeroPorte), Fenetre.adapterResolutionEnY(200), EntiteVue.TAILLE_SPRITE_LARGEUR, EntiteVue.TAILLE_SPRITE_HAUTEUR, this);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void init() {
+        for (int i = 0; i < NOMBRE_DE_SLOT_FENETRE_NOUVELLE_PARTIE; i++) {
+            tabNomSlot[i].setText(jeu.readNomPerso(i + 1));
+            tabNiveauSlot[i].setText("Niveau " + jeu.readLVLPerso(i + 1));
         }
     }
 

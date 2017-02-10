@@ -13,7 +13,7 @@ import static vue.Fenetre.Y;
  * Created by MSI-FlorianV on 05/01/2017.
  */
 public class FenetreFichePerso extends JPanel {
-
+    // pour bastien : à optimiser
     private Jeu jeu;
 
     public JButton retour, plusForce, moinsForce, plusInt, moinsInt, plusConst, moinsConst, plusResist, moinsResist, valider;

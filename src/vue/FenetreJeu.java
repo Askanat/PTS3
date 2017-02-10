@@ -6,7 +6,6 @@ import model.Jeu;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,22 +21,21 @@ import static vue.Fenetre.*;
 public class FenetreJeu extends JPanel {
 
     private Jeu jeu;
-    private ActionListener control;
-
-    public EntiteVue hero;
-    public ArrayList<EntiteVue> monstre;
-
-    public ArrayList<EntiteVue> sortMonstre;
-    public ArrayList<EntiteVue> sortHero;
-
-    public JButton menu;
-    private Image imageIconeSave;
 
     private int tailleMapX, tailleMapY;
     private final int TAILLE_TUILE = Fenetre.adapterResolutionEnX(50);
     private int tuileInt[][];
     public BufferedImage tuileImage[][];
     public static Dimension ZONE;
+
+
+    public ArrayList<EntiteVue> monstre;
+    public EntiteVue hero;
+    public ArrayList<EntiteVue> sortMonstre;
+    public ArrayList<EntiteVue> sortHero;
+
+    private Image imageIconeSave;
+    public JButton menu;
 
 
     public FenetreJeu(Jeu jeu) {
@@ -53,19 +51,18 @@ public class FenetreJeu extends JPanel {
         ZONE = new Dimension(TAILLE_TUILE * tailleMapX, TAILLE_TUILE * tailleMapY);
         this.setPreferredSize(ZONE);
 
+
+        monstre = new ArrayList<>();
         hero = new EntiteVue(jeu);
-        monstre = new ArrayList<EntiteVue>();
-        sortMonstre = new ArrayList<EntiteVue>();
-        sortHero = new ArrayList<EntiteVue>();
+        sortMonstre = new ArrayList<>();
+        sortHero = new ArrayList<>();
 
         imageIconeSave = getToolkit().getImage("images/iconeSave.png");
-
         menu = new JButton("");
         menu.setActionCommand("Menu");
         Image img = getToolkit().getImage("images/iconeMenu.png").getScaledInstance(Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40), java.awt.Image.SCALE_SMOOTH);
         menu.setIcon(new ImageIcon(img));
         this.add(menu);
-        menu.addActionListener(control);
     }
 
     public void updateEntite() {
@@ -185,25 +182,17 @@ public class FenetreJeu extends JPanel {
 
     public void setControl(ControlFenetreJeu controlFenetreJeu) {
         menu.addActionListener(controlFenetreJeu);
-        control = controlFenetreJeu;
     }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        // dessine la carte
         for (int i = 0; i < tailleMapY; i++)
             for (int j = 0; j < tailleMapX; j++)
                 g.drawImage(tuileImage[i][j], TAILLE_TUILE * j, TAILLE_TUILE * i, TAILLE_TUILE, TAILLE_TUILE, this);
 
-        menu.setBounds((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(1860)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(10)), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40));
-        menu.setBackground(new Color(0, 0, 0, 0));
-        menu.setFocusable(false);
-        menu.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        menu.setBorder(null);
-
-        if (jeu.getEtat().getSave())
-            g.drawImage(imageIconeSave, (int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(5)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(5)), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
-
+        // dessine les entites
         for (EntiteVue e : monstre)
             e.paintComponent(g);
 
@@ -214,5 +203,14 @@ public class FenetreJeu extends JPanel {
 
         for (EntiteVue e : sortHero)
             e.paintComponent(g);
+
+        menu.setBounds((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(1860)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(10)), Fenetre.adapterResolutionEnX(40), Fenetre.adapterResolutionEnY(40));
+        menu.setBackground(new Color(0, 0, 0, 0));
+        menu.setFocusable(false);
+        menu.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        menu.setBorder(null);
+
+        if (jeu.getEtat().getSave())
+            g.drawImage(imageIconeSave, (int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(5)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(5)), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
     }
 }
