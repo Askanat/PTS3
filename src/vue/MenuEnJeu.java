@@ -1,5 +1,4 @@
 package vue;
-
 import controleur.ControlMenuEnJeu;
 import model.Jeu;
 

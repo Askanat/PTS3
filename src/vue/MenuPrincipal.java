@@ -1,5 +1,4 @@
 package vue;
-
 import controleur.ControlMenuPrincipal;
 
 import javax.swing.*;
@@ -7,7 +6,6 @@ import java.awt.*;
 
 import static vue.Fenetre.X;
 import static vue.Fenetre.Y;
-
 
 /**
  * Created by bastien on 29/09/16.

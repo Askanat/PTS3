@@ -1,5 +1,4 @@
 package vue;
-
 import controleur.ControlFenetreCreationPersonnage;
 import model.Jeu;
 
@@ -16,6 +15,7 @@ import static vue.Fenetre.*;
 /**
  * Created by bastien on 21/11/16.
  */
+
 public class FenetreCreationPersonnage extends JPanel {
 
     // nombre de texture différente

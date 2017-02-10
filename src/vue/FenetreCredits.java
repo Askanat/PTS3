@@ -1,5 +1,4 @@
 package vue;
-
 import controleur.ControlFenetreCredits;
 
 import javax.swing.*;

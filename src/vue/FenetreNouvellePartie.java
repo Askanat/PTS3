@@ -1,5 +1,4 @@
 package vue;
-
 import controleur.ControlFenetreNouvellePartie;
 import model.Jeu;
 
@@ -10,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 
 import static vue.Fenetre.*;
-
 
 /**
  * Created by bastien on 29/09/16.

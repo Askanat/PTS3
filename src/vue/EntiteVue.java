@@ -1,5 +1,4 @@
 package vue;
-
 import model.*;
 
 import javax.imageio.ImageIO;
@@ -11,7 +10,6 @@ import java.io.IOException;
 
 import static vue.Fenetre.*;
 import static vue.FenetreJeu.ZONE;
-
 
 /**
  * Created by bastien on 02/10/16.

@@ -1,5 +1,4 @@
 package vue;
-
 import controleur.ControlFenetreJeu;
 import model.Direction;
 import model.Jeu;
