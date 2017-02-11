@@ -12,11 +12,13 @@ public class Niveau {
     private Random rand = new Random();
 
     private static final int TAILLE_SEGMENT = 20;
+	private static final int NB_LIGNES_MUR_PROFONDEUR = 2;
     private static final int ESPACE_PLATEFORME = 9;
     private static final int TAILLE_VIDE_MAX = 8;
     private static final int TAILLE_VIDE_FOND_MAX = 2;
-    private static final int EPAISSEUR_PLATEFORME_MIN = 1;
-    private static final int EPAISSEUR_PLATEFORME_MAX = 2;
+	private static final int EPAISSEUR_PLATEFORME_MUR2 = 2;
+    private static final int EPAISSEUR_PLATEFORME_MIN = 1 + EPAISSEUR_PLATEFORME_MUR2;
+    private static final int EPAISSEUR_PLATEFORME_MAX = 2 + EPAISSEUR_PLATEFORME_MUR2;
     private static final int NB_PICS_MIN = 1;
     private static final int NB_PICS_MAX = 4;
     private static final int ESPACE_MIN_ENTRE_PICS = 3;
@@ -52,16 +54,16 @@ public class Niveau {
         int i;
 
         for (i = 0; i < taille_x; i++)
-            tableau[0][i] = Block.MUR;
+            tableau[0][i] = Block.MUR2;
 
         for (i = 0; i < taille_x; i++)
-            tableau[taille_y - 1][i] = Block.MUR;
+            tableau[taille_y - 1][i] = Block.MUR2;
 
         for (i = 1; i < taille_y - 1; i++)
-            tableau[i][0] = Block.MUR;
+            tableau[i][0] = Block.MUR2;
 
         for (i = 1; i < taille_y - 1; i++)
-            tableau[i][taille_x - 1] = Block.MUR;
+            tableau[i][taille_x - 1] = Block.MUR2;
     }
 
     // Calcule l'epaisseur de toutes les lignes et calcule taille_y
@@ -70,11 +72,17 @@ public class Niveau {
         int i;
 
         for (i = 0; i < nb_plateformes; i++)
-            epaisseur[i] = rand.nextInt(EPAISSEUR_PLATEFORME_MAX - EPAISSEUR_PLATEFORME_MIN + 1) + 1;
+            epaisseur[i] = rand.nextInt(EPAISSEUR_PLATEFORME_MAX - EPAISSEUR_PLATEFORME_MIN + 1) + EPAISSEUR_PLATEFORME_MIN;
 
         for (i = 0; i < nb_plateformes; i++)
             taille_y += epaisseur[i] + ESPACE_PLATEFORME;
     }
+
+	// Retourne le nombre de Block.MUR dans l'épaisseur d'une plateforme
+
+	private int getTailleMurPlateforme(int plateforme) {
+		return epaisseur[plateforme] - EPAISSEUR_PLATEFORME_MUR2;
+	}
 
     // Retourne le nombre de lignes avant le début de la plateforme
 
@@ -117,25 +125,24 @@ public class Niveau {
 
     private void remplirPlateformeFondSup(int plateforme) {
         int y = getEspaceAvantPlateforme(plateforme) - 2;
-        int r;
 
         for (int i = 1; i < taille_x - 1; i++) {
             if (i % 15 == 0)
                 tableau[y][i] = Block.TORCHE;
             else if (tableau[y][i] == Block.MUR_FOND) {
-                r = rand.nextInt(10);
+				// Une chance sur dix de placer une vitre
 
-                if (r == 0)
+                if (rand.nextInt(10) == 0)
                     tableau[y][i] = Block.VITRE;
             }
         }
     }
 
-    // Remplis une ligne y avec Block.MUR
+    // Remplis une ligne y avec block
 
-    private void remplirLigneMur(int debut, int fin, int y) {
+    private void remplirLigneMur(int debut, int fin, int y, int block) {
         for(int i = debut; i < fin; i++)
-            tableau[y][i] = Block.MUR;
+            tableau[y][i] = block;
     }
 
     // Ajoute des pics à une ligne donnée
@@ -211,8 +218,10 @@ public class Niveau {
              * cases vide d'affilé n'a pas été dépassé
              */
 
+            // REMPLACER PAR Block.MUR_FOND
+
             if(faireVide == 1 && videCompteur < videMax) {
-                tableau[y][i] = Block.MUR_FOND;
+                tableau[y][i] = 0;
                 videCompteur++;
             }
             else
@@ -226,12 +235,13 @@ public class Niveau {
      * sinon => une des lignes du milieu
      */
 
-    private void remplirLigne(int debut, int fin, int posLigne, int epaisseur, int y, int videMax) {
+    private void remplirLigne(int debut, int fin, int posLigne, int epaisseur, int y, int videMax, int plateforme) {
         final int VIDE = 0, PICS = 1;
         final int NB_CASES = (fin - debut);
         int curSegment = 0, debutSegment = debut, finSegment = TAILLE_SEGMENT;
+		int block = (posLigne > getTailleMurPlateforme(plateforme) - 1) ? Block.MUR2 : Block.MUR;
 
-        remplirLigneMur(debut, fin, y);
+        remplirLigneMur(debut, fin, y, block);
 
         for(int i = 0; i < NB_CASES; i++) {
             if(i % TAILLE_SEGMENT == 0) {
@@ -254,10 +264,13 @@ public class Niveau {
 
     // Construit un escalier afin d'accéder à une plateforme
 
-    private void addEscalier(Direction dir, int espaceBase, int epaisseurN) {
-        int debut = espaceBase + epaisseurN - 1;
-        int fin = espaceBase + epaisseurN + ESPACE_PLATEFORME - 3;
+    private void addEscalier(Direction dir, int espaceBase, int epaisseurN, int plateforme) {
+        int debut = espaceBase;
+        int fin = debut + epaisseurN + ESPACE_PLATEFORME - (EPAISSEUR_PLATEFORME_MUR2 * 3);
         int i, j;
+
+		if(getTailleMurPlateforme(plateforme) == 1)
+			fin++;
 
         if(dir == Direction.GAUCHE) {
             i = ESPACE_PLATEFORME;
@@ -313,7 +326,7 @@ public class Niveau {
                 else
                     tailleVide = TAILLE_VIDE_MAX;
 
-                remplirLigne(debut, fin, i, epaisseurN, espace, tailleVide);
+                remplirLigne(debut, fin, i, epaisseurN, espace, tailleVide, plateforme);
 
                 /* 
                  * On appele la fonction permettant de construire 
@@ -321,7 +334,7 @@ public class Niveau {
                  */
 
                 if (i == epaisseurN - 1)
-                    addEscalier(dir, espace, epaisseurN);
+                    addEscalier(dir, espace, epaisseurN, plateforme);
             } else {
                 /*
                  * Sinon on remplis la première plateforme tout en
@@ -331,7 +344,7 @@ public class Niveau {
                 if (i == epaisseurN - 1)
                     tailleVide = TAILLE_VIDE_FOND_MAX;
 
-                remplirLigne(1, taille_x - 1, i, epaisseurN, espace, tailleVide);
+                remplirLigne(1, taille_x - 1, i, epaisseurN, espace, tailleVide, plateforme);
             }
         }
     }
