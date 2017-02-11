@@ -5,7 +5,6 @@ import vue.Fenetre;
 import java.awt.*;
 
 import static java.lang.Math.abs;
-import static model.Jeu.GRAVITE;
 import static vue.FenetreJeu.ZONE;
 
 /**
@@ -23,6 +22,23 @@ public class Entite {
     protected boolean collision, deplacement, attaquer;
 
     protected Rectangle hitBoxCorps;
+
+    public Entite(String nom, String texture) {
+
+        this.nom = nom;
+        this.texture = texture;
+
+        vitesseDeDeplacementEnY = 0;
+        vecteurDeplacementEnX = 0;
+        vecteurDeplacementEnY = 0;
+        directionOrientation = null;
+
+        collision = false;
+        deplacement = false;
+        attaquer = false;
+
+        hitBoxCorps = new Rectangle();
+    }
 
     public Entite(String nom, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, String texture,
                   int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut) {
@@ -127,7 +143,8 @@ public class Entite {
         this.directionOrientation = directionOrientation;
     }
 
-    public void deplacer() {}
+    public void deplacer() {
+    }
 
     public void setVecteurDeplacementEnX(int x) {
         vecteurDeplacementEnX = x;

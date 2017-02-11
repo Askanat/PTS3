@@ -1,4 +1,5 @@
 package vue;
+
 import controleur.*;
 import model.Jeu;
 
@@ -21,8 +22,8 @@ public class Fenetre extends JFrame {
     private static Dimension tailleEcran = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
     public static final double DEFAUT_X = 1920;
     public static final double DEFAUT_Y = 1080;
-    public static final int X = 960;//(int) tailleEcran.getWidth();
-    public static final int Y = 540;//(int) tailleEcran.getHeight();
+    public static final int X = 960; //(int) tailleEcran.getWidth();
+    public static final int Y = 540; //(int) tailleEcran.getHeight();
 
     public static BufferedImage[] tableauTuile;
     public static final int DECOUPE_TUILE_EN_X = 7, DECOUPE_TUILE_EN_Y = 3;

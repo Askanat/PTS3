@@ -26,18 +26,29 @@ public class Sort extends Entite implements Cloneable {
 
         tempsDeApparition = 0;
 
-        texture = "images/Sorts/goutte_Boule.png"; // à enlever
+        texture = "images/Sorts/goutte_Boule.png"; // à enlever quand les sorts auront tous une texture
     }
 
-    public Object clone() {
-        Sort sort = null;
-        try {
-            sort = (Sort) super.clone();
-        } catch (CloneNotSupportedException cnse) {
-            cnse.printStackTrace(System.err);
-        }
+    public Sort(Sort sort) {
+        super(sort.nom, sort.texture);
 
-        return sort;
+        this.idSpell = sort.idSpell;
+        this.degatSpell = sort.degatSpell;
+        this.porteSpell = sort.porteSpell;
+        this.coutManaSpell = sort.coutManaSpell;
+        this.tempsDeRechargement = sort.tempsDeRechargement;
+
+        this.tempsDeApparition = sort.tempsDeApparition;
+
+        this.positionX = sort.positionX;
+        this.positionY = sort.positionY;
+        this.vitesseDeDeplacementEnX = sort.vitesseDeDeplacementEnX;
+        this.vitesseDeSaut = sort.vitesseDeSaut;
+
+        this.largeurDevant = sort.largeurDevant;
+        this.largeurDerriere = sort.largeurDerriere;
+        this.hauteurHaut = sort.hauteurHaut;
+        this.hauteurBas = sort.hauteurBas;
     }
 
     public void deplacer() {

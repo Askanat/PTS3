@@ -67,33 +67,51 @@ public class Hero extends Personnage implements Serializable {
         loadInventaire();
     }
 
-    public Hero(Hero h) {
+    public Hero(Hero hero) {
 
-        super(h.nom, h.niveau, 52, 52, 81, 98, h.texture, h.positionX, h.positionY, 30, 60, 68, 8, 30, h.jeu);
+        super(hero.nom, hero.niveau, hero.texture, hero.jeu);
 
-        this.force = h.force;
-        this.constitution = h.constitution;
-        this.intelligence = h.intelligence;
-        this.resistance = h.resistance;
+        this.force = hero.force;
+        this.constitution = hero.constitution;
+        this.intelligence = hero.intelligence;
+        this.resistance = hero.resistance;
 
-        vieMax = (int) (constitution * COEF_VIE + VIE_DE_BASE);
-        vie = vieMax;
-        manaMax = (int) (intelligence * COEF_MANA + MANA_DE_BASE);
-        mana = manaMax;
-        degatMax = (int) (force * COEF_DEGATS + DEGATS_DE_BASE);
-        degats = degatMax;
-        armureMax = (int) (resistance * COEF_ARMURE);
-        armure = armureMax;
+        this.vieMax = hero.vieMax;
+        this.vie = hero.vie;
+        this.manaMax = hero.manaMax;
+        this.mana = hero.mana;
+        this.degatMax = hero.degatMax;
+        this.degats = hero.degats;
+        this.armureMax = hero.armureMax;
+        this.armure = hero.armure;
 
-        this.experience = h.experience;
-        this.experienceMax = h.experienceMax;
+        this.experience = hero.experience;
+        this.experienceMax = hero.experienceMax;
 
-        this.pointCaracteristique = h.pointCaracteristique;
-        this.pointCompetence = h.pointCompetence;
+        this.pointCaracteristique = hero.pointCaracteristique;
+        this.pointCompetence = hero.pointCompetence;
 
-        this.or = h.or;
+        this.or = hero.or;
 
-        directionOrientation = Direction.DROITE;
+        this.bdd = hero.bdd;
+
+        this.heroSort = hero.heroSort;
+
+        this.inventaire = hero.inventaire;
+
+        this.porteeDeAttaque = hero.porteeDeAttaque;
+        this.distanceDeAttaqueDeOrigineAX = hero.distanceDeAttaqueDeOrigineAX;
+        this.distanceDeAttaqueDeOrigineAY = hero.distanceDeAttaqueDeOrigineAY;
+
+        this.positionX = hero.positionX;
+        this.positionY = hero.positionY;
+        this.vitesseDeDeplacementEnX = hero.vitesseDeDeplacementEnX;
+        this.vitesseDeSaut = hero.vitesseDeSaut;
+
+        this.largeurDevant = hero.largeurDevant;
+        this.largeurDerriere = hero.largeurDerriere;
+        this.hauteurHaut = hero.hauteurHaut;
+        this.hauteurBas = hero.hauteurBas;
     }
 
     //fonction qui renvoie un tableau de string contenant les informations à sauvegarder dans la bdd
@@ -325,8 +343,8 @@ public class Hero extends Personnage implements Serializable {
     public void loadInventaire() {
         int[][] loadInventaire = bdd.getPossede();
 
-        for(int i = 0;i<bdd.placeInventaire();i++) {
-            if(getIdHero() == loadInventaire[i][0]) {
+        for (int i = 0; i < bdd.placeInventaire(); i++) {
+            if (getIdHero() == loadInventaire[i][0]) {
                 inventaire.add(bdd.dropEquipement(loadInventaire[i][1]));
             }
         }

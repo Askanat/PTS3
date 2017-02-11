@@ -29,6 +29,13 @@ public abstract class Personnage extends Entite implements Serializable {
 
     protected Jeu jeu;
 
+    public Personnage(String nom, int niveau, String texture, Jeu jeu) {
+        super(nom, texture);
+
+        this.jeu = jeu;
+
+        this.niveau = niveau;
+    }
 
     public Personnage(String nom, int niveau, int largeurDevant, int largeurDerriere, int hauteurHaut, int hauteurBas, String texture,
                       int positionX, int positionY, int vitesseDeDeplacementEnX, int vitesseDeSaut, int porteeDeAttaque,
@@ -104,7 +111,7 @@ public abstract class Personnage extends Entite implements Serializable {
 
     public Sort appelleSort(Sort sort) {
         Sort sortUtilise = null;
-        sortUtilise = (Sort) sort.clone();
+        sortUtilise = new Sort(sort);
         setMana(getMana() - sort.getCoutManaSpell());
         sortUtilise.setDegatSpell(sort.getDegatSpell() + (int) (getDegats() * 0.5));
         sortUtilise.setPositionX(getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() : getLargeurDerriere()));

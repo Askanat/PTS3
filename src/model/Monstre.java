@@ -67,6 +67,59 @@ public class Monstre extends Personnage {
         hitBoxVue = new Rectangle();
     }
 
+    public Monstre(Monstre monstre) {
+        super(monstre.nom, monstre.niveau, monstre.texture, monstre.jeu);
+
+        this.vieMax = monstre.vieMax;
+        this.vie = monstre.vie;
+
+        this.manaMax = monstre.manaMax;
+        this.mana = monstre.mana;
+
+        this.degatMax = monstre.degatMax;
+        this.degats = monstre.degats;
+
+        this.armureMax = monstre.armureMax;
+        this.armure = monstre.armure;
+
+        this.coeffVie = monstre.coeffVie;
+        this.coeffMana = monstre.coeffMana;
+        this.coeffDegat = monstre.coeffDegat;
+        this.coeffArmure = monstre.coeffArmure;
+
+        this.distanceVisibilite = monstre.distanceVisibilite;
+
+        this.sort = monstre.sort;
+
+        this.directionOrientation = monstre.directionOrientation;
+
+        this.tempsAttaque = monstre.tempsAttaque;
+        this.tempsDeplacement = monstre.tempsDeplacement;
+        this.TEMPS_DEPLACEMENT = monstre.TEMPS_DEPLACEMENT;
+        this.nbDeDeplacement = monstre.nbDeDeplacement;
+        this.NB_DE_DEPLACEMENT = monstre.NB_DE_DEPLACEMENT;
+        this.mouvementAleatoire = monstre.mouvementAleatoire;
+        this.mouvementAleatoireDirection = monstre.mouvementAleatoireDirection;
+
+        this.bdd = monstre.bdd;
+
+        this.hitBoxVue = monstre.hitBoxVue;
+
+        this.porteeDeAttaque = monstre.porteeDeAttaque;
+        this.distanceDeAttaqueDeOrigineAX = monstre.distanceDeAttaqueDeOrigineAX;
+        this.distanceDeAttaqueDeOrigineAY = monstre.distanceDeAttaqueDeOrigineAY;
+
+        this.positionX = monstre.positionX;
+        this.positionY = monstre.positionY;
+        this.vitesseDeDeplacementEnX = monstre.vitesseDeDeplacementEnX;
+        this.vitesseDeSaut = monstre.vitesseDeSaut;
+
+        this.largeurDevant = monstre.largeurDevant;
+        this.largeurDerriere = monstre.largeurDerriere;
+        this.hauteurHaut = monstre.hauteurHaut;
+        this.hauteurBas = monstre.hauteurBas;
+    }
+
     public int donneExperience() {
         return (int) (niveau * (coeffArmure + coeffDegat + coeffMana + coeffVie));
     }
