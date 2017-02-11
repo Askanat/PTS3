@@ -2,7 +2,6 @@ package model;
 
 import vue.Fenetre;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static vue.Fenetre.DEFAUT_X;
@@ -142,15 +141,7 @@ public class Jeu {
 
 
     public void sauvegardeHero() {
-        if (bdd.isBDD()) {
-            bdd.updateHero(hero.getIdHero(), hero.sauvegardeDonneesHeros());
-        } else {
-            try {
-                bdd.sauvegardeFlux(hero.getIdHero(), hero);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        bdd.updateHero(hero.getIdHero(), hero.sauvegardeDonneesHeros());
     }
 
     public void supprimerPartie(int idPartie) {
@@ -160,19 +151,11 @@ public class Jeu {
     public void setHero(int id) {
         ArrayList<String> donneesHero;
 
-        if (bdd.isBDD()) {
-            donneesHero = bdd.readHero(id);
-            hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)), Integer.parseInt(donneesHero.get(3)),
-                    Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)), Double.parseDouble(donneesHero.get(6)),
-                    Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)), Double.parseDouble(donneesHero.get(9)),
-                    Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0), this);
-        } else {
-            try {
-                hero = bdd.chargementFlux(id);
-            } catch (Exception e) {
-                System.out.println("Chargement hero impossible : " + e);
-            }
-        }
+        donneesHero = bdd.readHero(id);
+        hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)), Integer.parseInt(donneesHero.get(3)),
+                Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)), Double.parseDouble(donneesHero.get(6)),
+                Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)), Double.parseDouble(donneesHero.get(9)),
+                Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0), this);
     }
 
 

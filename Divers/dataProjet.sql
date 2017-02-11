@@ -13,21 +13,21 @@ CREATE TABLE spell (
   coutManaSpell int,
   rechargeSpell int,
   textureSpell varchar(50),
-  unlockSpell boolean,
   vitesseDeDeplacement int,
+  niveauSpell int,
 
   PRIMARY KEY(idSpell)
 );
 
-INSERT INTO spell VALUES (default, "Boule de feu", 0, 0, 0, 0, 10,10, 10, 30, "images/Sorts/boule_de_feu.png", false, 10);
-INSERT INTO spell VALUES (default, "La boule magique", 0, 0, 0, 0, 20, 10, 20, 30,  "images/Sorts/boule_magique.png", false, 10);
-INSERT INTO spell VALUES (default, "Eclaire de givre", 0, 0, 0, 0, 10, 10, 10, 30, "images/Sorts/eclaire_de_givre.png", false, 10);
-INSERT INTO spell VALUES (default, "Soin mineur", 0, 0, 0, 0, 0, 10, 10, 30, "images/Sorts/soin_mineur.png", false, 0);
-INSERT INTO spell VALUES (default, "Soin majeur", 0, 0, 0, 0, 20, 0, 20, 50, "images/Sorts/soin_majeur.png", false, 0);
-INSERT INTO spell VALUES (default, "Eclair", 0, 0, 0, 0, 20, 10, 20, 50,  "images/Sorts/eclair.png", false, 0);
-INSERT INTO spell VALUES (default, "Tempete de feu", 0, 0, 0, 0, 50, 20, 50, 600, "images/Sorts/tempete_de_feu.png", false, 0);
-INSERT INTO spell VALUES (default, "Explosion pyrotechnique", 0, 0, 0, 0, 1000, 100, 0, 10, "images/Sorts/explosion_pyrotechnique.png", false, 50);
-INSERT INTO spell VALUES (default, "Goutte boule", 19, 19, 17, 17, 5, 50, 3, 10, "images/Sorts/goutte_Boule.png", false, 35);
+INSERT INTO spell VALUES (default, "Boule de feu", 0, 0, 0, 0, 10,10, 10, 30, "images/Sorts/boule_de_feu.png", 10,1);
+INSERT INTO spell VALUES (default, "La boule magique", 0, 0, 0, 0, 20, 10, 20, 30,  "images/Sorts/boule_magique.png", 10,1);
+INSERT INTO spell VALUES (default, "Eclaire de givre", 0, 0, 0, 0, 10, 10, 10, 30, "images/Sorts/eclaire_de_givre.png", 10,1);
+INSERT INTO spell VALUES (default, "Soin mineur", 0, 0, 0, 0, 0, 10, 10, 30, "images/Sorts/soin_mineur.png", 0,1);
+INSERT INTO spell VALUES (default, "Soin majeur", 0, 0, 0, 0, 20, 0, 20, 50, "images/Sorts/soin_majeur.png", 0,1);
+INSERT INTO spell VALUES (default, "Eclair", 0, 0, 0, 0, 20, 10, 20, 50,  "images/Sorts/eclair.png", 0,1);
+INSERT INTO spell VALUES (default, "Tempete de feu", 0, 0, 0, 0, 50, 20, 50, 600, "images/Sorts/tempete_de_feu.png", 0,1);
+INSERT INTO spell VALUES (default, "Explosion pyrotechnique", 0, 0, 0, 0, 1000, 100, 0, 10, "images/Sorts/explosion_pyrotechnique.png", 50,1);
+INSERT INTO spell VALUES (default, "Goutte boule", 19, 19, 17, 17, 5, 50, 3, 10, "images/Sorts/goutte_Boule.png", 35,1);
 
 CREATE TABLE personnage (
   idPerso int AUTO_INCREMENT NOT NULL,

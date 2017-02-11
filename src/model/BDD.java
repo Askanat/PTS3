@@ -1,7 +1,6 @@
 package model;
 
 
-import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -253,26 +252,12 @@ public class BDD {
         try {
             spell = instruction.executeQuery("SELECT * from spell;");
             while (spell.next()) {
-                result.add(new Sort(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("largeurDevant")), Integer.parseInt(spell.getString("largeurDerriere")), Integer.parseInt(spell.getString("hauteurHaut")), Integer.parseInt(spell.getString("hauteurBas")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), Integer.parseInt(spell.getString("vitesseDeDeplacement")), Integer.parseInt(spell.getString("rechargeSpell"))));
+                result.add(new Sort(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("largeurDevant")), Integer.parseInt(spell.getString("largeurDerriere")), Integer.parseInt(spell.getString("hauteurHaut")), Integer.parseInt(spell.getString("hauteurBas")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), Integer.parseInt(spell.getString("vitesseDeDeplacement")), Integer.parseInt(spell.getString("rechargeSpell")), Integer.parseInt(spell.getString("niveauSpell"))));
             }
         } catch (Exception e) {
             System.out.println("Donnees charger spell : " + e);
         }
         return result;
-    }
-
-    public void sauvegardeFlux(int idHero, Hero hero) throws IOException {
-        System.out.print("Sauvegarde : " + hero.toString());
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Save/Save" + idHero + ".txt"));
-        oos.writeObject(hero);
-        oos.close();
-    }
-
-    public Hero chargementFlux(int idHero) throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Save/Save" + idHero + ".txt"));
-        Hero loadHero = new Hero((Hero) ois.readObject());
-        System.out.print("Chargement : " + loadHero.toString());
-        return loadHero;
     }
 
     public boolean isBDD() {
