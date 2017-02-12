@@ -38,6 +38,7 @@ public class Sort extends Entite implements Cloneable {
         this.porteSpell = sort.porteSpell;
         this.coutManaSpell = sort.coutManaSpell;
         this.tempsDeRechargement = sort.tempsDeRechargement;
+        this.niveauSpell = sort.niveauSpell;
 
         this.tempsDeApparition = sort.tempsDeApparition;
 
