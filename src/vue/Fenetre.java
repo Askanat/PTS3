@@ -26,7 +26,7 @@ public class Fenetre extends JFrame {
     public static final int Y = 540; //(int) tailleEcran.getHeight();
 
     public static BufferedImage[] tableauTuile;
-    public static final int DECOUPE_TUILE_EN_X = 7, DECOUPE_TUILE_EN_Y = 3;
+    public static final int DECOUPE_TUILE_EN_X = 7, DECOUPE_TUILE_EN_Y = 12;
 
     public static int numeroPorte; // permet de selectionner la porte avec les flammes
 
