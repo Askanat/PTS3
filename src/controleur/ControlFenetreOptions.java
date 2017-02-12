@@ -39,6 +39,7 @@ public class ControlFenetreOptions extends Control implements ActionListener, Ke
                 return i;
         }
 
+        System.out.println();
         return -1;
     }
 
@@ -83,6 +84,38 @@ public class ControlFenetreOptions extends Control implements ActionListener, Ke
                 setTouchesSelectionneesToFalse();
                 toucheSelectionne[ControlTouche.ACTION_ATTAQUE - 1] = true;
                 break;
+            case "Sort1":
+                setTouchesSelectionneesToFalse();
+                toucheSelectionne[ControlTouche.ACTION_SORT1 - 1] = true;
+                break;
+            case "Sort2":
+                setTouchesSelectionneesToFalse();
+                toucheSelectionne[ControlTouche.ACTION_SORT2 - 1] = true;
+                break;
+            case "Sort3":
+                setTouchesSelectionneesToFalse();
+                toucheSelectionne[ControlTouche.ACTION_SORT3 - 1] = true;
+                break;
+            case "Sort4":
+                setTouchesSelectionneesToFalse();
+                toucheSelectionne[ControlTouche.ACTION_SORT4 - 1] = true;
+                break;
+            case "Sort5":
+                setTouchesSelectionneesToFalse();
+                toucheSelectionne[ControlTouche.ACTION_SORT5 - 1] = true;
+                break;
+            case "Sort6":
+                setTouchesSelectionneesToFalse();
+                toucheSelectionne[ControlTouche.ACTION_SORT6 - 1] = true;
+                break;
+            case "Sort7":
+                setTouchesSelectionneesToFalse();
+                toucheSelectionne[ControlTouche.ACTION_SORT7 - 1] = true;
+                break;
+            case "Sort8":
+                setTouchesSelectionneesToFalse();
+                toucheSelectionne[ControlTouche.ACTION_SORT8 - 1] = true;
+                break;
         }
     }
 
@@ -95,15 +128,20 @@ public class ControlFenetreOptions extends Control implements ActionListener, Ke
     public void keyPressed(KeyEvent keyEvent) {
         int key;
         if((key = keyEvent.getKeyCode()) != keyEvent.VK_ESCAPE) {
-            int index, actionConcernee;
+            int index = getNumToucheSelectionneTrue() - 1, actionConcernee;
 
-            if((index = getNumToucheSelectionneTrue() - 1) < 0)
-                index = controlClavier.getControlTouche().getNbActions() - 2;
+            if(index < 0)
+                index = ControlTouche.ACTION_ATTAQUE - 1;
+            else if(index >= 3)
+                index++;
 
             actionConcernee = index + 1;
 
             toucheSelectionne[index] = false;
             controlClavier.getControlTouche().setActionTouche(actionConcernee, key);
+
+            System.out.println(controlClavier.getControlTouche().getNomTouche(actionConcernee));
+
             fenetre.panelFenetreOptions.controlButton[index].
                     setText(controlClavier.getControlTouche().getNomTouche(actionConcernee));
         }
