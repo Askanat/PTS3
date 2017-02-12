@@ -386,7 +386,7 @@ public class Niveau {
 
         for (i = 0; i < taille_y; i++) {
             for (j = 0; j < taille_x; j++) {
-                System.out.print(tableau[i][j] + " ");
+                System.out.print(tableau[i][j] + ",");
             }
 
             System.out.println();
