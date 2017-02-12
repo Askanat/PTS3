@@ -12,7 +12,7 @@ import static vue.FenetreJeu.ZONE;
  */
 public class Sort extends Entite implements Cloneable {
 
-    private int degatSpell, porteSpell, coutManaSpell, idSpell, tempsDeRechargement, niveauSpell;
+    private int degatSpell, porteSpell, coutManaSpell, idSpell, tempsDeRechargement, niveauSpell, soin;
 
     private int tempsDeApparition;
 
@@ -24,6 +24,7 @@ public class Sort extends Entite implements Cloneable {
         this.coutManaSpell = coutManaSpell;
         this.tempsDeRechargement = tempsDeRechargement;
         this.niveauSpell = niveauSpell;
+        this.soin=soin;
 
         tempsDeApparition = 0;
 
@@ -128,6 +129,14 @@ public class Sort extends Entite implements Cloneable {
     public String toString() {
         return super.toString() + ", SPELL : id : " + idSpell + ", degatSpell : " + degatSpell +
                 ", porteSpell : " + porteSpell + ", coutManaSpell : " + coutManaSpell;
+    }
+
+    public int getSoin() {
+        return soin;
+    }
+
+    public void setSoin(int soin) {
+        this.soin = soin;
     }
 }
 
