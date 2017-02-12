@@ -4,9 +4,6 @@ import vue.Fenetre;
 
 import java.util.ArrayList;
 
-import static vue.Fenetre.DEFAUT_X;
-import static vue.Fenetre.DEFAUT_Y;
-
 /**
  * Created by bastien on 28/09/16.
  */
@@ -151,24 +148,13 @@ public class Jeu {
     public void setHero(int id) {
         ArrayList<String> donneesHero;
 
-        donneesHero = bdd.readHero(id);
-        hero = new Hero(donneesHero.get(0), Integer.parseInt(donneesHero.get(1)), Integer.parseInt(donneesHero.get(2)), Integer.parseInt(donneesHero.get(3)),
-                Double.parseDouble(donneesHero.get(4)), Double.parseDouble(donneesHero.get(5)), Double.parseDouble(donneesHero.get(6)),
-                Double.parseDouble(donneesHero.get(7)), Double.parseDouble(donneesHero.get(8)), Double.parseDouble(donneesHero.get(9)),
-                Integer.parseInt(donneesHero.get(10)), donneesHero.get(11), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0), this);
+        hero = new Hero(bdd.readHero(id, this));
+
     }
 
 
     public void setMonstre(int id, int positionX, int positionY) {
-        ArrayList<String> donneesMonstre;
-
-        donneesMonstre = bdd.readMonstre(id);
-
-        tableauMonstre.add(new Monstre(donneesMonstre.get(0), getHero().getNiveau(), Integer.parseInt(donneesMonstre.get(1)), Integer.parseInt(donneesMonstre.get(2)),
-                Integer.parseInt(donneesMonstre.get(3)), Integer.parseInt(donneesMonstre.get(4)), Double.parseDouble(donneesMonstre.get(5)),
-                Double.parseDouble(donneesMonstre.get(6)), Double.parseDouble(donneesMonstre.get(7)), Double.parseDouble(donneesMonstre.get(8)),
-                donneesMonstre.get(12), positionX, positionY, Integer.parseInt(donneesMonstre.get(9)), Integer.parseInt(donneesMonstre.get(10)), Integer.parseInt(donneesMonstre.get(11)),
-                getSort(Integer.parseInt(donneesMonstre.get(13)) - 1), this));
+        tableauMonstre.add(new Monstre(bdd.readMonstre(id, this, positionX, positionY)));
     }
 
     public int getidPartieLibre() {

@@ -4,6 +4,9 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 
+import static vue.Fenetre.DEFAUT_X;
+import static vue.Fenetre.DEFAUT_Y;
+
 public class BDD {
 
     private Connection connexion;
@@ -26,7 +29,7 @@ public class BDD {
     }
 
     //SELECTIONNE LES DONNEES D'UN HERO
-    public ArrayList<String> readHero(int id) {
+    public Hero readHero(int id, Jeu jeu) {
 
         ResultSet resultat = null;
 
@@ -36,11 +39,16 @@ public class BDD {
             System.out.println("Echec query hero " + e);
         }
 
-        ArrayList<String> valeur = new ArrayList<>();
+        //ArrayList<String> valeur = new ArrayList<>();
+
+        Hero hero = null;
 
         try {
             while (resultat.next()) {
-                valeur.add(resultat.getString("nomPerso"));
+                hero = new Hero(resultat.getString("nomPerso"), Integer.parseInt(resultat.getString("niveauPerso")), Integer.parseInt(resultat.getString("pointCompetence")), Integer.parseInt(resultat.getString("pointCaracteristique")), Double.parseDouble(resultat.getString("experiencePerso")),
+                        Double.parseDouble(resultat.getString("experienceMaxPerso")), Double.parseDouble(resultat.getString("forcePerso")), Double.parseDouble(resultat.getString("intelPerso")), Double.parseDouble(resultat.getString("constiPerso")), Double.parseDouble(resultat.getString("resiPerso")),
+                        Integer.parseInt(resultat.getString("gold")), resultat.getString("texturePerso"),(int) (DEFAUT_X / 2.0),(int) (DEFAUT_Y / 2.0),jeu);
+                /*valeur.add(resultat.getString("nomPerso"));
                 valeur.add(resultat.getString("niveauPerso"));
                 valeur.add(resultat.getString("pointCompetence"));
                 valeur.add(resultat.getString("pointCaracteristique"));
@@ -51,31 +59,36 @@ public class BDD {
                 valeur.add(resultat.getString("constiPerso"));
                 valeur.add(resultat.getString("resiPerso"));
                 valeur.add(resultat.getString("gold"));
-                valeur.add(resultat.getString("texturePerso"));
+                valeur.add(resultat.getString("texturePerso"));*/
             }
         } catch (SQLException e) {
             System.out.println("Select hero problem " + e);
         }
 
-        return valeur;
+        return hero;
     }
 
     //SELECTIONNE LES DONNEES D'UN MONSTRE
-    public ArrayList<String> readMonstre(int id) {
+    public Monstre readMonstre(int id, Jeu jeu, int x, int y) {
 
         ResultSet resultat = null;
+        Monstre monstre = null;
+        Sort sort = new Sort(getSpell(9));
 
         try {
             resultat = instruction.executeQuery("Select * FROM monstre WHERE idMonstre =" + id + ";");
+            while (resultat.next()) {
+                monstre = new Monstre(resultat.getString("libelleMonstre"), 1, Integer.parseInt(resultat.getString("largeurDevant")), Integer.parseInt(resultat.getString("largeurDerriere")), Integer.parseInt(resultat.getString("hauteurHaut")), Integer.parseInt(resultat.getString("hauteurBas")),
+                        Double.parseDouble(resultat.getString("coeffArmure")), Double.parseDouble(resultat.getString("coeffVie")), Double.parseDouble(resultat.getString("coeffMana")), Double.parseDouble(resultat.getString("coeffDegat")), resultat.getString("textureMonstre"),
+                        x, y, Integer.parseInt(resultat.getString("vitesseDeDeplacementEnX")), Integer.parseInt(resultat.getString("vitesseDeDeplacementEnY")), Integer.parseInt(resultat.getString("distanceVisibilite")), sort, jeu);
+            }
         } catch (Exception e) {
             System.out.println("Echec query monstre " + e);
         }
 
-        ArrayList<String> valMonstre = new ArrayList<>();
+        //ArrayList<String> valMonstre = new ArrayList<>();
 
-        try {
-            while (resultat.next()) {
-                valMonstre.add(resultat.getString("libelleMonstre"));
+                /*valMonstre.add(resultat.getString("libelleMonstre"));
                 valMonstre.add(resultat.getString("largeurDevant"));
                 valMonstre.add(resultat.getString("largeurDerriere"));
                 valMonstre.add(resultat.getString("hauteurHaut"));
@@ -88,13 +101,9 @@ public class BDD {
                 valMonstre.add(resultat.getString("vitesseDeDeplacementEnY"));
                 valMonstre.add(resultat.getString("distanceVisibilite"));
                 valMonstre.add(resultat.getString("textureMonstre"));
-                valMonstre.add(resultat.getString("spell_id"));
-            }
-        } catch (SQLException e) {
-            System.out.println("Select monstre problem " + e);
-        }
+                valMonstre.add(resultat.getString("spell_id"));*/
 
-        return valMonstre;
+        return monstre;
     }
 
     //MODIFIE LES VALEURS DE LA TABLE HERO
@@ -107,61 +116,6 @@ public class BDD {
         } catch (Exception e) {
             System.out.println("Update perso problem " + e);
         }
-    }
-
-    //SUPPRIME UN HERO
-    public void deleteHero(int id) {
-        try {
-            instruction.executeUpdate("DELETE FROM personnage WHERE idPerso =" + id + ";");
-        } catch (Exception e) {
-            System.out.println("Delete hero problem : " + e);
-        }
-    }
-
-    //SUPPRIME UN MONSTRE
-    public void deleteMonstre(int id) {
-        try {
-            instruction.executeUpdate("DELETE FROM monstre WHERE idMonstre =" + id + ";");
-        } catch (Exception e) {
-            System.out.println("Delete monstre problem : " + e);
-        }
-    }
-
-    //AJOUTE UN HERO
-    public void insertHero() {
-        try {
-            instruction.executeUpdate("INSERT INTO personnage (nomPerso, LVLPerso, xpPerso, xpMaxPerso, pointCompetencePerso, forcePerso, intelPerso, constiPerso, armurePerso, resiPerso, degatArmePerso, gold, texturePerso, spell_id) VALUES ('hero1', 1,0,100,4,0,0,0,0,100,100,100,'bidule.png',42);");
-        } catch (Exception e) {
-            System.out.println("Insert perso problem : " + e);
-        }
-    }
-
-    //SELECTIONNE LE NOM DE LA TEXTURE DU HERO
-    public String readHeroTexture(int id) {
-        ResultSet texture = null;
-        String result = new String();
-        try {
-            texture = instruction.executeQuery("Select texturePerso FROM personnage WHERE idPerso =" + id + ";");
-            while (texture.next())
-                result = texture.getString("texturePerso");
-        } catch (Exception e) {
-            System.out.println("Texture hero problem " + e);
-        }
-        return result;
-    }
-
-    //SELECTIONNE LE NOM DE LA TEXTURE D'UN MONSTRE
-    public String readMonstreTexture(int id) {
-        ResultSet texture = null;
-        String result = new String();
-        try {
-            texture = instruction.executeQuery("Select textureMonstre FROM monstre WHERE idMonstre =" + id + ";");
-            while (texture.next())
-                result = texture.getString("textureMonstre");
-        } catch (Exception e) {
-            System.out.println("Texture monstre problem " + e);
-        }
-        return result;
     }
 
     //SELECTIONNE LE NOM DU PERSONNAGE
@@ -377,6 +331,21 @@ public class BDD {
             }
         } catch (Exception e) {
             System.out.println("Recup possede : " + e);
+        }
+
+        return result;
+    }
+
+    public Sort getSpell(int idSort) {
+        ResultSet spell;
+        Sort result = null;
+
+        try {
+            spell = instruction.executeQuery("SELECT * FROM spell WHERE idSpell = "+idSort+";");
+            while(spell.next())
+                result = new Sort(idSort, Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("largeurDevant")), Integer.parseInt(spell.getString("largeurDerriere")), Integer.parseInt(spell.getString("hauteurHaut")), Integer.parseInt(spell.getString("hauteurBas")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), Integer.parseInt(spell.getString("vitesseDeDeplacement")), Integer.parseInt(spell.getString("rechargeSpell")), Integer.parseInt(spell.getString("niveauSpell")));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return result;

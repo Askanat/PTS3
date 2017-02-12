@@ -18,7 +18,7 @@ public class Monstre extends Personnage {
 
     private Sort sort;
 
-    BDD bdd;
+    private BDD bdd;
 
     private int tempsAttaque;
     private int tempsDeplacement, TEMPS_DEPLACEMENT;
