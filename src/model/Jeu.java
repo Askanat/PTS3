@@ -146,10 +146,7 @@ public class Jeu {
     }
 
     public void setHero(int id) {
-        ArrayList<String> donneesHero;
-
         hero = new Hero(bdd.readHero(id, this));
-
     }
 
 

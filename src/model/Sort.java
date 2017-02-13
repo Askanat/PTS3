@@ -10,7 +10,8 @@ import static vue.FenetreJeu.ZONE;
 /**
  * Created by leo on 23/01/17.
  */
-public class Sort extends Entite implements Cloneable {
+
+public class Sort extends Entite {
 
     private int degatSpell, porteSpell, coutManaSpell, idSpell, tempsDeRechargement, niveauSpell, soin;
 
@@ -24,7 +25,7 @@ public class Sort extends Entite implements Cloneable {
         this.coutManaSpell = coutManaSpell;
         this.tempsDeRechargement = tempsDeRechargement;
         this.niveauSpell = niveauSpell;
-        this.soin=soin;
+        this.soin = soin;
 
         tempsDeApparition = 0;
 
@@ -40,6 +41,7 @@ public class Sort extends Entite implements Cloneable {
         this.coutManaSpell = sort.coutManaSpell;
         this.tempsDeRechargement = sort.tempsDeRechargement;
         this.niveauSpell = sort.niveauSpell;
+        this.soin = sort.soin;
 
         this.tempsDeApparition = sort.tempsDeApparition;
 
@@ -87,18 +89,26 @@ public class Sort extends Entite implements Cloneable {
         return destruction;
     }
 
-    public boolean update(ArrayList<Monstre> cible) {
+    public boolean update(ArrayList<Monstre> cible, Hero h) {
         boolean destruction = false;
         tempsDeApparition++;
 
         deplacer();
 
-        for (Monstre m : cible) {
-            if (collision(getHitBoxCorps(), m.getHitBoxCorps()) && tempsDeApparition >= 2) {
-                m.recevoirDegats(getDegatSpell());
-                destruction = true;
+        if (tempsDeApparition >= 2)
+            if (getDegatSpell() != 0)
+                for (Monstre m : cible) {
+                    if (collision(getHitBoxCorps(), m.getHitBoxCorps())) {
+                        m.recevoirDegats(getDegatSpell());
+                        destruction = true;
+                    }
+                }
+            else if (getSoin() != 0) {
+                if (collision(getHitBoxCorps(), h.getHitBoxCorps())) {
+                    h.recevoirSoins(getSoin());
+                    destruction = true;
+                }
             }
-        }
 
         if (tempsDeApparition >= 50)
             destruction = true;
@@ -118,6 +128,14 @@ public class Sort extends Entite implements Cloneable {
         return degatSpell;
     }
 
+    public void setSoin(int soin) {
+        this.soin = soin;
+    }
+
+    public int getSoin() {
+        return soin;
+    }
+
     public int getPorteSpell() {
         return porteSpell;
     }
@@ -127,16 +145,7 @@ public class Sort extends Entite implements Cloneable {
     }
 
     public String toString() {
-        return super.toString() + ", SPELL : id : " + idSpell + ", degatSpell : " + degatSpell +
+        return super.toString() + ", SPELL : id : " + idSpell + ", degatSpell : " + degatSpell + ", soin : " + soin +
                 ", porteSpell : " + porteSpell + ", coutManaSpell : " + coutManaSpell;
     }
-
-    public int getSoin() {
-        return soin;
-    }
-
-    public void setSoin(int soin) {
-        this.soin = soin;
-    }
 }
-

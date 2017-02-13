@@ -109,11 +109,20 @@ public abstract class Personnage extends Entite implements Serializable {
             setVie(0);
     }
 
+    public void recevoirSoins(int soins) {
+        setVie(getVie() + soins);
+        if (getVie() > getVieMax())
+            setVie(getVieMax());
+    }
+
     public Sort appelleSort(Sort sort) {
         Sort sortUtilise = null;
         sortUtilise = new Sort(sort);
-        setMana(getMana() - sort.getCoutManaSpell());
-        sortUtilise.setDegatSpell(sort.getDegatSpell() + (int) (getDegats() * 0.5));
+        setMana(getMana() - sortUtilise.getCoutManaSpell());
+        if (sortUtilise.getDegatSpell() != 0)
+            sortUtilise.setDegatSpell(sortUtilise.getDegatSpell() + (int) (getDegats() * 0.5));
+        else if (sortUtilise.getSoin() != 0)
+            sortUtilise.setSoin(sortUtilise.getSoin() + (int) (getManaMax() * 0.25));
         sortUtilise.setPositionX(getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() : getLargeurDerriere()));
         sortUtilise.setPositionY(getPositionY());
         sortUtilise.setDeplacement(true);

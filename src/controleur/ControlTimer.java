@@ -68,52 +68,59 @@ public class ControlTimer extends Control implements ActionListener {
                     if (!jeu.getHero().getAttaquer()) {
                         jeu.getHero().setAttaquer(true);
 
-                        for (int i = 0; i < jeu.getTableauMonstre().size(); i++) {
+                        for (int i = 0; i < jeu.getTableauMonstre().size(); i++)
                             jeu.getHero().attaquer(jeu.getTableauMonstre().get(i));
-                        }
                     }
                     ControlClavier.toucheRelacher[ControlTouche.ACTION_ATTAQUE] = false;
                 }
 
 
                 if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT1]) {
-                    jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(0)));
+                    if (jeu.getHero().getMana() >= jeu.getHero().getSort(0).getCoutManaSpell())
+                        jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(0)));
                     ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT1] = false;
                 }
 
 
                 if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT2]) {
-                    jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(1)));
+                    if (jeu.getHero().getMana() >= jeu.getHero().getSort(1).getCoutManaSpell())
+                        jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(1)));
                     ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT2] = false;
                 }
 
                 if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT3]) {
-                    jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(2)));
+                    if (jeu.getHero().getMana() >= jeu.getHero().getSort(2).getCoutManaSpell())
+                        jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(2)));
                     ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT3] = false;
                 }
 
                 if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT4]) {
-                    jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(3)));
+                    if (jeu.getHero().getMana() >= jeu.getHero().getSort(3).getCoutManaSpell())
+                        jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(3)));
                     ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT4] = false;
                 }
 
                 if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT5]) {
-                    jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(4)));
+                    if (jeu.getHero().getMana() >= jeu.getHero().getSort(4).getCoutManaSpell())
+                        jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(4)));
                     ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT5] = false;
                 }
 
                 if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT6]) {
-                    jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(5)));
+                    if (jeu.getHero().getMana() >= jeu.getHero().getSort(5).getCoutManaSpell())
+                        jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(5)));
                     ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT6] = false;
                 }
 
                 if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT7]) {
-                    jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(6)));
+                    if (jeu.getHero().getMana() >= jeu.getHero().getSort(6).getCoutManaSpell())
+                        jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(6)));
                     ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT7] = false;
                 }
 
                 if (ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT8]) {
-                    jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(7)));
+                    if (jeu.getHero().getMana() >= jeu.getHero().getSort(7).getCoutManaSpell())
+                        jeu.getTableauSortHero().add(jeu.getHero().appelleSort(jeu.getHero().getSort(7)));
                     ControlClavier.toucheRelacher[ControlTouche.ACTION_SORT8] = false;
                 }
 
@@ -140,7 +147,7 @@ public class ControlTimer extends Control implements ActionListener {
                 // dessine les sorts du hero et les fait intéragir
                 for (int i = 0; i < fenetre.panelFenetreJeu.sortHero.size(); i++) {
                     fenetre.panelFenetreJeu.sortHero.get(i).selectionnerMorceauSpriteDeplacement();
-                    if (jeu.getTableauSortHero().get(i).update(jeu.getTableauMonstre()))
+                    if (jeu.getTableauSortHero().get(i).update(jeu.getTableauMonstre(), jeu.getHero()))
                         jeu.getEtat().getIndiceSuppressionSortHero().add(i);
                 }
 
