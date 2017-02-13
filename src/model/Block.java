@@ -43,18 +43,18 @@ public class Block {
 	 * collision = non; interraction = non; destructible = non; degats = non
 	 */
 
-	TORCHE = -10,
-	VITRE = -9,
+	TORCHE = -10, // 34
+	VITRE = -9, // 39
 	COFFRE_OUVERT = -8,
-	MUR_FOND = 0,
+	MUR_FOND = 0, // 18
 
 	/*
 	 * [1; 11]
 	 * collision = oui; interraction = non; destructible = non; degats = non
 	 */
 
-	MUR = 1,
-	MUR2 = 2,
+	MUR = 1, // 4
+	MUR2 = 2, // 11
 
 	/*
 	 * [12; 22]
