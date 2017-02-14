@@ -67,7 +67,7 @@ public class Jeu {
             if (bdd.placeInventaire() < 30) {
                 hero.addItemInInventaire(bdd.dropEquipement((int) (Math.random() * (bdd.nbItem() - 1) + 1)));
                 System.out.println((bdd.placeInventaire() - 1));
-                System.out.println("Tu as récuperé : " + hero.inventaire.get(bdd.placeInventaire() - 1).getNom());
+                System.out.println("Tu as récuperé : " + hero.getInventaire().get(bdd.placeInventaire() - 1).getNom());
             } else {
                 System.out.println("Tu es plein !!");
             }

@@ -34,7 +34,7 @@ public class Hero extends Personnage implements Serializable {
     private final int DEGATS_DE_BASE = 5;
 
     public Hero(String nom, int niveau, int pointCompetence, int pointCaracteristique, double experience, double experienceMax, double forcePerso, double intelPerso,
-                double constiPerso, double resiPerso, int or, String texture, int positionX, int positionY, Jeu jeu) {
+                double constiPerso, double resiPerso, int or, String texture, int positionX, int positionY, Jeu jeu, ArrayList<Sort> heroSort) {
 
         super(nom, niveau, 52, 52, 81, 98, texture, positionX, positionY, 30, 60, 68, 8, 30, jeu);
 
@@ -60,9 +60,7 @@ public class Hero extends Personnage implements Serializable {
 
         this.or = or;
 
-        bdd = new BDD();
-
-        heroSort = bdd.chargerSort();
+        this.heroSort = heroSort;
         tempsAvantDisponibiliteSort = new int[heroSort.size()];
 
         inventaire = new ArrayList<>();
@@ -362,5 +360,9 @@ public class Hero extends Personnage implements Serializable {
                 inventaire.add(bdd.dropEquipement(loadInventaire[i][1]));
             }
         }
+    }
+
+    public ArrayList<Equipement> getInventaire() {
+        return inventaire;
     }
 }
