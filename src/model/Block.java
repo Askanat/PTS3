@@ -24,44 +24,44 @@ import java.lang.reflect.Field;
 public class Block {
 	public static final int
 	/*
-	 * [-21; -11]
+	 * [0; 20]
 	 * collision = non; interraction = oui; destructible = non; degats = non
 	 */
 
-	COFFRE_FERME = -21, // 25
-	PORTE_HAUT_GAUCHE = -20, // 42
-	PORTE_HAUT_DROITE = -19, // 43
-	PORTE_MILIEU_GAUCHE = -18, // 49
-	PORTE_MILIEU_DROITE = -17, // 50
-	PORTE_BAS_GAUCHE = -16, // 56
-	PORTE_BAS_DROITE = -15, // 57
-	ECHELLE_GAUCHE = -14,
-	ECHELLE_DROITE = -13,
+	COFFRE_FERME = 6,
+	PORTE_HAUT_GAUCHE = 0,
+	PORTE_HAUT_DROITE = 1,
+	PORTE_MILIEU_GAUCHE = 7,
+	PORTE_MILIEU_DROITE = 8,
+	PORTE_BAS_GAUCHE = 14,
+	PORTE_BAS_DROITE = 15,
+	ECHELLE_GAUCHE = -1, // pas définie
+	ECHELLE_DROITE = -1, // pas définie
 
 	/*
-	 * [-10; 0]
+	 * [21; 62]
 	 * collision = non; interraction = non; destructible = non; degats = non
 	 */
 
-	TORCHE = -10, // 34
-	VITRE = -9, // 39
-	COFFRE_OUVERT = -8,
-	MUR_FOND = 0, // 18
+	TORCHE = 34,
+	VITRE = 41,
+	COFFRE_OUVERT = 26,
+	MUR_FOND = 40,
 
 	/*
-	 * [1; 11]
+	 * [63; 78]
 	 * collision = oui; interraction = non; destructible = non; degats = non
 	 */
 
-	MUR = 1, // 4
-	MUR2 = 2, // 11
+	MUR = 65,
+	MUR2 = 72,
 
 	/*
-	 * [12; 22]
+	 * [79; 87]
 	 * collision = oui; interraction = non; destructible = non; degats = oui
 	 */
 
-	PICS = 12; // 40
+	PICS = 79;
 
 	public static int getNbBlocks() {
 		Field[] fields = Block.class.getDeclaredFields();
