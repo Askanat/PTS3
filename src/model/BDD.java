@@ -32,38 +32,44 @@ public class BDD {
     public Hero readHero(int id, Jeu jeu) {
 
         ResultSet resultat = null;
+        Hero hero = null;
+        ResultSet spell;
+        ArrayList<Sort> result = new ArrayList<>();
+        try {
+            spell = instruction.executeQuery("SELECT * from spell;");
+            while (spell.next()) {
+                result.add(new Sort(Integer.parseInt(spell.getString("idSpell")), Integer.parseInt(spell.getString("degatSpell")), Integer.parseInt(spell.getString("largeurDevant")), Integer.parseInt(spell.getString("largeurDerriere")), Integer.parseInt(spell.getString("hauteurHaut")), Integer.parseInt(spell.getString("hauteurBas")), Integer.parseInt(spell.getString("porteSpell")), Integer.parseInt(spell.getString("coutManaSpell")), spell.getString("libelleSpell"), spell.getString("textureSpell"), Integer.parseInt(spell.getString("vitesseDeDeplacement")), Integer.parseInt(spell.getString("rechargeSpell")), Integer.parseInt(spell.getString("niveauSpell")), Integer.parseInt(spell.getString("soin"))));
+            }
+        } catch (Exception e) {
+            System.out.println("Donnees charger spell : " + e);
+        }
 
         try {
             resultat = instruction.executeQuery("Select * FROM personnage WHERE idPerso =" + id + ";");
-        } catch (Exception e) {
-            System.out.println("Echec query hero " + e);
-        }
 
-        //ArrayList<String> valeur = new ArrayList<>();
-
-        Hero hero = null;
-
-        try {
             while (resultat.next()) {
                 hero = new Hero(resultat.getString("nomPerso"), Integer.parseInt(resultat.getString("niveauPerso")), Integer.parseInt(resultat.getString("pointCompetence")), Integer.parseInt(resultat.getString("pointCaracteristique")), Double.parseDouble(resultat.getString("experiencePerso")),
                         Double.parseDouble(resultat.getString("experienceMaxPerso")), Double.parseDouble(resultat.getString("forcePerso")), Double.parseDouble(resultat.getString("intelPerso")), Double.parseDouble(resultat.getString("constiPerso")), Double.parseDouble(resultat.getString("resiPerso")),
-                        Integer.parseInt(resultat.getString("gold")), resultat.getString("texturePerso"),(int) (DEFAUT_X / 2.0),(int) (DEFAUT_Y / 2.0),jeu);
-                /*valeur.add(resultat.getString("nomPerso"));
-                valeur.add(resultat.getString("niveauPerso"));
-                valeur.add(resultat.getString("pointCompetence"));
-                valeur.add(resultat.getString("pointCaracteristique"));
-                valeur.add(resultat.getString("experiencePerso"));
-                valeur.add(resultat.getString("experienceMaxPerso"));
-                valeur.add(resultat.getString("forcePerso"));
-                valeur.add(resultat.getString("intelPerso"));
-                valeur.add(resultat.getString("constiPerso"));
-                valeur.add(resultat.getString("resiPerso"));
-                valeur.add(resultat.getString("gold"));
-                valeur.add(resultat.getString("texturePerso"));*/
+                        Integer.parseInt(resultat.getString("gold")), resultat.getString("texturePerso"), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0), jeu, result);
             }
-        } catch (SQLException e) {
-            System.out.println("Select hero problem " + e);
+        } catch (Exception e) {
+            System.out.println("Echec query hero " + e);
+            e.printStackTrace();
         }
+
+            /*valeur.add(resultat.getString("nomPerso"));
+            valeur.add(resultat.getString("niveauPerso"));
+            valeur.add(resultat.getString("pointCompetence"));
+            valeur.add(resultat.getString("pointCaracteristique"));
+            valeur.add(resultat.getString("experiencePerso"));
+            valeur.add(resultat.getString("experienceMaxPerso"));
+            valeur.add(resultat.getString("forcePerso"));
+            valeur.add(resultat.getString("intelPerso"));
+            valeur.add(resultat.getString("constiPerso"));
+            valeur.add(resultat.getString("resiPerso"));
+            valeur.add(resultat.getString("gold"));
+            valeur.add(resultat.getString("texturePerso"));*/
+
 
         return hero;
     }

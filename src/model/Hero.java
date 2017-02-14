@@ -17,8 +17,8 @@ public class Hero extends Personnage implements Serializable {
     private int pointCaracteristique, pointCompetence;
     private double force, intelligence, constitution, resistance, limiteForce = 0, limiteIntelligence = 0, limiteConstitution = 0, limiteResistance = 0;
 
-    private ArrayList<Sort> heroSort;
-    private ArrayList<Equipement> inventaire;
+    ArrayList<Sort> heroSort;
+    ArrayList<Equipement> inventaire;
 
     int tempsAvantDisponibiliteSort[];
 
@@ -59,6 +59,8 @@ public class Hero extends Personnage implements Serializable {
         this.pointCompetence = pointCompetence;
 
         this.or = or;
+
+        bdd = new BDD();
 
         this.heroSort = heroSort;
         tempsAvantDisponibiliteSort = new int[heroSort.size()];
