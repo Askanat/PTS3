@@ -17,8 +17,8 @@ public class Hero extends Personnage implements Serializable {
     private int pointCaracteristique, pointCompetence;
     private double force, intelligence, constitution, resistance, limiteForce = 0, limiteIntelligence = 0, limiteConstitution = 0, limiteResistance = 0;
 
-    ArrayList<Sort> heroSort;
-    ArrayList<Equipement> inventaire;
+    private ArrayList<Sort> heroSort;
+    private ArrayList<Equipement> inventaire;
 
     int tempsAvantDisponibiliteSort[];
 

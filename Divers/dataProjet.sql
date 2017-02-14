@@ -54,7 +54,7 @@ INSERT INTO personnage VALUES (default, "", 0, 1, 15, 0, 100, 0, 0, 0, 0, 0, "im
 
 CREATE TABLE monstre (
   idMonstre int AUTO_INCREMENT NOT NULL,
-  libelleMonstre varchar(10),
+  libelleMonstre varchar(25),
   largeurDevant int,
   largeurDerriere int,
   hauteurHaut int,
@@ -105,7 +105,7 @@ CREATE TABLE item (
   intelItem float(4,2),
   degatItem float(4,2),
   resiItem float(4,2),
-  textureItem varchar(50),
+  textureItem varchar(80),
   prixItem int,
   item_type int,
 
