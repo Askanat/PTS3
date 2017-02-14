@@ -80,7 +80,7 @@ public class Fenetre extends JFrame {
 
     public void init() {
         try {
-            tableauTuile = decoupage(ImageIO.read(new File("tuile/tuile.png")), DECOUPE_TUILE_EN_X, DECOUPE_TUILE_EN_Y);
+            tableauTuile = decoupage(ImageIO.read(new File("tuile/tuile33.png")), DECOUPE_TUILE_EN_X, DECOUPE_TUILE_EN_Y);
         } catch (IOException e) {
             e.printStackTrace();
         }
