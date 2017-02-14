@@ -20,6 +20,8 @@ public class Hero extends Personnage implements Serializable {
     ArrayList<Sort> heroSort;
     ArrayList<Equipement> inventaire;
 
+    int tempsAvantDisponibiliteSort[];
+
     private BDD bdd;
 
     private final int COEF_VIE = 5;
@@ -61,6 +63,7 @@ public class Hero extends Personnage implements Serializable {
         bdd = new BDD();
 
         heroSort = bdd.chargerSort();
+        tempsAvantDisponibiliteSort = new int[heroSort.size()];
 
         inventaire = new ArrayList<>();
 
@@ -96,6 +99,7 @@ public class Hero extends Personnage implements Serializable {
         this.bdd = hero.bdd;
 
         this.heroSort = hero.heroSort;
+        this.tempsAvantDisponibiliteSort = hero.tempsAvantDisponibiliteSort;
 
         this.inventaire = hero.inventaire;
 
@@ -158,6 +162,12 @@ public class Hero extends Personnage implements Serializable {
             regenerationMana();
             regenerationVie();
         }
+
+        // gère le temps pour invoquer les sorts
+        for (int i = 0; i < tempsAvantDisponibiliteSort.length; i++)
+            if (tempsAvantDisponibiliteSort[i] > 0)
+                tempsAvantDisponibiliteSort[i] += -1;
+
 
         // déplacement du héro
         deplacer();
@@ -325,6 +335,10 @@ public class Hero extends Personnage implements Serializable {
 
     public Sort getSort(int indice) {
         return heroSort.get(indice);
+    }
+
+    public int[] getTempsAvantDisponibiliteSort() {
+        return tempsAvantDisponibiliteSort;
     }
 
     public void setOr(int or) {
