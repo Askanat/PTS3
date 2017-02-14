@@ -28,13 +28,13 @@ public class Block {
 	 * collision = non; interraction = oui; destructible = non; degats = non
 	 */
 
-	COFFRE_FERME = -21,
-	PORTE_HAUT_GAUCHE = -20,
-	PORTE_HAUT_DROITE = -19,
-	PORTE_MILIEU_GAUCHE = -18,
-	PORTE_MILIEU_DROITE = -17,
-	PORTE_BAS_GAUCHE = -16,
-	PORTE_BAS_DROITE = -15,
+	COFFRE_FERME = -21, // 25
+	PORTE_HAUT_GAUCHE = -20, // 42
+	PORTE_HAUT_DROITE = -19, // 43
+	PORTE_MILIEU_GAUCHE = -18, // 49
+	PORTE_MILIEU_DROITE = -17, // 50
+	PORTE_BAS_GAUCHE = -16, // 56
+	PORTE_BAS_DROITE = -15, // 57
 	ECHELLE_GAUCHE = -14,
 	ECHELLE_DROITE = -13,
 
@@ -61,7 +61,7 @@ public class Block {
 	 * collision = oui; interraction = non; destructible = non; degats = oui
 	 */
 
-	PICS = 12;
+	PICS = 12; // 40
 
 	public static int getNbBlocks() {
 		Field[] fields = Block.class.getDeclaredFields();
