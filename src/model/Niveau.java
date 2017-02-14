@@ -218,10 +218,8 @@ public class Niveau {
              * cases vide d'affilé n'a pas été dépassé
              */
 
-            // REMPLACER PAR Block.MUR_FOND
-
             if(faireVide == 1 && videCompteur < videMax) {
-                tableau[y][i] = 0;
+                tableau[y][i] = Block.MUR_FOND;
                 videCompteur++;
             }
             else
@@ -389,7 +387,6 @@ public class Niveau {
                 System.out.print(tableau[i][j] + ",");
             }
 
-            System.out.println();
             System.out.println();
         }
     }
