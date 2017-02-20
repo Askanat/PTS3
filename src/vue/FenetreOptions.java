@@ -74,7 +74,7 @@ public class FenetreOptions extends JPanel {
         retour.setFocusable(false);
         retour.setBorder(null);
 
-        hitBox.setBounds(Fenetre.adapterResolutionEnX(1285), Fenetre.adapterResolutionEnY(300), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
+        hitBox.setBounds(Fenetre.adapterResolutionEnX(470), Fenetre.adapterResolutionEnY(700), Fenetre.adapterResolutionEnX(228), Fenetre.adapterResolutionEnX(40));
         hitBox.setBackground(new Color(0, 0, 0, 0));
         hitBox.setFont(f);
         if (!jeu.getEtat().getHitBox())
@@ -85,15 +85,24 @@ public class FenetreOptions extends JPanel {
         hitBox.setFocusable(false);
         hitBox.setBorder(null);
 
-        int x = 600, y = 355;
+        int x1 = 600, y1 = 390;
+        int x2 = 1300, y2 = 323;
 
-        for(JButton b: controlButton) {
-            b.setBounds(Fenetre.adapterResolutionEnX(x), Fenetre.adapterResolutionEnY(y), Fenetre.adapterResolutionEnX(270), Fenetre.adapterResolutionEnY(55));
-            b.setBackground(new Color(0, 0, 0, 0));
-            b.setFont(fControlTouche);
-            b.setBorder(null);
-
-            y += 70;
+        for(int i = 0; i < controlButton.length; i++) {
+            if (i <= 3) {
+                controlButton[i].setBounds(Fenetre.adapterResolutionEnX(x1), Fenetre.adapterResolutionEnY(y1), Fenetre.adapterResolutionEnX(270), Fenetre.adapterResolutionEnY(55));
+                controlButton[i].setBackground(new Color(0, 0, 0, 0));
+                controlButton[i].setFont(fControlTouche);
+                controlButton[i].setBorder(null);
+                y1 += 75;
+            }
+            if (i>=4){
+                controlButton[i].setBounds(Fenetre.adapterResolutionEnX(x2), Fenetre.adapterResolutionEnY(y2), Fenetre.adapterResolutionEnX(270), Fenetre.adapterResolutionEnY(50));
+                controlButton[i].setBackground(new Color(0, 0, 0, 0));
+                controlButton[i].setFont(fControlTouche);
+                controlButton[i].setBorder(null);
+                y2 += 58;
+            }
         }
     }
 }
