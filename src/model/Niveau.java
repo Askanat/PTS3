@@ -14,14 +14,16 @@ public class Niveau {
     private static final int TAILLE_SEGMENT = 20;
 	private static final int NB_LIGNES_MUR_PROFONDEUR = 2;
     private static final int ESPACE_PLATEFORME = 9;
-    private static final int TAILLE_VIDE_MAX = 8;
+    private static final int TAILLE_VIDE_MAX = 6;
     private static final int TAILLE_VIDE_FOND_MAX = 2;
-	private static final int EPAISSEUR_PLATEFORME_MUR2 = 2;
+	private static final int EPAISSEUR_PLATEFORME_MUR2 = 3;
     private static final int EPAISSEUR_PLATEFORME_MIN = 1 + EPAISSEUR_PLATEFORME_MUR2;
-    private static final int EPAISSEUR_PLATEFORME_MAX = 2 + EPAISSEUR_PLATEFORME_MUR2;
+    private static final int EPAISSEUR_PLATEFORME_MAX = 1 + EPAISSEUR_PLATEFORME_MUR2;
     private static final int NB_PICS_MIN = 1;
     private static final int NB_PICS_MAX = 4;
     private static final int ESPACE_MIN_ENTRE_PICS = 3;
+	private static final int LARGEUR_PLATEFORME_NIV_SUP = 4;
+	private static final int NB_PLATEFORMES_ACCESS_NIV_SUP = 4;
 
     public Niveau(int _taille_x, int _nb_plateformes, Direction _entree) {
         // Ligne du haut et ligne du bas
@@ -95,14 +97,17 @@ public class Niveau {
         return espace + ESPACE_PLATEFORME;
     }
 
-    private void ajoutPorteSortie(Direction sortie) {
-        int y = getEspaceAvantPlateforme(0) - 1;
+    private void addPorteSortie(Direction sortie) {
+        int y = getEspaceAvantPlateforme(0) - 1, i;
 
         if (sortie == Direction.GAUCHE) {
-            tableau[y + 1][taille_x - 5] = Block.MUR;
-            tableau[y + 1][taille_x - 4] = Block.MUR;
-            tableau[y + 1][taille_x - 3] = Block.MUR;
-            tableau[y + 1][taille_x - 2] = Block.MUR;
+            for(i = 2; i <= 5; i++) {
+                tableau[y + 1][taille_x - i] = Block.MUR;
+                tableau[y + 2][taille_x - i] = Block.MUR;
+                tableau[y + 3][taille_x - i] = Block.MUR2;
+                tableau[y + 4][taille_x - i] = Block.MUR2;
+            }
+
             tableau[y][taille_x - 4] = Block.PORTE_BAS_GAUCHE;
             tableau[y - 1][taille_x - 4] = Block.PORTE_MILIEU_GAUCHE;
             tableau[y - 2][taille_x - 4] = Block.PORTE_HAUT_GAUCHE;
@@ -110,21 +115,153 @@ public class Niveau {
             tableau[y - 1][taille_x - 3] = Block.PORTE_MILIEU_DROITE;
             tableau[y - 2][taille_x - 3] = Block.PORTE_HAUT_DROITE;
         } else {
-            tableau[y + 1][1] = Block.MUR;
-            tableau[y + 1][2] = Block.MUR;
-            tableau[y + 1][3] = Block.MUR;
-            tableau[y + 1][4] = Block.MUR;
-            tableau[y][3] = Block.PORTE_BAS_GAUCHE;
-            tableau[y - 1][3] = Block.PORTE_MILIEU_GAUCHE;
-            tableau[y - 2][3] = Block.PORTE_HAUT_GAUCHE;
-            tableau[y][2] = Block.PORTE_BAS_DROITE;
-            tableau[y - 1][2] = Block.PORTE_MILIEU_DROITE;
-            tableau[y - 2][2] = Block.PORTE_HAUT_DROITE;
+            for(i = 1; i <= 4; i++) {
+                tableau[y + 1][i] = Block.MUR;
+                tableau[y + 2][i] = Block.MUR;
+                tableau[y + 3][i] = Block.MUR2;
+                tableau[y + 4][i] = Block.MUR2;
+            }
+
+            tableau[y][2] = Block.PORTE_BAS_GAUCHE;
+            tableau[y - 1][2] = Block.PORTE_MILIEU_GAUCHE;
+            tableau[y - 2][2] = Block.PORTE_HAUT_GAUCHE;
+            tableau[y][3] = Block.PORTE_BAS_DROITE;
+            tableau[y - 1][3] = Block.PORTE_MILIEU_DROITE;
+            tableau[y - 2][3] = Block.PORTE_HAUT_DROITE;
+        }
+    }
+
+    // Construit des plateformes afin d'accéder au niveau suivant
+
+    private void addPlateformeAccessNivSup(Direction dir, int plateforme) {
+        int i, j, y = 3, fin, debut = (dir == Direction.GAUCHE) ? (taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1) : (1);
+;
+        int espace = getEspaceAvantPlateforme(plateforme);
+
+        for(i = 0; i < NB_PLATEFORMES_ACCESS_NIV_SUP; i++) {
+            fin = debut + LARGEUR_PLATEFORME_NIV_SUP;
+
+            for(j = debut; j < fin; j++) {
+                int block = Block.MUR;
+
+                if(rand.nextInt(3) == 0) {
+                    if(dir == Direction.DROITE) {
+                        // Plateforme de gauche
+                    
+                        if(i % 2 == 0 && j <= debut + 1)
+                            block = Block.PICS;
+                        else if(i % 2 != 0 && j >= debut + 2)
+                            block = Block.PICS;
+                    }
+                    else {
+                        // Plateforme de gauche
+
+                        if(i % 2 != 0 && j <= debut + 1)
+                            block = Block.PICS;
+                        else if(i % 2 == 0 && j >= debut + 2)
+                            block = Block.PICS;
+                    }
+                }
+
+                tableau[espace - y][j] = block;
+                tableau[espace - y + 1][j] = Block.MUR2;
+            }
+
+
+            // Si pair c'est une plateforme de gauche
+            
+            if(i % 2 == 0) {
+                if(dir == Direction.DROITE)
+                    debut = ESPACE_PLATEFORME - LARGEUR_PLATEFORME_NIV_SUP;
+                else
+                    debut = taille_x - ESPACE_PLATEFORME;
+            }
+            else {
+                if(dir == Direction.DROITE)
+                    debut = 1;
+                else
+                    debut = taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1;
+            }
+
+            y += 3;
+        }
+
+    }
+
+    // Construit un escalier afin d'accéder à une plateforme
+
+    private void addEscalier(Direction dir, int espaceBase, int epaisseurN, int plateforme) {
+        int debut = espaceBase;
+        int fin = debut + epaisseurN + ESPACE_PLATEFORME - (EPAISSEUR_PLATEFORME_MUR2 * 3);
+        int i, j;
+
+        if(getTailleMurPlateforme(plateforme) == 1)
+            fin++;
+
+        if(dir == Direction.GAUCHE) {
+            i = ESPACE_PLATEFORME;
+
+            for(j = debut; j < fin; j++) {
+                tableau[j][i] = Block.MUR;
+                i--;
+            }
+        } else {
+            i = taille_x - ESPACE_PLATEFORME - 1;
+
+            for(j = debut; j < fin; j++) {
+                tableau[j][i] = Block.MUR;
+                i++;
+            }
+        }
+    }
+
+    private void addEffetProfondeurAll(int debut, int fin, int y) {
+        for(int i = debut; i < fin; i++) {
+            if(tableau[y][i] == Block.PICS && tableau[y - 1][i] != Block.PICS)
+                tableau[y + 1][i] = Block.PICS;
+            if(tableau[y][i] == Block.MUR_FOND && tableau[y + 1][i] != Block.MUR_FOND && tableau[y + 1][i] != Block.MUR_FOND) {
+                tableau[y + 1][i] = tableau[y + 2][i] = Block.MUR;
+            }
+        }
+    }
+
+    private void addEffetProfondeur(int plateforme, Direction dir) {
+        int i, debut = 1, fin = taille_x - 1;
+        int espaceBase, espace, tailleVide = TAILLE_VIDE_MAX;
+        int epaisseurN = getTailleMurPlateforme(plateforme);
+
+        /* 
+         * dir = la direction par laquelle on accéde à la plateforme
+         *       cela permet d'initialiser correctement debut et fin
+         */
+
+        if(plateforme != nb_plateformes - 1) {
+          if (dir == Direction.GAUCHE) {
+            debut = ESPACE_PLATEFORME + 1;
+             fin = taille_x - 1;
+         } else {
+             debut = 1;
+              fin = taille_x - ESPACE_PLATEFORME - 1;
+            }
+        }
+
+        /* On parcours toutes les lignes de la plateforme */
+
+        for (i = 0; i <= epaisseurN; i++) {
+            /* 
+             * On récupère l'espace avant la plateforme, 
+             * puis on calcule l'espace avant la ligne actuelle en addant i
+             */
+
+            espaceBase = getEspaceAvantPlateforme(plateforme);
+            espace = espaceBase + i;
+
+            addEffetProfondeurAll(debut, fin, espace);
         }
     }
 
     private void remplirPlateformeFondSup(int plateforme) {
-        int y = getEspaceAvantPlateforme(plateforme) - 2;
+        int y = getEspaceAvantPlateforme(plateforme) - 3;
 
         for (int i = 1; i < taille_x - 1; i++) {
             if (i % 15 == 0)
@@ -147,16 +284,16 @@ public class Niveau {
 
     // Ajoute des pics à une ligne donnée
     
-    private void ajoutPicsLigne(int debut, int fin, int y) {
-        int i, ajoutPic = 0, videCompteur = 0, espaceAvantPic = 5000, nbPicsAffile = 0;
+    private void addPicsLigne(int debut, int fin, int y) {
+        int i, addPic = 0, videCompteur = 0, espaceAvantPic = 5000, nbPicsAffile = 0;
 
         for(i = debut; i < fin; i++) {
-            if(ajoutPic > 0)
-                ajoutPic = rand.nextInt(2) + 1;
+            if(addPic > 0)
+                addPic = rand.nextInt(2) + 1;
             else
-                ajoutPic = rand.nextInt(5) + 1;
+                addPic = rand.nextInt(5) + 1;
 
-            if(ajoutPic == 1 && espaceAvantPic >= ESPACE_MIN_ENTRE_PICS) {
+            if(addPic == 1 && espaceAvantPic >= ESPACE_MIN_ENTRE_PICS) {
                 tableau[y][i] = Block.PICS;
 
                 if(tableau[y][i - 1] == Block.PICS)
@@ -174,7 +311,7 @@ public class Niveau {
     
     // Ajoute des trous à une ligne donnée
 
-    private void remplirLigneVide(int debut, int fin, int posLigne, int epaisseur, int y, int videMax) {
+    private void remplirLigneVide(int debut, int fin, int posLigne, int epaisseur, int y) {
         int i, faireVide = 0, videCompteur = 0;
 
         if(debut == 1)
@@ -183,42 +320,13 @@ public class Niveau {
             fin = taille_x - 2;
 
         for(i = debut; i < fin; i++) {
-            /* Si c'est la première ligne du haut de la plateforme.
-             * Sinon si c'est une des lignes de dessous et que la case dessus à gauche,
-             * la case dessus à droite et la case dessus est vide.
-             * Sinon faireVide = 0.
-             *
-             * Si on entre dans un des deux premiers if :
-             * 
-             * Si on a déjà commencé à faire des trous, c'est que videCompteur > 0,
-             * alors on a un peu plus de chance de continuer d'en faire.
-             * On réduit l'écart lorsqu'il faut tirer un nombre aléatoire pour savoir
-             * s'il faut continuer à faire des trous.
-             *
-             * Sinon, on tire un nombre pour savoir si l'on commence à faire des trous
-             */
-
-            if(posLigne == 0) {
-                if(videCompteur > 0)
-                    faireVide = rand.nextInt(2) + 1;
-                else
-                    faireVide = rand.nextInt(5) + 1;
-            }
-            else if(tableau[y - 1][i - 1] == 0 && tableau[y - 1][i + 1] == 0 && tableau[y - 1][i] == 0) {
-                if(videCompteur > 0)
-                    faireVide = rand.nextInt(2) + 1;
-                else
-                    faireVide = rand.nextInt(4) + 1;
-            }
+            if(videCompteur > 0)
+                faireVide = rand.nextInt(2);
             else
-                faireVide = 0;
+                faireVide = rand.nextInt(3);
 
-            /*
-             * On fait du vide si faireVide == 1 et que le nombre maximum de 
-             * cases vide d'affilé n'a pas été dépassé
-             */
 
-            if(faireVide == 1 && videCompteur < videMax) {
+            if(tableau[y - 1][i] == Block.MUR_FOND && videCompteur < TAILLE_VIDE_MAX && (videCompteur == 1 || faireVide == 0)) {
                 tableau[y][i] = Block.MUR_FOND;
                 videCompteur++;
             }
@@ -233,11 +341,15 @@ public class Niveau {
      * sinon => une des lignes du milieu
      */
 
-    private void remplirLigne(int debut, int fin, int posLigne, int epaisseur, int y, int videMax, int plateforme) {
+    private void remplirLigne(int debut, int fin, int posLigne, int epaisseur, int y, int plateforme) {
         final int VIDE = 0, PICS = 1;
         final int NB_CASES = (fin - debut);
         int curSegment = 0, debutSegment = debut, finSegment = TAILLE_SEGMENT;
-		int block = (posLigne > getTailleMurPlateforme(plateforme) - 1) ? Block.MUR2 : Block.MUR;
+		int block = (posLigne > getTailleMurPlateforme(plateforme)) ? Block.MUR2 : Block.MUR;
+
+        /* Remplis la ligne avec Block.MUR si c'est une des premières lignes de la plateforme, sinon
+         * remplis avec Block.MUR2 si c'est une ligne addEffetProfondeur
+         */
 
         remplirLigneMur(debut, fin, y, block);
 
@@ -245,10 +357,12 @@ public class Niveau {
             if(i % TAILLE_SEGMENT == 0) {
                 int type = rand.nextInt(PICS + 1);
 
-                if(type == VIDE)
-                    remplirLigneVide(debutSegment, finSegment, posLigne, epaisseur, y, videMax);
-                else if(type == PICS && posLigne == 0 && debutSegment > debut && finSegment < fin)
-                    ajoutPicsLigne(debutSegment, finSegment, y);
+                // On fait du vide seulement s'il s'agit d'une des deux premières lignes de la plateforme
+
+                if(posLigne == 0 && type == PICS && debutSegment > debut && finSegment < fin)
+                    addPicsLigne(debutSegment, finSegment, y);
+                else if(posLigne < 2 && type == VIDE)
+                    remplirLigneVide(debutSegment, finSegment, posLigne, epaisseur, y);
 
                 debutSegment = finSegment;
                 
@@ -260,36 +374,9 @@ public class Niveau {
         }
     }
 
-    // Construit un escalier afin d'accéder à une plateforme
-
-    private void addEscalier(Direction dir, int espaceBase, int epaisseurN, int plateforme) {
-        int debut = espaceBase;
-        int fin = debut + epaisseurN + ESPACE_PLATEFORME - (EPAISSEUR_PLATEFORME_MUR2 * 3);
-        int i, j;
-
-		if(getTailleMurPlateforme(plateforme) == 1)
-			fin++;
-
-        if(dir == Direction.GAUCHE) {
-            i = ESPACE_PLATEFORME;
-
-            for(j = debut; j < fin; j++) {
-                tableau[j][i] = Block.MUR;
-                i--;
-            }
-        } else {
-            i = taille_x - ESPACE_PLATEFORME - 1;
-
-            for(j = debut; j < fin; j++) {
-                tableau[j][i] = Block.MUR;
-                i++;
-            }
-        }
-    }
-
     private void remplirPlateforme(int plateforme, Direction dir) {
         int i, debut = 1, fin = taille_x - 1;
-        int espaceBase, espace, tailleVide = TAILLE_VIDE_MAX;
+        int espaceBase, espace;
         int epaisseurN = epaisseur[plateforme];
 
         /* 
@@ -310,7 +397,7 @@ public class Niveau {
         for (i = 0; i < epaisseurN; i++) {
             /* 
              * On récupère l'espace avant la plateforme, 
-             * puis on calcule l'espace avant la ligne actuelle en ajoutant i
+             * puis on calcule l'espace avant la ligne actuelle en addant i
              */
 
             espaceBase = getEspaceAvantPlateforme(plateforme);
@@ -319,30 +406,43 @@ public class Niveau {
             /* Si ce n'est pas la première plateforme */
 
             if (plateforme < nb_plateformes - 1) {
-                if (i == epaisseurN - 1)
-                    tailleVide = TAILLE_VIDE_FOND_MAX;
-                else
-                    tailleVide = TAILLE_VIDE_MAX;
-
-                remplirLigne(debut, fin, i, epaisseurN, espace, tailleVide, plateforme);
-
-                /* 
-                 * On appele la fonction permettant de construire 
-                 * l'escalier si i correspond à la dernière ligne de la plateforme.
-                 */
-
-                if (i == epaisseurN - 1)
-                    addEscalier(dir, espace, epaisseurN, plateforme);
+                remplirLigne(debut, fin, i, epaisseurN, espace, plateforme);
             } else {
                 /*
                  * Sinon on remplis la première plateforme tout en
                  * évitant qu'il y ait des trous au début et à la fin.
                  */
 
-                if (i == epaisseurN - 1)
-                    tailleVide = TAILLE_VIDE_FOND_MAX;
+                remplirLigne(1, taille_x - 1, i, epaisseurN, espace, plateforme);
+            }
+        }
+    }
 
-                remplirLigne(1, taille_x - 1, i, epaisseurN, espace, tailleVide, plateforme);
+    // Découpe une plateforme en plusieurs segments
+
+    private void decoupePlateforme(int plateforme, Direction dir) {
+        int i, j, k, debut = 1, fin = taille_x - 1;
+
+        if (dir == Direction.GAUCHE) {
+            debut = ESPACE_PLATEFORME + 1;
+            fin = taille_x - 1;
+        }
+        else {
+            debut = 1;
+            fin = taille_x - ESPACE_PLATEFORME - 1;
+        }
+
+        for(i = debut; i < fin; i++) {
+            if(rand.nextInt(2) == 1 && i % TAILLE_SEGMENT == 0) {
+
+                for(j = 0; j < epaisseur[plateforme]; j++) {
+                    for(k = 0; k <= 2; k++) {
+                        if(dir == Direction.GAUCHE)
+                            tableau[getEspaceAvantPlateforme(plateforme) + j][i - k] = Block.MUR_FOND;
+                        else
+                            tableau[getEspaceAvantPlateforme(plateforme) + j][i + k] = Block.MUR_FOND;
+                    }
+                }
             }
         }
     }
@@ -367,6 +467,13 @@ public class Niveau {
 
             remplirPlateforme(i, dir);
             remplirPlateformeFondSup(i);
+			addEffetProfondeur(i, dir);
+
+			if(i > 0)
+				addPlateformeAccessNivSup(dir, i);
+
+            if(i < nb_plateformes - 1)
+                decoupePlateforme(i, dir);
         }
 
         if (i % 2 == 0) {
@@ -376,7 +483,7 @@ public class Niveau {
                 dir = Direction.GAUCHE;
         }
 
-        ajoutPorteSortie(dir);
+        addPorteSortie(dir);
     }
 
     public void print() {
