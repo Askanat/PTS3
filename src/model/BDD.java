@@ -43,11 +43,13 @@ public class BDD {
             System.out.println("Donnees charger spell : " + e);
         }
 
-        int[][] loadInventaire = getPossede();
+        int[][] loadInventaire = getPossede(id);
         ArrayList<Equipement> inventaire = new ArrayList<>();
 
-        for (int i = 0; i < placeInventaire(); i++) {
-            if (hero.getIdHero() == loadInventaire[i][0]) {
+        System.out.println("Id hero : " + id);
+
+        for (int i = 0; i < placeInventaire(id); i++) {
+            if (loadInventaire[i][0] == id) {
                 inventaire.add(dropEquipement(loadInventaire[i][1]));
             }
         }
@@ -262,12 +264,12 @@ public class BDD {
         return result;
     }
 
-    public int placeInventaire() {
+    public int placeInventaire(int id) {
         ResultSet place;
         int result = 0;
 
         try {
-            place = instruction.executeQuery("SELECT count(*) AS count FROM possede;");
+            place = instruction.executeQuery("SELECT count(*) AS count FROM possede where idPersoPossede ="+id+";");
             while (place.next())
                 result = Integer.parseInt(place.getString("count"));
         } catch (Exception e) {
@@ -315,13 +317,13 @@ public class BDD {
         }
     }
 
-    public int[][] getPossede() {
+    public int[][] getPossede(int id) {
         ResultSet possede;
-        int[][] result = new int[placeInventaire()][2];
+        int[][] result = new int[placeInventaire(id)][2];
         int i = 0, j = 0;
 
         try {
-            possede = instruction.executeQuery("SELECT * FROM possede");
+            possede = instruction.executeQuery("SELECT * FROM possede where idPersoPossede="+id+";");
             while (possede.next()) {
                 System.out.println("IdPerso(i) : " + Integer.parseInt(possede.getString("idPersoPossede")) + ", IdItem(j) : " + Integer.parseInt(possede.getString("idItemPossede")));
                 result[i][j] = Integer.parseInt(possede.getString("idPersoPossede"));

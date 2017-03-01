@@ -51,10 +51,10 @@ public class Jeu {
         for (int i = getEtat().getIndiceSuppressionMonstre().size(); i > 0; i--) {
             getHero().recevoirExperience(getTableauMonstre().get(getEtat().getIndiceSuppressionMonstre().get(i - 1)));
             getTableauMonstre().remove((int) getEtat().getIndiceSuppressionMonstre().get(i - 1));
-            if (bdd.placeInventaire() < 30) {
+            if (bdd.placeInventaire(hero.getIdHero()) < 30) {
                 hero.addInventaire(addItemInInventaire(bdd.dropEquipement((int) (Math.random() * (bdd.nbItem() - 1) + 1))));
-                System.out.println("Place inventaire : " + (bdd.placeInventaire()-1));
-                System.out.println("Tu as récuperé : " + hero.getInventaire().get(bdd.placeInventaire()-1).getNom());
+                System.out.println("Place inventaire : " + (bdd.placeInventaire(hero.getIdHero())-1));
+                System.out.println("Tu as récuperé : " + hero.getInventaire().get(bdd.placeInventaire(hero.getIdHero())-1).getNom());
             } else {
                 System.out.println("Tu es plein !!");
             }
