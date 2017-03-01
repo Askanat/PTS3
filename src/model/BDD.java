@@ -322,6 +322,7 @@ public class BDD {
         int[][] result = new int[placeInventaire(id)][2];
         int i = 0, j = 0;
 
+
         try {
             possede = instruction.executeQuery("SELECT * FROM possede where idPersoPossede="+id+";");
             while (possede.next()) {
