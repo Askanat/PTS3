@@ -22,17 +22,16 @@ public class BDD {
             connexion = DriverManager.getConnection("jdbc:mysql://localhost/projet", "DUTinfo", "0000");
             instruction = connexion.createStatement();
             bddIsOk = true;
-            //System.out.println("Hello bdd" + bddIsOk);
         } catch (Exception e) {
             System.out.println("Echec pilote : " + e);
         }
     }
 
     //SELECTIONNE LES DONNEES D'UN HERO
-    public Hero readHero(int id, Jeu jeu) {
+    public Hero readHero(int id, Jeu jeu, Hero hero) {
 
         ResultSet resultat = null;
-        Hero hero = null;
+        Hero hero1 = null;
         ResultSet spell;
         ArrayList<Sort> result = new ArrayList<>();
         try {
@@ -44,34 +43,28 @@ public class BDD {
             System.out.println("Donnees charger spell : " + e);
         }
 
+        int[][] loadInventaire = getPossede();
+        ArrayList<Equipement> inventaire = new ArrayList<>();
+
+        for (int i = 0; i < placeInventaire(); i++) {
+            if (hero.getIdHero() == loadInventaire[i][0]) {
+                inventaire.add(dropEquipement(loadInventaire[i][1]));
+            }
+        }
+
         try {
             resultat = instruction.executeQuery("Select * FROM personnage WHERE idPerso =" + id + ";");
 
             while (resultat.next()) {
-                hero = new Hero(resultat.getString("nomPerso"), Integer.parseInt(resultat.getString("niveauPerso")), Integer.parseInt(resultat.getString("pointCompetence")), Integer.parseInt(resultat.getString("pointCaracteristique")), Double.parseDouble(resultat.getString("experiencePerso")),
+                hero1 = new Hero(resultat.getString("nomPerso"), Integer.parseInt(resultat.getString("niveauPerso")), Integer.parseInt(resultat.getString("pointCompetence")), Integer.parseInt(resultat.getString("pointCaracteristique")), Double.parseDouble(resultat.getString("experiencePerso")),
                         Double.parseDouble(resultat.getString("experienceMaxPerso")), Double.parseDouble(resultat.getString("forcePerso")), Double.parseDouble(resultat.getString("intelPerso")), Double.parseDouble(resultat.getString("constiPerso")), Double.parseDouble(resultat.getString("resiPerso")),
-                        Integer.parseInt(resultat.getString("gold")), resultat.getString("texturePerso"), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0), jeu, result);
+                        Integer.parseInt(resultat.getString("gold")), resultat.getString("texturePerso"), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0), jeu, result, inventaire);
             }
         } catch (Exception e) {
             System.out.println("Echec query hero " + e);
             e.printStackTrace();
         }
-
-            /*valeur.add(resultat.getString("nomPerso"));
-            valeur.add(resultat.getString("niveauPerso"));
-            valeur.add(resultat.getString("pointCompetence"));
-            valeur.add(resultat.getString("pointCaracteristique"));
-            valeur.add(resultat.getString("experiencePerso"));
-            valeur.add(resultat.getString("experienceMaxPerso"));
-            valeur.add(resultat.getString("forcePerso"));
-            valeur.add(resultat.getString("intelPerso"));
-            valeur.add(resultat.getString("constiPerso"));
-            valeur.add(resultat.getString("resiPerso"));
-            valeur.add(resultat.getString("gold"));
-            valeur.add(resultat.getString("texturePerso"));*/
-
-
-        return hero;
+        return hero1;
     }
 
     //SELECTIONNE LES DONNEES D'UN MONSTRE
@@ -206,7 +199,7 @@ public class BDD {
     }
 
     //Requete qui recup tous les spell
-    public ArrayList<Sort> chargerSort() {
+    public ArrayList<Sort> chargerSpell() {
         ResultSet spell;
         ArrayList<Sort> result = new ArrayList<>();
         try {

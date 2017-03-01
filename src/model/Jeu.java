@@ -33,18 +33,6 @@ public class Jeu {
         etat = new Etat();
         bdd = new BDD();
 
-        /*Hero hero1 = new Hero("Hero1", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero1.png", 0, 0);
-        Hero hero2 = new Hero("Hero2", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero2.png", 0, 0);
-        Hero hero3 = new Hero("Hero3", 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, "images/Save/texture_hero3.png", 0, 0);
-
-        try {
-            bdd.sauvegardeFlux(1, hero1);
-            bdd.sauvegardeFlux(2, hero2);
-            bdd.sauvegardeFlux(3, hero3);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
         hero = null;
         tableauSortHero = new ArrayList<Sort>();
         tableauMonstre = new ArrayList<>();
@@ -53,21 +41,20 @@ public class Jeu {
         nbPartieLibre = 0;
 
         // à enlever
-        allSort = bdd.chargerSort();
+        allSort = bdd.chargerSpell();
         allItem = bdd.chargerEquipement();
     }
 
 
     public void updateEntite() {
-
         // supprime les monstres
         for (int i = getEtat().getIndiceSuppressionMonstre().size(); i > 0; i--) {
             getHero().recevoirExperience(getTableauMonstre().get(getEtat().getIndiceSuppressionMonstre().get(i - 1)));
             getTableauMonstre().remove((int) getEtat().getIndiceSuppressionMonstre().get(i - 1));
             if (bdd.placeInventaire() < 30) {
-                hero.addItemInInventaire(bdd.dropEquipement((int) (Math.random() * (bdd.nbItem() - 1) + 1)));
-                System.out.println((bdd.placeInventaire() - 1));
-                System.out.println("Tu as récuperé : " + hero.getInventaire().get(bdd.placeInventaire() - 1).getNom());
+                hero.addInventaire(addItemInInventaire(bdd.dropEquipement((int) (Math.random() * (bdd.nbItem() - 1) + 1))));
+                System.out.println("Place inventaire : " + (bdd.placeInventaire()-1));
+                System.out.println("Tu as récuperé : " + hero.getInventaire().get(bdd.placeInventaire()-1).getNom());
             } else {
                 System.out.println("Tu es plein !!");
             }
@@ -128,15 +115,6 @@ public class Jeu {
         return nbPartieLibre;
     }
 
-
-
-
-
-
-
-
-
-
     public void sauvegardeHero() {
         bdd.updateHero(hero.getIdHero(), hero.sauvegardeDonneesHeros());
     }
@@ -146,7 +124,7 @@ public class Jeu {
     }
 
     public void setHero(int id) {
-        hero = new Hero(bdd.readHero(id, this));
+        hero = new Hero(bdd.readHero(id, this, hero));
     }
 
 
@@ -198,7 +176,7 @@ public class Jeu {
 
     public void achatItem(int id) {
         int orHero = getHero().getOr();
-        int prix = 0; //il faut créé un appel de prix dans la class BDD
+        int prix = bdd.getPrixItem(id);
         if (orHero >= prix) {
             getHero().setOr(getHero().getOr() - prix);
             //addInventaire(id);
@@ -207,7 +185,7 @@ public class Jeu {
 
     public void vendreItem(int id) {
         int orHero = getHero().getOr();
-        int prix = 0; //il faut créé un appel de prix dans la class BDD
+        int prix = bdd.getPrixItem(id);
 
         getHero().setOr(getHero().getOr() + prix);
         //removeInventaire(id);
@@ -215,5 +193,10 @@ public class Jeu {
 
     public Equipement getOneItem(int idItem) {
         return allItem.get(idItem);
+    }
+
+    public Equipement addItemInInventaire(Equipement equipement) {
+        bdd.possede(hero.getIdHero(), equipement.getIdItem());
+        return equipement;
     }
 }

@@ -22,8 +22,6 @@ public class Hero extends Personnage implements Serializable {
 
     int tempsAvantDisponibiliteSort[];
 
-    private BDD bdd;
-
     private final int COEF_VIE = 5;
     private final int COEF_MANA = 5;
     private final int COEF_DEGATS = 3;
@@ -34,7 +32,7 @@ public class Hero extends Personnage implements Serializable {
     private final int DEGATS_DE_BASE = 5;
 
     public Hero(String nom, int niveau, int pointCompetence, int pointCaracteristique, double experience, double experienceMax, double forcePerso, double intelPerso,
-                double constiPerso, double resiPerso, int or, String texture, int positionX, int positionY, Jeu jeu, ArrayList<Sort> heroSort) {
+                double constiPerso, double resiPerso, int or, String texture, int positionX, int positionY, Jeu jeu, ArrayList<Sort> heroSort, ArrayList<Equipement> inventaire) {
 
         super(nom, niveau, 52, 52, 81, 98, texture, positionX, positionY, 30, 60, 68, 8, 30, jeu);
 
@@ -60,14 +58,10 @@ public class Hero extends Personnage implements Serializable {
 
         this.or = or;
 
-        bdd = new BDD();
-
         this.heroSort = heroSort;
         tempsAvantDisponibiliteSort = new int[heroSort.size()];
 
-        inventaire = new ArrayList<>();
-
-        loadInventaire();
+        this.inventaire = inventaire;
     }
 
     public Hero(Hero hero) {
@@ -95,8 +89,6 @@ public class Hero extends Personnage implements Serializable {
         this.pointCompetence = hero.pointCompetence;
 
         this.or = hero.or;
-
-        this.bdd = hero.bdd;
 
         this.heroSort = hero.heroSort;
         this.tempsAvantDisponibiliteSort = hero.tempsAvantDisponibiliteSort;
@@ -349,22 +341,12 @@ public class Hero extends Personnage implements Serializable {
         return or;
     }
 
-    public void addItemInInventaire(Equipement equipement) {
-        this.inventaire.add(equipement);
-        bdd.possede(getIdHero(), equipement.getIdItem());
-    }
-
-    public void loadInventaire() {
-        int[][] loadInventaire = bdd.getPossede();
-
-        for (int i = 0; i < bdd.placeInventaire(); i++) {
-            if (getIdHero() == loadInventaire[i][0]) {
-                inventaire.add(bdd.dropEquipement(loadInventaire[i][1]));
-            }
-        }
-    }
-
     public ArrayList<Equipement> getInventaire() {
         return inventaire;
+    }
+
+    public void addInventaire(Equipement equipement) {
+        System.out.println("Hero : " + equipement.getNom());
+        inventaire.add(equipement);
     }
 }
