@@ -157,7 +157,7 @@ public class EntiteVue extends JPanel {
             if (entite instanceof Personnage)
                 alternerSpriteDeplacement = alternerSpriteDeplacement == 3 ? 0 : alternerSpriteDeplacement + 1;
             if (entite instanceof Sort)
-                alternerSpriteDeplacement = alternerSpriteDeplacement >= 3 ?  3 : alternerSpriteDeplacement + 1;
+                alternerSpriteDeplacement = alternerSpriteDeplacement >= 2 ?  2 : alternerSpriteDeplacement + 1;
         }
 
         // permet d'alterner les mouvements de dégats
