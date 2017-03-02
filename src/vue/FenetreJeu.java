@@ -214,5 +214,25 @@ public class FenetreJeu extends JPanel {
 
         if (jeu.getEtat().getSave())
             g.drawImage(imageIconeSave, (int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(5)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(5)), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
+
+
+
+        // permet le défilement par rapport à la position du héro et centré sur le héro tout en évitant de scroll quand on ne peut pas (sortir de la zone-safe par exemple)
+        if (jeu.getHero().getPositionX() <= scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(200))
+            scrollPane.getViewport().setViewPosition(new Point((int) (scrollPane.getViewport().getViewPosition().getX() - (X -Fenetre.adapterResolutionEnX(400))), (int) scrollPane.getViewport().getViewPosition().getY()));
+        else if (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(1720) <= jeu.getHero().getPositionX())
+            scrollPane.getViewport().setViewPosition(new Point((int) (scrollPane.getViewport().getViewPosition().getX() + (X - Fenetre.adapterResolutionEnX(400))), (int) scrollPane.getViewport().getViewPosition().getY()));
+        if (jeu.getHero().getPositionY() <= scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(100))
+            scrollPane.getViewport().setViewPosition(new Point((int) scrollPane.getViewport().getViewPosition().getX(), (int) (scrollPane.getViewport().getViewPosition().getY() - (Y-Fenetre.adapterResolutionEnY(200)))));
+        else if (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(980) <= jeu.getHero().getPositionY())
+            scrollPane.getViewport().setViewPosition(new Point((int) scrollPane.getViewport().getViewPosition().getX(), (int) (scrollPane.getViewport().getViewPosition().getY() + (Y-Fenetre.adapterResolutionEnY(200)))));
+
+
+/*
+        if (jeu.getHero().getPositionY() > (int) (Y / 2.0) && jeu.getHero().getPositionY() < ZONE.height - (int) (Y / 2.0))
+            scrollPane.getViewport().setViewPosition(new Point((int) scrollPane.getViewport().getViewPosition().getX(), (int) (jeu.getHero().getPositionY() - Y / 2.0)));
+        if (jeu.getHero().getPositionX() > (int) (X / 2.0) && jeu.getHero().getPositionX() < ZONE.width - (int) (X / 2.0))
+            scrollPane.getViewport().setViewPosition(new Point((int) (jeu.getHero().getPositionX() - X / 2.0), (int) scrollPane.getViewport().getViewPosition().getY()));
+    */
     }
 }

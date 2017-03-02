@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static vue.Fenetre.scrollPane;
+
 /**
  * Created by bastien on 30/09/16.
  */
@@ -169,6 +171,9 @@ public class ControlTimer extends Control implements ActionListener {
 
                 jeu.updateEntite();
                 fenetre.panelFenetreJeu.updateEntite();
+
+                System.out.println(jeu.getHero().getPositionX()  + " <= " + (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(200)));
+                System.out.println((scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(1720)) + " >= " + jeu.getHero().getPositionX());
             }
         }
 

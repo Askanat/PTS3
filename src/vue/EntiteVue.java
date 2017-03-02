@@ -219,13 +219,6 @@ public class EntiteVue extends JPanel {
             g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(80)), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
             g.setColor(Color.ORANGE);
             g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(80)), Fenetre.adapterResolutionEnX(200 * (int) ((Hero) entite).getExperience() / (int) ((Hero) entite).getExperienceMax()), Fenetre.adapterResolutionEnY(15));
-
-
-            // permet le défilement par rapport à la position du héro et centré sur le héro tout en évitant de scroll quand on ne peut pas (sortir de la zone-safe par exemple)
-            if (jeu.getHero().getPositionY() > (int) (Y / 2.0) && jeu.getHero().getPositionY() < ZONE.height - (int) (Y / 2.0))
-                scrollPane.getViewport().setViewPosition(new Point((int) scrollPane.getViewport().getViewPosition().getX(), (int) (jeu.getHero().getPositionY() - Y / 2.0)));
-            if (jeu.getHero().getPositionX() > (int) (X / 2.0) && jeu.getHero().getPositionX() < ZONE.width - (int) (X / 2.0))
-                scrollPane.getViewport().setViewPosition(new Point((int) (jeu.getHero().getPositionX() - X / 2.0), (int) scrollPane.getViewport().getViewPosition().getY()));
         }
     }
 }
