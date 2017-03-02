@@ -28,8 +28,6 @@ public class Sort extends Entite {
         this.soin = soin;
 
         tempsDeApparition = 0;
-
-        texture = "images/Sorts/goutte_Boule.png"; // à enlever quand les sorts auront tous une texture
     }
 
     public Sort(Sort sort) {
