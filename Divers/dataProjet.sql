@@ -20,9 +20,9 @@ CREATE TABLE spell (
   PRIMARY KEY(idSpell)
 );
 
-INSERT INTO spell VALUES (default, "Boule de feu", 41, 33, 14, 56, 10,10, 10, 30, "images/Sorts/boule_De_Feu.png", 10,10,0);
-INSERT INTO spell VALUES (default, "Boule magique", 33, 30, 11, 50, 20, 10, 20, 30,  "images/Sorts/boule_Magique.png", 10,1,0);
-INSERT INTO spell VALUES (default, "Eclaire de givre", 38, 54, 6, 49, 10, 10, 10, 30, "images/Sorts/eclaire_De_Givre.png", 10,1,0);
+INSERT INTO spell VALUES (default, "Boule de feu", 41, 33, 14, 56, 10,10, 10, 30, "images/Sorts/boule_De_Feu.png", 25,10,0);
+INSERT INTO spell VALUES (default, "Boule magique", 33, 30, 11, 50, 20, 10, 20, 30,  "images/Sorts/boule_Magique.png", 20,1,0);
+INSERT INTO spell VALUES (default, "Eclaire de givre", 38, 54, 6, 49, 10, 10, 10, 30, "images/Sorts/eclaire_De_Givre.png", 35,1,0);
 INSERT INTO spell VALUES (default, "Soin mineur", 27, 49, 31, 62, 0, 0, 10, 30, "images/Sorts/soin_Mineur.png", 0,1,50);
 INSERT INTO spell VALUES (default, "Soin majeur", 49, 79, 50, 106, 0, 0, 20, 50, "images/Sorts/soin_Majeur.png", 0,1,100);
 INSERT INTO spell VALUES (default, "Eclair", 41, 87, 42, 64, 20, 10, 20, 50,  "images/Sorts/eclair.png", 0,1,0);
