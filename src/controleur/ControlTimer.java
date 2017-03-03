@@ -172,8 +172,7 @@ public class ControlTimer extends Control implements ActionListener {
                 jeu.updateEntite();
                 fenetre.panelFenetreJeu.updateEntite();
 
-                System.out.println(jeu.getHero().getPositionX()  + " <= " + (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(200)));
-                System.out.println((scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(1720)) + " >= " + jeu.getHero().getPositionX());
+
             }
         }
 
