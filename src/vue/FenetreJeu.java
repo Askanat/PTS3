@@ -218,13 +218,13 @@ public class FenetreJeu extends JPanel {
 
 
         // permet le défilement par rapport à la position du héro et centré sur le héro tout en évitant de scroll quand on ne peut pas (sortir de la zone-safe par exemple)
-        if (jeu.getHero().getPositionX() <= scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(200))
+        if (jeu.getHero().getPositionX() < scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(200))
             scrollPane.getViewport().setViewPosition(new Point((int) (scrollPane.getViewport().getViewPosition().getX() - (X -Fenetre.adapterResolutionEnX(400))), (int) scrollPane.getViewport().getViewPosition().getY()));
-        else if (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(1720) <= jeu.getHero().getPositionX())
+        else if (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(1720) < jeu.getHero().getPositionX())
             scrollPane.getViewport().setViewPosition(new Point((int) (scrollPane.getViewport().getViewPosition().getX() + (X - Fenetre.adapterResolutionEnX(400))), (int) scrollPane.getViewport().getViewPosition().getY()));
-        if (jeu.getHero().getPositionY() <= scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(100))
+        if (jeu.getHero().getPositionY() < scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(100))
             scrollPane.getViewport().setViewPosition(new Point((int) scrollPane.getViewport().getViewPosition().getX(), (int) (scrollPane.getViewport().getViewPosition().getY() - (Y-Fenetre.adapterResolutionEnY(200)))));
-        else if (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(980) <= jeu.getHero().getPositionY())
+        else if (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(980) < jeu.getHero().getPositionY())
             scrollPane.getViewport().setViewPosition(new Point((int) scrollPane.getViewport().getViewPosition().getX(), (int) (scrollPane.getViewport().getViewPosition().getY() + (Y-Fenetre.adapterResolutionEnY(200)))));
 
 
