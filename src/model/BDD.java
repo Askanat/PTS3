@@ -60,7 +60,7 @@ public class BDD {
             while (resultat.next()) {
                 hero1 = new Hero(resultat.getString("nomPerso"), Integer.parseInt(resultat.getString("niveauPerso")), Integer.parseInt(resultat.getString("pointCompetence")), Integer.parseInt(resultat.getString("pointCaracteristique")), Double.parseDouble(resultat.getString("experiencePerso")),
                         Double.parseDouble(resultat.getString("experienceMaxPerso")), Double.parseDouble(resultat.getString("forcePerso")), Double.parseDouble(resultat.getString("intelPerso")), Double.parseDouble(resultat.getString("constiPerso")), Double.parseDouble(resultat.getString("resiPerso")),
-                        Integer.parseInt(resultat.getString("gold")), resultat.getString("texturePerso"), (int) (DEFAUT_X / 2.0), (int) (DEFAUT_Y / 2.0), jeu, result, inventaire);
+                        Integer.parseInt(resultat.getString("gold")), resultat.getString("texturePerso"), (int) (DEFAUT_X / 2.0), 100, jeu, result, inventaire);
             }
         } catch (Exception e) {
             System.out.println("Echec query hero " + e);

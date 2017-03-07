@@ -6,7 +6,8 @@ import java.awt.*;
 import java.io.Serializable;
 
 import static model.Jeu.GRAVITE;
-import static vue.FenetreJeu.ZONE;
+import static vue.FenetreJeu.TAILLE_TUILE;
+import static vue.FenetreJeu.tuileInt;
 
 
 /**
@@ -78,7 +79,12 @@ public abstract class Personnage extends Entite implements Serializable {
             if (!getCollision())
                 setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
             else if (getCollision()) {
-                setPositionY(-Fenetre.adapterResolutionEnY(200) + ZONE.height - hauteurBas);
+                int x = getPositionX() / TAILLE_TUILE;
+                int y = (getPositionY() + hauteurBas) / TAILLE_TUILE;
+                if (63 <= tuileInt[y - 2][x] && tuileInt[y - 2][x] <= 78)
+                    setPositionY((y - 1) * TAILLE_TUILE - hauteurBas);
+                else
+                    setPositionY((y) * TAILLE_TUILE - hauteurBas);
                 setVitesseDeDeplacementEnY(0);
             }
         }

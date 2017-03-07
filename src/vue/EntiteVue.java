@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static vue.Fenetre.*;
+import static vue.FenetreJeu.TAILLE_TUILE;
 import static vue.FenetreJeu.ZONE;
 
 /**
@@ -220,5 +221,9 @@ public class EntiteVue extends JPanel {
             g.setColor(Color.ORANGE);
             g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(80)), Fenetre.adapterResolutionEnX(200 * (int) ((Hero) entite).getExperience() / (int) ((Hero) entite).getExperienceMax()), Fenetre.adapterResolutionEnY(15));
         }
+
+        int x = entite.getPositionX() / TAILLE_TUILE;
+        int y = (entite.getPositionY()+entite.getHauteurBas()) / TAILLE_TUILE;
+        g.drawRect (x*TAILLE_TUILE, (y-1)*TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
     }
 }
