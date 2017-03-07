@@ -43,10 +43,10 @@ public class ControlTimer extends Control implements ActionListener {
             if (!jeu.getEtat().getPause()) {
                 jeu.getEtat().incrementeTemps();
                 if (jeu.getEtat().getTemps() % 300 == 0) {
-                    jeu.setMonstre(1, 900, 100); // a enlever d'ici
-                    jeu.setMonstre(2, 1400, 100); // a enlever d'ici
-                    jeu.setMonstre(3, 1900, 100); // a enlever d'ici
-                    jeu.setMonstre(4, 2400, 100); // a enlever d'ici
+                    //jeu.setMonstre(1, 900, 100); // a enlever d'ici
+                    //jeu.setMonstre(2, 1400, 100); // a enlever d'ici
+                    //jeu.setMonstre(3, 1900, 100); // a enlever d'ici
+                    //jeu.setMonstre(4, 2400, 100); // a enlever d'ici
                     jeu.sauvegardeHero();
                     jeu.getEtat().setSave(true);
                 }

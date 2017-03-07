@@ -113,13 +113,30 @@ public class FenetreJeu extends JPanel {
         }
 
         // changement de zone : zone-safe <-> zone-donjon
-        if (jeu.getHero().getPositionX() > ZONE.width) {
+        if (jeu.getHero().getPositionX() == ZONE.width - 1) {
             changerMap("map/mapFenetreDonjon.txt");
             jeu.getEtat().setZoneSafe(false);
-        } else if (jeu.getHero().getPositionX() < 0 && !jeu.getEtat().getZoneSafe()) {
+        } else if (jeu.getHero().getPositionX() == 0 && !jeu.getEtat().getZoneSafe()) {
             changerMap("map/mapFenetreDepart.txt");
             jeu.getEtat().setZoneSafe(true);
         }
+
+        // scroll
+        int x = (int) scrollPane.getViewport().getViewPosition().getX();
+        int y = (int) scrollPane.getViewport().getViewPosition().getY();
+        if (jeu.getHero().getPositionX() < scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(200)) {
+            x = (int) (scrollPane.getViewport().getViewPosition().getX() - (X - Fenetre.adapterResolutionEnX(400)));
+            x = x < 0 ? 0 : x;
+        } else if (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(1720) < jeu.getHero().getPositionX() && x <= ZONE.width - X)
+            x = (int) (scrollPane.getViewport().getViewPosition().getX() + (X - Fenetre.adapterResolutionEnX(400)));
+
+        if (jeu.getHero().getPositionY() < scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(100)) {
+            y = (int) (scrollPane.getViewport().getViewPosition().getY() - (Y - Fenetre.adapterResolutionEnY(200)));
+            y = y < 0 ? 0 : y;
+        } else if (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(980) < jeu.getHero().getPositionY() && y <= ZONE.height - Y)
+            y = (int) (scrollPane.getViewport().getViewPosition().getY() + (Y - Fenetre.adapterResolutionEnY(200)));
+
+        scrollPane.getViewport().setViewPosition(new Point(x, y));
     }
 
     public void changerMap(String chemin) {
@@ -131,14 +148,12 @@ public class FenetreJeu extends JPanel {
         this.setPreferredSize(ZONE);
 
         jeu.getHero().setPositionY(-Fenetre.adapterResolutionEnY(200) + ZONE.height - jeu.getHero().getHauteurBas());
-        if (jeu.getHero().getDirectionOrientation() == Direction.DROITE) {
-            jeu.getHero().setPositionX(0);
-            scrollPane.getViewport().setViewPosition(new Point(jeu.getHero().getPositionX(), (int) scrollPane.getViewport().getViewPosition().getY()));
-        } else { // putin de gros bug ici je ne sais pas pourquoi !!! si je ne mets pas 2 fois setViewPosition il me met à la positon x = 293 pour une résolution de 960*540
-            jeu.getHero().setPositionX(ZONE.width);
-            scrollPane.getViewport().setViewPosition(new Point(jeu.getHero().getPositionX() - X, (int) scrollPane.getViewport().getViewPosition().getY()));
-            scrollPane.getViewport().setViewPosition(new Point(jeu.getHero().getPositionX() - X, (int) scrollPane.getViewport().getViewPosition().getY()));
-        }
+        if (jeu.getHero().getDirectionOrientation() == Direction.DROITE)
+            jeu.getHero().setPositionX(TAILLE_TUILE + 1);
+        else
+            jeu.getHero().setPositionX(ZONE.width - 2);
+
+
     }
 
     public void readMap(String chemin) {
@@ -214,15 +229,5 @@ public class FenetreJeu extends JPanel {
 
         if (jeu.getEtat().getSave())
             g.drawImage(imageIconeSave, (int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(5)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(5)), Fenetre.adapterResolutionEnX(50), Fenetre.adapterResolutionEnY(50), this);
-
-        // scroll (sortir de la zone-safe par exemple)
-        if (jeu.getHero().getPositionX() < scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(200))
-            scrollPane.getViewport().setViewPosition(new Point((int) (scrollPane.getViewport().getViewPosition().getX() - (X -Fenetre.adapterResolutionEnX(400))), (int) scrollPane.getViewport().getViewPosition().getY()));
-        else if (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(1720) < jeu.getHero().getPositionX())
-            scrollPane.getViewport().setViewPosition(new Point((int) (scrollPane.getViewport().getViewPosition().getX() + (X - Fenetre.adapterResolutionEnX(400))), (int) scrollPane.getViewport().getViewPosition().getY()));
-        if (jeu.getHero().getPositionY() < scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(100))
-            scrollPane.getViewport().setViewPosition(new Point((int) scrollPane.getViewport().getViewPosition().getX(), (int) (scrollPane.getViewport().getViewPosition().getY() - (Y-Fenetre.adapterResolutionEnY(200)))));
-        else if (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(980) < jeu.getHero().getPositionY())
-            scrollPane.getViewport().setViewPosition(new Point((int) scrollPane.getViewport().getViewPosition().getX(), (int) (scrollPane.getViewport().getViewPosition().getY() + (Y-Fenetre.adapterResolutionEnY(200)))));
     }
 }

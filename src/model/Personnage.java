@@ -6,8 +6,7 @@ import java.awt.*;
 import java.io.Serializable;
 
 import static model.Jeu.GRAVITE;
-import static vue.FenetreJeu.TAILLE_TUILE;
-import static vue.FenetreJeu.tuileInt;
+import static vue.FenetreJeu.*;
 
 
 /**
@@ -70,6 +69,8 @@ public abstract class Personnage extends Entite implements Serializable {
 
     public void deplacer() {
         setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
+        if (getPositionX() < 0) setPositionX(0);
+        if (getPositionX() > ZONE.width - 1) setPositionX(ZONE.width - 1);
         setVecteurDeplacementEnX(0);
 
         if (vitesseDeSaut != 0) {
@@ -85,6 +86,10 @@ public abstract class Personnage extends Entite implements Serializable {
                     setPositionY((y - 1) * TAILLE_TUILE - hauteurBas);
                 else
                     setPositionY((y) * TAILLE_TUILE - hauteurBas);
+
+                if (getPositionY() - hauteurHaut <= 0)
+                    setPositionY(hauteurHaut);
+
                 setVitesseDeDeplacementEnY(0);
             }
         }

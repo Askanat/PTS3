@@ -1,4 +1,5 @@
 package vue;
+
 import model.*;
 
 import javax.imageio.ImageIO;
@@ -8,9 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static vue.Fenetre.*;
+import static vue.Fenetre.decoupage;
+import static vue.Fenetre.scrollPane;
 import static vue.FenetreJeu.TAILLE_TUILE;
-import static vue.FenetreJeu.ZONE;
 
 /**
  * Created by bastien on 02/10/16.
@@ -158,7 +159,7 @@ public class EntiteVue extends JPanel {
             if (entite instanceof Personnage)
                 alternerSpriteDeplacement = alternerSpriteDeplacement == 3 ? 0 : alternerSpriteDeplacement + 1;
             if (entite instanceof Sort)
-                alternerSpriteDeplacement = alternerSpriteDeplacement >= 2 ?  2 : alternerSpriteDeplacement + 1;
+                alternerSpriteDeplacement = alternerSpriteDeplacement >= 2 ? 2 : alternerSpriteDeplacement + 1;
         }
 
         // permet d'alterner les mouvements de dégats
@@ -223,7 +224,7 @@ public class EntiteVue extends JPanel {
         }
 
         int x = entite.getPositionX() / TAILLE_TUILE;
-        int y = (entite.getPositionY()+entite.getHauteurBas()) / TAILLE_TUILE;
-        g.drawRect (x*TAILLE_TUILE, (y-1)*TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
+        int y = (entite.getPositionY() + entite.getHauteurBas()) / TAILLE_TUILE;
+        g.drawRect(x * TAILLE_TUILE, (y - 1) * TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
     }
 }
