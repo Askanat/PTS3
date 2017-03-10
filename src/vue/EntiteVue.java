@@ -187,6 +187,10 @@ public class EntiteVue extends JPanel {
             if (entite instanceof Personnage)
                 // zone de l'attaque
                 g.drawRect(((Personnage) entite).getHitBoxAttaque().x, ((Personnage) entite).getHitBoxAttaque().y, ((Personnage) entite).getHitBoxAttaque().width, ((Personnage) entite).getHitBoxAttaque().height);
+
+            int x = entite.getPositionX() / TAILLE_TUILE;
+            int y = (entite.getPositionY() + entite.getHauteurBas()) / TAILLE_TUILE;
+            g.drawRect(x * TAILLE_TUILE, (y - 1) * TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
         }
 
         // barre de vie pour les monstres 
