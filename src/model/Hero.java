@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import static java.lang.Math.pow;
+import static vue.FenetreJeu.TAILLE_TUILE;
+import static vue.FenetreJeu.tuileInt;
 
 /**
  * Created by bastien on 29/09/16.
@@ -148,6 +150,13 @@ public class Hero extends Personnage implements Serializable {
 
     public void update() {
         temps++;
+
+        // inflige dégats quand on marche sur des pics
+        int x = getPositionX() / TAILLE_TUILE;
+        int y = (getPositionY() + hauteurBas) / TAILLE_TUILE;
+
+        if (tuileInt[y - 1][x] == 79)
+            setVie((int) (getVie() - (0.01 * getVieMax())));
 
         // regénère mana et régénère vie
         if (temps % tempsRegeneration == 0) {

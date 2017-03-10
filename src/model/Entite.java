@@ -108,7 +108,7 @@ public class Entite {
         int x = getPositionX() / TAILLE_TUILE;
         int y = (getPositionY() + hauteurBas) / TAILLE_TUILE;
 
-        this.collision = (63 <= tuileInt[y-1][x] && tuileInt[y-1][x] <= 78);
+        this.collision = (63 <= tuileInt[y-1][x] && tuileInt[y-1][x] <= 79);
     }
 
     public boolean getCollision() {
