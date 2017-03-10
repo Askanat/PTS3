@@ -1,31 +1,34 @@
 package model;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 public class Niveau {
-    private int tableau[][];
-    private int nb_plateformes;
-    private int taille_x;
-    private int taille_y;
-    private int[] epaisseur;
-    private Direction entree;
-    private Random rand = new Random();
-
     private static final int TAILLE_SEGMENT = 20;
-	private static final int NB_LIGNES_MUR_PROFONDEUR = 2;
+    private static final int NB_LIGNES_MUR_PROFONDEUR = 2;
     private static final int ESPACE_PLATEFORME = 9;
     private static final int TAILLE_VIDE_MAX = 6;
     private static final int TAILLE_VIDE_FOND_MAX = 2;
-	private static final int EPAISSEUR_PLATEFORME_MUR2 = 3;
+    private static final int EPAISSEUR_PLATEFORME_MUR2 = 3;
     private static final int EPAISSEUR_PLATEFORME_MIN = 1 + EPAISSEUR_PLATEFORME_MUR2;
     private static final int EPAISSEUR_PLATEFORME_MAX = 1 + EPAISSEUR_PLATEFORME_MUR2;
     private static final int NB_PICS_MIN = 1;
     private static final int NB_PICS_MAX = 4;
     private static final int ESPACE_MIN_ENTRE_PICS = 3;
-	private static final int LARGEUR_PLATEFORME_NIV_SUP = 4;
-	private static final int NB_PLATEFORMES_ACCESS_NIV_SUP = 4;
+    private static final int LARGEUR_PLATEFORME_NIV_SUP = 4;
+    private static final int NB_PLATEFORMES_ACCESS_NIV_SUP = 4;
 
-    public Niveau(int _taille_x, int _nb_plateformes, Direction _entree) {
+    private int tableau[][];
+    private int nb_plateformes;
+    private int taille_x;
+    private int taille_y;
+    private int[] epaisseur;
+
+    private Direction entree;
+    private Random rand = new Random();
+
+    public Niveau(int _taille_x, int _nb_plateformes, Direction _entree, boolean _sauvegarder) {
         // Ligne du haut et ligne du bas
 
         taille_y = ESPACE_PLATEFORME - (ESPACE_PLATEFORME - 2);
@@ -41,11 +44,36 @@ public class Niveau {
             entree = _entree;
 
         gen();
+
+        if (_sauvegarder)
+            sauvegarder();
+    }
+
+    public void sauvegarder() {
+        try {
+            String str = "", nomFichier = "mapFenetreDonjon.txt";
+            PrintWriter pw = new PrintWriter(nomFichier);
+            int i, j;
+
+            for (i = 0; i < taille_y; i++) {
+                for (j = 0; j < taille_x; j++) {
+                    str += tableau[i][j] + ",";
+                }
+
+                str += "\n";
+            }
+
+            pw.print(str);
+            pw.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private void remplirTabVide() {
-        for(int i = 0; i < taille_y; i++) {
-            for(int j = 0; j < taille_x; j++)
+        for (int i = 0; i < taille_y; i++) {
+            for (int j = 0; j < taille_x; j++)
                 tableau[i][j] = Block.MUR_FOND;
         }
     }
@@ -80,11 +108,11 @@ public class Niveau {
             taille_y += epaisseur[i] + ESPACE_PLATEFORME;
     }
 
-	// Retourne le nombre de Block.MUR dans l'épaisseur d'une plateforme
+    // Retourne le nombre de Block.MUR dans l'épaisseur d'une plateforme
 
-	private int getTailleMurPlateforme(int plateforme) {
-		return epaisseur[plateforme] - EPAISSEUR_PLATEFORME_MUR2;
-	}
+    private int getTailleMurPlateforme(int plateforme) {
+        return epaisseur[plateforme] - EPAISSEUR_PLATEFORME_MUR2;
+    }
 
     // Retourne le nombre de lignes avant le début de la plateforme
 
@@ -101,7 +129,7 @@ public class Niveau {
         int y = getEspaceAvantPlateforme(0) - 1, i;
 
         if (sortie == Direction.GAUCHE) {
-            for(i = 2; i <= 5; i++) {
+            for (i = 2; i <= 5; i++) {
                 tableau[y + 1][taille_x - i] = Block.MUR;
                 tableau[y + 2][taille_x - i] = Block.MUR;
                 tableau[y + 3][taille_x - i] = Block.MUR2;
@@ -115,7 +143,7 @@ public class Niveau {
             tableau[y - 1][taille_x - 3] = Block.PORTE_MILIEU_DROITE;
             tableau[y - 2][taille_x - 3] = Block.PORTE_HAUT_DROITE;
         } else {
-            for(i = 1; i <= 4; i++) {
+            for (i = 1; i <= 4; i++) {
                 tableau[y + 1][i] = Block.MUR;
                 tableau[y + 2][i] = Block.MUR;
                 tableau[y + 3][i] = Block.MUR2;
@@ -135,30 +163,29 @@ public class Niveau {
 
     private void addPlateformeAccessNivSup(Direction dir, int plateforme) {
         int i, j, y = 3, fin, debut = (dir == Direction.GAUCHE) ? (taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1) : (1);
-;
+        ;
         int espace = getEspaceAvantPlateforme(plateforme);
 
-        for(i = 0; i < NB_PLATEFORMES_ACCESS_NIV_SUP; i++) {
+        for (i = 0; i < NB_PLATEFORMES_ACCESS_NIV_SUP; i++) {
             fin = debut + LARGEUR_PLATEFORME_NIV_SUP;
 
-            for(j = debut; j < fin; j++) {
+            for (j = debut; j < fin; j++) {
                 int block = Block.MUR;
 
-                if(rand.nextInt(3) == 0) {
-                    if(dir == Direction.DROITE) {
-                        // Plateforme de gauche
-                    
-                        if(i % 2 == 0 && j <= debut + 1)
-                            block = Block.PICS;
-                        else if(i % 2 != 0 && j >= debut + 2)
-                            block = Block.PICS;
-                    }
-                    else {
+                if (rand.nextInt(3) == 0) {
+                    if (dir == Direction.DROITE) {
                         // Plateforme de gauche
 
-                        if(i % 2 != 0 && j <= debut + 1)
+                        if (i % 2 == 0 && j <= debut + 1)
                             block = Block.PICS;
-                        else if(i % 2 == 0 && j >= debut + 2)
+                        else if (i % 2 != 0 && j >= debut + 2)
+                            block = Block.PICS;
+                    } else {
+                        // Plateforme de gauche
+
+                        if (i % 2 != 0 && j <= debut + 1)
+                            block = Block.PICS;
+                        else if (i % 2 == 0 && j >= debut + 2)
                             block = Block.PICS;
                     }
                 }
@@ -169,15 +196,14 @@ public class Niveau {
 
 
             // Si pair c'est une plateforme de gauche
-            
-            if(i % 2 == 0) {
-                if(dir == Direction.DROITE)
+
+            if (i % 2 == 0) {
+                if (dir == Direction.DROITE)
                     debut = ESPACE_PLATEFORME - LARGEUR_PLATEFORME_NIV_SUP;
                 else
                     debut = taille_x - ESPACE_PLATEFORME;
-            }
-            else {
-                if(dir == Direction.DROITE)
+            } else {
+                if (dir == Direction.DROITE)
                     debut = 1;
                 else
                     debut = taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1;
@@ -195,20 +221,20 @@ public class Niveau {
         int fin = debut + epaisseurN + ESPACE_PLATEFORME - (EPAISSEUR_PLATEFORME_MUR2 * 3);
         int i, j;
 
-        if(getTailleMurPlateforme(plateforme) == 1)
+        if (getTailleMurPlateforme(plateforme) == 1)
             fin++;
 
-        if(dir == Direction.GAUCHE) {
+        if (dir == Direction.GAUCHE) {
             i = ESPACE_PLATEFORME;
 
-            for(j = debut; j < fin; j++) {
+            for (j = debut; j < fin; j++) {
                 tableau[j][i] = Block.MUR;
                 i--;
             }
         } else {
             i = taille_x - ESPACE_PLATEFORME - 1;
 
-            for(j = debut; j < fin; j++) {
+            for (j = debut; j < fin; j++) {
                 tableau[j][i] = Block.MUR;
                 i++;
             }
@@ -216,10 +242,10 @@ public class Niveau {
     }
 
     private void addEffetProfondeurAll(int debut, int fin, int y) {
-        for(int i = debut; i < fin; i++) {
-            if(tableau[y][i] == Block.PICS && tableau[y - 1][i] != Block.PICS)
+        for (int i = debut; i < fin; i++) {
+            if (tableau[y][i] == Block.PICS && tableau[y - 1][i] != Block.PICS)
                 tableau[y + 1][i] = Block.PICS;
-            if(tableau[y][i] == Block.MUR_FOND && tableau[y + 1][i] != Block.MUR_FOND && tableau[y + 1][i] != Block.MUR_FOND) {
+            if (tableau[y][i] == Block.MUR_FOND && tableau[y + 1][i] != Block.MUR_FOND && tableau[y + 1][i] != Block.MUR_FOND) {
                 tableau[y + 1][i] = tableau[y + 2][i] = Block.MUR;
             }
         }
@@ -235,13 +261,13 @@ public class Niveau {
          *       cela permet d'initialiser correctement debut et fin
          */
 
-        if(plateforme != nb_plateformes - 1) {
-          if (dir == Direction.GAUCHE) {
-            debut = ESPACE_PLATEFORME + 1;
-             fin = taille_x - 1;
-         } else {
-             debut = 1;
-              fin = taille_x - ESPACE_PLATEFORME - 1;
+        if (plateforme != nb_plateformes - 1) {
+            if (dir == Direction.GAUCHE) {
+                debut = ESPACE_PLATEFORME + 1;
+                fin = taille_x - 1;
+            } else {
+                debut = 1;
+                fin = taille_x - ESPACE_PLATEFORME - 1;
             }
         }
 
@@ -267,7 +293,7 @@ public class Niveau {
             if (i % 15 == 0)
                 tableau[y][i] = Block.TORCHE;
             else if (tableau[y][i] == Block.MUR_FOND) {
-				// Une chance sur dix de placer une vitre
+                // Une chance sur dix de placer une vitre
 
                 if (rand.nextInt(10) == 0)
                     tableau[y][i] = Block.VITRE;
@@ -278,59 +304,57 @@ public class Niveau {
     // Remplis une ligne y avec block
 
     private void remplirLigneMur(int debut, int fin, int y, int block) {
-        for(int i = debut; i < fin; i++)
+        for (int i = debut; i < fin; i++)
             tableau[y][i] = block;
     }
 
     // Ajoute des pics à une ligne donnée
-    
+
     private void addPicsLigne(int debut, int fin, int y) {
         int i, addPic = 0, videCompteur = 0, espaceAvantPic = 5000, nbPicsAffile = 0;
 
-        for(i = debut; i < fin; i++) {
-            if(addPic > 0)
+        for (i = debut; i < fin; i++) {
+            if (addPic > 0)
                 addPic = rand.nextInt(2) + 1;
             else
                 addPic = rand.nextInt(5) + 1;
 
-            if(addPic == 1 && espaceAvantPic >= ESPACE_MIN_ENTRE_PICS) {
+            if (addPic == 1 && espaceAvantPic >= ESPACE_MIN_ENTRE_PICS) {
                 tableau[y][i] = Block.PICS;
 
-                if(tableau[y][i - 1] == Block.PICS)
+                if (tableau[y][i - 1] == Block.PICS)
                     nbPicsAffile++;
 
-                if(nbPicsAffile > NB_PICS_MAX - 2)
+                if (nbPicsAffile > NB_PICS_MAX - 2)
                     espaceAvantPic = 0;
-            }
-            else if(tableau[y][i - 1] == Block.PICS)
+            } else if (tableau[y][i - 1] == Block.PICS)
                 espaceAvantPic = 0;
             else
                 espaceAvantPic++;
         }
     }
-    
+
     // Ajoute des trous à une ligne donnée
 
     private void remplirLigneVide(int debut, int fin, int posLigne, int epaisseur, int y) {
         int i, faireVide = 0, videCompteur = 0;
 
-        if(debut == 1)
+        if (debut == 1)
             debut = 2;
-        if(fin == taille_x - 1)
+        if (fin == taille_x - 1)
             fin = taille_x - 2;
 
-        for(i = debut; i < fin; i++) {
-            if(videCompteur > 0)
+        for (i = debut; i < fin; i++) {
+            if (videCompteur > 0)
                 faireVide = rand.nextInt(2);
             else
                 faireVide = rand.nextInt(3);
 
 
-            if(tableau[y - 1][i] == Block.MUR_FOND && videCompteur < TAILLE_VIDE_MAX && (videCompteur == 1 || faireVide == 0)) {
+            if (tableau[y - 1][i] == Block.MUR_FOND && videCompteur < TAILLE_VIDE_MAX && (videCompteur == 1 || faireVide == 0)) {
                 tableau[y][i] = Block.MUR_FOND;
                 videCompteur++;
-            }
-            else
+            } else
                 videCompteur = 0;
         }
     }
@@ -345,7 +369,7 @@ public class Niveau {
         final int VIDE = 0, PICS = 1;
         final int NB_CASES = (fin - debut);
         int curSegment = 0, debutSegment = debut, finSegment = TAILLE_SEGMENT;
-		int block = (posLigne > getTailleMurPlateforme(plateforme)) ? Block.MUR2 : Block.MUR;
+        int block = (posLigne > getTailleMurPlateforme(plateforme)) ? Block.MUR2 : Block.MUR;
 
         /* Remplis la ligne avec Block.MUR si c'est une des premières lignes de la plateforme, sinon
          * remplis avec Block.MUR2 si c'est une ligne addEffetProfondeur
@@ -353,20 +377,20 @@ public class Niveau {
 
         remplirLigneMur(debut, fin, y, block);
 
-        for(int i = 0; i < NB_CASES; i++) {
-            if(i % TAILLE_SEGMENT == 0) {
+        for (int i = 0; i < NB_CASES; i++) {
+            if (i % TAILLE_SEGMENT == 0) {
                 int type = rand.nextInt(PICS + 1);
 
                 // On fait du vide seulement s'il s'agit d'une des deux premières lignes de la plateforme
 
-                if(posLigne == 0 && type == PICS && debutSegment > debut && finSegment < fin)
+                if (posLigne == 0 && type == PICS && debutSegment > debut && finSegment < fin)
                     addPicsLigne(debutSegment, finSegment, y);
-                else if(posLigne < 2 && type == VIDE)
+                else if (posLigne < 2 && type == VIDE)
                     remplirLigneVide(debutSegment, finSegment, posLigne, epaisseur, y);
 
                 debutSegment = finSegment;
-                
-                if((finSegment = debutSegment + TAILLE_SEGMENT) > fin)
+
+                if ((finSegment = debutSegment + TAILLE_SEGMENT) > fin)
                     finSegment = fin;
 
                 curSegment++;
@@ -426,18 +450,17 @@ public class Niveau {
         if (dir == Direction.GAUCHE) {
             debut = ESPACE_PLATEFORME + 1;
             fin = taille_x - 1;
-        }
-        else {
+        } else {
             debut = 1;
             fin = taille_x - ESPACE_PLATEFORME - 1;
         }
 
-        for(i = debut; i < fin; i++) {
-            if(rand.nextInt(2) == 1 && i % TAILLE_SEGMENT == 0) {
+        for (i = debut; i < fin; i++) {
+            if (rand.nextInt(2) == 1 && i % TAILLE_SEGMENT == 0) {
 
-                for(j = 0; j < epaisseur[plateforme]; j++) {
-                    for(k = 0; k <= 2; k++) {
-                        if(dir == Direction.GAUCHE)
+                for (j = 0; j < epaisseur[plateforme]; j++) {
+                    for (k = 0; k <= 2; k++) {
+                        if (dir == Direction.GAUCHE)
                             tableau[getEspaceAvantPlateforme(plateforme) + j][i - k] = Block.MUR_FOND;
                         else
                             tableau[getEspaceAvantPlateforme(plateforme) + j][i + k] = Block.MUR_FOND;
@@ -467,12 +490,12 @@ public class Niveau {
 
             remplirPlateforme(i, dir);
             remplirPlateformeFondSup(i);
-			addEffetProfondeur(i, dir);
+            addEffetProfondeur(i, dir);
 
-			if(i > 0)
-				addPlateformeAccessNivSup(dir, i);
+            if (i > 0)
+                addPlateformeAccessNivSup(dir, i);
 
-            if(i < nb_plateformes - 1)
+            if (i < nb_plateformes - 1)
                 decoupePlateforme(i, dir);
         }
 
