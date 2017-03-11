@@ -68,11 +68,25 @@ public abstract class Personnage extends Entite implements Serializable {
     }
 
     public void deplacer() {
-        setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
-        if (getPositionX() < 0) setPositionX(0);
-        if (getPositionX() > ZONE.width - 1) setPositionX(ZONE.width - 1);
+        // déplacement sur l'axe X
+        int x = getPositionX() / TAILLE_TUILE;
+        int y = (getPositionY() + hauteurBas) / TAILLE_TUILE;
+
+        // empeche l'erreur de test la collision avec le dehors de la map soit a gauche soit à droit quand on est a l'extrimité
+        if (x == 0)
+            x++;
+        else if (x == tailleMapX - 1)
+            x--;
+
+        if ((!(63 <= tuileInt[y - 3][x - 1] && tuileInt[y - 3][x - 1] <= 79) && getDirectionOrientation() == Direction.GAUCHE) || (!(63 <= tuileInt[y - 3][x + 1] && tuileInt[y - 3][x + 1] <= 79) && getDirectionOrientation() == Direction.DROITE)) {
+            setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
+            if (getPositionX() < 0) setPositionX(0);
+            if (getPositionX() > ZONE.width - 1) setPositionX(ZONE.width - 1);
+        }
         setVecteurDeplacementEnX(0);
 
+
+        // déplacement sur l'axe Y
         if (vitesseDeSaut != 0) {
             setPositionY(getPositionY() + getVitesseDeDeplacementEnY());
 
@@ -80,9 +94,9 @@ public abstract class Personnage extends Entite implements Serializable {
             if (!getCollision())
                 setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
             else if (getCollision()) {
-                int x = getPositionX() / TAILLE_TUILE;
-                int y = (getPositionY() + hauteurBas) / TAILLE_TUILE;
-                if (63 <= tuileInt[y - 2][x] && tuileInt[y - 2][x] <= 78)
+                x = getPositionX() / TAILLE_TUILE;
+                y = (getPositionY() + hauteurBas) / TAILLE_TUILE;
+                if (63 <= tuileInt[y - 2][x] && tuileInt[y - 2][x] <= 79)
                     setPositionY((y - 1) * TAILLE_TUILE - hauteurBas);
                 else
                     setPositionY((y) * TAILLE_TUILE - hauteurBas);

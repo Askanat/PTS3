@@ -51,7 +51,7 @@ public class Niveau {
 
     public void sauvegarder() {
         try {
-            String str = "", nomFichier = "mapFenetreDonjon.txt";
+            String str = "", nomFichier = "map/mapFenetreDonjon.txt";
             PrintWriter pw = new PrintWriter(nomFichier);
             int i, j;
 

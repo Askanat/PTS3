@@ -1,4 +1,5 @@
 package vue;
+
 import controleur.ControlFenetreOptions;
 import controleur.ControlTouche;
 import model.Jeu;
@@ -40,9 +41,9 @@ public class FenetreOptions extends JPanel {
         hitBox.setActionCommand("Hitbox");
 
         controlButton = new JButton[controlTouche.getNbActions() - 1];
-        String[] repAction = new String[]{"Avancer", "Sauter", "Attaquer", "Reculer", "Sort1", "Sort2", "Sort3", "Sort4", "Sort5", "Sort6", "Sort7", "Sort8"};
+        String[] repAction = new String[]{"Avancer", "Reculer", "Sauter", "Descendre", "Attaquer", "Sort1", "Sort2", "Sort3", "Sort4", "Sort5", "Sort6", "Sort7", "Sort8"};
 
-        for(int i = 0; i < controlButton.length; i++) {
+        for (int i = 0; i < controlButton.length; i++) {
             controlButton[i] = new JButton(controlTouche.getNomTouche(i + 1));
             controlButton[i].setActionCommand(repAction[i]);
         }
@@ -50,7 +51,7 @@ public class FenetreOptions extends JPanel {
         this.add(retour);
         this.add(hitBox);
 
-        for(JButton b: controlButton)
+        for (JButton b : controlButton)
             this.add(b);
     }
 
@@ -58,7 +59,7 @@ public class FenetreOptions extends JPanel {
         retour.addActionListener(controlFenetreOptions);
         hitBox.addActionListener(controlFenetreOptions);
 
-        for(JButton b: controlButton) {
+        for (JButton b : controlButton) {
             b.addActionListener(controlFenetreOptions);
             b.addKeyListener(controlFenetreOptions);
         }
@@ -88,15 +89,15 @@ public class FenetreOptions extends JPanel {
         int x1 = 600, y1 = 390;
         int x2 = 1300, y2 = 323;
 
-        for(int i = 0; i < controlButton.length; i++) {
-            if (i <= 3) {
+        for (int i = 0; i < controlButton.length; i++) {
+            if (i <= 4) {
                 controlButton[i].setBounds(Fenetre.adapterResolutionEnX(x1), Fenetre.adapterResolutionEnY(y1), Fenetre.adapterResolutionEnX(270), Fenetre.adapterResolutionEnY(55));
                 controlButton[i].setBackground(new Color(0, 0, 0, 0));
                 controlButton[i].setFont(fControlTouche);
                 controlButton[i].setBorder(null);
                 y1 += 75;
             }
-            if (i>=4){
+            if (i >= 5) {
                 controlButton[i].setBounds(Fenetre.adapterResolutionEnX(x2), Fenetre.adapterResolutionEnY(y2), Fenetre.adapterResolutionEnX(270), Fenetre.adapterResolutionEnY(50));
                 controlButton[i].setBackground(new Color(0, 0, 0, 0));
                 controlButton[i].setFont(fControlTouche);
