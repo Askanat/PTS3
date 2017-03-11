@@ -23,7 +23,6 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
     }
 
     public void actionPerformed(ActionEvent e) {
-
         String buttonclicked = "";
 
         //Système de récupération des boutons d'inventaires différents
