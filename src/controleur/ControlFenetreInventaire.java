@@ -12,8 +12,8 @@ import java.awt.event.ActionListener;
  */
 public class ControlFenetreInventaire extends Control implements ActionListener {
 
-    private Icon iconTampon1 = null;
-    private Icon iconTampon2 = null;
+    private JButton iconTampon1 = null;
+    private JButton iconTampon2 = null;
     private String buttonclicked1="";
     private String buttonclicked2="";
 
@@ -43,11 +43,11 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
 
             //Echange entre les deux cases de l'inventaire
             if(iconTampon1 == null) {
-                iconTampon1 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].getIcon();
+                iconTampon1 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)];
             } else {
-                iconTampon2 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt((buttonclicked2))].getIcon();
-                fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked2)].setIcon(iconTampon1);
-                fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                iconTampon2 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt((buttonclicked2))];
+                fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked2)] = iconTampon1;
+                fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)] = iconTampon2;
 
                 iconTampon1 = null;
                 iconTampon2 = null;
