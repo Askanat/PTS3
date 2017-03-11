@@ -1,13 +1,14 @@
 package controleur;
 
+import model.Direction;
 import model.Jeu;
+import model.Niveau;
 import vue.Fenetre;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static vue.Fenetre.scrollPane;
 import static vue.FenetreJeu.TAILLE_TUILE;
 import static vue.FenetreJeu.tuileInt;
 
@@ -60,22 +61,30 @@ public class ControlTimer extends Control implements ActionListener {
                     jeu.getHero().deplacerAGauche();
                 }
 
+                if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_DROITE]) {
+                    jeu.getHero().deplacerADroite();
+                }
+
                 if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_SAUT]) {
                     jeu.getHero().sauter();
                 }
 
-                if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_DROITE]) {
-                    jeu.getHero().deplacerADroite();
+                if (ControlClavier.toucheEnfoncer[ControlTouche.ACTION_DESCENDRE]) {
+                    int x = jeu.getHero().getPositionX() / TAILLE_TUILE;
+                    int y = (jeu.getHero().getPositionY() + jeu.getHero().getHauteurBas()) / TAILLE_TUILE;
+
+                    if (!(63 <= tuileInt[y + 2][x] && tuileInt[y + 2][x] <= 79))
+                        jeu.getHero().setDescendre(true);
                 }
 
                 if (ControlClavier.toucheRelacher[ControlTouche.ACTION_ATTAQUE]) {
 
                     int x = jeu.getHero().getPositionX() / TAILLE_TUILE;
                     int y = (jeu.getHero().getPositionY() + jeu.getHero().getHauteurBas()) / TAILLE_TUILE;
-                    if (0 <= tuileInt[y-3][x] && tuileInt[y-3][x] <= 15 && !jeu.getEtat().getZoneSafe()) {
+                    if (0 <= tuileInt[y - 3][x] && tuileInt[y - 3][x] <= 15 && !jeu.getEtat().getZoneSafe()) {
+                        Niveau niveau = new Niveau(50, 3, Direction.GAUCHE, true);
                         fenetre.panelFenetreJeu.changerMap("map/mapFenetreDonjon.txt");
-                    }
-                    else if (!jeu.getHero().getAttaquer()) {
+                    } else if (!jeu.getHero().getAttaquer()) {
                         jeu.getHero().setAttaquer(true);
 
                         for (int i = 0; i < jeu.getTableauMonstre().size(); i++)

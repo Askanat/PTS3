@@ -20,6 +20,8 @@ public class Entite {
     protected int largeurDevant, largeurDerriere, hauteurHaut, hauteurBas;
     protected Direction directionOrientation;
 
+    protected boolean descendre;
+
     protected boolean collision, deplacement, attaquer;
 
     protected Rectangle hitBoxCorps;
@@ -55,6 +57,8 @@ public class Entite {
         vecteurDeplacementEnX = 0;
         vecteurDeplacementEnY = 0;
         directionOrientation = null;
+
+        descendre = false;
 
         collision = false;
         deplacement = false;
@@ -107,8 +111,11 @@ public class Entite {
     public void setCollision() {
         int x = getPositionX() / TAILLE_TUILE;
         int y = (getPositionY() + hauteurBas) / TAILLE_TUILE;
+        this.collision = !getDescendre() && (63 <= tuileInt[y - 1][x] && tuileInt[y - 1][x] <= 79);
 
-        this.collision = (63 <= tuileInt[y-1][x] && tuileInt[y-1][x] <= 79);
+        if (!(63 <= tuileInt[y - 1][x] && tuileInt[y - 1][x] <= 79))
+            setDescendre(false);
+
     }
 
     public boolean getCollision() {
@@ -168,6 +175,14 @@ public class Entite {
 
     public int getVitesseDeDeplacementEnY() {
         return vitesseDeDeplacementEnY;
+    }
+
+    public void setDescendre(boolean descendre) {
+        this.descendre = descendre;
+    }
+
+    public boolean getDescendre() {
+        return descendre;
     }
 
     public boolean collision(Rectangle A, Rectangle B) {

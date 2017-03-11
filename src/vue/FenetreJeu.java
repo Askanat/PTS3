@@ -22,7 +22,7 @@ public class FenetreJeu extends JPanel {
 
     private Jeu jeu;
 
-    private int tailleMapX, tailleMapY;
+    public static int tailleMapX, tailleMapY;
     public static final int TAILLE_TUILE = Fenetre.adapterResolutionEnX(50);
     public static int tuileInt[][];
     public BufferedImage tuileImage[][];
