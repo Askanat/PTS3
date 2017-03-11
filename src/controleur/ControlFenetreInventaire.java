@@ -16,6 +16,7 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
     private JButton iconTampon2 = null;
     private String buttonclicked1="";
     private String buttonclicked2="";
+    private String buttonclickedInv1 = "";
 
     public ControlFenetreInventaire(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
@@ -32,19 +33,34 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                 for (int i=10;i < e.getActionCommand().length();i++){
                     buttonclicked1 += e.getActionCommand().charAt(i);
                 }
-            } else {
+            } else if(buttonclicked2.equals("")){
                 for (int i=10;i < e.getActionCommand().length();i++){
                     buttonclicked2 += e.getActionCommand().charAt(i);
                 }
             }
 
-            System.out.println("Bouton 1 : " + buttonclicked1);
-            System.out.println("Bouton 2 : " + buttonclicked2);
+            if(buttonclicked1.equals("Casque")) {
+                System.out.println("Coucou");
+                iconTampon1 = fenetre.panelFenetreInventaire.casque;
+                System.out.println(buttonclicked2);
+
+                if(buttonclicked2.length() < 2) {
+                    System.out.println("Coucou");
+                    iconTampon2 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt((buttonclicked2))];
+                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked2)] = iconTampon1;
+                    fenetre.panelFenetreInventaire.casque = iconTampon2;
+
+                    iconTampon1 = null;
+                    iconTampon2 = null;
+                    buttonclicked1 = "";
+                    buttonclicked2 = "";
+                }
+            }
 
             //Echange entre les deux cases de l'inventaire
             if(iconTampon1 == null) {
                 iconTampon1 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)];
-            } else {
+            } else if(buttonclicked1.length() > 10 && buttonclicked2.length() > 10) {
                 iconTampon2 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt((buttonclicked2))];
                 fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked2)] = iconTampon1;
                 fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)] = iconTampon2;
@@ -55,126 +71,29 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                 buttonclicked2 = "";
             }
 
-            if (e.getActionCommand().contains("Casque")){
-
-            }
-
-            if (e.getActionCommand().contains("Plastron")){
-
-            }
-
-            if (e.getActionCommand().contains("Gant")){
-
-            }
-
-            if (e.getActionCommand().contains("Bague")){
-
-            }
-
-            if (e.getActionCommand().contains("Pantalon")){
-
-            }
-
-            if (e.getActionCommand().contains("Botte")){
-
-            }
-
-            if (e.getActionCommand().contains("Bouclier")){
-
-            }
-
-            if (e.getActionCommand().contains("Arme")){
-
-            }
-
         } else {
 
             switch (e.getActionCommand()) {
-                case "Casque":
-                    if (e.getActionCommand().contains("Inventaire")) {
-
-                        for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            buttonclicked += e.getActionCommand().charAt(i);
-                        }
-                    }
-
-                    break;
-
-                case "Plastron":
-                    if (e.getActionCommand().contains("Inventaire")) {
-
-                        for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            buttonclicked += e.getActionCommand().charAt(i);
-                        }
-                    }
-
-                    break;
-
-                case "Gant":
-                    if (e.getActionCommand().contains("Inventaire")) {
-
-                        for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            buttonclicked += e.getActionCommand().charAt(i);
-                        }
-                    }
-
-                    break;
-
-                case "Bague":
-                    if (e.getActionCommand().contains("Inventaire")) {
-
-                        for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            buttonclicked += e.getActionCommand().charAt(i);
-                        }
-                    }
-
-                    break;
-
-                case "Pantalon":
-                    if (e.getActionCommand().contains("Inventaire")) {
-
-                        for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            buttonclicked += e.getActionCommand().charAt(i);
-                        }
-                    }
-
-                    break;
-
-                case "Botte":
-                    if (e.getActionCommand().contains("Inventaire")) {
-
-                        for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            buttonclicked += e.getActionCommand().charAt(i);
-                        }
-                    }
-
-                    break;
-
-                case "Bouclier":
-                    if (e.getActionCommand().contains("Inventaire")) {
-
-                        for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            buttonclicked += e.getActionCommand().charAt(i);
-                        }
-                    }
-
-                    break;
-
-                case "Arme":
-                    if (e.getActionCommand().contains("Inventaire")) {
-
-                        for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            buttonclicked += e.getActionCommand().charAt(i);
-                        }
-                    }
-
-                    break;
 
                 case "Retour":
                     Control.enPartie = true;
                     fenetre.setContentPane(fenetre.panelScrollFenetreJeu);
                     changerVue();
                     fenetre.vueMenuEnJeu();
+                    break;
+
+                default:
+                        if(buttonclicked1.equals("")) {
+                            for (int i = 0; i < e.getActionCommand().length(); i++) {
+                                buttonclicked1 += e.getActionCommand().charAt(i);
+                            }
+                        } else {
+                            for (int i = 0; i < e.getActionCommand().length(); i++) {
+                                buttonclicked2 += e.getActionCommand().charAt(i);
+                            }
+                        }
+                    System.out.println("Bouton 1 : " + buttonclicked1);
+                    System.out.println("Bouton 2 : " + buttonclicked2);
                     break;
             }
         }
