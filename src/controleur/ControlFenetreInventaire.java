@@ -12,31 +12,47 @@ import java.awt.event.ActionListener;
  */
 public class ControlFenetreInventaire extends Control implements ActionListener {
 
+    private Icon iconTampon1 = null;
+    private Icon iconTampon2 = null;
+    private String buttonclicked1="";
+    private String buttonclicked2="";
+
     public ControlFenetreInventaire(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
         fenetre.setControlFenetreInventaire(this);
     }
 
     public void actionPerformed(ActionEvent e) {
-        String nombre1="";
-        String nombre2="";
-        JButton valeurInventaire[] = new JButton[1];
+        String buttonclicked = "";
 
         //Système de récupération des boutons d'inventaires différents
         if(e.getActionCommand().contains("Inventaire")){
 
-            for (int i=10;i < e.getActionCommand().length();i++){
-                nombre1+=e.getActionCommand().charAt(i);
+            if(buttonclicked1.equals("")) {
+                for (int i=10;i < e.getActionCommand().length();i++){
+                    buttonclicked1 += e.getActionCommand().charAt(i);
+                }
+            } else {
+                for (int i=10;i < e.getActionCommand().length();i++){
+                    buttonclicked2 += e.getActionCommand().charAt(i);
+                }
             }
 
-            if (e.getActionCommand().contains("Inventaire")){
-                for (int j=10;j < e.getActionCommand().length();j++){
-                    nombre2+=e.getActionCommand().charAt(j);
-                }
-                //Echange entre les deux cases de l'inventaire
-                valeurInventaire[0] = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(nombre1)];
-                fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(nombre1)] = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(nombre2)];
-                fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(nombre2)] =  valeurInventaire[0];
+            System.out.println("Bouton 1 : " + buttonclicked1);
+            System.out.println("Bouton 2 : " + buttonclicked2);
+
+            //Echange entre les deux cases de l'inventaire
+            if(iconTampon1 == null) {
+                iconTampon1 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].getIcon();
+            } else {
+                iconTampon2 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt((buttonclicked2))].getIcon();
+                fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked2)].setIcon(iconTampon1);
+                fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+
+                iconTampon1 = null;
+                iconTampon2 = null;
+                buttonclicked1 = "";
+                buttonclicked2 = "";
             }
 
             if (e.getActionCommand().contains("Casque")){
@@ -71,16 +87,14 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
 
             }
 
-            System.out.println("Bouton : " + Integer.parseInt(nombre1));
-            System.out.println("Bouton : " + Integer.parseInt(nombre2));
-        }else{
+        } else {
 
             switch (e.getActionCommand()) {
                 case "Casque":
                     if (e.getActionCommand().contains("Inventaire")) {
 
                         for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            nombre1 += e.getActionCommand().charAt(i);
+                            buttonclicked += e.getActionCommand().charAt(i);
                         }
                     }
 
@@ -90,7 +104,7 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                     if (e.getActionCommand().contains("Inventaire")) {
 
                         for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            nombre1 += e.getActionCommand().charAt(i);
+                            buttonclicked += e.getActionCommand().charAt(i);
                         }
                     }
 
@@ -100,7 +114,7 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                     if (e.getActionCommand().contains("Inventaire")) {
 
                         for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            nombre1 += e.getActionCommand().charAt(i);
+                            buttonclicked += e.getActionCommand().charAt(i);
                         }
                     }
 
@@ -110,7 +124,7 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                     if (e.getActionCommand().contains("Inventaire")) {
 
                         for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            nombre1 += e.getActionCommand().charAt(i);
+                            buttonclicked += e.getActionCommand().charAt(i);
                         }
                     }
 
@@ -120,7 +134,7 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                     if (e.getActionCommand().contains("Inventaire")) {
 
                         for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            nombre1 += e.getActionCommand().charAt(i);
+                            buttonclicked += e.getActionCommand().charAt(i);
                         }
                     }
 
@@ -130,7 +144,7 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                     if (e.getActionCommand().contains("Inventaire")) {
 
                         for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            nombre1 += e.getActionCommand().charAt(i);
+                            buttonclicked += e.getActionCommand().charAt(i);
                         }
                     }
 
@@ -140,7 +154,7 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                     if (e.getActionCommand().contains("Inventaire")) {
 
                         for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            nombre1 += e.getActionCommand().charAt(i);
+                            buttonclicked += e.getActionCommand().charAt(i);
                         }
                     }
 
@@ -150,7 +164,7 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                     if (e.getActionCommand().contains("Inventaire")) {
 
                         for (int i = 10; i < e.getActionCommand().length(); i++) {
-                            nombre1 += e.getActionCommand().charAt(i);
+                            buttonclicked += e.getActionCommand().charAt(i);
                         }
                     }
 
