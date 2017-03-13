@@ -18,7 +18,7 @@ public class FenetreFichePerso extends JPanel {
 
     public JButton retour, plusForce, moinsForce, plusInt, moinsInt, plusConst, moinsConst, plusResist, moinsResist, valider;
     public JButton[] competence;
-    public JLabel valForce, valInt, valConst, valResist, niveau, pointCaracteristique, pointCompetence, nomHero, vie, mana, exp;
+    public JLabel valForce, valInt, valConst, valResist, niveau, pointCaracteristique, nomHero, vie, mana, exp; //pointCompetence
 
     private Image imageFenetreFichePerso;
     private Font fontCompetence, fontBarre, fontNomLVL;
@@ -70,7 +70,7 @@ public class FenetreFichePerso extends JPanel {
         valResist = new JLabel("", JLabel.CENTER);
         niveau = new JLabel("");
         pointCaracteristique = new JLabel("", JLabel.CENTER);
-        pointCompetence = new JLabel("", JLabel.CENTER);
+        //pointCompetence = new JLabel("", JLabel.CENTER);
         nomHero = new JLabel("");
         vie = new JLabel("", JLabel.CENTER);
         mana = new JLabel("", JLabel.CENTER);
@@ -96,7 +96,7 @@ public class FenetreFichePerso extends JPanel {
         this.add(valider);
         this.add(niveau);
         this.add(pointCaracteristique);
-        this.add(pointCompetence);
+        //this.add(pointCompetence);
         this.add(nomHero);
         this.add(vie);
         this.add(mana);
@@ -218,10 +218,10 @@ public class FenetreFichePerso extends JPanel {
         pointCaracteristique.setBorder(null);
 
         //Point de competence
-        pointCompetence.setBounds(Fenetre.adapterResolutionEnX(1775), Fenetre.adapterResolutionEnY(572), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
+        /*pointCompetence.setBounds(Fenetre.adapterResolutionEnX(1775), Fenetre.adapterResolutionEnY(572), Fenetre.adapterResolutionEnX(45), Fenetre.adapterResolutionEnX(40));
         pointCompetence.setForeground(Color.WHITE);
         pointCompetence.setFont(fontCompetence);
-        pointCompetence.setBorder(null);
+        pointCompetence.setBorder(null);*/
 
 
         nomHero.setBounds(Fenetre.adapterResolutionEnX(160), Fenetre.adapterResolutionEnY(592), Fenetre.adapterResolutionEnX(400), Fenetre.adapterResolutionEnX(40));
@@ -235,7 +235,7 @@ public class FenetreFichePerso extends JPanel {
         niveau.setFont(fontNomLVL);
         niveau.setBorder(null);
 
-        //Placement des Buttons de Caractéristique
+        //Placement des Buttons de Compétence
         int k = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 2; j++) {
@@ -297,7 +297,7 @@ public class FenetreFichePerso extends JPanel {
         valConst.setText("" + (int) jeu.getHero().getConstitution());
         valResist.setText("" + (int) jeu.getHero().getResistance());
         pointCaracteristique.setText("" + jeu.getHero().getPointCaracteristique());
-        pointCompetence.setText("" + jeu.getHero().getPointCompetence());
+        //pointCompetence.setText("" + jeu.getHero().getPointCompetence());
         niveau.setText("" + jeu.getHero().getNiveau());
         nomHero.setText("" + jeu.getHero().getNom());
         exp.setText((int) jeu.getHero().getExperience() + " / " + (int) jeu.getHero().getExperienceMax());
