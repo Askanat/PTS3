@@ -80,6 +80,8 @@ public abstract class Personnage extends Entite implements Serializable {
 
         if ((!(63 <= tuileInt[y - 3][x - 1] && tuileInt[y - 3][x - 1] <= 79) && getDirectionOrientation() == Direction.GAUCHE) || (!(63 <= tuileInt[y - 3][x + 1] && tuileInt[y - 3][x + 1] <= 79) && getDirectionOrientation() == Direction.DROITE)) {
             setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
+
+            // empeche le personnage de sortir de la map en x
             if (getPositionX() < 0) setPositionX(0);
             if (getPositionX() > ZONE.width - 1) setPositionX(ZONE.width - 1);
         }
@@ -90,25 +92,35 @@ public abstract class Personnage extends Entite implements Serializable {
         if (vitesseDeSaut != 0) {
             setPositionY(getPositionY() + getVitesseDeDeplacementEnY());
 
+            x = getPositionX() / TAILLE_TUILE;
+            y = (getPositionY() + hauteurBas) / TAILLE_TUILE;
+
+            // empeche l'erreur de test la collision avec le dehors de la map en haut
+            if (y - 4 <= 0)
+                y += 4;
+
             setCollision();
+            if (72 == tuileInt[y - 3][x] && 72 == tuileInt[y - 4][x] && tuileInt[y - 4][x] == tuileInt[y - 3][x]) {
+                setVitesseDeDeplacementEnY(0);
+            }
             if (!getCollision())
                 setVitesseDeDeplacementEnY(getVitesseDeDeplacementEnY() + GRAVITE);
-            else if (getCollision()) {
-                x = getPositionX() / TAILLE_TUILE;
-                y = (getPositionY() + hauteurBas) / TAILLE_TUILE;
+            else if (getCollision() && getVitesseDeDeplacementEnY() >= 0) {
                 if (63 <= tuileInt[y - 2][x] && tuileInt[y - 2][x] <= 79)
                     setPositionY((y - 1) * TAILLE_TUILE - hauteurBas);
                 else
                     setPositionY((y) * TAILLE_TUILE - hauteurBas);
 
-                if (getPositionY() - hauteurHaut <= 0)
-                    setPositionY(hauteurHaut);
-
                 setVitesseDeDeplacementEnY(0);
             }
+
+            // enmpeche le personnage de sortir de la map en y
+            if (getPositionY() - hauteurHaut <= 0)
+                setPositionY(hauteurHaut);
         }
 
         setDeplacement(false);
+
     }
 
     public void regenerationMana() {
