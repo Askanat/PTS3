@@ -156,7 +156,7 @@ public class Hero extends Personnage implements Serializable {
         int y = (getPositionY() + hauteurBas) / TAILLE_TUILE;
 
         if (tuileInt[y - 1][x] == 79)
-            setVie((int) (getVie() - (0.01 * getVieMax())));
+            setVie((int) (getVie() - (0.03 * getVieMax())));
 
         // regénère mana et régénère vie
         if (temps % tempsRegeneration == 0) {

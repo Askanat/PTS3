@@ -82,7 +82,8 @@ public class ControlTimer extends Control implements ActionListener {
                     int x = jeu.getHero().getPositionX() / TAILLE_TUILE;
                     int y = (jeu.getHero().getPositionY() + jeu.getHero().getHauteurBas()) / TAILLE_TUILE;
                     if (0 <= tuileInt[y - 3][x] && tuileInt[y - 3][x] <= 15 && !jeu.getEtat().getZoneSafe()) {
-                        Niveau niveau = new Niveau(50, 3, Direction.GAUCHE, true);
+                        int val = (int) (30 + (Math.random() * (150 - 30)));
+                        Niveau niveau = new Niveau(val, 3, Direction.GAUCHE, true);
                         fenetre.panelFenetreJeu.changerMap("map/mapFenetreDonjon.txt");
                     } else if (!jeu.getHero().getAttaquer()) {
                         jeu.getHero().setAttaquer(true);
