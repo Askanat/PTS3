@@ -3,6 +3,7 @@ package vue;
 import controleur.ControlFenetreJeu;
 import model.Direction;
 import model.Jeu;
+import model.Niveau;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,6 +52,9 @@ public class FenetreJeu extends JPanel {
         ZONE = new Dimension(TAILLE_TUILE * tailleMapX, TAILLE_TUILE * tailleMapY);
         this.setPreferredSize(ZONE);
 
+        int largeurMap = (int) (50 + (Math.random() * (150 - 50)));
+        int nbPlateforme = 2;
+        Niveau niveau = new Niveau(largeurMap, nbPlateforme, Direction.GAUCHE, true);
 
         monstre = new ArrayList<>();
         hero = null;
@@ -112,13 +116,11 @@ public class FenetreJeu extends JPanel {
             jeu.getEtat().getIndiceSuppressionSortHero().remove(i - 1);
         }
 
-        // changement de zone : zone-safe <-> zone-donjon
+        // changement de zone : zone-safe -> zone-donjon
         if (jeu.getHero().getPositionX() == ZONE.width - 1) {
-            changerMap("map/mapFenetreDonjon.txt");
             jeu.getEtat().setZoneSafe(false);
-        } else if (jeu.getHero().getPositionX() == 0 && !jeu.getEtat().getZoneSafe()) {
-            changerMap("map/mapFenetreDepart.txt");
-            jeu.getEtat().setZoneSafe(true);
+            changerMap("map/mapFenetreDonjon.txt");
+            jeu.setNiveauDonjonActuelle(jeu.getNiveauDonjonActuelle() + 1);
         }
 
         // scroll
@@ -140,19 +142,35 @@ public class FenetreJeu extends JPanel {
     }
 
     public void changerMap(String chemin) {
+
         readMap(chemin);
         tuileImage = new BufferedImage[tailleMapY][tailleMapX];
         chargerMap();
 
+        if (!jeu.getEtat().getZoneSafe() && jeu.getNiveauDonjonActuelle() > 0) {
+            if (jeu.getHero().getPositionY() < ZONE.height / 2.0)
+                jeu.getHero().setPositionY(-Fenetre.adapterResolutionEnY(200) + TAILLE_TUILE * tailleMapY - jeu.getHero().getHauteurBas());
+            else
+                jeu.getHero().setPositionY(Fenetre.adapterResolutionEnY(200) - jeu.getHero().getHauteurBas());
+
+            if (jeu.getHero().getPositionX() < ZONE.width / 2.0) {
+                jeu.getHero().setDirectionOrientation(Direction.GAUCHE);
+                jeu.getHero().setPositionX(-Fenetre.adapterResolutionEnX(150) + TAILLE_TUILE * tailleMapX);
+            } else {
+                jeu.getHero().setDirectionOrientation(Direction.DROITE);
+                jeu.getHero().setPositionX(Fenetre.adapterResolutionEnX(150));
+            }
+        }
+
         ZONE = new Dimension(TAILLE_TUILE * tailleMapX, TAILLE_TUILE * tailleMapY);
         this.setPreferredSize(ZONE);
+        if (jeu.getNiveauDonjonActuelle() == 0) {
+            jeu.getHero().setPositionX(Fenetre.adapterResolutionEnX(150));
+            jeu.getHero().setPositionY((int) (-Fenetre.adapterResolutionEnY(200) + ZONE.getHeight() - jeu.getHero().getHauteurBas()));
+        }
 
-        jeu.getHero().setPositionY(-Fenetre.adapterResolutionEnY(200) + ZONE.height - jeu.getHero().getHauteurBas());
-        if (jeu.getHero().getDirectionOrientation() == Direction.DROITE)
-            jeu.getHero().setPositionX(TAILLE_TUILE + 1);
-        else
+        if (jeu.getEtat().getZoneSafe())
             jeu.getHero().setPositionX(ZONE.width - 2);
-
 
     }
 

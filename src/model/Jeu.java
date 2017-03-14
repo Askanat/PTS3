@@ -21,6 +21,7 @@ public class Jeu {
     private ArrayList<Sort> tableauSortHero;
     private ArrayList<Sort> tableauSortMonstre;
 
+    private int niveauDonjonActuelle;
     private int nbPartieLibre;
 
     // à enlever
@@ -38,6 +39,7 @@ public class Jeu {
         tableauMonstre = new ArrayList<>();
         tableauSortMonstre = new ArrayList<Sort>();
 
+        niveauDonjonActuelle = 0;
         nbPartieLibre = 0;
 
         // à enlever
@@ -130,6 +132,14 @@ public class Jeu {
 
     public void setMonstre(int id, int positionX, int positionY) {
         tableauMonstre.add(new Monstre(bdd.readMonstre(id, this, positionX, positionY)));
+    }
+
+    public int getNiveauDonjonActuelle() {
+        return niveauDonjonActuelle;
+    }
+
+    public void setNiveauDonjonActuelle(int niveauDonjonActuelle) {
+        this.niveauDonjonActuelle = niveauDonjonActuelle;
     }
 
     public int getidPartieLibre() {

@@ -9,8 +9,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static vue.FenetreJeu.TAILLE_TUILE;
-import static vue.FenetreJeu.tuileInt;
+import static vue.FenetreJeu.*;
 
 /**
  * Created by bastien on 30/09/16.
@@ -82,9 +81,28 @@ public class ControlTimer extends Control implements ActionListener {
                     int x = jeu.getHero().getPositionX() / TAILLE_TUILE;
                     int y = (jeu.getHero().getPositionY() + jeu.getHero().getHauteurBas()) / TAILLE_TUILE;
                     if (0 <= tuileInt[y - 3][x] && tuileInt[y - 3][x] <= 15 && !jeu.getEtat().getZoneSafe()) {
-                        int val = (int) (30 + (Math.random() * (150 - 30)));
-                        Niveau niveau = new Niveau(val, 3, Direction.GAUCHE, true);
-                        fenetre.panelFenetreJeu.changerMap("map/mapFenetreDonjon.txt");
+                        // monte de niveau ou dessend en fonction de si il utilise la porte en haut ou la porte en bas
+                        if (jeu.getHero().getPositionY() < ZONE.height / 2.0)
+                            jeu.setNiveauDonjonActuelle(jeu.getNiveauDonjonActuelle() + 1);
+                        else
+                            jeu.setNiveauDonjonActuelle(jeu.getNiveauDonjonActuelle() - 1);
+
+                        Direction directionPorte = null;
+                        if (jeu.getHero().getPositionX() < ZONE.width / 2.0)
+                            directionPorte = Direction.DROITE;
+                        else
+                            directionPorte = Direction.GAUCHE;
+
+                        // change de map si il est dans le donjon ou si il sort du donjon (sort du donjon quand niveau 0)
+                        if (jeu.getNiveauDonjonActuelle() > 0) {
+                            int largeurMap = (int) (30 + (Math.random() * (150 - 30)));
+                            int nbPlateforme = jeu.getNiveauDonjonActuelle() + 1;
+                            Niveau niveau = new Niveau(largeurMap, nbPlateforme, directionPorte, true);
+                            fenetre.panelFenetreJeu.changerMap("map/mapFenetreDonjon.txt");
+                        } else {
+                            jeu.getEtat().setZoneSafe(true);
+                            fenetre.panelFenetreJeu.changerMap("map/mapFenetreDepart.txt");
+                        }
                     } else if (!jeu.getHero().getAttaquer()) {
                         jeu.getHero().setAttaquer(true);
 
