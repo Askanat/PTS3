@@ -151,7 +151,7 @@ public class FenetreJeu extends JPanel {
             if (jeu.getHero().getPositionY() < ZONE.height / 2.0)
                 jeu.getHero().setPositionY(-Fenetre.adapterResolutionEnY(200) + TAILLE_TUILE * tailleMapY - jeu.getHero().getHauteurBas());
             else
-                jeu.getHero().setPositionY(Fenetre.adapterResolutionEnY(200) - jeu.getHero().getHauteurBas());
+                jeu.getHero().setPositionY(Fenetre.adapterResolutionEnY(550) - jeu.getHero().getHauteurBas());
 
             if (jeu.getHero().getPositionX() < ZONE.width / 2.0) {
                 jeu.getHero().setDirectionOrientation(Direction.GAUCHE);

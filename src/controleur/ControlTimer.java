@@ -82,16 +82,29 @@ public class ControlTimer extends Control implements ActionListener {
                     int y = (jeu.getHero().getPositionY() + jeu.getHero().getHauteurBas()) / TAILLE_TUILE;
                     if (0 <= tuileInt[y - 3][x] && tuileInt[y - 3][x] <= 15 && !jeu.getEtat().getZoneSafe()) {
                         // monte de niveau ou dessend en fonction de si il utilise la porte en haut ou la porte en bas
-                        if (jeu.getHero().getPositionY() < ZONE.height / 2.0)
-                            jeu.setNiveauDonjonActuelle(jeu.getNiveauDonjonActuelle() + 1);
-                        else
-                            jeu.setNiveauDonjonActuelle(jeu.getNiveauDonjonActuelle() - 1);
 
                         Direction directionPorte = null;
-                        if (jeu.getHero().getPositionX() < ZONE.width / 2.0)
-                            directionPorte = new Direction(Direction.DROITE);
-                        else
-                            directionPorte = new Direction(Direction.GAUCHE);
+                        if (jeu.getHero().getPositionY() < ZONE.height / 2.0) {
+                            jeu.setNiveauDonjonActuelle(jeu.getNiveauDonjonActuelle() + 1);
+                            if (jeu.getHero().getPositionX() < ZONE.width / 2.0)
+                                directionPorte = new Direction(Direction.DROITE);
+                            else
+                                directionPorte = new Direction(Direction.GAUCHE);
+                        } else {
+                            jeu.setNiveauDonjonActuelle(jeu.getNiveauDonjonActuelle() - 1);
+                            if (jeu.getNiveauDonjonActuelle() + 1 % 2 == 0) {
+                                if (jeu.getHero().getPositionX() < ZONE.width / 2.0)
+                                    directionPorte = new Direction(Direction.DROITE);
+                                else
+                                    directionPorte = new Direction(Direction.GAUCHE);
+                            } else {
+                                if (jeu.getHero().getPositionX() < ZONE.width / 2.0)
+                                    directionPorte = new Direction(Direction.GAUCHE);
+                                else
+                                    directionPorte = new Direction(Direction.DROITE);
+                            }
+                        }
+
 
                         // change de map si il est dans le donjon ou si il sort du donjon (sort du donjon quand niveau 0)
                         if (jeu.getNiveauDonjonActuelle() > 0) {
