@@ -89,15 +89,15 @@ public class ControlTimer extends Control implements ActionListener {
 
                         Direction directionPorte = null;
                         if (jeu.getHero().getPositionX() < ZONE.width / 2.0)
-                            directionPorte = Direction.DROITE;
+                            directionPorte = new Direction(Direction.DROITE);
                         else
-                            directionPorte = Direction.GAUCHE;
+                            directionPorte = new Direction(Direction.GAUCHE);
 
                         // change de map si il est dans le donjon ou si il sort du donjon (sort du donjon quand niveau 0)
                         if (jeu.getNiveauDonjonActuelle() > 0) {
                             int largeurMap = (int) (30 + (Math.random() * (150 - 30)));
                             int nbPlateforme = jeu.getNiveauDonjonActuelle() + 1;
-                            Niveau niveau = new Niveau(largeurMap, nbPlateforme, directionPorte, true);
+                            Niveau niveau = new Niveau(largeurMap, nbPlateforme, directionPorte.getDirection(), true);
                             fenetre.panelFenetreJeu.changerMap("map/mapFenetreDonjon.txt");
                         } else {
                             jeu.getEtat().setZoneSafe(true);

@@ -52,7 +52,7 @@ public class Monstre extends Personnage {
 
         this.sort = sort;
 
-        directionOrientation = Direction.GAUCHE;
+        directionOrientation = new Direction(Direction.GAUCHE);
 
         tempsAttaque = 0;
         tempsDeplacement = 0;
@@ -176,7 +176,7 @@ public class Monstre extends Personnage {
 
             if (mouvementAleatoire) {
                 if (nbDeDeplacement == 0)
-                    mouvementAleatoireDirection = getDirectionOrientation() == Direction.GAUCHE;
+                    mouvementAleatoireDirection = getDirectionOrientation().getDirection() == Direction.GAUCHE;
                 if (mouvementAleatoireDirection)
                     deplacerADroite();
                 else
@@ -209,7 +209,7 @@ public class Monstre extends Personnage {
 
     public Rectangle getHitBoxVue() {
         hitBoxVue = new Rectangle(
-                getPositionX() - (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()) - getDistanceVisibilite(),
+                getPositionX() - (getDirectionOrientation().getDirection() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()) - getDistanceVisibilite(),
                 getPositionY() - getHauteurHaut() - getDistanceVisibilite(),
                 getLargeurDevant() + getLargeurDerriere() + getDistanceVisibilite() + getDistanceVisibilite(),
                 getHauteurHaut() + getDistanceVisibilite() + getHauteurBas() + getDistanceVisibilite()
@@ -220,7 +220,7 @@ public class Monstre extends Personnage {
 
     public Rectangle getHitBoxZoneAttaque() {
         hitBoxVue = new Rectangle(
-                getPositionX() - (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()) - sort.getPorteSpell(),
+                getPositionX() - (getDirectionOrientation().getDirection() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()) - sort.getPorteSpell(),
                 getPositionY() - getHauteurHaut() - getDistanceVisibilite(),
                 sort.getPorteSpell() * 2 + getLargeurDerriere() + getLargeurDevant(),
                 getHauteurHaut() + getDistanceVisibilite() + getHauteurBas() + getDistanceVisibilite()

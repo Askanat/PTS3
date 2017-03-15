@@ -34,7 +34,7 @@ public class Entite {
         vitesseDeDeplacementEnY = 0;
         vecteurDeplacementEnX = 0;
         vecteurDeplacementEnY = 0;
-        directionOrientation = null;
+        directionOrientation = new Direction(Direction.DROITE);
 
         collision = false;
         deplacement = false;
@@ -56,7 +56,7 @@ public class Entite {
         vitesseDeDeplacementEnY = 0;
         vecteurDeplacementEnX = 0;
         vecteurDeplacementEnY = 0;
-        directionOrientation = null;
+        directionOrientation = new Direction(Direction.DROITE);
 
         descendre = false;
 
@@ -150,8 +150,8 @@ public class Entite {
         return directionOrientation;
     }
 
-    public void setDirectionOrientation(Direction directionOrientation) {
-        this.directionOrientation = directionOrientation;
+    public void setDirectionOrientation(int directionOrientation) {
+        this.directionOrientation.setDirection(directionOrientation);
     }
 
     public void deplacer() {
@@ -195,7 +195,7 @@ public class Entite {
 
     public Rectangle getHitBoxCorps() {
         hitBoxCorps = new Rectangle(
-                getPositionX() - (getDirectionOrientation() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()),
+                getPositionX() - (getDirectionOrientation().getDirection() == Direction.GAUCHE ? getLargeurDevant() : getLargeurDerriere()),
                 getPositionY() - getHauteurHaut(),
                 getLargeurDevant() + getLargeurDerriere(),
                 getHauteurHaut() + getHauteurBas()

@@ -326,7 +326,7 @@ public class Hero extends Personnage implements Serializable {
 
     public Rectangle getHitBoxAttaque() {
         Rectangle r = new Rectangle(
-                positionX + (getDirectionOrientation() == Direction.GAUCHE ? -(distanceDeAttaqueDeOrigineAX + porteeDeAttaque) : distanceDeAttaqueDeOrigineAX),
+                positionX + (getDirectionOrientation().getDirection() == Direction.GAUCHE ? -(distanceDeAttaqueDeOrigineAX + porteeDeAttaque) : distanceDeAttaqueDeOrigineAX),
                 positionY - distanceDeAttaqueDeOrigineAY,
                 porteeDeAttaque,
                 porteeDeAttaque

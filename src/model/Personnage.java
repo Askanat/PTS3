@@ -78,7 +78,7 @@ public abstract class Personnage extends Entite implements Serializable {
         else if (x == tailleMapX - 1)
             x--;
 
-        if ((!(63 <= tuileInt[y - 3][x - 1] && tuileInt[y - 3][x - 1] <= 79) && getDirectionOrientation() == Direction.GAUCHE) || (!(63 <= tuileInt[y - 3][x + 1] && tuileInt[y - 3][x + 1] <= 79) && getDirectionOrientation() == Direction.DROITE)) {
+        if ((!(63 <= tuileInt[y - 3][x - 1] && tuileInt[y - 3][x - 1] <= 79) && getDirectionOrientation().getDirection() == Direction.GAUCHE) || (!(63 <= tuileInt[y - 3][x + 1] && tuileInt[y - 3][x + 1] <= 79) && getDirectionOrientation().getDirection() == Direction.DROITE)) {
             setPositionX(getPositionX() + getVecteurDeplacementEnX() * getVitesseDeDeplacementEnX());
 
             // empeche le personnage de sortir de la map en x
@@ -160,11 +160,11 @@ public abstract class Personnage extends Entite implements Serializable {
             sortUtilise.setDegatSpell(sortUtilise.getDegatSpell() + (int) (getDegats() * 0.5));
         else if (sortUtilise.getSoin() != 0)
             sortUtilise.setSoin(sortUtilise.getSoin() + (int) (getManaMax() * 0.25));
-        sortUtilise.setPositionX(getPositionX() + (getDirectionOrientation() == Direction.GAUCHE ? -getLargeurDevant() : getLargeurDerriere()));
+        sortUtilise.setPositionX(getPositionX() + (getDirectionOrientation().getDirection() == Direction.GAUCHE ? -getLargeurDevant() : getLargeurDerriere()));
         sortUtilise.setPositionY(getPositionY());
         sortUtilise.setDeplacement(true);
-        sortUtilise.setDirectionOrientation(getDirectionOrientation());
-        sortUtilise.setVecteurDeplacementEnX((getDirectionOrientation() == Direction.GAUCHE ? -1 : 1));
+        sortUtilise.setDirectionOrientation(getDirectionOrientation().getDirection());
+        sortUtilise.setVecteurDeplacementEnX((getDirectionOrientation().getDirection() == Direction.GAUCHE ? -1 : 1));
 
         return sortUtilise;
     }

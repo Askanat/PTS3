@@ -78,9 +78,9 @@ public class EntiteVue extends JPanel {
                 spriteActuel = tableauSprite[3];
             else if (spriteActuel == tableauSprite[2])
                 spriteActuel = tableauSprite[8];
-            else if (entite.getDirectionOrientation() == Direction.DROITE)
+            else if (entite.getDirectionOrientation().getDirection() == Direction.DROITE)
                 spriteActuel = tableauSprite[7];
-            else if (entite.getDirectionOrientation() == Direction.GAUCHE)
+            else if (entite.getDirectionOrientation().getDirection() == Direction.GAUCHE)
                 spriteActuel = tableauSprite[4];
             alternerSpriteDeplacement = 1;
         }
@@ -88,18 +88,18 @@ public class EntiteVue extends JPanel {
         // selectionne le saut
         if (!entite.getCollision() && entite instanceof Personnage) {
             if (!entite.getAttaquer()) { // saut sans attaque
-                if (entite.getDirectionOrientation() == Direction.DROITE)
+                if (entite.getDirectionOrientation().getDirection() == Direction.DROITE)
                     spriteActuel = tableauSprite[2];
-                else if (entite.getDirectionOrientation() == Direction.GAUCHE)
+                else if (entite.getDirectionOrientation().getDirection() == Direction.GAUCHE)
                     spriteActuel = tableauSprite[0];
             } else if (entite.getAttaquer()) { // saut avec attaque
-                if (entite.getDirectionOrientation() == Direction.DROITE) {
+                if (entite.getDirectionOrientation().getDirection() == Direction.DROITE) {
                     spriteActuel = tableauSprite[alternerSpriteAttaque == 3 ? 7 : 30 + alternerSpriteAttaque];
                     if (alternerSpriteAttaque == 3) {
                         alternerSpriteAttaque = 0;
                         entite.setAttaquer(false);
                     }
-                } else if (entite.getDirectionOrientation() == Direction.GAUCHE) {
+                } else if (entite.getDirectionOrientation().getDirection() == Direction.GAUCHE) {
                     spriteActuel = tableauSprite[alternerSpriteAttaque == 3 ? 4 : 27 + alternerSpriteAttaque];
                     if (alternerSpriteAttaque == 3) {
                         alternerSpriteAttaque = 0;
@@ -111,12 +111,12 @@ public class EntiteVue extends JPanel {
             // selectionne le déplacement de droite et de gauche
         } else if (entite.getCollision() || entite instanceof Sort) {
             if (!entite.getAttaquer() && entite.getDeplacement()) { // deplacement sans attaque
-                if (entite.getDirectionOrientation() == Direction.DROITE)
+                if (entite.getDirectionOrientation().getDirection() == Direction.DROITE)
                     spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 7 : 6 + alternerSpriteDeplacement];
-                else if (entite.getDirectionOrientation() == Direction.GAUCHE)
+                else if (entite.getDirectionOrientation().getDirection() == Direction.GAUCHE)
                     spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 4 : 3 + alternerSpriteDeplacement];
             } else if (entite.getAttaquer()) { // attaque
-                if (entite.getDirectionOrientation() == Direction.DROITE) {
+                if (entite.getDirectionOrientation().getDirection() == Direction.DROITE) {
                     switch (alternerSpriteAttaque) {
                         case 0:
                             spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 19 : 18 + alternerSpriteDeplacement];
@@ -133,7 +133,7 @@ public class EntiteVue extends JPanel {
                             entite.setAttaquer(false);
                             break;
                     }
-                } else if (entite.getDirectionOrientation() == Direction.GAUCHE) {
+                } else if (entite.getDirectionOrientation().getDirection() == Direction.GAUCHE) {
                     switch (alternerSpriteAttaque) {
                         case 0:
                             spriteActuel = tableauSprite[alternerSpriteDeplacement == 3 ? 10 : 9 + alternerSpriteDeplacement];
