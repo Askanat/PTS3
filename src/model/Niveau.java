@@ -28,20 +28,14 @@ public class Niveau {
     private Direction entree;
     private Random rand = new Random();
 
-    public Niveau(int _taille_x, int _nb_plateformes, Direction _entree, boolean _sauvegarder) {
+    public Niveau(int _taille_x, int _nb_plateformes, int _entree, boolean _sauvegarder) {
         // Ligne du haut et ligne du bas
 
         taille_y = ESPACE_PLATEFORME - (ESPACE_PLATEFORME - 2);
         taille_x = _taille_x;
         nb_plateformes = _nb_plateformes;
-
-        if (nb_plateformes % 2 != 0) {
-            if (_entree == Direction.DROITE)
-                entree = Direction.GAUCHE;
-            else
-                entree = Direction.DROITE;
-        } else
-            entree = _entree;
+        
+        entree = new Direction(_entree);
 
         gen();
 
@@ -125,10 +119,12 @@ public class Niveau {
         return espace + ESPACE_PLATEFORME;
     }
 
-    private void addPorteSortie(Direction sortie) {
-        int y = getEspaceAvantPlateforme(0) - 1, i;
+    // partie : true = entree du niveau; false = fin du niveau
 
-        if (sortie == Direction.GAUCHE) {
+    private void addPorte(Direction dir, boolean partie) {
+        int y = (partie ? getEspaceAvantPlateforme(nb_plateformes - 1) - 1: getEspaceAvantPlateforme(0) - 1), i;
+
+        if (dir.getDirection() == Direction.DROITE) {
             for (i = 2; i <= 5; i++) {
                 tableau[y + 1][taille_x - i] = Block.MUR;
                 tableau[y + 2][taille_x - i] = Block.MUR;
@@ -162,7 +158,7 @@ public class Niveau {
     // Construit des plateformes afin d'accéder au niveau suivant
 
     private void addPlateformeAccessNivSup(Direction dir, int plateforme) {
-        int i, j, y = 3, fin, debut = (dir == Direction.GAUCHE) ? (taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1) : (1);
+        int i, j, y = 3, fin, debut = (dir.getDirection() == Direction.GAUCHE) ? (taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1) : (1);
         ;
         int espace = getEspaceAvantPlateforme(plateforme);
 
@@ -173,7 +169,7 @@ public class Niveau {
                 int block = Block.MUR;
 
                 if (rand.nextInt(3) == 0) {
-                    if (dir == Direction.DROITE) {
+                    if (dir.getDirection() == Direction.DROITE) {
                         // Plateforme de gauche
 
                         if (i % 2 == 0 && j <= debut + 1)
@@ -198,12 +194,12 @@ public class Niveau {
             // Si pair c'est une plateforme de gauche
 
             if (i % 2 == 0) {
-                if (dir == Direction.DROITE)
+                if (dir.getDirection() == Direction.DROITE)
                     debut = ESPACE_PLATEFORME - LARGEUR_PLATEFORME_NIV_SUP;
                 else
                     debut = taille_x - ESPACE_PLATEFORME;
             } else {
-                if (dir == Direction.DROITE)
+                if (dir.getDirection() == Direction.DROITE)
                     debut = 1;
                 else
                     debut = taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1;
@@ -224,7 +220,7 @@ public class Niveau {
         if (getTailleMurPlateforme(plateforme) == 1)
             fin++;
 
-        if (dir == Direction.GAUCHE) {
+        if (dir.getDirection() == Direction.GAUCHE) {
             i = ESPACE_PLATEFORME;
 
             for (j = debut; j < fin; j++) {
@@ -262,7 +258,7 @@ public class Niveau {
          */
 
         if (plateforme != nb_plateformes - 1) {
-            if (dir == Direction.GAUCHE) {
+            if (dir.getDirection() == Direction.GAUCHE) {
                 debut = ESPACE_PLATEFORME + 1;
                 fin = taille_x - 1;
             } else {
@@ -408,7 +404,7 @@ public class Niveau {
          *       cela permet d'initialiser correctement debut et fin
          */
 
-        if (dir == Direction.GAUCHE) {
+        if (dir.getDirection() == Direction.GAUCHE) {
             debut = ESPACE_PLATEFORME + 1;
             fin = taille_x - 1;
         } else {
@@ -447,7 +443,7 @@ public class Niveau {
     private void decoupePlateforme(int plateforme, Direction dir) {
         int i, j, k, debut = 1, fin = taille_x - 1;
 
-        if (dir == Direction.GAUCHE) {
+        if (dir.getDirection() == Direction.GAUCHE) {
             debut = ESPACE_PLATEFORME + 1;
             fin = taille_x - 1;
         } else {
@@ -460,7 +456,7 @@ public class Niveau {
 
                 for (j = 0; j < epaisseur[plateforme]; j++) {
                     for (k = 0; k <= 2; k++) {
-                        if (dir == Direction.GAUCHE)
+                        if (dir.getDirection() == Direction.GAUCHE)
                             tableau[getEspaceAvantPlateforme(plateforme) + j][i - k] = Block.MUR_FOND;
                         else
                             tableau[getEspaceAvantPlateforme(plateforme) + j][i + k] = Block.MUR_FOND;
@@ -474,7 +470,7 @@ public class Niveau {
 
     public void gen() {
         int i;
-        Direction dir = entree;
+        Direction dir = new Direction(entree.getDirection());
 
         epaisseur = new int[nb_plateformes];
         genTailleY();
@@ -482,12 +478,10 @@ public class Niveau {
         remplirTabVide();
         genCadre();
 
-        for (i = 0; i < nb_plateformes; i++) {
-            if (dir == Direction.GAUCHE)
-                dir = Direction.DROITE;
-            else
-                dir = Direction.GAUCHE;
+        if(nb_plateformes % 2 == 0)
+            dir.inverse();
 
+        for (i = 0; i < nb_plateformes; i++) {
             remplirPlateforme(i, dir);
             remplirPlateformeFondSup(i);
             addEffetProfondeur(i, dir);
@@ -497,16 +491,12 @@ public class Niveau {
 
             if (i < nb_plateformes - 1)
                 decoupePlateforme(i, dir);
+
+            dir.inverse();
         }
 
-        if (i % 2 == 0) {
-            if (dir == Direction.GAUCHE)
-                dir = Direction.DROITE;
-            else
-                dir = Direction.GAUCHE;
-        }
-
-        addPorteSortie(dir);
+        addPorte(entree, true);
+        addPorte(dir, false);
     }
 
     public void print() {
