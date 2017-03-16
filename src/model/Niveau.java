@@ -16,7 +16,7 @@ public class Niveau {
     private static final int NB_PICS_MIN = 1;
     private static final int NB_PICS_MAX = 4;
     private static final int ESPACE_MIN_ENTRE_PICS = 3;
-    private static final int LARGEUR_PLATEFORME_NIV_SUP = 4;
+    private static final int LARGEUR_PLATEFORME_NIV_SUP = 3;
     private static final int NB_PLATEFORMES_ACCESS_NIV_SUP = 4;
 
     private int tableau[][];
@@ -494,6 +494,9 @@ public class Niveau {
 
             dir.inverse();
         }
+
+        if(nb_plateformes % 2 == 0)
+            dir.inverse();
 
         addPorte(entree, true);
         addPorte(dir, false);
