@@ -170,7 +170,7 @@ public class Niveau {
 
                 if (rand.nextInt(3) == 0) {
                     if (dir.getDirection() == Direction.DROITE) {
-                        // Plateforme de gauche
+                        // Plateforme de droite
 
                         if (i % 2 == 0 && j <= debut + 1)
                             block = Block.PICS;
