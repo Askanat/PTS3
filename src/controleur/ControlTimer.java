@@ -92,7 +92,7 @@ public class ControlTimer extends Control implements ActionListener {
                                 directionPorte = new Direction(Direction.GAUCHE);
                         } else {
                             jeu.setNiveauDonjonActuelle(jeu.getNiveauDonjonActuelle() - 1);
-                            if (jeu.getNiveauDonjonActuelle() + 1 % 2 == 0) {
+                            if ((jeu.getNiveauDonjonActuelle() + 1) % 2 == 0) {
                                 if (jeu.getHero().getPositionX() < ZONE.width / 2.0)
                                     directionPorte = new Direction(Direction.DROITE);
                                 else
@@ -104,6 +104,9 @@ public class ControlTimer extends Control implements ActionListener {
                                     directionPorte = new Direction(Direction.DROITE);
                             }
                         }
+
+                        System.out.println((jeu.getHero().getPositionY() < ZONE.height / 2.0) + " " + ((jeu.getNiveauDonjonActuelle() + 1) % 2 == 0) + " " + (jeu.getHero().getPositionX() < ZONE.width / 2.0));
+
 
 
                         // change de map si il est dans le donjon ou si il sort du donjon (sort du donjon quand niveau 0)
