@@ -18,6 +18,7 @@ public class Niveau {
     private static final int ESPACE_MIN_ENTRE_PICS = 3;
     private static final int LARGEUR_PLATEFORME_NIV_SUP = 3;
     private static final int NB_PLATEFORMES_ACCESS_NIV_SUP = 2;
+    private static final int ESPACE_PLATEFORMES_ACCESS_SUP = 4;
 
     private int tableau[][];
     private int nb_plateformes;
@@ -159,7 +160,6 @@ public class Niveau {
 
     private void addPlateformeAccessNivSup(Direction dir, int plateforme) {
         int i, j, k, y = 3, fin, debut = (dir.getDirection() == Direction.GAUCHE) ? (taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1) : (1);
-        ;
         int espace = getEspaceAvantPlateforme(plateforme) - 3;
 
         for (i = 0; i < NB_PLATEFORMES_ACCESS_NIV_SUP; i++) {
@@ -172,28 +172,26 @@ public class Niveau {
                     if (dir.getDirection() == Direction.DROITE) {
                         // Plateforme de gauche
 
-                        if (i % 2 == 0 && j <= debut + 1)
-                            block = Block.PICS;
-                        else if (i % 2 != 0 && j >= debut + 2)
+                        if ((i % 2 == 0 && j <= debut + 1) || (i % 2 != 0 && j >= debut + 2))
                             block = Block.PICS;
                     } else {
                         // Plateforme de gauche
 
-                        if (i % 2 != 0 && j <= debut + 1)
-                            block = Block.PICS;
-                        else if (i % 2 == 0 && j >= debut + 2)
+                        if ((i % 2 != 0 && j <= debut + 1) || (i % 2 == 0 && j >= debut + 2))
                             block = Block.PICS;
                     }
                 }
 
                 tableau[espace - y][j] = block;
 
-                if(block == Block.PICS)
-                    tableau[espace - y + 2][j] = Block.MUR;
-				else
-					tableau[espace - y + 2][j] = Block.MUR2;
+                if(block == Block.PICS) {
+                    tableau[espace - y + 1][j] = Block.PICS;
+                }
+                else {
+                    tableau[espace - y + 1][j] = Block.MUR;
+                }
 
-                tableau[espace - y + 1][j] = Block.MUR;
+                tableau[espace - y + 2][j] = Block.MUR2;
             }
 
 
@@ -211,12 +209,16 @@ public class Niveau {
                     debut = taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1;
             }
 
-            y += 4;
+            y += ESPACE_PLATEFORMES_ACCESS_SUP;
         }
 
     }
 
-    // Construit un escalier afin d'accéder à une plateforme
+    /* Construit un escalier afin d'accéder à une plateforme 
+     *
+     * Non utilisé, c'était la première façon d'accéder à la plateforme suivante.
+     * Maintenant, on utilise addPlateformeAccessNivSup()
+     */
 
     private void addEscalier(Direction dir, int espaceBase, int epaisseurN, int plateforme) {
         int debut = espaceBase;
@@ -243,6 +245,33 @@ public class Niveau {
         }
     }
 
+    private void addEffetProfondeurDerniereLigne() {
+        int i, j, debut = 1, fin = taille_x - 1, y;
+        Direction dir = new Direction(entree.getDirection());
+
+        if(nb_plateformes % 2 == 0)
+            dir.inverse();
+
+        for(i = 0; i < nb_plateformes - 1; i++) {
+            if (dir.getDirection() == Direction.GAUCHE) {
+                debut = ESPACE_PLATEFORME + 1;
+                fin = taille_x - 1;
+            } else {
+                debut = 1;
+                fin = taille_x - ESPACE_PLATEFORME - 1;
+            }
+
+            y = getEspaceAvantPlateforme(i) + 3;
+
+            for(j = debut; j < fin; j++) {
+                if(tableau[y][j] == Block.MUR)
+                    tableau[y + 1][j] = Block.MUR2;
+            }
+
+            dir.inverse();
+        }
+    }
+
     private void addEffetProfondeurAll(int debut, int fin, int y) {
         for (int i = debut; i < fin; i++) {
             if (tableau[y][i] == Block.PICS && tableau[y - 1][i] != Block.PICS)
@@ -250,6 +279,9 @@ public class Niveau {
             if (tableau[y][i] == Block.MUR_FOND && tableau[y + 1][i] != Block.MUR_FOND && tableau[y + 1][i] != Block.MUR_FOND) {
                 tableau[y + 1][i] = tableau[y + 2][i] = Block.MUR;
             }
+
+            if(tableau[y + 2][i] == Block.MUR && tableau[y + 3][i] == Block.MUR_FOND)
+                tableau[y + 3][i] = Block.MUR2;
         }
     }
 
@@ -506,6 +538,8 @@ public class Niveau {
 
         addPorte(entree, true);
         addPorte(dir, false);
+
+        addEffetProfondeurDerniereLigne();
     }
 
     public void print() {
