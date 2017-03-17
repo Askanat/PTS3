@@ -105,10 +105,6 @@ public class ControlTimer extends Control implements ActionListener {
                             }
                         }
 
-                        System.out.println((jeu.getHero().getPositionY() < ZONE.height / 2.0) + " " + ((jeu.getNiveauDonjonActuelle() + 1) % 2 == 0) + " " + (jeu.getHero().getPositionX() < ZONE.width / 2.0));
-
-
-
                         // change de map si il est dans le donjon ou si il sort du donjon (sort du donjon quand niveau 0)
                         if (jeu.getNiveauDonjonActuelle() > 0) {
                             int largeurMap = (int) (30 + (Math.random() * (150 - 30)));
