@@ -17,7 +17,7 @@ public class Niveau {
     private static final int NB_PICS_MAX = 4;
     private static final int ESPACE_MIN_ENTRE_PICS = 3;
     private static final int LARGEUR_PLATEFORME_NIV_SUP = 3;
-    private static final int NB_PLATEFORMES_ACCESS_NIV_SUP = 4;
+    private static final int NB_PLATEFORMES_ACCESS_NIV_SUP = 2;
 
     private int tableau[][];
     private int nb_plateformes;
@@ -158,9 +158,9 @@ public class Niveau {
     // Construit des plateformes afin d'accéder au niveau suivant
 
     private void addPlateformeAccessNivSup(Direction dir, int plateforme) {
-        int i, j, y = 3, fin, debut = (dir.getDirection() == Direction.GAUCHE) ? (taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1) : (1);
+        int i, j, k, y = 3, fin, debut = (dir.getDirection() == Direction.GAUCHE) ? (taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1) : (1);
         ;
-        int espace = getEspaceAvantPlateforme(plateforme);
+        int espace = getEspaceAvantPlateforme(plateforme) - 3;
 
         for (i = 0; i < NB_PLATEFORMES_ACCESS_NIV_SUP; i++) {
             fin = debut + LARGEUR_PLATEFORME_NIV_SUP;
@@ -170,7 +170,7 @@ public class Niveau {
 
                 if (rand.nextInt(3) == 0) {
                     if (dir.getDirection() == Direction.DROITE) {
-                        // Plateforme de droite
+                        // Plateforme de gauche
 
                         if (i % 2 == 0 && j <= debut + 1)
                             block = Block.PICS;
@@ -187,7 +187,13 @@ public class Niveau {
                 }
 
                 tableau[espace - y][j] = block;
-                tableau[espace - y + 1][j] = Block.MUR2;
+
+                if(block == Block.PICS)
+                    tableau[espace - y + 2][j] = Block.MUR;
+				else
+					tableau[espace - y + 2][j] = Block.MUR2;
+
+                tableau[espace - y + 1][j] = Block.MUR;
             }
 
 
@@ -205,7 +211,7 @@ public class Niveau {
                     debut = taille_x - LARGEUR_PLATEFORME_NIV_SUP - 1;
             }
 
-            y += 3;
+            y += 4;
         }
 
     }
