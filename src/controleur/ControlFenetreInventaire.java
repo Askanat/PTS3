@@ -86,6 +86,11 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                             iconTampon2 = fenetre.panelFenetreInventaire.casque.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.casque.setIcon(iconTampon1);
+                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
+                            jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
+                            jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
+                            jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
                         } else {
                             System.out.println("Mauvais emplacement !!");
                         }
@@ -96,6 +101,11 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                             iconTampon2 = fenetre.panelFenetreInventaire.plastron.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.plastron.setIcon(iconTampon1);
+                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
+                            jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
+                            jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
+                            jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
                         } else {
                             System.out.println("Mauvais emplacement !!");
                         }
@@ -106,6 +116,11 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                             iconTampon2 = fenetre.panelFenetreInventaire.gant.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.gant.setIcon(iconTampon1);
+                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
+                            jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
+                            jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
+                            jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
                         } else {
                             System.out.println("Mauvais emplacement !!");
                         }
@@ -116,6 +131,11 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                             iconTampon2 = fenetre.panelFenetreInventaire.bague.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.bague.setIcon(iconTampon1);
+                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
+                            jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
+                            jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
+                            jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
                         } else {
                             System.out.println("Mauvais emplacement !!");
                         }
@@ -126,6 +146,11 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                             iconTampon2 = fenetre.panelFenetreInventaire.pantalon.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.pantalon.setIcon(iconTampon1);
+                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
+                            jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
+                            jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
+                            jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
                         } else {
                             System.out.println("Mauvais emplacement !!");
                         }
@@ -136,6 +161,11 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                             iconTampon2 = fenetre.panelFenetreInventaire.botte.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.botte.setIcon(iconTampon1);
+                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
+                            jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
+                            jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
+                            jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
                         } else {
                             System.out.println("Mauvais emplacement !!");
                         }
@@ -146,6 +176,12 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                             iconTampon2 = fenetre.panelFenetreInventaire.bouclier.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.bouclier.setIcon(iconTampon1);
+                            jeu.getHero().setDegats((int)inventaire.get(Integer.parseInt(buttonclicked1)).getDegat() + jeu.getHero().getDegats());
+                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
+                            jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
+                            jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
+                            jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
                         } else {
                             System.out.println("Mauvais emplacement !!");
                         }
@@ -156,6 +192,12 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                             iconTampon2 = fenetre.panelFenetreInventaire.arme.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.arme.setIcon(iconTampon1);
+                            jeu.getHero().setDegats((int)inventaire.get(Integer.parseInt(buttonclicked1)).getDegat() + jeu.getHero().getDegats());
+                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
+                            jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
+                            jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
+                            jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
                         } else {
                             System.out.println("Mauvais emplacement !!");
                         }
