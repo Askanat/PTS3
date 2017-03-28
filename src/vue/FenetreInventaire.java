@@ -1,5 +1,6 @@
 package vue;
 import controleur.ControlFenetreInventaire;
+import model.Equipement;
 
 import javax.swing.*;
 import java.awt.*;
@@ -96,11 +97,7 @@ public class FenetreInventaire extends JPanel {
         //Inventaire
         for (int i = 0; i < 30; i++) {
             inventaire[i].addActionListener(controlFenetreInventaire);
-            if(i%2 == 0) {
-                inventaire[i].setIcon(new ImageIcon("images/iconeMenu.png"));
-            } else {
-                inventaire[i].setIcon(new ImageIcon("images/iconeSave.png"));
-            }
+            //inventaire[i].setIcon(new ImageIcon(Equipement.getTexture())); C'EST LA
         }
     }
 
