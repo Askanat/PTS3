@@ -1,11 +1,13 @@
 package controleur;
 
+import model.Equipement;
 import model.Jeu;
 import vue.Fenetre;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by MSI-FlorianV on 30/12/2016.
@@ -22,7 +24,7 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
     }
 
     public void actionPerformed(ActionEvent e) {
-        String buttonclicked = "";
+        ArrayList<Equipement> inventaire = jeu.getHero().inventaire;
 
         //Système de récupération des boutons d'inventaires différents
         if(e.getActionCommand().contains("Inventaire")){
@@ -76,65 +78,97 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
             }*/
 
         } else {
+            if (inventaire.size() != 0) {
+                switch (e.getActionCommand()) {
 
-            switch (e.getActionCommand()) {
+                    case "Casque":
+                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 2) {
+                            iconTampon2 = fenetre.panelFenetreInventaire.casque.getIcon();
+                            fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                            fenetre.panelFenetreInventaire.casque.setIcon(iconTampon1);
+                        } else {
+                            System.out.println("Mauvais emplacement !!");
+                        }
+                        break;
 
-                case "Casque" :
-                    iconTampon2 = fenetre.panelFenetreInventaire.casque.getIcon();
-                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
-                    fenetre.panelFenetreInventaire.casque.setIcon(iconTampon1);
-                    break;
+                    case "Plastron":
+                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 1) {
+                            iconTampon2 = fenetre.panelFenetreInventaire.plastron.getIcon();
+                            fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                            fenetre.panelFenetreInventaire.plastron.setIcon(iconTampon1);
+                        } else {
+                            System.out.println("Mauvais emplacement !!");
+                        }
+                        break;
 
-                case "Plastron" :
-                    iconTampon2 = fenetre.panelFenetreInventaire.plastron.getIcon();
-                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
-                    fenetre.panelFenetreInventaire.plastron.setIcon(iconTampon1);
-                    break;
+                    case "Gant":
+                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 5) {
+                            iconTampon2 = fenetre.panelFenetreInventaire.gant.getIcon();
+                            fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                            fenetre.panelFenetreInventaire.gant.setIcon(iconTampon1);
+                        } else {
+                            System.out.println("Mauvais emplacement !!");
+                        }
+                        break;
 
-                case "Gant" :
-                    iconTampon2 = fenetre.panelFenetreInventaire.gant.getIcon();
-                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
-                    fenetre.panelFenetreInventaire.gant.setIcon(iconTampon1);
-                    break;
+                    case "Bague":
+                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 7) {
+                            iconTampon2 = fenetre.panelFenetreInventaire.bague.getIcon();
+                            fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                            fenetre.panelFenetreInventaire.bague.setIcon(iconTampon1);
+                        } else {
+                            System.out.println("Mauvais emplacement !!");
+                        }
+                        break;
 
-                case "Bague" :
-                    iconTampon2 = fenetre.panelFenetreInventaire.bague.getIcon();
-                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
-                    fenetre.panelFenetreInventaire.bague.setIcon(iconTampon1);
-                    break;
+                    case "Pantalon":
+                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 6) {
+                            iconTampon2 = fenetre.panelFenetreInventaire.pantalon.getIcon();
+                            fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                            fenetre.panelFenetreInventaire.pantalon.setIcon(iconTampon1);
+                        } else {
+                            System.out.println("Mauvais emplacement !!");
+                        }
+                        break;
 
-                case "Pantalon" :
-                    iconTampon2 = fenetre.panelFenetreInventaire.pantalon.getIcon();
-                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
-                    fenetre.panelFenetreInventaire.pantalon.setIcon(iconTampon1);
-                    break;
+                    case "Botte":
+                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 4) {
+                            iconTampon2 = fenetre.panelFenetreInventaire.botte.getIcon();
+                            fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                            fenetre.panelFenetreInventaire.botte.setIcon(iconTampon1);
+                        } else {
+                            System.out.println("Mauvais emplacement !!");
+                        }
+                        break;
 
-                case "Botte" :
-                    iconTampon2 = fenetre.panelFenetreInventaire.botte.getIcon();
-                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
-                    fenetre.panelFenetreInventaire.botte.setIcon(iconTampon1);
-                    break;
+                    case "Bouclier":
+                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 9) {
+                            iconTampon2 = fenetre.panelFenetreInventaire.bouclier.getIcon();
+                            fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                            fenetre.panelFenetreInventaire.bouclier.setIcon(iconTampon1);
+                        } else {
+                            System.out.println("Mauvais emplacement !!");
+                        }
+                        break;
 
-                case "Bouclier" :
-                    iconTampon2 = fenetre.panelFenetreInventaire.bouclier.getIcon();
-                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
-                    fenetre.panelFenetreInventaire.bouclier.setIcon(iconTampon1);
-                    break;
+                    case "Arme":
+                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 8) {
+                            iconTampon2 = fenetre.panelFenetreInventaire.arme.getIcon();
+                            fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                            fenetre.panelFenetreInventaire.arme.setIcon(iconTampon1);
+                        } else {
+                            System.out.println("Mauvais emplacement !!");
+                        }
+                        break;
 
-                case "Arme" :
-                    iconTampon2 = fenetre.panelFenetreInventaire.arme.getIcon();
-                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
-                    fenetre.panelFenetreInventaire.arme.setIcon(iconTampon1);
-                    break;
+                    case "Retour":
+                        Control.enPartie = true;
+                        fenetre.setContentPane(fenetre.panelScrollFenetreJeu);
+                        changerVue();
+                        fenetre.vueMenuEnJeu();
+                        break;
 
-                case "Retour":
-                    Control.enPartie = true;
-                    fenetre.setContentPane(fenetre.panelScrollFenetreJeu);
-                    changerVue();
-                    fenetre.vueMenuEnJeu();
-                    break;
-
-                default:
+                    default:
                         /*if(buttonclicked1.equals("")) {
                             for (int i = 0; i < e.getActionCommand().length(); i++) {
                                 buttonclicked1 += e.getActionCommand().charAt(i);
@@ -146,7 +180,8 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                         }
                     System.out.println("Bouton 1 : " + buttonclicked1);
                     System.out.println("Bouton 2 : " + buttonclicked2);*/
-                    break;
+                        break;
+                }
             }
             iconTampon1 = null;
             iconTampon2 = null;

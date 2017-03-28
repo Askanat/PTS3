@@ -94,6 +94,7 @@ INSERT INTO typeItem VALUES (default, "gants");
 INSERT INTO typeItem VALUES (default, "pantalon");
 INSERT INTO typeItem VALUES (default, "bijou");
 INSERT INTO typeItem VALUES (default, "arme");
+INSERT INTO typeItem VALUES (default, "bouclier");
 
 CREATE TABLE item (
   idItem int AUTO_INCREMENT NOT NULL,
@@ -123,6 +124,7 @@ INSERT INTO item VALUES (default, "Gants en fer", 0, 0, 0, 0, 0, 0, 1.2,"images/
 INSERT INTO item VALUES (default, "Pierre enchantee", 0, 0, 1.1, 1.1, 1.1, 0, 0,"images/Equipements/Bijous/pierre_enchantee.png", 16,7);
 INSERT INTO item VALUES (default, "Epee en fer", 0, 0, 0, 0, 0, 1.1, 0,"images/Equipements/Armes/epee_en_fer.png",17, 8);
 INSERT INTO item VALUES (default, "Epee noir", 0, 0, 0, 0, 0, 1.2, 0,"images/Equipements/Armes/epee_noir.png", 18,8);
+INSERT INTO item VALUES (default, "Bouclier en fer", 0, 2, 0, 0, 0, 0, 0,"images/Equipements/Armes/epee_noir.png", 18,9);
 
 
 CREATE TABLE possede (
