@@ -39,23 +39,26 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                 }
             }
 
-            if(buttonclicked1.equals("Casque")) {
-                System.out.println("Coucou");
-                iconTampon1 = fenetre.panelFenetreInventaire.casque;
-                System.out.println(buttonclicked2);
-
-                if(buttonclicked2.length() < 2) {
-                    System.out.println("Coucou");
-                    iconTampon2 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt((buttonclicked2))];
-                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked2)] = iconTampon1;
-                    fenetre.panelFenetreInventaire.casque = iconTampon2;
-
-                    iconTampon1 = null;
-                    iconTampon2 = null;
-                    buttonclicked1 = "";
-                    buttonclicked2 = "";
-                }
+            switch(buttonclickedInv1) {
+                case "Casque" :
+                    System.out.println("Coucou1");
+                    iconTampon1 = fenetre.panelFenetreInventaire.casque;
+                    System.out.println(buttonclicked2);
+                    break;
             }
+
+            if(buttonclicked2.length() < 2) {
+                System.out.println("Coucou2");
+                iconTampon2 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt((buttonclicked2))];
+                fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked2)] = iconTampon1;
+                fenetre.panelFenetreInventaire.casque = iconTampon2;
+
+                iconTampon1 = null;
+                iconTampon2 = null;
+                buttonclicked1 = "";
+                buttonclicked2 = "";
+            }
+
 
             //Echange entre les deux cases de l'inventaire
             if(iconTampon1 == null) {
