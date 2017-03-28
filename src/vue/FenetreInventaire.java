@@ -40,7 +40,7 @@ public class FenetreInventaire extends JPanel {
         inventaire = new JButton[30];
 
         for (int i = 0; i < 30; i++) {
-            inventaire[i] = new JButton("" + i);
+            inventaire[i] = new JButton();
             inventaire[i].setActionCommand("Inventaire" + i);
             this.add(inventaire[i]);
         }
