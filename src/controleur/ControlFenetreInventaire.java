@@ -29,11 +29,11 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
         //Système de récupération des boutons d'inventaires différents
         if(e.getActionCommand().contains("Inventaire")){
 
-            /*if(buttonclicked1.equals("")) {
+            if(buttonclicked1.equals("")) {
                 for (int i=10;i < e.getActionCommand().length();i++){
                     buttonclicked1 += e.getActionCommand().charAt(i);
                 }
-            } else if(buttonclicked2.equals("")){
+            } /*else if(buttonclicked2.equals("")){
                 for (int i=10;i < e.getActionCommand().length();i++){
                     buttonclicked2 += e.getActionCommand().charAt(i);
                 }
@@ -77,6 +77,31 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
         } else {
 
             switch (e.getActionCommand()) {
+
+                case "Casque" :
+
+                    break;
+
+                case "Plastron" :
+                    break;
+
+                case "Gant" :
+                    break;
+
+                case "Bague" :
+                    break;
+
+                case "Pantalon" :
+                    break;
+
+                case "Botte" :
+                    break;
+
+                case "Bouclier" :
+                    break;
+
+                case "Arme" :
+                    break;
 
                 case "Retour":
                     Control.enPartie = true;
