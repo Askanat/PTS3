@@ -15,8 +15,6 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
     private Icon iconTampon1 = null;
     private Icon iconTampon2 = null;
     private String buttonclicked1="";
-    private String buttonclicked2="";
-    private String buttonclickedInv1 = "";
 
     public ControlFenetreInventaire(Jeu jeu, Fenetre fenetre) {
         super(jeu, fenetre);
@@ -28,9 +26,6 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
 
         //Système de récupération des boutons d'inventaires différents
         if(e.getActionCommand().contains("Inventaire")){
-            iconTampon1 = null;
-            iconTampon2 = null;
-            buttonclicked1 = "";
 
             if(buttonclicked1.equals("")) {
                 for (int i=10;i < e.getActionCommand().length();i++){
@@ -153,6 +148,9 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                     System.out.println("Bouton 2 : " + buttonclicked2);*/
                     break;
             }
+            iconTampon1 = null;
+            iconTampon2 = null;
+            buttonclicked1 = "";
         }
     }
 }
