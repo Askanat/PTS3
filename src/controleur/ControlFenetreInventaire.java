@@ -12,8 +12,8 @@ import java.awt.event.ActionListener;
  */
 public class ControlFenetreInventaire extends Control implements ActionListener {
 
-    private JButton iconTampon1 = null;
-    private JButton iconTampon2 = null;
+    private Icon iconTampon1 = null;
+    private Icon iconTampon2 = null;
     private String buttonclicked1="";
     private String buttonclicked2="";
     private String buttonclickedInv1 = "";
@@ -28,12 +28,18 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
 
         //Système de récupération des boutons d'inventaires différents
         if(e.getActionCommand().contains("Inventaire")){
+            iconTampon1 = null;
+            iconTampon2 = null;
+            buttonclicked1 = "";
 
             if(buttonclicked1.equals("")) {
                 for (int i=10;i < e.getActionCommand().length();i++){
                     buttonclicked1 += e.getActionCommand().charAt(i);
                 }
-            } /*else if(buttonclicked2.equals("")){
+                iconTampon1 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt((buttonclicked1))].getIcon();
+            }
+
+            /*else if(buttonclicked2.equals("")){
                 for (int i=10;i < e.getActionCommand().length();i++){
                     buttonclicked2 += e.getActionCommand().charAt(i);
                 }
@@ -79,28 +85,51 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
             switch (e.getActionCommand()) {
 
                 case "Casque" :
-
+                    iconTampon2 = fenetre.panelFenetreInventaire.casque.getIcon();
+                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                    fenetre.panelFenetreInventaire.casque.setIcon(iconTampon1);
                     break;
 
                 case "Plastron" :
+                    iconTampon2 = fenetre.panelFenetreInventaire.plastron.getIcon();
+                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                    fenetre.panelFenetreInventaire.plastron.setIcon(iconTampon1);
                     break;
 
                 case "Gant" :
+                    iconTampon2 = fenetre.panelFenetreInventaire.gant.getIcon();
+                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                    fenetre.panelFenetreInventaire.gant.setIcon(iconTampon1);
                     break;
 
                 case "Bague" :
+                    iconTampon2 = fenetre.panelFenetreInventaire.bague.getIcon();
+                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                    fenetre.panelFenetreInventaire.bague.setIcon(iconTampon1);
                     break;
 
                 case "Pantalon" :
+                    iconTampon2 = fenetre.panelFenetreInventaire.pantalon.getIcon();
+                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                    fenetre.panelFenetreInventaire.pantalon.setIcon(iconTampon1);
                     break;
 
                 case "Botte" :
+                    iconTampon2 = fenetre.panelFenetreInventaire.botte.getIcon();
+                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                    fenetre.panelFenetreInventaire.botte.setIcon(iconTampon1);
                     break;
 
                 case "Bouclier" :
+                    iconTampon2 = fenetre.panelFenetreInventaire.bouclier.getIcon();
+                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                    fenetre.panelFenetreInventaire.bouclier.setIcon(iconTampon1);
                     break;
 
                 case "Arme" :
+                    iconTampon2 = fenetre.panelFenetreInventaire.arme.getIcon();
+                    fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
+                    fenetre.panelFenetreInventaire.arme.setIcon(iconTampon1);
                     break;
 
                 case "Retour":
