@@ -19,7 +19,7 @@ import static vue.Fenetre.*;
 public class FenetreCreationPersonnage extends JPanel {
 
     // nombre de texture différente
-    public static final int NB_YEUX = 1;
+    public static final int NB_YEUX = 2;
     public static final int NB_PEAUX = 5;
     public static final int NB_CHEVEUX = 3;
     public static final int NB_PILOSITE = 3;
