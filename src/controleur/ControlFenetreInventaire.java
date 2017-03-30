@@ -31,9 +31,11 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
 
             if(buttonclicked1.equals("")) {
                 for (int i=10;i < e.getActionCommand().length();i++){
+                    System.out.println(e.getActionCommand().charAt(i));
                     buttonclicked1 += e.getActionCommand().charAt(i);
                 }
                 iconTampon1 = fenetre.panelFenetreInventaire.inventaire[Integer.parseInt((buttonclicked1))].getIcon();
+                System.out.println(buttonclicked1);
             }
 
             /*else if(buttonclicked2.equals("")){
@@ -78,130 +80,103 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
             }*/
 
         } else {
-            if (inventaire.size() != 0) {
+            //if (inventaire.size() != 0) {
                 switch (e.getActionCommand()) {
 
                     case "Casque":
-                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 2) {
                             iconTampon2 = fenetre.panelFenetreInventaire.casque.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.casque.setIcon(iconTampon1);
-                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            /*jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
                             jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
                             jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
                             jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
                             jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
-                        } else {
-                            System.out.println("Mauvais emplacement !!");
-                        }
+                       */
                         break;
 
                     case "Plastron":
-                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 1) {
                             iconTampon2 = fenetre.panelFenetreInventaire.plastron.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.plastron.setIcon(iconTampon1);
-                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            /*jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
                             jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
                             jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
                             jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
                             jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
-                        } else {
-                            System.out.println("Mauvais emplacement !!");
-                        }
+                        */
                         break;
 
                     case "Gant":
-                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 5) {
                             iconTampon2 = fenetre.panelFenetreInventaire.gant.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.gant.setIcon(iconTampon1);
-                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            /*jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
                             jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
                             jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
                             jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
                             jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
-                        } else {
-                            System.out.println("Mauvais emplacement !!");
-                        }
+                        */
                         break;
 
                     case "Bague":
-                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 7) {
                             iconTampon2 = fenetre.panelFenetreInventaire.bague.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.bague.setIcon(iconTampon1);
-                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            /*jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
                             jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
                             jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
                             jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
                             jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
-                        } else {
-                            System.out.println("Mauvais emplacement !!");
-                        }
+                        */
                         break;
 
                     case "Pantalon":
-                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 6) {
                             iconTampon2 = fenetre.panelFenetreInventaire.pantalon.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.pantalon.setIcon(iconTampon1);
-                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            /*jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
                             jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
                             jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
                             jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
                             jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
-                        } else {
-                            System.out.println("Mauvais emplacement !!");
-                        }
+                        */
                         break;
 
                     case "Botte":
-                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 4) {
                             iconTampon2 = fenetre.panelFenetreInventaire.botte.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.botte.setIcon(iconTampon1);
-                            jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
+                            /*jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
                             jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
                             jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
                             jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
                             jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
-                        } else {
-                            System.out.println("Mauvais emplacement !!");
-                        }
-                        break;
+                        */break;
 
                     case "Bouclier":
-                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 9) {
                             iconTampon2 = fenetre.panelFenetreInventaire.bouclier.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.bouclier.setIcon(iconTampon1);
-                            jeu.getHero().setDegats((int)inventaire.get(Integer.parseInt(buttonclicked1)).getDegat() + jeu.getHero().getDegats());
+                            /*jeu.getHero().setDegats((int)inventaire.get(Integer.parseInt(buttonclicked1)).getDegat() + jeu.getHero().getDegats());
                             jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
                             jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
                             jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
                             jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
                             jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
-                        } else {
-                            System.out.println("Mauvais emplacement !!");
-                        }
-                        break;
+                       */ break;
 
                     case "Arme":
-                        if (inventaire.get(Integer.parseInt(buttonclicked1)).getTypeItem() == 8) {
                             iconTampon2 = fenetre.panelFenetreInventaire.arme.getIcon();
                             fenetre.panelFenetreInventaire.inventaire[Integer.parseInt(buttonclicked1)].setIcon(iconTampon2);
                             fenetre.panelFenetreInventaire.arme.setIcon(iconTampon1);
-                            jeu.getHero().setDegats((int)inventaire.get(Integer.parseInt(buttonclicked1)).getDegat() + jeu.getHero().getDegats());
+                            /*jeu.getHero().setDegats((int)inventaire.get(Integer.parseInt(buttonclicked1)).getDegat() + jeu.getHero().getDegats());
                             jeu.getHero().setArmure((int)inventaire.get(Integer.parseInt(buttonclicked1)).getArmure() + jeu.getHero().getArmure());
                             jeu.getHero().setForce(inventaire.get(Integer.parseInt(buttonclicked1)).getPointForce() + jeu.getHero().getForce());
                             jeu.getHero().setResistance(inventaire.get(Integer.parseInt(buttonclicked1)).getPointResistance() + jeu.getHero().getResistance());
                             jeu.getHero().setIntelligence(inventaire.get(Integer.parseInt(buttonclicked1)).getPointIntelligence() + jeu.getHero().getIntelligence());
                             jeu.getHero().setConstitution(inventaire.get(Integer.parseInt(buttonclicked1)).getPointConstitution() + jeu.getHero().getConstitution());
-                        } else {
-                            System.out.println("Mauvais emplacement !!");
-                        }
-                        break;
+                        */break;
 
                     case "Retour":
                         Control.enPartie = true;
@@ -224,10 +199,10 @@ public class ControlFenetreInventaire extends Control implements ActionListener 
                     System.out.println("Bouton 2 : " + buttonclicked2);*/
                         break;
                 }
-            }
             iconTampon1 = null;
             iconTampon2 = null;
             buttonclicked1 = "";
-        }
+            }
+       // }
     }
 }
