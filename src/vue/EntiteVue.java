@@ -190,41 +190,48 @@ public class EntiteVue extends JPanel {
 
             int x = entite.getPositionX() / TAILLE_TUILE;
             int y = (entite.getPositionY() + entite.getHauteurBas()) / TAILLE_TUILE;
-            g.drawRect(x * TAILLE_TUILE, (y - 1) * TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
-        }
-
-        // barre de vie pour les monstres 
-        if (entite instanceof Monstre) {
-            g.setColor(Color.BLACK);
-            g.fillRect((int) (entite.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0) - Fenetre.adapterResolutionEnX(1), (int) (entite.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0) - Fenetre.adapterResolutionEnY(1), Fenetre.adapterResolutionEnX(75) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
-            g.setColor(Color.WHITE);
-            g.fillRect((int) (entite.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0), (int) (entite.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), Fenetre.adapterResolutionEnX(75), Fenetre.adapterResolutionEnY(15));
-            g.setColor(Color.RED);
-            g.fillRect((int) (entite.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0), (int) (entite.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), Fenetre.adapterResolutionEnX(75 * ((Personnage) entite).getVie() / ((Personnage) entite).getVieMax()), Fenetre.adapterResolutionEnY(15));
-        } else if (entite instanceof Hero) {
-            // barre de vie pour le héro
-            g.setColor(Color.BLACK);
-            g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(40) - Fenetre.adapterResolutionEnY(1)), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
-            g.setColor(Color.WHITE);
-            g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(40)), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
-            g.setColor(Color.GREEN);
-            g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(40)), Fenetre.adapterResolutionEnX(200 * ((Personnage) entite).getVie() / ((Personnage) entite).getVieMax()), Fenetre.adapterResolutionEnY(15));
-
-            // barre de mana pour le Héro
-            g.setColor(Color.BLACK);
-            g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(60) - Fenetre.adapterResolutionEnY(1)), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
-            g.setColor(Color.WHITE);
-            g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(60)), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
             g.setColor(Color.BLUE);
-            g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(60)), Fenetre.adapterResolutionEnX(200 * ((Personnage) entite).getMana() / ((Personnage) entite).getManaMax()), Fenetre.adapterResolutionEnY(15));
+            g.drawRect(x * TAILLE_TUILE, (y - 1) * TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
 
-            // barre de exp pour le Héro
-            g.setColor(Color.BLACK);
-            g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(80) - Fenetre.adapterResolutionEnY(1)), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
-            g.setColor(Color.WHITE);
-            g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(80)), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
-            g.setColor(Color.ORANGE);
-            g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(80)), Fenetre.adapterResolutionEnX(200 * (int) ((Hero) entite).getExperience() / (int) ((Hero) entite).getExperienceMax()), Fenetre.adapterResolutionEnY(15));
+            g.drawRect(x * TAILLE_TUILE, (y - 4) * TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
+            g.drawRect(x * TAILLE_TUILE, (y - 3) * TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
+
+            g.drawRect((x - 1) * TAILLE_TUILE, (y - 3) * TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
+            g.drawRect((x + 1) * TAILLE_TUILE, (y - 3) * TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
+
+            // barre de vie pour les monstres
+            if (entite instanceof Monstre) {
+                g.setColor(Color.BLACK);
+                g.fillRect((int) (entite.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0) - Fenetre.adapterResolutionEnX(1), (int) (entite.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0) - Fenetre.adapterResolutionEnY(1), Fenetre.adapterResolutionEnX(75) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+                g.setColor(Color.WHITE);
+                g.fillRect((int) (entite.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0), (int) (entite.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), Fenetre.adapterResolutionEnX(75), Fenetre.adapterResolutionEnY(15));
+                g.setColor(Color.RED);
+                g.fillRect((int) (entite.getPositionX() - TAILLE_SPRITE_LARGEUR / 8.0), (int) (entite.getPositionY() - TAILLE_SPRITE_HAUTEUR / 2.0), Fenetre.adapterResolutionEnX(75 * ((Personnage) entite).getVie() / ((Personnage) entite).getVieMax()), Fenetre.adapterResolutionEnY(15));
+            } else if (entite instanceof Hero) {
+                // barre de vie pour le héro
+                g.setColor(Color.BLACK);
+                g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(40) - Fenetre.adapterResolutionEnY(1)), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+                g.setColor(Color.WHITE);
+                g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(40)), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
+                g.setColor(Color.GREEN);
+                g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(40)), Fenetre.adapterResolutionEnX(200 * ((Personnage) entite).getVie() / ((Personnage) entite).getVieMax()), Fenetre.adapterResolutionEnY(15));
+
+                // barre de mana pour le Héro
+                g.setColor(Color.BLACK);
+                g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(60) - Fenetre.adapterResolutionEnY(1)), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+                g.setColor(Color.WHITE);
+                g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(60)), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
+                g.setColor(Color.BLUE);
+                g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(60)), Fenetre.adapterResolutionEnX(200 * ((Personnage) entite).getMana() / ((Personnage) entite).getManaMax()), Fenetre.adapterResolutionEnY(15));
+
+                // barre de exp pour le Héro
+                g.setColor(Color.BLACK);
+                g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100) - Fenetre.adapterResolutionEnX(1)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(80) - Fenetre.adapterResolutionEnY(1)), Fenetre.adapterResolutionEnX(200) + Fenetre.adapterResolutionEnX(2), Fenetre.adapterResolutionEnY(15) + Fenetre.adapterResolutionEnY(2));
+                g.setColor(Color.WHITE);
+                g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(80)), Fenetre.adapterResolutionEnX(200), Fenetre.adapterResolutionEnY(15));
+                g.setColor(Color.ORANGE);
+                g.fillRect((int) (scrollPane.getViewport().getViewPosition().getX() + Fenetre.adapterResolutionEnX(100)), (int) (scrollPane.getViewport().getViewPosition().getY() + Fenetre.adapterResolutionEnY(80)), Fenetre.adapterResolutionEnX(200 * (int) ((Hero) entite).getExperience() / (int) ((Hero) entite).getExperienceMax()), Fenetre.adapterResolutionEnY(15));
+            }
         }
     }
 }
