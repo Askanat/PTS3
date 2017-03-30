@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import static vue.Fenetre.DEFAUT_X;
 import static vue.Fenetre.DEFAUT_Y;
+import static vue.FenetreJeu.ZONE;
 
 public class BDD {
 
@@ -60,7 +61,7 @@ public class BDD {
             while (resultat.next()) {
                 hero1 = new Hero(resultat.getString("nomPerso"), Integer.parseInt(resultat.getString("niveauPerso")), Integer.parseInt(resultat.getString("pointCompetence")), Integer.parseInt(resultat.getString("pointCaracteristique")), Double.parseDouble(resultat.getString("experiencePerso")),
                         Double.parseDouble(resultat.getString("experienceMaxPerso")), Double.parseDouble(resultat.getString("forcePerso")), Double.parseDouble(resultat.getString("intelPerso")), Double.parseDouble(resultat.getString("constiPerso")), Double.parseDouble(resultat.getString("resiPerso")),
-                        Integer.parseInt(resultat.getString("gold")), resultat.getString("texturePerso"), (int) (DEFAUT_X / 2.0), 100, jeu, result, inventaire);
+                        Integer.parseInt(resultat.getString("gold")), resultat.getString("texturePerso"), 100, ZONE.height, jeu, result, inventaire);
             }
         } catch (Exception e) {
             System.out.println("Echec query hero " + e);
@@ -79,7 +80,7 @@ public class BDD {
         try {
             resultat = instruction.executeQuery("Select * FROM monstre WHERE idMonstre =" + id + ";");
             while (resultat.next()) {
-                monstre = new Monstre(resultat.getString("libelleMonstre"), 1, Integer.parseInt(resultat.getString("largeurDevant")), Integer.parseInt(resultat.getString("largeurDerriere")), Integer.parseInt(resultat.getString("hauteurHaut")), Integer.parseInt(resultat.getString("hauteurBas")),
+                monstre = new Monstre(resultat.getString("libelleMonstre"), (jeu.getHero().getNieau() + jeu.getNiveauDonjonActuelle() -1), Integer.parseInt(resultat.getString("largeurDevant")), Integer.parseInt(resultat.getString("largeurDerriere")), Integer.parseInt(resultat.getString("hauteurHaut")), Integer.parseInt(resultat.getString("hauteurBas")),
                         Double.parseDouble(resultat.getString("coeffArmure")), Double.parseDouble(resultat.getString("coeffVie")), Double.parseDouble(resultat.getString("coeffMana")), Double.parseDouble(resultat.getString("coeffDegat")), resultat.getString("textureMonstre"),
                         x, y, Integer.parseInt(resultat.getString("vitesseDeDeplacementEnX")), Integer.parseInt(resultat.getString("vitesseDeDeplacementEnY")), Integer.parseInt(resultat.getString("distanceVisibilite")), sort, jeu);
             }

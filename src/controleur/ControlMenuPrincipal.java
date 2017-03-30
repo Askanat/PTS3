@@ -1,6 +1,8 @@
 package controleur;
 
+import model.Direction;
 import model.Jeu;
+import model.Niveau;
 import vue.Fenetre;
 
 import java.awt.event.ActionEvent;
@@ -33,7 +35,6 @@ public class ControlMenuPrincipal extends Control implements ActionListener {
                 }
                 break;
             case "Charger Partie":
-
                 if (3 - jeu.getNbPartieLibre() > 0) {
                     fenetre.panelFenetreCharger.init();
 

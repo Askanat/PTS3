@@ -1,7 +1,9 @@
 package controleur;
 
+import model.Direction;
 import model.Equipement;
 import model.Jeu;
+import model.Niveau;
 import vue.Fenetre;
 
 import javax.swing.*;
@@ -59,7 +61,9 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
 
                 jeu.sauvegardeHero();
 
-                // supprime les monstre
+
+                // supprime les monstres
+                jeu.getEtat().getIndiceSuppressionMonstre().clear();
                 fenetre.panelFenetreJeu.monstre.clear();
                 jeu.getTableauMonstre().clear();
 
@@ -68,15 +72,20 @@ public class ControlMenuEnJeu extends Control implements ActionListener {
                 jeu.setHero(null);
 
                 //supprime les sorts du héro
+                jeu.getEtat().getIndiceSuppressionSortHero().clear();
                 fenetre.panelFenetreJeu.sortHero.clear();
                 jeu.getTableauSortHero().clear();
 
-                // supprime les sorts des mosntres
+                // supprime les sorts des monstres
+                jeu.getEtat().getIndiceSuppressionSortMonstre().clear();
                 fenetre.panelFenetreJeu.sortMonstre.clear();
                 jeu.getTableauSortMonstre().clear();
 
                 Control.enPartie = false;
                 jeu.getEtat().setPause(false);
+                fenetre.panelFenetreJeu.changerMap("map/mapFenetreDepart.txt");
+                Niveau niveau = new Niveau(50, 2, Direction.GAUCHE, true);
+                jeu.getEtat().setZoneSafe(true);
                 fenetre.setContentPane(fenetre.panelMenuPrincipal);
                 changerVue();
                 break;

@@ -44,7 +44,6 @@ public class FenetreJeu extends JPanel {
         this.jeu = jeu;
 
         this.setLayout(null);
-
         readMap("map/mapFenetreDepart.txt");
         tuileImage = new BufferedImage[tailleMapY][tailleMapX];
         chargerMap();
@@ -52,9 +51,7 @@ public class FenetreJeu extends JPanel {
         ZONE = new Dimension(TAILLE_TUILE * tailleMapX, TAILLE_TUILE * tailleMapY);
         this.setPreferredSize(ZONE);
 
-        int largeurMap = (int) (50 + (Math.random() * (150 - 50)));
-        int nbPlateforme = 2;
-        Niveau niveau = new Niveau(largeurMap, nbPlateforme, Direction.GAUCHE, true);
+        Niveau niveau = new Niveau(50, 2, Direction.GAUCHE, true);
 
         monstre = new ArrayList<>();
         hero = null;
@@ -147,30 +144,35 @@ public class FenetreJeu extends JPanel {
         tuileImage = new BufferedImage[tailleMapY][tailleMapX];
         chargerMap();
 
-        if (!jeu.getEtat().getZoneSafe() && jeu.getNiveauDonjonActuelle() > 0) {
-            if (jeu.getHero().getPositionY() < ZONE.height / 2.0)
-                jeu.getHero().setPositionY(-Fenetre.adapterResolutionEnY(200) + TAILLE_TUILE * tailleMapY - jeu.getHero().getHauteurBas());
-            else
-                jeu.getHero().setPositionY(Fenetre.adapterResolutionEnY(550) - jeu.getHero().getHauteurBas());
+        if (hero != null) {
+            if (!jeu.getEtat().getZoneSafe() && jeu.getNiveauDonjonActuelle() > 0) {
+                if (jeu.getHero().getPositionY() < ZONE.height / 2.0)
+                    jeu.getHero().setPositionY(-Fenetre.adapterResolutionEnY(200) + TAILLE_TUILE * tailleMapY - jeu.getHero().getHauteurBas());
+                else
+                    jeu.getHero().setPositionY(Fenetre.adapterResolutionEnY(550) - jeu.getHero().getHauteurBas());
 
-            if (jeu.getHero().getPositionX() < ZONE.width / 2.0) {
-                jeu.getHero().setDirectionOrientation(Direction.GAUCHE);
-                jeu.getHero().setPositionX(-Fenetre.adapterResolutionEnX(150) + TAILLE_TUILE * tailleMapX);
-            } else {
-                jeu.getHero().setDirectionOrientation(Direction.DROITE);
-                jeu.getHero().setPositionX(Fenetre.adapterResolutionEnX(150));
+                if (jeu.getHero().getPositionX() < ZONE.width / 2.0) {
+                    jeu.getHero().setDirectionOrientation(Direction.GAUCHE);
+                    jeu.getHero().setPositionX(-Fenetre.adapterResolutionEnX(150) + TAILLE_TUILE * tailleMapX);
+                } else {
+                    jeu.getHero().setDirectionOrientation(Direction.DROITE);
+                    jeu.getHero().setPositionX(Fenetre.adapterResolutionEnX(150));
+                }
             }
         }
 
         ZONE = new Dimension(TAILLE_TUILE * tailleMapX, TAILLE_TUILE * tailleMapY);
         this.setPreferredSize(ZONE);
-        if (jeu.getNiveauDonjonActuelle() == 0) {
-            jeu.getHero().setPositionX(Fenetre.adapterResolutionEnX(150));
-            jeu.getHero().setPositionY((int) (-Fenetre.adapterResolutionEnY(200) + ZONE.getHeight() - jeu.getHero().getHauteurBas()));
-        }
 
-        if (jeu.getEtat().getZoneSafe())
-            jeu.getHero().setPositionX(ZONE.width - 2);
+        if (hero != null) {
+            if (jeu.getNiveauDonjonActuelle() == 0) {
+                jeu.getHero().setPositionX(Fenetre.adapterResolutionEnX(150));
+                jeu.getHero().setPositionY((int) (-Fenetre.adapterResolutionEnY(200) + ZONE.getHeight() - jeu.getHero().getHauteurBas()));
+            }
+
+            if (jeu.getEtat().getZoneSafe())
+                jeu.getHero().setPositionX(ZONE.width - 2);
+        }
 
     }
 

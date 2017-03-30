@@ -12,7 +12,6 @@ public class Jeu {
 
     public static final int GRAVITE = Fenetre.adapterResolutionEnY(8);
 
-    private Niveau niveau;
     private Etat etat;
     private BDD bdd;
 
@@ -24,13 +23,9 @@ public class Jeu {
     private int niveauDonjonActuelle;
     private int nbPartieLibre;
 
-    // à enlever
-    private ArrayList<Sort> allSort;
-    private ArrayList<Equipement> allItem;
 
     public Jeu() {
 
-        niveau = null;
         etat = new Etat();
         bdd = new BDD();
 
@@ -41,10 +36,6 @@ public class Jeu {
 
         niveauDonjonActuelle = 0;
         nbPartieLibre = 0;
-
-        // à enlever
-        allSort = bdd.chargerSpell();
-        allItem = bdd.chargerEquipement();
     }
 
 
@@ -178,31 +169,6 @@ public class Jeu {
 
     public String readNomPerso(int id) {
         return bdd.readNomPerso(id);
-    }
-
-    public Sort getSort(int idSort) {
-        return allSort.get(idSort);
-    }
-
-    public void achatItem(int id) {
-        int orHero = getHero().getOr();
-        int prix = bdd.getPrixItem(id);
-        if (orHero >= prix) {
-            getHero().setOr(getHero().getOr() - prix);
-            //addInventaire(id);
-        }
-    }
-
-    public void vendreItem(int id) {
-        int orHero = getHero().getOr();
-        int prix = bdd.getPrixItem(id);
-
-        getHero().setOr(getHero().getOr() + prix);
-        //removeInventaire(id);
-    }
-
-    public Equipement getOneItem(int idItem) {
-        return allItem.get(idItem);
     }
 
     public Equipement addItemInInventaire(Equipement equipement) {

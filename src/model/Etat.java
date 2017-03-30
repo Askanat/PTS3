@@ -11,7 +11,6 @@ public class Etat {
 
     private int temps;
 
-    private boolean suppressionHero;
     private ArrayList<Integer> indiceSuppressionMonstre;
     private ArrayList<Integer> indiceSuppressionSortMonstre;
     private ArrayList<Integer> indiceSuppressionSortHero;
@@ -25,7 +24,6 @@ public class Etat {
 
         temps = 0;
 
-        suppressionHero = false;
         indiceSuppressionMonstre = new ArrayList<Integer>();
         indiceSuppressionSortMonstre = new ArrayList<Integer>();
         indiceSuppressionSortHero = new ArrayList<Integer>();
@@ -47,15 +45,6 @@ public class Etat {
 
     public int getTemps() {
         return temps;
-    }
-
-
-    public void setSuppressionHero(boolean suppressionHero) {
-        this.suppressionHero = suppressionHero;
-    }
-
-    public boolean getSuppressionHero() {
-        return suppressionHero;
     }
 
     public ArrayList<Integer> getIndiceSuppressionMonstre() {

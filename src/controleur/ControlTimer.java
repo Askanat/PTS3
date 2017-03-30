@@ -8,6 +8,7 @@ import vue.Fenetre;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import static vue.FenetreJeu.*;
 
@@ -26,7 +27,6 @@ public class ControlTimer extends Control implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if (Control.enPartie) {
             if (ControlClavier.toucheRelacher[ControlTouche.ACTION_MENU]) {
                 jeu.getEtat().inversePause();
@@ -45,10 +45,6 @@ public class ControlTimer extends Control implements ActionListener {
             if (!jeu.getEtat().getPause()) {
                 jeu.getEtat().incrementeTemps();
                 if (jeu.getEtat().getTemps() % 300 == 0) {
-                    //jeu.setMonstre(1, 900, 100); // a enlever d'ici
-                    //jeu.setMonstre(2, 1400, 100); // a enlever d'ici
-                    //jeu.setMonstre(3, 1900, 100); // a enlever d'ici
-                    //jeu.setMonstre(4, 2400, 100); // a enlever d'ici
                     jeu.sauvegardeHero();
                     jeu.getEtat().setSave(true);
                 }
@@ -81,8 +77,15 @@ public class ControlTimer extends Control implements ActionListener {
                     int x = jeu.getHero().getPositionX() / TAILLE_TUILE;
                     int y = (jeu.getHero().getPositionY() + jeu.getHero().getHauteurBas()) / TAILLE_TUILE;
                     if (0 <= tuileInt[y - 3][x] && tuileInt[y - 3][x] <= 15 && !jeu.getEtat().getZoneSafe()) {
-                        // monte de niveau ou dessend en fonction de si il utilise la porte en haut ou la porte en bas
+                        // supprime les monstre
+                        fenetre.panelFenetreJeu.monstre.clear();
+                        jeu.getTableauMonstre().clear();
 
+                        // supprime les sorts des monstres
+                        fenetre.panelFenetreJeu.sortMonstre.clear();
+                        jeu.getTableauSortMonstre().clear();
+
+                        // monte de niveau ou dessend en fonction de si il utilise la porte en haut ou la porte en bas
                         Direction directionPorte = null;
                         if (jeu.getHero().getPositionY() < ZONE.height / 2.0) {
                             jeu.setNiveauDonjonActuelle(jeu.getNiveauDonjonActuelle() + 1);
@@ -107,9 +110,10 @@ public class ControlTimer extends Control implements ActionListener {
 
                         // change de map si il est dans le donjon ou si il sort du donjon (sort du donjon quand niveau 0)
                         if (jeu.getNiveauDonjonActuelle() > 0) {
-                            int largeurMap = (int) (30 + (Math.random() * (150 - 30)));
+                            int largeurMap = (int) (50 + (Math.random() * (150 - 50)));
                             int nbPlateforme = jeu.getNiveauDonjonActuelle() + 1;
                             Niveau niveau = new Niveau(largeurMap, nbPlateforme, directionPorte.getDirection(), true);
+                            spawnMob(largeurMap, nbPlateforme);
                             fenetre.panelFenetreJeu.changerMap("map/mapFenetreDonjon.txt");
                         } else {
                             jeu.getEtat().setZoneSafe(true);
@@ -217,11 +221,63 @@ public class ControlTimer extends Control implements ActionListener {
                         jeu.getEtat().getIndiceSuppressionSortHero().add(i);
                 }
 
+                // fait mourrir le personnage
+                if(!jeu.getHero().estVivant()) {
+
+                    // supprime les monstres
+                    jeu.getEtat().getIndiceSuppressionMonstre().clear();
+                    fenetre.panelFenetreJeu.monstre.clear();
+                    jeu.getTableauMonstre().clear();
+
+                    //supprime les sorts du héro
+                    jeu.getEtat().getIndiceSuppressionSortHero().clear();
+                    fenetre.panelFenetreJeu.sortHero.clear();
+                    jeu.getTableauSortHero().clear();
+
+                    // supprime les sorts des monstres
+                    jeu.getEtat().getIndiceSuppressionSortMonstre().clear();
+                    fenetre.panelFenetreJeu.sortMonstre.clear();
+                    jeu.getTableauSortMonstre().clear();
+
+                    // change la map
+                    jeu.getEtat().setZoneSafe(true);
+                    fenetre.panelFenetreJeu.changerMap("map/mapFenetreDepart.txt");
+                    Niveau niveau = new Niveau(50, 2, Direction.GAUCHE, true);
+
+                    // change la position du personnage
+                    jeu.getHero().setVie(jeu.getHero().getVieMax()/2);
+                    jeu.getHero().setPositionX(Fenetre.adapterResolutionEnX(100));
+                    jeu.getHero().setPositionY(Fenetre.adapterResolutionEnY(ZONE.height));
+                }
+
                 jeu.updateEntite();
                 fenetre.panelFenetreJeu.updateEntite();
             }
         }
-
         fenetre.repaint();
     }
+
+    public void spawnMob(int largeur, int nbPlateforme) {
+        for (int i = 0; i < nbPlateforme; i ++) {
+            for (int j = 10; j < largeur-10; j+=15) {
+                int val = (int) (1 + (Math.random() * (5 - 1)));
+                switch (val) {
+                    case 1:
+                        jeu.setMonstre(1, j*50, 150+i*(50*13));
+                        break;
+                    case 2:
+                        jeu.setMonstre(2, j*50, 150+i*(50*13));
+                        break;
+                    case 3:
+                        jeu.setMonstre(3, j*50, 150+i*(50*13));
+                        break;
+                    case 4:
+                        jeu.setMonstre(4, j*50, 150+i*(50*13));
+                        break;
+                }
+            }
+        }
+
+    }
 }
+

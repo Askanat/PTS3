@@ -154,9 +154,8 @@ public class Hero extends Personnage implements Serializable {
         // inflige dégats quand on marche sur des pics
         int x = getPositionX() / TAILLE_TUILE;
         int y = (getPositionY() + hauteurBas) / TAILLE_TUILE;
-
         if (tuileInt[y - 1][x] == 79)
-            setVie((int) (getVie() - (0.03 * getVieMax())));
+            setVie((int) (getVie() - ((jeu.getNiveauDonjonActuelle()/100.0) * getVieMax())));
 
         // regénère mana et régénère vie
         if (temps % tempsRegeneration == 0) {
