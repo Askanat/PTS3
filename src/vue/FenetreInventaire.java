@@ -98,9 +98,9 @@ public class FenetreInventaire extends JPanel {
         for (int i = 0; i < 30; i++) {
             inventaire[i].addActionListener(controlFenetreInventaire);
             if(i%2 == 1) {
-                inventaire[i].setIcon(new ImageIcon("image/iconeSave.png"));
+                inventaire[i].setIcon(new ImageIcon("images/iconeSave.png"));
             }else {
-                inventaire[i].setIcon(new ImageIcon("image/iconeMenu.png"));
+                inventaire[i].setIcon(new ImageIcon("images/iconeMenu.png"));
             }
         }
     }
